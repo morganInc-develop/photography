@@ -409,7 +409,7 @@ export function ArtboardCanvas() {
       <div ref={gridRef} role="list" className="grid js-grid" style={{ touchAction: "none" }}>
         {ARTBOARD_IMAGES.map((src) => (
           <div key={src} role="listitem" className="div">
-            <a href="/archive" className="js-plane-link">
+            <a href="/the-archive" className="js-plane-link">
               <figure className="js-plane" data-src={src} />
             </a>
           </div>

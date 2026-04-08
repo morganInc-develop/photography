@@ -1,8 +1,7 @@
-export default function TheArchivePage() {
-  return (
-    <main className="route-placeholder">
-      <h1 className="h-h1">THE ARCHIVE</h1>
-      <p className="paragraph">Dedicated archive destination route.</p>
-    </main>
-  );
+"use client";
+
+import ArchivePage from "@/components/archive/ArchivePage";
+
+export default function TheArchive() {
+  return <ArchivePage />;
 }

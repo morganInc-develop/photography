@@ -12,7 +12,7 @@ import { ensureSignatureEase } from "@/components/home/gsap-signature";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function HomePage() {
   const [loaderDone, setLoaderDone] = useState(false);
@@ -64,13 +64,13 @@ export default function HomePage() {
     };
   }, []);
 
-  const handleLoaderComplete = () => {
+  const handleLoaderComplete = useCallback(() => {
     if (hasCompletedRef.current) {
       return;
     }
     hasCompletedRef.current = true;
     setLoaderDone(true);
-  };
+  }, []);
 
   return (
     <main data-barba="wrapper" className="page-wrapper">

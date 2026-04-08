@@ -12,8 +12,13 @@ type HomeLoaderProps = {
 export function HomeLoader({ onComplete }: HomeLoaderProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const completedRef = useRef(false);
+  const onCompleteRef = useRef(onComplete);
 
   const chars = useMemo(() => [...LOADER_MANIFESTO], []);
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -48,7 +53,7 @@ export function HomeLoader({ onComplete }: HomeLoaderProps) {
           return;
         }
         completedRef.current = true;
-        onComplete();
+        onCompleteRef.current();
       },
     });
 
@@ -105,7 +110,7 @@ export function HomeLoader({ onComplete }: HomeLoaderProps) {
     return () => {
       timeline.kill();
     };
-  }, [onComplete]);
+  }, []);
 
   return (
     <div ref={rootRef} className="preloader">
