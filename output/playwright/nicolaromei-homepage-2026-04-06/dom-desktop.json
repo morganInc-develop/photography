@@ -1,0 +1,80 @@
+{
+  "title": "Nicola Romei | Digital Experience Designer",
+  "url": "https://www.nicolaromei.com/",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "pageHeight": 2448,
+  "headings": [
+    {
+      "level": "h1",
+      "text": "ROTATE YOUR DEVICE FOR A BETTER EXPERIENCE",
+      "selector": "h1.h-h1.is--landscape"
+    },
+    {
+      "level": "h1",
+      "text": "the artboard™",
+      "selector": "h1.h-h1"
+    }
+  ],
+  "sections": [
+    {
+      "index": 0,
+      "selector": "div.app",
+      "tag": "div",
+      "attrs": {
+        "class": "app",
+        "data-barba-namespace": "home",
+        "data-barba": "container"
+      },
+      "rect": {
+        "top": 0,
+        "height": 0
+      },
+      "headings": [
+        {
+          "level": "h1",
+          "text": "ROTATE YOUR DEVICE FOR A BETTER EXPERIENCE"
+        },
+        {
+          "level": "h1",
+          "text": "the artboard™"
+        }
+      ],
+      "ctas": [
+        {
+          "tag": "a",
+          "text": "Awwards",
+          "href": "https://www.awwwards.com/nicolaromei/"
+        },
+        {
+          "tag": "a",
+          "text": "Linkedin",
+          "href": "https://www.linkedin.com/in/nicolaromei/"
+        },
+        {
+          "tag": "a",
+          "text": "contacts",
+          "href": "mailto:info@nicolaromei.com?subject=New%20project%20together"
+        },
+        {
+          "tag": "a",
+          "text": "THE ARCHIVE",
+          "href": "/the-archive"
+        },
+        {
+          "tag": "a",
+          "text": "THE PROFILE",
+          "href": "/the-profile"
+        },
+        {
+          "tag": "a",
+          "text": "CLOSE",
+          "href": "#"
+        }
+      ],
+      "textSample": "/* (opzionale) se vuoi che il fade sia ancora più morbido in CSS fallback */ .page-transition.is-active{ pointer-events: all; } /* 1. Le Scanlines (righe orizzontali) */ .crt-overlay::before { content: \" \"; display: block; position: absolute; top: 0; left: 0; "
+    }
+  ]
+}

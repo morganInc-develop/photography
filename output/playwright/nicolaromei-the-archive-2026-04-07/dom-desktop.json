@@ -1,0 +1,333 @@
+{
+  "title": "Nicola Romei | The Archive",
+  "url": "https://www.nicolaromei.com/the-archive",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "pageHeight": 1044,
+  "headings": [
+    {
+      "level": "h1",
+      "text": "ROTATE YOUR DEVICE FOR A BETTER EXPERIENCE",
+      "selector": "h1.h-h1.is--landscape"
+    },
+    {
+      "level": "h1",
+      "text": "SWITCH YOUR DEVICE FOR A BETTER EXPERIENCE",
+      "selector": "h1.h-h1.is--landscape"
+    },
+    {
+      "level": "h1",
+      "text": "RETRONOVA",
+      "selector": "h1.paragraph.is--list"
+    },
+    {
+      "level": "h1",
+      "text": "©",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "™",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "NICOLA ROMEI",
+      "selector": "h1.paragraph.is--list"
+    },
+    {
+      "level": "h1",
+      "text": "©",
+      "selector": "h1.paragraph.is--list"
+    },
+    {
+      "level": "h1",
+      "text": "™",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "CREATIVE LEAP",
+      "selector": "h1.paragraph.is--list"
+    },
+    {
+      "level": "h1",
+      "text": "©",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "™",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "MADE IN EVOLVE",
+      "selector": "h1.paragraph.is--list"
+    },
+    {
+      "level": "h1",
+      "text": "©",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "™",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "VALSAVARENCHE",
+      "selector": "h1.paragraph.is--list"
+    },
+    {
+      "level": "h1",
+      "text": "©",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "™",
+      "selector": "h1.paragraph.is--list"
+    },
+    {
+      "level": "h1",
+      "text": "DAVIDE CATTANEO",
+      "selector": "h1.paragraph.is--list"
+    },
+    {
+      "level": "h1",
+      "text": "©",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "™",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "Studies in Form",
+      "selector": "h1.paragraph.is--list"
+    },
+    {
+      "level": "h1",
+      "text": "©",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "™",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "GEOTAB SIGNALS",
+      "selector": "h1.paragraph.is--list"
+    },
+    {
+      "level": "h1",
+      "text": "©",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "™",
+      "selector": "h1.paragraph.is--list.w-condition-invisible"
+    },
+    {
+      "level": "h1",
+      "text": "( THE ARCHIVE )",
+      "selector": "h1.h-h1.is--huge.is--black"
+    }
+  ],
+  "sections": [
+    {
+      "index": 0,
+      "tag": "div",
+      "selector": "div.app",
+      "attrs": {
+        "class": "app"
+      },
+      "rect": {
+        "top": 0,
+        "height": 900
+      },
+      "headings": [
+        {
+          "level": "h1",
+          "text": "ROTATE YOUR DEVICE FOR A BETTER EXPERIENCE"
+        },
+        {
+          "level": "h1",
+          "text": "SWITCH YOUR DEVICE FOR A BETTER EXPERIENCE"
+        },
+        {
+          "level": "h1",
+          "text": "RETRONOVA"
+        },
+        {
+          "level": "h1",
+          "text": "©"
+        },
+        {
+          "level": "h1",
+          "text": "™"
+        },
+        {
+          "level": "h1",
+          "text": "NICOLA ROMEI"
+        },
+        {
+          "level": "h1",
+          "text": "©"
+        },
+        {
+          "level": "h1",
+          "text": "™"
+        },
+        {
+          "level": "h1",
+          "text": "CREATIVE LEAP"
+        },
+        {
+          "level": "h1",
+          "text": "©"
+        },
+        {
+          "level": "h1",
+          "text": "™"
+        },
+        {
+          "level": "h1",
+          "text": "MADE IN EVOLVE"
+        },
+        {
+          "level": "h1",
+          "text": "©"
+        },
+        {
+          "level": "h1",
+          "text": "™"
+        },
+        {
+          "level": "h1",
+          "text": "VALSAVARENCHE"
+        },
+        {
+          "level": "h1",
+          "text": "©"
+        },
+        {
+          "level": "h1",
+          "text": "™"
+        },
+        {
+          "level": "h1",
+          "text": "DAVIDE CATTANEO"
+        },
+        {
+          "level": "h1",
+          "text": "©"
+        },
+        {
+          "level": "h1",
+          "text": "™"
+        },
+        {
+          "level": "h1",
+          "text": "Studies in Form"
+        },
+        {
+          "level": "h1",
+          "text": "©"
+        },
+        {
+          "level": "h1",
+          "text": "™"
+        },
+        {
+          "level": "h1",
+          "text": "GEOTAB SIGNALS"
+        },
+        {
+          "level": "h1",
+          "text": "©"
+        },
+        {
+          "level": "h1",
+          "text": "™"
+        },
+        {
+          "level": "h1",
+          "text": "( THE ARCHIVE )"
+        }
+      ],
+      "ctas": [
+        {
+          "tag": "a",
+          "text": "back to works",
+          "href": "/"
+        },
+        {
+          "tag": "a",
+          "text": "back to artboard™",
+          "href": "/"
+        },
+        {
+          "tag": "a",
+          "text": "see case",
+          "href": "/works/retronova"
+        },
+        {
+          "tag": "a",
+          "text": "see case",
+          "href": "/works/nicola-romei"
+        },
+        {
+          "tag": "a",
+          "text": "see case",
+          "href": "/works/creative-leap"
+        },
+        {
+          "tag": "a",
+          "text": "see case",
+          "href": "/works/made-in-evolve"
+        },
+        {
+          "tag": "a",
+          "text": "see case",
+          "href": "/works/valsavarenche"
+        },
+        {
+          "tag": "a",
+          "text": "see case",
+          "href": "/works/davide-cattaneo"
+        },
+        {
+          "tag": "a",
+          "text": "see case",
+          "href": "/works/studies-in-form"
+        },
+        {
+          "tag": "a",
+          "text": "see case",
+          "href": "/works/geotab-signals"
+        },
+        {
+          "tag": "a",
+          "text": "RETRONOVA©™",
+          "href": "/works/retronova"
+        },
+        {
+          "tag": "a",
+          "text": "NICOLA ROMEI©™",
+          "href": "/works/nicola-romei"
+        }
+      ],
+      "textSample": "ROTATE YOUR DEVICE FOR A BETTER EXPERIENCESWITCH YOUR DEVICE FOR A BETTER EXPERIENCE35WHAT APPEARS HERE IS NOT A SHOWCASE, BUT THE TRACE OF A PRACTICE /* (opzionale) se vuoi che il fade sia ancora più morbido in CSS fallback */ .page-transition.is-active{ pointer-events: all; } /* 1. Le Scanlines (righe orizzontali) */"
+    }
+  ]
+}

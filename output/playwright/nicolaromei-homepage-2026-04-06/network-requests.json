@@ -1,0 +1,502 @@
+[
+  {
+    "url": "https://www.nicolaromei.com/",
+    "resourceType": "document",
+    "method": "GET"
+  },
+  {
+    "url": "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6928a718958d854622ebb4f7",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.jsdelivr.net/npm/virtual-scroll@2.1.1/lib/virtualscroll.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.jsdelivr.net/gh/nicolaromei98/portfolio@cccb452/bundle.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.jsdelivr.net/gh/nicolaromei98/portfolio@b0a918c/loader.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.jsdelivr.net/gh/nicolaromei98/portfolio@3ae7b87/home.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.jsdelivr.net/npm/hls.js@1.6.11",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/css/nicolas-top-notch-site-eb51e8.webflow.shared.2dd855471.min.css",
+    "resourceType": "stylesheet",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/js/webflow.schunk.36b8fb49256177c8.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/js/webflow.schunk.08779b17d1882f59.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/js/webflow.dfdbdaee.4668bc726a3a62dc.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://unpkg.com/lenis@1.3.17/dist/lenis.css",
+    "resourceType": "stylesheet",
+    "method": "GET"
+  },
+  {
+    "url": "https://unpkg.com/lenis@1.3.15/dist/lenis.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/gsap/3.14.2/CustomEase.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/gsap/3.14.2/Draggable.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/gsap/3.14.2/Observer.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/gsap/3.14.2/InertiaPlugin.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/gsap/3.14.2/SplitText.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/gsap/3.14.2/ScrambleTextPlugin.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/gsap/3.14.2/TextPlugin.min.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/5dc1ae738cab24fef27d7fd2/5dc1afe015d7a1109c9bc913_three.min.txt",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://fonts.googleapis.com/css?family=Host+Grotesk:300,400,500,600,700",
+    "resourceType": "stylesheet",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/biw5ksl.js",
+    "resourceType": "script",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/69297468a716fc21cbf86cd9_EaseGeometricB-Bold.woff",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/69450a856a28f12fd88f17ac_imgi_5_693ada0d9f879dafcd0bab03_iphone-min.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/692d934e777d4408621bfa0a_metro__guy.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/6954ec707e3bc809200a9aca_imgi_1_69296c57cac7de195d984630_retronova-min.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/6954ecd22b70bbfd36cde568_color%20explandation.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/6954f065565c56340cfa2213_Instagram%20post%20-%2012.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/6954f072f0a84f88c1608386_ROBOT.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/694fbf914be1cfd61761a2b2_nicola_romei_alpine_valley_landscape_rough.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/697640dc4848f6d9704de47a_matte__black.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/69539f725df609a677956f2a_mountain%20p3.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/695e59f71613a2270aa4c912_fashion-retro.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/69539f60a40f89c97f84e714_run.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/694fc10b08a404815af1c082_retro__col.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/69296c87e425fc2eb31b5029_helix-min.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/69539f7e723783fb2223b441_oakley.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/694afe56d26fc3eba7ef6816_VALSA.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/6929755a61a464a1c8cea70b_nrbrut.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/6954eb9f0740175bb42f3c50_img3%20(1).avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/6952ae8502127800ad2dc8f8_retromob.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/6954ec299bb8e35d95065bc7_img2-min%20(2).avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/694fc0144ec3f7d7d04ac837_nr.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/6954f278b16b2664ea9350dd_visionary.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/694afe41adad0bd9f3ce7b3f_CREATIVE.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/692d904efd572e70d66333d7_photo5.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/6954f2921b6951759c4eadf9_ROBOT%20RUNNING.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/694afdcb05e04c5f36cf1d03_DAVIDE.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a719958d854622ebb56e/69297725f2c491d64bb6586c_Untitled-1-min.avif",
+    "resourceType": "image",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/fcff11/000000000000000077359705/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/a311fa/00000000000000007735bb6c/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/216c2e/00000000000000007735bb6a/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/ed23dd/00000000000000007735d4d7/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/082f9e/00000000000000007735ba1d/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/775aaf/00000000000000007735d4dd/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/2724c2/00000000000000007735bb48/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/e14f0c/0000000000000000775aa970/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/3cf7d3/0000000000000000775aa974/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/32e980/00000000000000007735bb53/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/f82cc1/00000000000000007735ba3f/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/110064/00000000000000007735d4d8/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/43adb0/00000000000000007735ba14/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/cc2132/00000000000000007735adf6/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/4b21fa/00000000000000007735d4d0/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/1c2b91/00000000000000007735970b/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/be87b9/00000000000000007735adfa/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/912d1e/00000000000000007735bb33/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/68dda9/00000000000000007735bb35/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/2288cb/00000000000000007735bb39/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/71e50e/00000000000000007735bb3d/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/29fcc8/00000000000000007735ba6d/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/685cbf/00000000000000007735ba65/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/b78836/00000000000000007735ba66/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/d27015/00000000000000007735ba41/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/4366a6/00000000000000007735ba75/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/ca2d73/00000000000000007735ba43/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/b125e3/00000000000000007735ba50/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/e25420/00000000000000007735ba49/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/bf625f/00000000000000007735ba72/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/f5ec5b/00000000000000007735ba4d/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/19a10e/00000000000000007735ba42/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/c9fa9c/00000000000000007735ba46/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/4abf89/00000000000000007735ba6c/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/803b16/00000000000000007735ba64/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/42c251/00000000000000007735ba47/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://use.typekit.net/af/522a81/000000000000000077588c32/31/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+    "resourceType": "font",
+    "method": "GET"
+  },
+  {
+    "url": "https://vz-015fe5e8-a53.b-cdn.net/559d3626-9339-4d4d-be69-06e5d4e0f4ea/playlist.m3u8",
+    "resourceType": "media",
+    "method": "GET"
+  },
+  {
+    "url": "https://vz-015fe5e8-a53.b-cdn.net/559d3626-9339-4d4d-be69-06e5d4e0f4ea/playlist.m3u8",
+    "resourceType": "media",
+    "method": "GET"
+  },
+  {
+    "url": "https://vz-015fe5e8-a53.b-cdn.net/559d3626-9339-4d4d-be69-06e5d4e0f4ea/240p/video.m3u8",
+    "resourceType": "media",
+    "method": "GET"
+  },
+  {
+    "url": "https://vz-015fe5e8-a53.b-cdn.net/559d3626-9339-4d4d-be69-06e5d4e0f4ea/240p/video0.ts",
+    "resourceType": "media",
+    "method": "GET"
+  },
+  {
+    "url": "https://vz-015fe5e8-a53.b-cdn.net/559d3626-9339-4d4d-be69-06e5d4e0f4ea/480p/video.m3u8",
+    "resourceType": "media",
+    "method": "GET"
+  },
+  {
+    "url": "https://vz-015fe5e8-a53.b-cdn.net/559d3626-9339-4d4d-be69-06e5d4e0f4ea/480p/video1.ts",
+    "resourceType": "media",
+    "method": "GET"
+  },
+  {
+    "url": "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/6945608536bc6e702faa6f4c_FAVICON.png",
+    "resourceType": "other",
+    "method": "GET"
+  },
+  {
+    "url": "https://vz-015fe5e8-a53.b-cdn.net/559d3626-9339-4d4d-be69-06e5d4e0f4ea/360p/video.m3u8",
+    "resourceType": "media",
+    "method": "GET"
+  }
+]

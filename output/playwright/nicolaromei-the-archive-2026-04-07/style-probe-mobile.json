@@ -1,0 +1,412 @@
+{
+  "url": "https://www.nicolaromei.com/the-archive",
+  "title": "Nicola Romei | The Archive",
+  "fonts": [
+    {
+      "family": "webflow-icons",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "Array",
+      "weight": "600",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "Array",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "Array",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "Array Wide",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "Easegeometricb",
+      "weight": "700",
+      "style": "normal",
+      "status": "loaded"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "300",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "300",
+      "style": "normal",
+      "status": "loaded"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "400",
+      "style": "normal",
+      "status": "loaded"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "500",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "500",
+      "style": "normal",
+      "status": "loaded"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "600",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "600",
+      "style": "normal",
+      "status": "loaded"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "Host Grotesk",
+      "weight": "700",
+      "style": "normal",
+      "status": "loaded"
+    },
+    {
+      "family": "john-doe",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "john-doe",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "prestige-elite-std",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "prestige-elite-std",
+      "weight": "700",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "prestige-elite-std",
+      "weight": "400",
+      "style": "normal",
+      "status": "loaded"
+    },
+    {
+      "family": "prestige-elite-std",
+      "weight": "400",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "typeka",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "typeka",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "itc-avant-garde-gothic-pro",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "itc-avant-garde-gothic-pro",
+      "weight": "300",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "itc-avant-garde-gothic-pro",
+      "weight": "700",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "itc-avant-garde-gothic-pro",
+      "weight": "300",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "neue-haas-grotesk-display",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "neue-haas-grotesk-display",
+      "weight": "400",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "neue-haas-grotesk-display",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "neue-haas-grotesk-display",
+      "weight": "700",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "neue-haas-grotesk-text",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "neue-haas-grotesk-text",
+      "weight": "400",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "neue-haas-grotesk-text",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "neue-haas-grotesk-text",
+      "weight": "700",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "trade-gothic-next",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "trade-gothic-next",
+      "weight": "700",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "trade-gothic-next",
+      "weight": "400",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "trade-gothic-next",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "trade-gothic-next-compressed",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "trade-gothic-next-compressed",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "trade-gothic-next-condensed",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "trade-gothic-next-condensed",
+      "weight": "700",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "trade-gothic-next-condensed",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "trade-gothic-next-condensed",
+      "weight": "400",
+      "style": "italic",
+      "status": "unloaded"
+    },
+    {
+      "family": "tgn-soft-round-comp",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "tgn-soft-round-comp",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "tgn-soft-round",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "tgn-soft-round",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "tgn-soft-round-con",
+      "weight": "700",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "tgn-soft-round-con",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    },
+    {
+      "family": "secret-service-typewriter",
+      "weight": "400",
+      "style": "normal",
+      "status": "unloaded"
+    }
+  ],
+  "probes": {
+    "body": {
+      "selector": "body",
+      "tag": "body",
+      "text": "ROTATE YOUR DEVICE FOR A BETTER EXPERIENCESWITCH YOUR DEVICE FOR A BETTER EXPERIENCE100WHAT APPEARS HERE IS NOT A SHOWCASE, BUT THE TRACE OF A PRACTICE /* (opzionale) se vuoi che i",
+      "styles": {
+        "fontFamily": "Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "20px",
+        "letterSpacing": "normal",
+        "color": "rgb(51, 51, 51)",
+        "backgroundColor": "rgb(243, 243, 243)",
+        "borderRadius": "0px",
+        "textTransform": "none",
+        "display": "block",
+        "position": "static",
+        "gap": "normal",
+        "padding": "0px",
+        "margin": "0px"
+      }
+    },
+    "h1": {
+      "selector": "h1",
+      "tag": "h1",
+      "text": "ROTATE YOUR DEVICE FOR A BETTER EXPERIENCE",
+      "styles": {
+        "fontFamily": "Easegeometricb, Impact, sans-serif",
+        "fontSize": "35px",
+        "fontWeight": "700",
+        "lineHeight": "35px",
+        "letterSpacing": "-2.1px",
+        "color": "rgb(51, 51, 51)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "textTransform": "uppercase",
+        "display": "block",
+        "position": "static",
+        "gap": "normal",
+        "padding": "0px",
+        "margin": "0px"
+      }
+    },
+    "h2": null,
+    "button": null,
+    "navLink": {
+      "selector": "nav a, .nav a, .menu a, header a",
+      "tag": "a",
+      "text": "back to artboard™",
+      "styles": {
+        "fontFamily": "Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+        "fontSize": "42px",
+        "fontWeight": "400",
+        "lineHeight": "42px",
+        "letterSpacing": "normal",
+        "color": "rgb(243, 243, 243)",
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "borderRadius": "0px",
+        "textTransform": "none",
+        "display": "flex",
+        "position": "static",
+        "gap": "42px",
+        "padding": "0px",
+        "margin": "0px"
+      }
+    },
+    "section": {
+      "selector": "section, [class*=\"section\"], main > div",
+      "tag": "div",
+      "text": "ROTATE YOUR DEVICE FOR A BETTER EXPERIENCESWITCH YOUR DEVICE FOR A BETTER EXPERIENCE100WHAT APPEARS HERE IS NOT A SHOWCASE, BUT THE TRACE OF A PRACTICE /* (opzionale) se vuoi che i",
+      "styles": {
+        "fontFamily": "Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "20px",
+        "letterSpacing": "normal",
+        "color": "rgb(51, 51, 51)",
+        "backgroundColor": "rgb(243, 243, 243)",
+        "borderRadius": "0px",
+        "textTransform": "none",
+        "display": "block",
+        "position": "relative",
+        "gap": "normal",
+        "padding": "0px",
+        "margin": "0px"
+      }
+    }
+  }
+}
