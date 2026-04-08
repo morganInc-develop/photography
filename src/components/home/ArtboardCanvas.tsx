@@ -1,7 +1,8 @@
 "use client";
 
-import { ARTBOARD_IMAGES } from "@/components/home/home-data";
+import { ARTBOARD_PHOTOS } from "@/components/home/home-data";
 import { gsap } from "gsap";
+import { useRouter } from "next/navigation";
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
 
@@ -110,8 +111,17 @@ class Plane extends THREE.Object3D {
   }
 }
 
+const DRAG_THRESHOLD = 6;
+
 export function ArtboardCanvas() {
   const gridRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
+  const routerRef = useRef(router);
+  const isDragRef = useRef(false);
+
+  useEffect(() => {
+    routerRef.current = router;
+  }, [router]);
 
   useEffect(() => {
     const gridEl = gridRef.current;
@@ -294,27 +304,84 @@ export function ArtboardCanvas() {
       renderer.render(scene, camera);
     };
 
+    let clickStartX = 0;
+    let clickStartY = 0;
+
+    const onMouseDown = (event: MouseEvent) => {
+      console.log("[ArtboardCanvas] mousedown", {
+        target: event.target,
+        inGrid: gridEl.contains(event.target as Node),
+        isDragging: state.isDragging,
+      });
+
+      if (state.isDragging) {
+        return;
+      }
+
+      isDragRef.current = false;
+      clickStartX = event.clientX;
+      clickStartY = event.clientY;
+      state.isDragging = true;
+      state.on.x = state.tx - event.clientX * 2.5;
+      state.on.y = state.ty + event.clientY * 2.5;
+    };
+
     const onMouseMove = (event: MouseEvent) => {
       if (!state.isDragging) {
         return;
+      }
+
+      const dx = event.clientX - clickStartX;
+      const dy = event.clientY - clickStartY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist > DRAG_THRESHOLD) {
+        if (!isDragRef.current) {
+          console.log("[ArtboardCanvas] drag threshold exceeded, marking as drag", { dist });
+        }
+        isDragRef.current = true;
       }
 
       state.tx = state.on.x + event.clientX * 2.5;
       state.ty = state.on.y - event.clientY * 2.5;
     };
 
-    const onMouseDown = (event: MouseEvent) => {
-      if (state.isDragging) {
-        return;
-      }
+    const onMouseUp = (event: MouseEvent) => {
+      console.log("[ArtboardCanvas] mouseup", {
+        isDrag: isDragRef.current,
+        x: event.clientX,
+        y: event.clientY,
+        target: event.target,
+      });
 
-      state.isDragging = true;
-      state.on.x = state.tx - event.clientX * 2.5;
-      state.on.y = state.ty + event.clientY * 2.5;
-    };
-
-    const onMouseUp = () => {
       state.isDragging = false;
+
+      if (!isDragRef.current) {
+        // Coordinate-based detection — bypasses pointer event / z-index issues entirely
+        const cellEls = Array.from(gridEl.querySelectorAll<HTMLElement>(".div"));
+        console.log("[ArtboardCanvas] checking", cellEls.length, "cells");
+
+        for (let i = 0; i < cellEls.length; i++) {
+          const rect = cellEls[i].getBoundingClientRect();
+          if (i === 0) {
+            console.log("[ArtboardCanvas] cell[0] rect", rect);
+          }
+          if (
+            event.clientX >= rect.left &&
+            event.clientX <= rect.right &&
+            event.clientY >= rect.top &&
+            event.clientY <= rect.bottom
+          ) {
+            const photo = ARTBOARD_PHOTOS[i];
+            console.log("[ArtboardCanvas] matched cell", i, photo?.id);
+            if (photo) {
+              routerRef.current.push(`/photo/${photo.id}`);
+            }
+            return;
+          }
+        }
+
+        console.log("[ArtboardCanvas] no cell matched");
+      }
     };
 
     const onTouchStart = (event: TouchEvent) => {
@@ -373,6 +440,14 @@ export function ArtboardCanvas() {
 
     resize();
 
+    // Diagnostic: log the grid's actual bounding rect and first cell
+    const firstCell = gridEl.querySelector<HTMLElement>(".div");
+    console.log("[ArtboardCanvas] grid setup", {
+      gridRect: gridEl.getBoundingClientRect(),
+      firstCellRect: firstCell?.getBoundingClientRect(),
+      cellCount: gridEl.querySelectorAll(".div").length,
+    });
+
     return () => {
       gsap.ticker.remove(tick);
       window.removeEventListener("mousemove", onMouseMove);
@@ -407,11 +482,15 @@ export function ArtboardCanvas() {
   return (
     <div className="canvas__webgl-list-wrap">
       <div ref={gridRef} role="list" className="grid js-grid" style={{ touchAction: "none" }}>
-        {ARTBOARD_IMAGES.map((src) => (
-          <div key={src} role="listitem" className="div">
-            <a href="/the-archive" className="js-plane-link">
-              <figure className="js-plane" data-src={src} />
-            </a>
+        {ARTBOARD_PHOTOS.map((photo) => (
+          <div
+            key={photo.id}
+            role="listitem"
+            className="div"
+          >
+            <div className="js-plane-link">
+              <figure className="js-plane" data-src={photo.src} />
+            </div>
           </div>
         ))}
       </div>
