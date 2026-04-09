@@ -78,8 +78,16 @@ export function HomeMetaRail() {
 
       <div className="text__col is--cta">
         <div className="tc__utils is--home">
-          <SplitCharButton href="/the-archive" label="THE ARCHIVE" className="is--full" />
-          <SplitCharButton href="/the-profile" label="THE PROFILE" className="is--full" />
+          <SplitCharButton
+            href="/archive"
+            label="THE ARCHIVE"
+            className="is--full"
+          />
+          <SplitCharButton
+            href="/the-profile"
+            label="THE PROFILE"
+            className="is--full"
+          />
         </div>
       </div>
     </nav>

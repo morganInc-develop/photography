@@ -11,7 +11,9 @@ export function HomeCursor() {
       return;
     }
 
-    const allLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("a"));
+    const allLinks = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>("a"),
+    );
 
     let scrollTimeout: number | null = null;
     let mouseX = 0;

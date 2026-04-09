@@ -5,9 +5,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nicola Romei | Digital Experience Designer",
+  title: "Made Invincible | Photography and Videography",
   description:
-    "Digital Experience Designer and Awwwards Judge creating immersive websites with strong visual direction, refined motion, and distinct design signature.",
+    "Made Invincible is a photography and videography studio creating cinematic portraits, motion pieces, and editorial visual storytelling.",
 };
 
 export default function RootLayout({

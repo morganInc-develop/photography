@@ -29,7 +29,10 @@ export default function HomePage() {
     headings.forEach((heading) => {
       gsap.set(heading, { autoAlpha: 1 });
 
-      const split = new SplitText(heading, { type: "lines", linesClass: "mask-line" });
+      const split = new SplitText(heading, {
+        type: "lines",
+        linesClass: "mask-line",
+      });
       splits.push(split);
 
       split.lines.forEach((line) => {

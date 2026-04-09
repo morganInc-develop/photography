@@ -1,0 +1,14 @@
+[
+  {
+    "type": "info",
+    "text": "<Suspense> is an experimental feature and its API will likely change."
+  },
+  {
+    "type": "warning",
+    "text": "[Vue warn]: Missing required prop: \"related\" \n  at <Mobile key=0 > \n  at <BaseTransition appear=false persisted=false mode=undefined  ... > \n  at <Transition name=\"fade\" > \n  at <ClientOnly> \n  at <Default ref=Ref< Proxy(Object) > > \n  at <AsyncComponentWrapper ref=Ref< Proxy(Object) > > \n  at <LayoutLoader key=\"default\" layoutProps= {ref: Ew} name=\"default\" > \n  at <NuxtLayoutProvider layoutProps= {ref: Ew} key=\"default\" name=\"default\"  ... > \n  at <NuxtLayout> \n  at <Anonymous key=4 > \n  at <NuxtRoot>"
+  },
+  {
+    "type": "warning",
+    "text": "[.WebGL-0x114001a6e00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+  }
+]

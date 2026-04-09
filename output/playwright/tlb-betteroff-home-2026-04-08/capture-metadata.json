@@ -1,0 +1,26 @@
+{
+  "targetUrl": "https://tlb.betteroff.studio",
+  "capturedAt": "2026-04-09T01:15:23.819Z",
+  "desktop": {
+    "title": "THE LOOKBACK",
+    "viewport": {
+      "width": 1440,
+      "height": 1200
+    },
+    "documentHeight": 1200,
+    "requestCount": 39,
+    "consoleCount": 20,
+    "scriptCount": 10
+  },
+  "mobile": {
+    "title": "THE LOOKBACK",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "documentHeight": 844,
+    "requestCount": 42,
+    "consoleCount": 21,
+    "scriptCount": 15
+  }
+}

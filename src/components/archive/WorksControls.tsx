@@ -13,11 +13,17 @@ export default function WorksControls({ mode, setMode }: WorksControlsProps) {
         <div className="paragraph">WORKS</div>
       </div>
 
-      <div className="wc__wrap" role="tablist" aria-label="Archive display mode">
+      <div
+        className="wc__wrap"
+        role="tablist"
+        aria-label="Archive display mode"
+      >
         <button
           type="button"
           data-control="gallery"
-          className={mode === "gallery" ? "controls__left active" : "controls__left"}
+          className={
+            mode === "gallery" ? "controls__left active" : "controls__left"
+          }
           aria-pressed={mode === "gallery"}
           onClick={() => setMode("gallery")}
         >
@@ -26,7 +32,9 @@ export default function WorksControls({ mode, setMode }: WorksControlsProps) {
         <button
           type="button"
           data-control="clients"
-          className={mode === "clients" ? "controls__right active" : "controls__right"}
+          className={
+            mode === "clients" ? "controls__right active" : "controls__right"
+          }
           aria-pressed={mode === "clients"}
           onClick={() => setMode("clients")}
         >

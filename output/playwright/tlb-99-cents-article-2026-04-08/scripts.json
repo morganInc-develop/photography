@@ -1,0 +1,128 @@
+[
+  {
+    "url": "https://www.youtube.com/s/player/2430d1b0/player_embed.vflset/en_US/base.js",
+    "status": 200,
+    "contentType": "text/javascript",
+    "length": 1665950
+  },
+  {
+    "url": "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.fLR1EtxYnqc.es5.O/am=AAAABQ/d=1/br=1/rs=AGKMywHWyLIOQcmYXib_AAmPhfTzWG_iWw/m=root,base",
+    "status": 200,
+    "contentType": "text/javascript; charset=UTF-8",
+    "length": 785799
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BGLHITTy.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 549813
+  },
+  {
+    "url": "https://www.youtube.com/s/_/ytembeds/_/js/k=ytembeds.base.en_US.fLR1EtxYnqc.es5.O/am=AAAABQ/d=1/exm=base,root/ed=1/br=1/rs=AGKMywHWyLIOQcmYXib_AAmPhfTzWG_iWw/m=r78Drb",
+    "status": 200,
+    "contentType": "text/javascript; charset=UTF-8",
+    "length": 542501
+  },
+  {
+    "url": "https://www.google.com/js/th/guJHCI9rG-1iSGTVEc2Y7Hq-HSYwxpbYns8eAeY_sJE.js",
+    "status": 200,
+    "contentType": "text/javascript",
+    "length": 62175
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/NgnKf_Q9.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 52565
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BSuY0ud1.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 24548
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/NYCGuiUc.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 10379
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/wyNRnxoT.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 7635
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/DNhanIij.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 6604
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BmLzdhKa.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 5338
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/C1kfZrZv.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 4900
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/vCAxfcVU.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 3434
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/DJCcLtK2.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 3049
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BnLrvkiE.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 2065
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/Bx_gN5Pg.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 1926
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BVO6TvTR.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 1886
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/DzomDRyK.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 740
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/JgeNf1w7.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 656
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BVflUguH.js",
+    "status": 200,
+    "contentType": "application/javascript; charset=UTF-8",
+    "length": 327
+  },
+  {
+    "url": "https://static.doubleclick.net/instream/ad_status.js",
+    "status": 200,
+    "contentType": "text/javascript",
+    "length": 29
+  }
+]

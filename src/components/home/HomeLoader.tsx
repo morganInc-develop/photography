@@ -1,6 +1,9 @@
 "use client";
 
-import { LOADER_MANIFESTO, PRELOADER_IMAGES } from "@/components/home/home-data";
+import {
+  LOADER_MANIFESTO,
+  PRELOADER_IMAGES,
+} from "@/components/home/home-data";
 import { ensureSignatureEase } from "@/components/home/gsap-signature";
 import { gsap } from "gsap";
 import { useEffect, useMemo, useRef } from "react";
@@ -28,7 +31,9 @@ export function HomeLoader({ onComplete }: HomeLoaderProps) {
 
     ensureSignatureEase();
 
-    const images = Array.from(root.querySelectorAll<HTMLElement>("[data-load-img]"));
+    const images = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-load-img]"),
+    );
     const countEl = root.querySelector<HTMLElement>("[data-count]");
     const lineWrap = root.querySelector<HTMLElement>(".preloader__line");
     const lineFill = root.querySelector<HTMLElement>(".line__animate");
@@ -94,7 +99,11 @@ export function HomeLoader({ onComplete }: HomeLoaderProps) {
       );
     });
 
-    timeline.to([lineWrap, countEl, textWrap].filter(Boolean), { opacity: 0, duration: 0.4 }, 2.6);
+    timeline.to(
+      [lineWrap, countEl, textWrap].filter(Boolean),
+      { opacity: 0, duration: 0.4 },
+      2.6,
+    );
 
     timeline.to(
       root,
@@ -117,7 +126,12 @@ export function HomeLoader({ onComplete }: HomeLoaderProps) {
       <div className="preloader__content">
         <div data-load-wrap className="preloader__img-wrap">
           {PRELOADER_IMAGES.map((src, index) => (
-            <div key={src} data-load-img className="pi__img" style={{ zIndex: index + 1 }}>
+            <div
+              key={src}
+              data-load-img
+              className="pi__img"
+              style={{ zIndex: index + 1 }}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img alt="" src={src} className="img is--cover" />
             </div>
@@ -134,7 +148,11 @@ export function HomeLoader({ onComplete }: HomeLoaderProps) {
         </div>
 
         <div className="preloader__intro-wrap">
-          <div data-load-text className="iw__text" aria-label={LOADER_MANIFESTO}>
+          <div
+            data-load-text
+            className="iw__text"
+            aria-label={LOADER_MANIFESTO}
+          >
             <div className="paragraph">
               {chars.map((char, index) => (
                 <span

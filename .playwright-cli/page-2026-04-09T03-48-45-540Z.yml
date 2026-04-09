@@ -1,0 +1,107 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - link "Timeline," [ref=e4] [cursor=pointer]:
+        - /url: /
+      - link "Surf," [ref=e5] [cursor=pointer]:
+        - /url: /archive
+      - link "Index," [ref=e6] [cursor=pointer]:
+        - /url: /the-archive
+      - link "About," [ref=e7] [cursor=pointer]:
+        - /url: /the-profile
+    - paragraph [ref=e10]: Above the Veil / 2022
+    - generic:
+      - paragraph: Better Off®
+      - paragraph: The Lookback
+      - paragraph: (BO®S/2025)
+    - generic [ref=e11]:
+      - generic [ref=e14]:
+        - link "Celestial Ridge" [ref=e15] [cursor=pointer]:
+          - /url: /photo/01
+          - img "Celestial Ridge" [ref=e17]
+        - link "02 Above the Veil Inspire (NOVEMBER) Above the Veil / Zugspitze, Germany" [ref=e18] [cursor=pointer]:
+          - /url: /photo/02
+          - paragraph [ref=e19]: "02"
+          - img "Above the Veil" [ref=e21]
+          - generic [ref=e22]:
+            - paragraph [ref=e23]: Inspire (NOVEMBER)
+            - paragraph [ref=e24]: Above the Veil / Zugspitze, Germany
+        - link "Silicon Lattice" [ref=e25] [cursor=pointer]:
+          - /url: /photo/03
+          - img "Silicon Lattice" [ref=e27]
+        - link "Penumbral Grove" [ref=e28] [cursor=pointer]:
+          - /url: /photo/04
+          - img "Penumbral Grove" [ref=e30]
+        - link "Orbital Survey" [ref=e31] [cursor=pointer]:
+          - /url: /photo/05
+          - img "Orbital Survey" [ref=e33]
+        - link "High Traverse" [ref=e34] [cursor=pointer]:
+          - /url: /photo/06
+          - img "High Traverse" [ref=e36]
+        - link "Nocturne" [ref=e37] [cursor=pointer]:
+          - /url: /photo/07
+          - img "Nocturne" [ref=e39]
+        - link "Last Hour" [ref=e40] [cursor=pointer]:
+          - /url: /photo/08
+          - img "Last Hour" [ref=e42]
+        - link "Signal Path" [ref=e43] [cursor=pointer]:
+          - /url: /photo/09
+          - img "Signal Path" [ref=e45]
+        - link "Convergence" [ref=e46] [cursor=pointer]:
+          - /url: /photo/10
+          - img "Convergence" [ref=e48]
+        - link "Study in Light" [ref=e49] [cursor=pointer]:
+          - /url: /photo/11
+          - img "Study in Light" [ref=e51]
+        - link "Resonance" [ref=e52] [cursor=pointer]:
+          - /url: /photo/12
+          - img "Resonance" [ref=e54]
+        - link "Gaze" [ref=e55] [cursor=pointer]:
+          - /url: /photo/13
+          - img "Gaze" [ref=e57]
+        - link "Grey Horizon" [ref=e58] [cursor=pointer]:
+          - /url: /photo/14
+          - img "Grey Horizon" [ref=e60]
+        - link "Structural" [ref=e61] [cursor=pointer]:
+          - /url: /photo/15
+          - img "Structural" [ref=e63]
+        - link "Burning Meridian" [ref=e64] [cursor=pointer]:
+          - /url: /photo/16
+          - img "Burning Meridian" [ref=e66]
+        - link "Micro System" [ref=e67] [cursor=pointer]:
+          - /url: /photo/17
+          - img "Micro System" [ref=e69]
+        - link "Canopy" [ref=e70] [cursor=pointer]:
+          - /url: /photo/18
+          - img "Canopy" [ref=e72]
+        - link "Editorial" [ref=e73] [cursor=pointer]:
+          - /url: /photo/19
+          - img "Editorial" [ref=e75]
+        - link "Profile" [ref=e76] [cursor=pointer]:
+          - /url: /photo/20
+          - img "Profile" [ref=e78]
+        - link "Urban Fragment" [ref=e79] [cursor=pointer]:
+          - /url: /photo/21
+          - img "Urban Fragment" [ref=e81]
+        - link "Reduction" [ref=e82] [cursor=pointer]:
+          - /url: /photo/22
+          - img "Reduction" [ref=e84]
+        - link "Flat Earth" [ref=e85] [cursor=pointer]:
+          - /url: /photo/23
+          - img "Flat Earth" [ref=e87]
+        - link "Assembly" [ref=e88] [cursor=pointer]:
+          - /url: /photo/24
+          - img "Assembly" [ref=e90]
+        - link "Grid" [ref=e91] [cursor=pointer]:
+          - /url: /photo/25
+          - img "Grid" [ref=e93]
+      - generic [ref=e94]:
+        - paragraph [ref=e95]: 02 / 25 · 2022 · November
+        - paragraph [ref=e96]: A sea of cloud fills the valley below while the summit pushes through into clear air. Shot at golden hour, the transition between fog and sky defines the entire frame.
+      - generic:
+        - generic:
+          - paragraph: December
+          - paragraph: November
+          - paragraph: July
+  - button "Open Next.js Dev Tools" [ref=e102] [cursor=pointer]:
+    - img [ref=e103]

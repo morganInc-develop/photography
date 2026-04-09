@@ -36,7 +36,7 @@ class Plane extends THREE.Object3D {
     super();
 
     this.el = params.el;
-    this.my = 1 - ((params.index % 5) * 0.1);
+    this.my = 1 - (params.index % 5) * 0.1;
 
     this.material = params.material.clone();
     this.material.uniforms = {
@@ -44,7 +44,9 @@ class Plane extends THREE.Object3D {
       u_size: { value: new THREE.Vector2(1, 1) },
       u_texture: { value: null },
       u_velo: { value: new THREE.Vector2(0, 0) },
-      u_viewSize: { value: new THREE.Vector2(params.viewport.ww, params.viewport.wh) },
+      u_viewSize: {
+        value: new THREE.Vector2(params.viewport.ww, params.viewport.wh),
+      },
     };
 
     this.mesh = new THREE.Mesh(params.geometry, this.material);
@@ -94,7 +96,8 @@ class Plane extends THREE.Object3D {
     const right = this.rect.right;
     const bottom = this.rect.bottom;
 
-    this.y = gsap.utils.wrap(-(max.y - bottom), bottom, cy * this.my) - this.yOffset;
+    this.y =
+      gsap.utils.wrap(-(max.y - bottom), bottom, cy * this.my) - this.yOffset;
     this.x = gsap.utils.wrap(-(max.x - right), right, cx) - this.xOffset;
 
     this.material.uniforms.u_velo.value.x = velo.x;
@@ -105,7 +108,8 @@ class Plane extends THREE.Object3D {
   }
 
   dispose() {
-    const texture = this.material.uniforms.u_texture.value as THREE.Texture | null;
+    const texture = this.material.uniforms.u_texture
+      .value as THREE.Texture | null;
     texture?.dispose();
     this.material.dispose();
   }
@@ -151,7 +155,14 @@ export function ArtboardCanvas() {
     };
 
     const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(ww / -2, ww / 2, wh / 2, wh / -2, 1, 1000);
+    const camera = new THREE.OrthographicCamera(
+      ww / -2,
+      ww / 2,
+      wh / 2,
+      wh / -2,
+      1,
+      1000,
+    );
     camera.position.z = 1;
     camera.lookAt(scene.position);
 
@@ -233,11 +244,16 @@ export function ArtboardCanvas() {
     `;
 
     const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
-    const baseMaterial = new THREE.ShaderMaterial({ fragmentShader, vertexShader });
+    const baseMaterial = new THREE.ShaderMaterial({
+      fragmentShader,
+      vertexShader,
+    });
     const loader = new THREE.TextureLoader();
     loader.crossOrigin = "anonymous";
 
-    const planeEls = Array.from(gridEl.querySelectorAll<HTMLElement>(".js-plane"));
+    const planeEls = Array.from(
+      gridEl.querySelectorAll<HTMLElement>(".js-plane"),
+    );
     const planes = planeEls.map((el, index) => {
       const plane = new Plane({
         el,
@@ -299,25 +315,31 @@ export function ArtboardCanvas() {
       state.velo.x = xDiff * intensity;
       state.velo.y = yDiff * intensity;
 
-      planes.forEach((plane) => plane.update(state.cx, state.cy, state.max, state.velo));
+      planes.forEach((plane) =>
+        plane.update(state.cx, state.cy, state.max, state.velo),
+      );
 
       renderer.render(scene, camera);
     };
 
     let clickStartX = 0;
     let clickStartY = 0;
+    let interactionStartedInGrid = false;
 
     const onMouseDown = (event: MouseEvent) => {
+      const startedInGrid = gridEl.contains(event.target as Node);
       console.log("[ArtboardCanvas] mousedown", {
         target: event.target,
-        inGrid: gridEl.contains(event.target as Node),
+        inGrid: startedInGrid,
         isDragging: state.isDragging,
       });
 
-      if (state.isDragging) {
+      if (state.isDragging || !startedInGrid) {
+        interactionStartedInGrid = false;
         return;
       }
 
+      interactionStartedInGrid = true;
       isDragRef.current = false;
       clickStartX = event.clientX;
       clickStartY = event.clientY;
@@ -327,7 +349,7 @@ export function ArtboardCanvas() {
     };
 
     const onMouseMove = (event: MouseEvent) => {
-      if (!state.isDragging) {
+      if (!state.isDragging || !interactionStartedInGrid) {
         return;
       }
 
@@ -336,7 +358,10 @@ export function ArtboardCanvas() {
       const dist = Math.sqrt(dx * dx + dy * dy);
       if (dist > DRAG_THRESHOLD) {
         if (!isDragRef.current) {
-          console.log("[ArtboardCanvas] drag threshold exceeded, marking as drag", { dist });
+          console.log(
+            "[ArtboardCanvas] drag threshold exceeded, marking as drag",
+            { dist },
+          );
         }
         isDragRef.current = true;
       }
@@ -348,6 +373,7 @@ export function ArtboardCanvas() {
     const onMouseUp = (event: MouseEvent) => {
       console.log("[ArtboardCanvas] mouseup", {
         isDrag: isDragRef.current,
+        interactionStartedInGrid,
         x: event.clientX,
         y: event.clientY,
         target: event.target,
@@ -355,9 +381,17 @@ export function ArtboardCanvas() {
 
       state.isDragging = false;
 
+      if (!interactionStartedInGrid) {
+        return;
+      }
+
+      interactionStartedInGrid = false;
+
       if (!isDragRef.current) {
         // Coordinate-based detection — bypasses pointer event / z-index issues entirely
-        const cellEls = Array.from(gridEl.querySelectorAll<HTMLElement>(".div"));
+        const cellEls = Array.from(
+          gridEl.querySelectorAll<HTMLElement>(".div"),
+        );
         console.log("[ArtboardCanvas] checking", cellEls.length, "cells");
 
         for (let i = 0; i < cellEls.length; i++) {
@@ -385,17 +419,21 @@ export function ArtboardCanvas() {
     };
 
     const onTouchStart = (event: TouchEvent) => {
-      if (state.isDragging) {
+      const startedInGrid = gridEl.contains(event.target as Node);
+
+      if (state.isDragging || !startedInGrid) {
+        interactionStartedInGrid = false;
         return;
       }
 
+      interactionStartedInGrid = true;
       state.isDragging = true;
       state.on.x = state.tx - event.touches[0].clientX * 2.5;
       state.on.y = state.ty + event.touches[0].clientY * 2.5;
     };
 
     const onTouchMove = (event: TouchEvent) => {
-      if (!state.isDragging) {
+      if (!state.isDragging || !interactionStartedInGrid) {
         return;
       }
 
@@ -406,6 +444,7 @@ export function ArtboardCanvas() {
 
     const onTouchEnd = () => {
       state.isDragging = false;
+      interactionStartedInGrid = false;
     };
 
     const onWheel = (event: WheelEvent) => {
@@ -481,13 +520,14 @@ export function ArtboardCanvas() {
 
   return (
     <div className="canvas__webgl-list-wrap">
-      <div ref={gridRef} role="list" className="grid js-grid" style={{ touchAction: "none" }}>
+      <div
+        ref={gridRef}
+        role="list"
+        className="grid js-grid"
+        style={{ touchAction: "none" }}
+      >
         {ARTBOARD_PHOTOS.map((photo) => (
-          <div
-            key={photo.id}
-            role="listitem"
-            className="div"
-          >
+          <div key={photo.id} role="listitem" className="div">
             <div className="js-plane-link">
               <figure className="js-plane" data-src={photo.src} />
             </div>

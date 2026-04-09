@@ -1,0 +1,43 @@
+{
+  "title": "THE LOOKBACK",
+  "url": "https://tlb.betteroff.studio/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "documentHeight": 844,
+  "bodyClass": null,
+  "htmlClass": "is-safari",
+  "headings": [],
+  "sections": [],
+  "ctas": [
+    {
+      "tag": "a",
+      "text": "Timeline",
+      "href": "/",
+      "ariaLabel": "Timeline",
+      "classes": "router-link-active router-link-exact-active mobile-menu-link relative pointer-events-auto px-15"
+    },
+    {
+      "tag": "a",
+      "text": "Surf",
+      "href": "/surf",
+      "ariaLabel": "Surf",
+      "classes": "mobile-menu-link relative pointer-events-auto px-15"
+    },
+    {
+      "tag": "a",
+      "text": "Index",
+      "href": "/articles",
+      "ariaLabel": "Index",
+      "classes": "mobile-menu-link relative pointer-events-auto px-15"
+    },
+    {
+      "tag": "a",
+      "text": "About",
+      "href": "/about",
+      "ariaLabel": "About",
+      "classes": "mobile-menu-link relative pointer-events-auto px-15"
+    }
+  ]
+}

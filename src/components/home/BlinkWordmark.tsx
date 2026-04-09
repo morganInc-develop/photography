@@ -31,7 +31,7 @@ export function BlinkWordmark() {
     <div className="st__bottom">
       <div className="text__row">
         <h1 ref={headingRef} data-blink-text className="h-h1">
-          the artboard™
+          made invincible
         </h1>
       </div>
     </div>

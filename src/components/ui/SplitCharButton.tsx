@@ -14,7 +14,10 @@ type SplitCharButtonProps = {
 
 function SplitText({ label }: { label: string }) {
   return (
-    <span data-button-animate-chars className="btn-animate-chars__text paragraph">
+    <span
+      data-button-animate-chars
+      className="btn-animate-chars__text paragraph"
+    >
       {[...label].map((char, index) => (
         <span
           key={`${char}-${index}`}
@@ -40,7 +43,7 @@ export function SplitCharButton({
 }: SplitCharButtonProps) {
   const composedClass = `btn-animate-chars${className ? ` ${className}` : ""}`;
 
-  if (onClick || !href || href === "#") {
+  if (onClick || href === undefined || href === "#") {
     return (
       <button type="button" className={composedClass} onClick={onClick}>
         <div className="btn-animate-chars__bg" />
@@ -51,7 +54,13 @@ export function SplitCharButton({
 
   if (href.startsWith("http") || href.startsWith("mailto:")) {
     return (
-      <a className={composedClass} href={href} onClick={onClick} rel={rel} target={target}>
+      <a
+        className={composedClass}
+        href={href}
+        onClick={onClick}
+        rel={rel}
+        target={target}
+      >
         <div className="btn-animate-chars__bg" />
         <SplitText label={label} />
       </a>

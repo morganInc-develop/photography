@@ -1,0 +1,541 @@
+[
+  {
+    "url": "https://tlb.betteroff.studio/",
+    "method": "GET",
+    "resourceType": "document",
+    "headers": {
+      "upgrade-insecure-requests": "1",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\""
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/default.BeBKBVc8.css",
+    "method": "GET",
+    "resourceType": "stylesheet",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/Flip.Cws00xpq.css",
+    "method": "GET",
+    "resourceType": "stylesheet",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_payload.json?b10258bf-6614-41db-8aa9-f22118b88ab7",
+    "method": "GET",
+    "resourceType": "other",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BGLHITTy.js",
+    "method": "GET",
+    "resourceType": "script",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BSuY0ud1.js",
+    "method": "GET",
+    "resourceType": "script",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BmLzdhKa.js",
+    "method": "GET",
+    "resourceType": "script",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BVO6TvTR.js",
+    "method": "GET",
+    "resourceType": "script",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/JgeNf1w7.js",
+    "method": "GET",
+    "resourceType": "script",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/BVflUguH.js",
+    "method": "GET",
+    "resourceType": "script",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/NYCGuiUc.js",
+    "method": "GET",
+    "resourceType": "script",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/DJCcLtK2.js",
+    "method": "GET",
+    "resourceType": "script",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/DzomDRyK.js",
+    "method": "GET",
+    "resourceType": "script",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/builds/meta/b10258bf-6614-41db-8aa9-f22118b88ab7.json",
+    "method": "GET",
+    "resourceType": "other",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/DNhanIij.js",
+    "method": "GET",
+    "resourceType": "other",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-purpose": "prefetch",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://stream.mux.com/peuJG2Yym02hqUkAGqSqWGMV9m5Lm01zmx/medium.mp4",
+    "method": "GET",
+    "resourceType": "media",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "accept-encoding": "identity;q=1, *;q=0",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "range": "bytes=0-",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://stream.mux.com/NcCIO6QBMm7avCK3zYWdTmqqyip7MDpw/medium.mp4",
+    "method": "GET",
+    "resourceType": "media",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "accept-encoding": "identity;q=1, *;q=0",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "range": "bytes=0-",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/PPNeueMontreal-Bold.l3ulKZJq.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/PPNeueMontrealMono-Medium.DUem7D_U.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/PPNeueMontreal-Medium.BCmCQQaX.woff2",
+    "method": "GET",
+    "resourceType": "font",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1773065938-defectiveunits_grid-1.jpg?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1773065959-set-frame-delay-gif.webp?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1773065968-defectiveunits_grid-3.jpg?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1773067116-99cent_grid-1.jpg?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1773067116-99cent_grid-2.jpg?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1773067116-99cent_grid-3.jpg?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1771606145-tlb-cover-8.jpg?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1771606145-tlb-cover-7.jpg?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1771606032-tlb-cover-5.jpg?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1771606032-tlb-cover-4.jpg?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1771606032-tlb-cover-6.jpg?auto=format&fit=max&h=1000&q=85&w=1000",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/index.C4SJgk0q.css",
+    "method": "GET",
+    "resourceType": "stylesheet",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/_nuxt/DNhanIij.js",
+    "method": "GET",
+    "resourceType": "script",
+    "headers": {
+      "origin": "https://tlb.betteroff.studio",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/_nuxt/BGLHITTy.js",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/noise.png",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/_nuxt/default.BeBKBVc8.css",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://www.datocms-assets.com/106915/1772377576-ab67616d0000b273f18ce5dc5f6b0843d3acb3a1.jpeg?auto=format&fit=max&h=400&q=75&w=400",
+    "method": "GET",
+    "resourceType": "image",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/fx.mp3",
+    "method": "GET",
+    "resourceType": "media",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "accept-encoding": "identity;q=1, *;q=0",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "range": "bytes=0-",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/fx.mp3",
+    "method": "GET",
+    "resourceType": "media",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "accept-encoding": "identity;q=1, *;q=0",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "range": "bytes=0-",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/fx.mp3",
+    "method": "GET",
+    "resourceType": "media",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "accept-encoding": "identity;q=1, *;q=0",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "range": "bytes=0-",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  },
+  {
+    "url": "https://tlb.betteroff.studio/fx.mp3",
+    "method": "GET",
+    "resourceType": "media",
+    "headers": {
+      "sec-ch-ua-platform": "\"macOS\"",
+      "referer": "https://tlb.betteroff.studio/",
+      "accept-encoding": "identity;q=1, *;q=0",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+      "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"HeadlessChrome\";v=\"145\", \"Chromium\";v=\"145\"",
+      "range": "bytes=0-",
+      "sec-ch-ua-mobile": "?0"
+    },
+    "postData": null
+  }
+]

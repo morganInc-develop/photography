@@ -93,7 +93,12 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
 export const ARCHIVE_MANIFESTO =
   "What appears here is not a sequence of outcomes, but a record of decisions. Different contexts, different constraints, the same insistence on clarity, structure, and";
 
-export const ARCHIVE_SCRAMBLE_WORDS = ["PRACTICE", "PROCESS", "RESEARCH", "SYSTEM"] as const;
+export const ARCHIVE_SCRAMBLE_WORDS = [
+  "PRACTICE",
+  "PROCESS",
+  "RESEARCH",
+  "SYSTEM",
+] as const;
 
 export const ARCHIVE_TAGS = {
   process: "THIS ARCHIVE DOES NOT\nCOLLECT RESULTS.\nIT PRESERVES PROCESS.",

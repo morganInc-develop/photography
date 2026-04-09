@@ -1,0 +1,186 @@
+{
+  "title": "99 Cents Only Store Gallery exhibition",
+  "url": "https://tlb.betteroff.studio/articles/99-cents-only-store-gallery-exhibition/",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "documentHeight": 844,
+  "bodyClass": null,
+  "htmlClass": "is-safari",
+  "headings": [
+    {
+      "index": 0,
+      "tag": "h1",
+      "text": "99 Cents Only Store Gallery exhibition",
+      "className": "h1 mt-45 s:mt-30 js-t-title",
+      "id": null
+    }
+  ],
+  "paragraphs": [
+    {
+      "index": 0,
+      "text": "Few places captured everyday Los Angeles quite like the 99 Cents Only Store. Fluorescent aisles packed with snacks, toys, household supplies, and strange one-off items created a shopping experience that felt chaotic, colorful, and uniquely local. For decades the stores became part of the city’s visual language. Now, as many locations disappear, artists are preserving that world in a different form",
+      "className": null
+    },
+    {
+      "index": 1,
+      "text": "The exhibition treats the store itself as both subject and material. Bright price tags, product packaging, shelving systems, and signage become the foundation for installations and sculptures. Artists reinterpret the familiar visuals of the store and elevate them into playful commentary on consumer culture, nostalgia, and the strange beauty hidden in everyday retail environments.",
+      "className": null
+    },
+    {
+      "index": 2,
+      "text": "Walking through the exhibition feels a lot like stepping back into the aisles themselves. Bold colors, repetitive packaging, and stacks of products create an overwhelming but oddly comforting environment. The difference is that here the objects are no longer for sale. They are reimagined as art, capturing a moment in time when the 99 Cents Only Store served as a small but unforgettable part of the",
+      "className": null
+    }
+  ],
+  "sections": [
+    {
+      "index": 0,
+      "tag": "nav",
+      "id": null,
+      "className": "controls fixed bottom-20 inset-x-0 flex justify-center gap-x-8 z-3",
+      "dataAttributes": {
+        "data-v-445d4865": ""
+      },
+      "textSample": "Close Source",
+      "headings": [],
+      "ctas": [
+        {
+          "tag": "a",
+          "text": "",
+          "href": "/articles/the-legend-of-phil-shao",
+          "ariaLabel": "Next article"
+        },
+        {
+          "tag": "a",
+          "text": "Close",
+          "href": "/",
+          "ariaLabel": "Close"
+        },
+        {
+          "tag": "a",
+          "text": "Source",
+          "href": "https://www.youtube.com/watch?v=JRjg9YrF7X4",
+          "ariaLabel": null
+        },
+        {
+          "tag": "a",
+          "text": "",
+          "href": "/articles/defective-units-vol-1",
+          "ariaLabel": "Previous article"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "tag": "div",
+      "id": null,
+      "className": "fixed inset-0 s:flex overflow-hidden pointer-events-none z-2 s:z-[12]",
+      "dataAttributes": {},
+      "textSample": "Close Source Inspire(March)99 Cents Only Store Gallery exhibitionFew places captured everyday Los Angeles quite like the 99 Cents Only Store. Fluorescent aisles packed with snacks, toys, household supplies, and strange one-off items created a shopping experience that felt chaotic, colorful, and uniquely local. For decades the stores became part of the city’s visual language. Now, as many locations disappear, artists are preserving that world in a different form — transforming a former store into",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "99 Cents Only Store Gallery exhibition"
+        }
+      ],
+      "ctas": [
+        {
+          "tag": "a",
+          "text": "Close",
+          "href": "/",
+          "ariaLabel": null
+        },
+        {
+          "tag": "a",
+          "text": "Source",
+          "href": "https://www.youtube.com/watch?v=JRjg9YrF7X4",
+          "ariaLabel": null
+        }
+      ]
+    }
+  ],
+  "ctas": [
+    {
+      "index": 0,
+      "tag": "a",
+      "text": "Timeline",
+      "href": "/",
+      "ariaLabel": "Timeline",
+      "className": "mobile-menu-link relative pointer-events-auto px-15"
+    },
+    {
+      "index": 1,
+      "tag": "a",
+      "text": "Surf",
+      "href": "/surf",
+      "ariaLabel": "Surf",
+      "className": "mobile-menu-link relative pointer-events-auto px-15"
+    },
+    {
+      "index": 2,
+      "tag": "a",
+      "text": "Index",
+      "href": "/articles",
+      "ariaLabel": "Index",
+      "className": "mobile-menu-link relative pointer-events-auto px-15"
+    },
+    {
+      "index": 3,
+      "tag": "a",
+      "text": "About",
+      "href": "/about",
+      "ariaLabel": "About",
+      "className": "mobile-menu-link relative pointer-events-auto px-15"
+    },
+    {
+      "index": 4,
+      "tag": "a",
+      "text": "",
+      "href": "/articles/the-legend-of-phil-shao",
+      "ariaLabel": "Next article",
+      "className": "controls-link relative pointer-events-auto min-w-40"
+    },
+    {
+      "index": 5,
+      "tag": "a",
+      "text": "Close",
+      "href": "/",
+      "ariaLabel": "Close",
+      "className": "controls-link relative pointer-events-auto px-15"
+    },
+    {
+      "index": 6,
+      "tag": "a",
+      "text": "Source",
+      "href": "https://www.youtube.com/watch?v=JRjg9YrF7X4",
+      "ariaLabel": null,
+      "className": "controls-link relative pointer-events-auto px-15"
+    },
+    {
+      "index": 7,
+      "tag": "a",
+      "text": "",
+      "href": "/articles/defective-units-vol-1",
+      "ariaLabel": "Previous article",
+      "className": "controls-link relative pointer-events-auto min-w-40"
+    },
+    {
+      "index": 8,
+      "tag": "a",
+      "text": "Close",
+      "href": "/",
+      "ariaLabel": null,
+      "className": "uline leading-none"
+    },
+    {
+      "index": 9,
+      "tag": "a",
+      "text": "Source",
+      "href": "https://www.youtube.com/watch?v=JRjg9YrF7X4",
+      "ariaLabel": null,
+      "className": "source-link uline-double leading-none inline-flex items-center gap-x-3"
+    }
+  ]
+}

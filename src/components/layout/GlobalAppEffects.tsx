@@ -33,8 +33,10 @@ export function GlobalAppEffects() {
 
   useEffect(() => {
     document.body.classList.toggle("is--home", pathname === "/");
+    document.body.classList.toggle("is--photo", pathname.startsWith("/photo/"));
     return () => {
       document.body.classList.remove("is--home");
+      document.body.classList.remove("is--photo");
     };
   }, [pathname]);
 

@@ -63,6 +63,25 @@ body.is--home {
   overscroll-behavior: none;
 }
 
+body.is--photo {
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: #fff;
+}
+
+body.is--photo .crt-overlay {
+  display: none;
+}
+
+.lookback-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.lookback-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 a {
   color: inherit;
 }

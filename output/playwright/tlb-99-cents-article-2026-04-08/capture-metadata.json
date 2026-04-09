@@ -1,0 +1,29 @@
+{
+  "articleUrl": "https://tlb.betteroff.studio/articles/99-cents-only-store-gallery-exhibition",
+  "homeUrl": "https://tlb.betteroff.studio",
+  "capturedAt": "2026-04-09T01:26:45.133Z",
+  "clearedDesktopGate": true,
+  "clearedMobileGate": false,
+  "clearedHomeGate": true,
+  "desktop": {
+    "title": "99 Cents Only Store Gallery exhibition",
+    "viewport": {
+      "width": 1440,
+      "height": 1200
+    },
+    "documentHeight": 1200,
+    "requestCount": 59,
+    "consoleCount": 27,
+    "scriptCount": 21
+  },
+  "mobile": {
+    "title": "99 Cents Only Store Gallery exhibition",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "documentHeight": 844,
+    "requestCount": 51,
+    "consoleCount": 3
+  }
+}

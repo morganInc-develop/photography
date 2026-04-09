@@ -1,7 +1,9 @@
 # PROJECT ID PAGE — THE ARCHIVE (`/the-archive`)
+
 ## Implementation Master Prompt
 
 **Data Sources Referenced:**
+
 - Playwright capture: `output/playwright/nicolaromei-the-archive-2026-04-07/`
   - `source.html` — full DOM with embedded CSS, JS, and all copy
   - `dom-desktop.json` — computed layout tree
@@ -42,6 +44,7 @@ src/
 ```
 
 `app/the-archive/page.tsx`:
+
 ```tsx
 import ArchivePage from "@/components/archive/ArchivePage";
 export default function TheArchive() {
@@ -55,25 +58,25 @@ export default function TheArchive() {
 
 All values verified against `style-probe.json` and `style-probe-mobile.json`.
 
-| Token | Value |
-|---|---|
-| `--color-bg` | `#f3f3f3` (rgb 243,243,243) |
-| `--color-text` | `#333333` (rgb 51,51,51) |
-| `--color-white` | `#ffffff` |
-| `--color-black` | `#1a1a1a` |
-| Body font | `"Host Grotesk", Arial, sans-serif` (400/500/600/700 weights) |
-| Display/H1 font | `"Easegeometricb", Impact, sans-serif` (700 weight) |
-| Mono accent | `"prestige-elite-std", monospace` (400/700 weight) |
-| `h1` `font-size` | `35px` desktop, `2rem` mobile (≤1000px) |
-| `h1` `letter-spacing` | `-2.1px` |
-| `h1` `line-height` | `35px` (1:1 leading) |
-| `h1` `text-transform` | `uppercase` |
-| `.paragraph` | `14px`, weight 400, line-height `20px`, letter-spacing normal |
-| `.paragraph-8` | Same as `.paragraph` but used in nav/header contexts |
-| `.paragraph-9` | Used for client list names — larger, display treatment |
-| `.paragraph.is--medium` | Medium-weight manifesto body text |
-| `.paragraph.is--eyebrow` | Small caps / mono eyebrow text, uppercase |
-| `.paragraph.is--list` | Large H1-scale paragraph used in client name list |
+| Token                    | Value                                                         |
+| ------------------------ | ------------------------------------------------------------- |
+| `--color-bg`             | `#f3f3f3` (rgb 243,243,243)                                   |
+| `--color-text`           | `#333333` (rgb 51,51,51)                                      |
+| `--color-white`          | `#ffffff`                                                     |
+| `--color-black`          | `#1a1a1a`                                                     |
+| Body font                | `"Host Grotesk", Arial, sans-serif` (400/500/600/700 weights) |
+| Display/H1 font          | `"Easegeometricb", Impact, sans-serif` (700 weight)           |
+| Mono accent              | `"prestige-elite-std", monospace` (400/700 weight)            |
+| `h1` `font-size`         | `35px` desktop, `2rem` mobile (≤1000px)                       |
+| `h1` `letter-spacing`    | `-2.1px`                                                      |
+| `h1` `line-height`       | `35px` (1:1 leading)                                          |
+| `h1` `text-transform`    | `uppercase`                                                   |
+| `.paragraph`             | `14px`, weight 400, line-height `20px`, letter-spacing normal |
+| `.paragraph-8`           | Same as `.paragraph` but used in nav/header contexts          |
+| `.paragraph-9`           | Used for client list names — larger, display treatment        |
+| `.paragraph.is--medium`  | Medium-weight manifesto body text                             |
+| `.paragraph.is--eyebrow` | Small caps / mono eyebrow text, uppercase                     |
+| `.paragraph.is--list`    | Large H1-scale paragraph used in client name list             |
 
 **Font loading (Google Fonts / Adobe Fonts fallbacks):**
 Use `next/font/google` for Host Grotesk. Easegeometricb and prestige-elite-std are custom fonts — add as `@font-face` in `globals.css` using CDN URLs or local files. If unavailable, use `Impact` and `Courier New` as fallbacks respectively.
@@ -125,14 +128,17 @@ Mobile breakpoint: shown at `@media (max-width: 1000px)`.
 The header occupies the top of the desktop section. It's a single row with three columns:
 
 **Left — Back link:**
+
 ```tsx
 <a href="/" data-underline-link="alt" className="link-group is--dark">
   <p className="paragraph-8">back to artboard™</p>
 </a>
 ```
+
 Underline animation: see Section 12 (Underline Wipe CSS).
 
 **Center — Live clock:**
+
 ```tsx
 <p data-current-time="Europe/Rome" className="paragraph-8">
   <span data-current-time-hours>10</span>:
@@ -141,9 +147,11 @@ Underline animation: see Section 12 (Underline Wipe CSS).
   <span data-current-time-timezone>GMT+2</span>
 </p>
 ```
+
 Clock updates every 1 second via `setInterval` in a `useEffect`. Use `Intl.DateTimeFormat` with `timeZone: "Europe/Rome"`. Parse hours/minutes/seconds/timezone from the formatted string.
 
 **Right — Profile link:**
+
 ```tsx
 <a href="#" data-underline-link="alt" className="link-group is--dark">
   <p className="paragraph-8">THE PROFILE</p>
@@ -161,9 +169,10 @@ The gallery container is the **default visible mode** on desktop. It is a fixed 
 ### 6.1 Gallery Container State Machine
 
 CSS classes drive visibility:
+
 ```css
 .gallery__container {
-  transition: transform 850ms cubic-bezier(.596, .002, 0, 1.002);
+  transition: transform 850ms cubic-bezier(0.596, 0.002, 0, 1.002);
 }
 
 /* NOT ACTIVE state — panels offset below/above */
@@ -195,6 +204,7 @@ On toggle to clients mode: remove `active` → panels fly out via CSS transition
 An absolutely positioned column on the left side of the gallery panel. Lists all 8 project names as clickable items.
 
 Each `.gallery__item`:
+
 - Default: `opacity: 0.5`
 - Active (currently focused by wheel): `opacity: 1`
 - Transition: `opacity 300ms ease`
@@ -214,10 +224,13 @@ const items = [
 ```
 
 Rendered as:
+
 ```html
 <div class="gallery__names">
   <div class="gallery__item" data-index="0" style="opacity: 1">RETRONOVA</div>
-  <div class="gallery__item" data-index="1" style="opacity: 0.5">NICOLA ROMEI</div>
+  <div class="gallery__item" data-index="1" style="opacity: 0.5">
+    NICOLA ROMEI
+  </div>
   ...
 </div>
 ```
@@ -227,17 +240,19 @@ Rendered as:
 The main center/right image panel. Contains 8 `.img-preview` items, one per project. Only **one is visible** at a time — the one corresponding to the active gallery name.
 
 Each `.img-preview`:
+
 - `width: 100%; height: 100%; object-fit: cover`
 - Use Unsplash/Pexels images (see Section 8 for image data)
 - Clip-path reveal animation on activation: start `inset(50% round 0.2em)` → end `inset(0% round 0.2em)`
 - GSAP tween the clip-path on active change with duration 0.9s, ease `"power4.out"`
 
 Image reveal snippet:
+
 ```ts
 gsap.fromTo(
   nextImage,
   { clipPath: "inset(50% round 0.2em)" },
-  { clipPath: "inset(0% round 0.2em)", duration: 0.9, ease: "power4.out" }
+  { clipPath: "inset(0% round 0.2em)", duration: 0.9, ease: "power4.out" },
 );
 ```
 
@@ -253,6 +268,7 @@ A vertical strip on the far right of the gallery panel showing all 8 images as s
 ```
 
 **Indicator positioning:**
+
 - Height = `(100% / 8)` of the minimap height
 - `translateY`: `activeIndex * (minimapHeight / 8)`
 - Transition: `transform 400ms ease`
@@ -260,10 +276,12 @@ A vertical strip on the far right of the gallery panel showing all 8 images as s
 ### 6.5 Site Info (`.site-info`)
 
 A small info block that appears below the minimap or in the lower section of the gallery. Contains:
+
 ```
 ( 001 )
 RETRONOVA
 ```
+
 Updates with the active index and name. Format: `( 00${activeIndex + 1} )` and the project name.
 
 ### 6.6 Inertial Wheel Scroll
@@ -285,7 +303,7 @@ const tick = () => {
   targetIndex += velocity;
   targetIndex = Math.max(0, Math.min(7, targetIndex));
   currentIndex += (targetIndex - currentIndex) * 0.08; // lerp
-  
+
   const snappedIndex = Math.round(currentIndex);
   // Update active gallery item, image, minimap indicator
 };
@@ -357,6 +375,7 @@ Each `.client-name` is a full-width row link:
 
 **Entry animation (on mode switch to clients):**
 Each `.cn__wrap` starts with `opacity: 0; transform: translate(0px, 100%)` and staggers in via GSAP:
+
 ```ts
 gsap.to(".cn__wrap", {
   opacity: 1,
@@ -378,24 +397,29 @@ An absolute-positioned `div` that follows or appears at a fixed position inside 
 **Hover out:** Collapse back to polygon(50%...) — duration 0.35s, ease `power2.in`.
 
 Image inside `.client-img-wrapper`:
+
 ```css
 .client-img-wrapper {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
   will-change: clip-path;
   overflow: hidden;
 }
 .client-img-wrapper img {
   position: absolute;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   will-change: transform, opacity;
 }
 ```
 
 GSAP tween on mouseenter:
+
 ```ts
 gsap.to(wrapper, {
   clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
@@ -405,6 +429,7 @@ gsap.to(wrapper, {
 ```
 
 On mouseleave:
+
 ```ts
 gsap.to(wrapper, {
   clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)",
@@ -430,7 +455,8 @@ export const ARCHIVE_PROJECTS = [
     href: "/works/retronova",
     description:
       "A retro-futurist vision shaped through AI imagery, cinematic motion and luminous soundscapes. Metallic silhouettes, fashion influences and synthetic memories merge into an immersive environment where nostalgia bends toward a future that never existed but still feels strangely real.",
-    coverImage: "https://images.unsplash.com/photo-1518818419601-72c8673f5852?w=1200&auto=format&fit=crop&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1518818419601-72c8673f5852?w=1200&auto=format&fit=crop&q=80",
   },
   {
     index: "002",
@@ -439,7 +465,8 @@ export const ARCHIVE_PROJECTS = [
     href: "/works/nicola-romei",
     description:
       "This portfolio unfolds as an exposed process, gathering AI sketches, drafts, typographic tests and structural studies into a single immersive artboard. A brutalist grid and subtle WebGL depth shape a space where experimentation and identity quietly define each other.",
-    coverImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80",
   },
   {
     index: "003",
@@ -448,7 +475,8 @@ export const ARCHIVE_PROJECTS = [
     href: "/works/creative-leap",
     description:
       "A calm digital narrative built from soft gradients, gentle transitions and a restrained visual rhythm. Innovation becomes tactile as AI integrates into each scene with quiet clarity, shaping an elegant experience that turns complexity into a natural and intuitive flow.",
-    coverImage: "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    coverImage:
+      "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
     index: "004",
@@ -457,7 +485,8 @@ export const ARCHIVE_PROJECTS = [
     href: "/works/made-in-evolve",
     description:
       "A tech-editorial environment defined by bold typography, clean imagery and sharp structural clarity. Each layout balances discipline and momentum, creating a refined digital presence where innovation becomes a precise visual language that moves confidently forward.",
-    coverImage: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    coverImage:
+      "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
     index: "005",
@@ -466,7 +495,8 @@ export const ARCHIVE_PROJECTS = [
     href: "/works/valsavarenche",
     description:
       "A landscape of grain, muted tones and cartographic textures evokes the rugged stillness of alpine territory. Vintage-park cues and weathered visuals form an atmosphere of exploration, transforming the valley's geography into a quiet, immersive field of memory and terrain.",
-    coverImage: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&auto=format&fit=crop&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&auto=format&fit=crop&q=80",
   },
   {
     index: "006",
@@ -475,7 +505,8 @@ export const ARCHIVE_PROJECTS = [
     href: "/works/davide-cattaneo",
     description:
       "A data-driven digital environment built around clarity, precision, and controlled intensity. Dark surfaces, neon accents, and immersive scroll interactions translate analytical thinking into a visual system where information feels alive, dynamic, and intentionally structured.",
-    coverImage: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&auto=format&fit=crop&q=80",
+    coverImage:
+      "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&auto=format&fit=crop&q=80",
   },
   {
     index: "007",
@@ -484,7 +515,8 @@ export const ARCHIVE_PROJECTS = [
     href: "/works/studies-in-form",
     description:
       "An ongoing visual exploration where AI-generated imagery becomes a tool for studying shape, balance and visual tension, transforming raw experimentation into controlled aesthetic research.",
-    coverImage: "https://images.pexels.com/photos/3761509/pexels-photo-3761509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    coverImage:
+      "https://images.pexels.com/photos/3761509/pexels-photo-3761509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
     index: "008",
@@ -493,7 +525,8 @@ export const ARCHIVE_PROJECTS = [
     href: "/works/geotab-signals",
     description:
       "Corporate experience turning data into clarity. Deep tech blues and neon accents create a sophisticated narrative, signaling intelligence before explaining it.",
-    coverImage: "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    coverImage:
+      "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
 ];
 ```
@@ -517,6 +550,7 @@ A small two-button control rail that switches between Gallery mode and Clients m
 - Clicking `data-control="clients"`: removes `active` from `.gallery__container`, adds to `.clients`
 
 State management in React:
+
 ```ts
 const [mode, setMode] = useState<"gallery" | "clients">("gallery");
 ```
@@ -534,16 +568,16 @@ Two small label blocks positioned at the **bottom** of the desktop section. Veri
 <div class="works-tags__wrap">
   <div class="tag">
     <div class="paragraph is--eyebrow">
-      THIS ARCHIVE DOES NOT<br/>
-      COLLECT RESULTS.<br/>
+      THIS ARCHIVE DOES NOT<br />
+      COLLECT RESULTS.<br />
       IT PRESERVES PROCESS.
     </div>
   </div>
   <div class="tag is--2">
     <div class="paragraph is--eyebrow">
-      THIS SPACE HOLDS<br/>
-      PROJECTS_ <br/>
-      TESTS_<br/>
+      THIS SPACE HOLDS<br />
+      PROJECTS_ <br />
+      TESTS_<br />
       VISUAL SYSTEMS_
     </div>
   </div>
@@ -562,6 +596,7 @@ Shown only on `@media (max-width: 1000px)`. A vertically scrolling page with:
 ### 11.1 Mobile Header (`.wm__top` row x2)
 
 Two rows at the top:
+
 1. **Row 1** (left=back link, right=clock):
    - `<a href="/" data-underline-link="alt">back to artboard™</a>`
    - `<p data-current-time="Europe/Rome">10:11:48 GMT+2</p>` (same live clock component)
@@ -578,8 +613,8 @@ Two rows at the top:
     structure, and presence.
   </p>
   <div class="paragraph is--eyebrow">
-    THIS ARCHIVE DOES NOT<br/>
-    COLLECT RESULTS.<br/>
+    THIS ARCHIVE DOES NOT<br />
+    COLLECT RESULTS.<br />
     IT PRESERVES PROCESS.
   </div>
   <h1 data-blink-text class="h-h1 is--huge is--black">( THE ARCHIVE )</h1>
@@ -606,11 +641,13 @@ Two rows at the top:
     </div>
   </div>
   <div class="wm__content-2 is--desc">
-    <p data-split="heading" class="paragraph">
-      [description text]
-    </p>
+    <p data-split="heading" class="paragraph">[description text]</p>
   </div>
-  <a href="/works/retronova" aria-label="staggering button" class="btn-animate-chars">
+  <a
+    href="/works/retronova"
+    aria-label="staggering button"
+    class="btn-animate-chars"
+  >
     <div class="btn-animate-chars__bg-3"></div>
     <span data-button-animate-chars class="btn-animate-chars__text paragraph">
       EXPLORE CASE
@@ -625,6 +662,7 @@ Two rows at the top:
 - "EXPLORE CASE" button: character stagger animation (see Section 13)
 
 **Card layout:**
+
 - `width: 100%`
 - `display: flex; flex-direction: column; gap: 1rem`
 - `padding: 1.5rem 0`
@@ -711,6 +749,7 @@ This CSS should be in `globals.css` (not component-scoped) since `data-underline
 Used on all "EXPLORE CASE" buttons (`[data-button-animate-chars]`). Characters are split into individual `<span>` elements with incremental `transition-delay`.
 
 **Initialization (runs on mount):**
+
 ```ts
 function initButtonCharacterStagger() {
   const targets = document.querySelectorAll("[data-button-animate-chars]");
@@ -729,6 +768,7 @@ function initButtonCharacterStagger() {
 ```
 
 **Button CSS:**
+
 ```css
 .btn-animate-chars {
   position: relative;
@@ -775,7 +815,9 @@ Used on all `[data-split="heading"]` elements on both desktop and mobile. **Exac
 // Run in useEffect after mount
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const headings = document.querySelectorAll<HTMLElement>('[data-split="heading"]');
+const headings = document.querySelectorAll<HTMLElement>(
+  '[data-split="heading"]',
+);
 headings.forEach((el) => {
   gsap.set(el, { autoAlpha: 1 });
 
@@ -806,6 +848,7 @@ headings.forEach((el) => {
 ```
 
 `.mask-line` CSS:
+
 ```css
 .mask-line {
   position: relative;
@@ -834,24 +877,28 @@ function initDynamicCurrentTime() {
 
   const parse = (str: string) => {
     const m = str.match(/(\d+):(\d+):(\d+)\s*([\w+]+)/);
-    return m ? { hours: m[1], minutes: m[2], seconds: m[3], timezone: m[4] } : null;
+    return m
+      ? { hours: m[1], minutes: m[2], seconds: m[3], timezone: m[4] }
+      : null;
   };
 
   const update = () => {
-    document.querySelectorAll<HTMLElement>("[data-current-time]").forEach((el) => {
-      const tz = el.getAttribute("data-current-time") ?? "Europe/Amsterdam";
-      const formatted = formatter(tz).format(new Date());
-      const parsed = parse(formatted);
-      if (!parsed) return;
-      const h = el.querySelector("[data-current-time-hours]");
-      const m = el.querySelector("[data-current-time-minutes]");
-      const s = el.querySelector("[data-current-time-seconds]");
-      const z = el.querySelector("[data-current-time-timezone]");
-      if (h) h.textContent = parsed.hours;
-      if (m) m.textContent = parsed.minutes;
-      if (s) s.textContent = parsed.seconds;
-      if (z) z.textContent = parsed.timezone;
-    });
+    document
+      .querySelectorAll<HTMLElement>("[data-current-time]")
+      .forEach((el) => {
+        const tz = el.getAttribute("data-current-time") ?? "Europe/Amsterdam";
+        const formatted = formatter(tz).format(new Date());
+        const parsed = parse(formatted);
+        if (!parsed) return;
+        const h = el.querySelector("[data-current-time-hours]");
+        const m = el.querySelector("[data-current-time-minutes]");
+        const s = el.querySelector("[data-current-time-seconds]");
+        const z = el.querySelector("[data-current-time-timezone]");
+        if (h) h.textContent = parsed.hours;
+        if (m) m.textContent = parsed.minutes;
+        if (s) s.textContent = parsed.seconds;
+        if (z) z.textContent = parsed.timezone;
+      });
   };
 
   update();
@@ -887,6 +934,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, Observer);
 ```
 
 GSAP CustomEase "hop" (used in gallery transitions):
+
 ```ts
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
 ```
@@ -915,15 +963,15 @@ requestAnimationFrame(raf);
 
 Exact layout measurements from `desktop-hero.png` and `capture-metadata.json` (viewport: 1440×1044):
 
-| Element | Position |
-|---|---|
-| Header rail | `position: absolute; top: 0; width: 100%; height: ~60px; padding: 1.5rem 2rem` |
-| Gallery names | `position: absolute; left: 2rem; top: 50%; transform: translateY(-50%); width: ~20%` |
-| Image list | `position: absolute; right: 15%; top: 10%; width: ~55%; height: ~80%` |
-| Minimap | `position: absolute; right: 2rem; top: 50%; transform: translateY(-50%); width: ~8%; height: ~60%` |
-| Site info | `position: absolute; bottom: 3rem; left: 2rem` |
-| Controls | `position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%)` |
-| Tags | `position: absolute; bottom: 2rem; right: 2rem; display: flex; gap: 2rem` |
+| Element       | Position                                                                                           |
+| ------------- | -------------------------------------------------------------------------------------------------- |
+| Header rail   | `position: absolute; top: 0; width: 100%; height: ~60px; padding: 1.5rem 2rem`                     |
+| Gallery names | `position: absolute; left: 2rem; top: 50%; transform: translateY(-50%); width: ~20%`               |
+| Image list    | `position: absolute; right: 15%; top: 10%; width: ~55%; height: ~80%`                              |
+| Minimap       | `position: absolute; right: 2rem; top: 50%; transform: translateY(-50%); width: ~8%; height: ~60%` |
+| Site info     | `position: absolute; bottom: 3rem; left: 2rem`                                                     |
+| Controls      | `position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%)`                         |
+| Tags          | `position: absolute; bottom: 2rem; right: 2rem; display: flex; gap: 2rem`                          |
 
 ---
 
@@ -933,31 +981,56 @@ Add all archive-specific classes to `globals.css` or an archive-specific CSS imp
 
 ```css
 /* Section visibility */
-.section.is--works { display: block; }
-.section.is--mobile { display: none; }
+.section.is--works {
+  display: block;
+}
+.section.is--mobile {
+  display: none;
+}
 
 @media (max-width: 1000px) {
-  .section.is--works { display: none; }
-  .section.is--mobile { display: block; }
+  .section.is--works {
+    display: none;
+  }
+  .section.is--mobile {
+    display: block;
+  }
 
-  h1 { font-size: 2rem; }
+  h1 {
+    font-size: 2rem;
+  }
 
-  .clients-preview { width: 100%; height: 100%; }
-  .clients-list { width: 100%; }
+  .clients-preview {
+    width: 100%;
+    height: 100%;
+  }
+  .clients-list {
+    width: 100%;
+  }
 }
 
 /* Gallery container transitions */
 .gallery__container {
-  transition: transform 850ms cubic-bezier(.596, .002, 0, 1.002);
+  transition: transform 850ms cubic-bezier(0.596, 0.002, 0, 1.002);
   position: absolute;
   inset: 0;
 }
-.gallery__container:not(.active) .minimap { margin-top: -5vw; }
-.gallery__container:not(.active) .site-info { margin-top: -15vw; }
-.gallery__container:not(.active) .img-site__list { transform: translateY(-10vw); }
+.gallery__container:not(.active) .minimap {
+  margin-top: -5vw;
+}
+.gallery__container:not(.active) .site-info {
+  margin-top: -15vw;
+}
+.gallery__container:not(.active) .img-site__list {
+  transform: translateY(-10vw);
+}
 .gallery__container.active .minimap,
-.gallery__container.active .site-info { margin-top: 0vw; }
-.gallery__container.active .img-site__list { transform: translateY(0vw); }
+.gallery__container.active .site-info {
+  margin-top: 0vw;
+}
+.gallery__container.active .img-site__list {
+  transform: translateY(0vw);
+}
 
 /* Mask line (SplitText container) */
 .mask-line {
@@ -969,15 +1042,18 @@ Add all archive-specific classes to `globals.css` or an archive-specific CSS imp
 /* Client hover preview */
 .client-img-wrapper {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
   will-change: clip-path;
   overflow: hidden;
 }
 .client-img-wrapper img {
   position: absolute;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   will-change: transform, opacity;
 }
@@ -990,8 +1066,10 @@ Add all archive-specific classes to `globals.css` or an archive-specific CSS imp
 .client-name::after {
   content: "";
   position: absolute;
-  left: 0; bottom: 0;
-  width: 100%; height: 0.15rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.15rem;
   background: #fff;
   transform: scaleX(0);
   transform-origin: right;
@@ -1008,7 +1086,9 @@ Add all archive-specific classes to `globals.css` or an archive-specific CSS imp
   transition: opacity 300ms ease;
   cursor: pointer;
 }
-.gallery__item.active { opacity: 1; }
+.gallery__item.active {
+  opacity: 1;
+}
 
 /* Image cover utility */
 .img.is--cover {
@@ -1032,6 +1112,7 @@ WHAT APPEARS HERE IS NOT A SHOWCASE, BUT THE TRACE OF A PRACTICE
 Positioned as a large heading above the gallery names or spanning the full width at the top of the gallery panel (below the header rail). Uses `data-blink-text` or a scramble text animation on the word "PRACTICE" (source uses GSAP ScrambleTextPlugin for rotating alternate words).
 
 ScrambleText on a span with alternating words:
+
 ```ts
 const words = ["PRACTICE", "PROCESS", "RESEARCH", "SYSTEM"];
 let i = 0;
@@ -1041,7 +1122,11 @@ setInterval(() => {
   i = (i + 1) % words.length;
   gsap.to(scrambleTarget, {
     duration: 0.8,
-    scrambleText: { text: words[i], chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", speed: 0.5 },
+    scrambleText: {
+      text: words[i],
+      chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      speed: 0.5,
+    },
   });
 }, 2500);
 ```
@@ -1065,6 +1150,7 @@ Use `gsap.timeline()` to sequence the enter animation.
 ## 23. Cleanup & Memory Management
 
 In the `useEffect` cleanup:
+
 ```ts
 return () => {
   ScrollTrigger.getAll().forEach((t) => t.kill());
@@ -1113,6 +1199,7 @@ Before calling this page done, verify each item against the reference screenshot
 ## 25. Notes on the Individual Project Route (`/works/[slug]`)
 
 The links in both gallery mode and clients mode point to `/works/[slug]` (e.g. `/works/retronova`). This is a **separate page** not covered by this prompt. Create a stub `app/works/[slug]/page.tsx` that:
+
 - Reads `params.slug`
 - Looks up the project from `ARCHIVE_PROJECTS`
 - Renders the project title and description (placeholder layout)

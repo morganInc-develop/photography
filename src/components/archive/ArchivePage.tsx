@@ -27,7 +27,9 @@ const LAST_INDEX = ARCHIVE_PROJECTS.length - 1;
 export default function ArchivePage() {
   const [mode, setMode] = useState<ArchiveMode>("gallery");
   const [activeIndex, setActiveIndex] = useState(0);
-  const [hoveredClientIndex, setHoveredClientIndex] = useState<number | null>(null);
+  const [hoveredClientIndex, setHoveredClientIndex] = useState<number | null>(
+    null,
+  );
 
   const rootRef = useRef<HTMLDivElement | null>(null);
   const minimapRef = useRef<HTMLDivElement | null>(null);
@@ -60,7 +62,13 @@ export default function ArchivePage() {
   }, [mode]);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, Observer, ScrambleTextPlugin);
+    gsap.registerPlugin(
+      ScrollTrigger,
+      SplitText,
+      CustomEase,
+      Observer,
+      ScrambleTextPlugin,
+    );
     CustomEase.create("hop", "0.9, 0, 0.1, 1");
   }, []);
 
@@ -106,33 +114,43 @@ export default function ArchivePage() {
     };
 
     const update = () => {
-      document.querySelectorAll<HTMLElement>("[data-current-time]").forEach((el) => {
-        const tz = el.getAttribute("data-current-time") ?? "Europe/Amsterdam";
-        const formatted = formatter(tz).format(new Date());
-        const parsed = parse(formatted);
+      document
+        .querySelectorAll<HTMLElement>("[data-current-time]")
+        .forEach((el) => {
+          const tz = el.getAttribute("data-current-time") ?? "Europe/Amsterdam";
+          const formatted = formatter(tz).format(new Date());
+          const parsed = parse(formatted);
 
-        if (!parsed) {
-          return;
-        }
+          if (!parsed) {
+            return;
+          }
 
-        const hoursEl = el.querySelector<HTMLElement>("[data-current-time-hours]");
-        const minutesEl = el.querySelector<HTMLElement>("[data-current-time-minutes]");
-        const secondsEl = el.querySelector<HTMLElement>("[data-current-time-seconds]");
-        const timezoneEl = el.querySelector<HTMLElement>("[data-current-time-timezone]");
+          const hoursEl = el.querySelector<HTMLElement>(
+            "[data-current-time-hours]",
+          );
+          const minutesEl = el.querySelector<HTMLElement>(
+            "[data-current-time-minutes]",
+          );
+          const secondsEl = el.querySelector<HTMLElement>(
+            "[data-current-time-seconds]",
+          );
+          const timezoneEl = el.querySelector<HTMLElement>(
+            "[data-current-time-timezone]",
+          );
 
-        if (hoursEl) {
-          hoursEl.textContent = parsed.hours;
-        }
-        if (minutesEl) {
-          minutesEl.textContent = parsed.minutes;
-        }
-        if (secondsEl) {
-          secondsEl.textContent = parsed.seconds;
-        }
-        if (timezoneEl) {
-          timezoneEl.textContent = parsed.timezone;
-        }
-      });
+          if (hoursEl) {
+            hoursEl.textContent = parsed.hours;
+          }
+          if (minutesEl) {
+            minutesEl.textContent = parsed.minutes;
+          }
+          if (secondsEl) {
+            secondsEl.textContent = parsed.seconds;
+          }
+          if (timezoneEl) {
+            timezoneEl.textContent = parsed.timezone;
+          }
+        });
     };
 
     update();
@@ -149,7 +167,9 @@ export default function ArchivePage() {
       return;
     }
 
-    const targets = root.querySelectorAll<HTMLElement>("[data-button-animate-chars]");
+    const targets = root.querySelectorAll<HTMLElement>(
+      "[data-button-animate-chars]",
+    );
     targets.forEach((el) => {
       if (el.dataset.charsReady === "true") {
         return;
@@ -180,11 +200,16 @@ export default function ArchivePage() {
     const splits: SplitText[] = [];
     const animations: gsap.core.Tween[] = [];
 
-    const headings = root.querySelectorAll<HTMLElement>('[data-split="heading"]');
+    const headings = root.querySelectorAll<HTMLElement>(
+      '[data-split="heading"]',
+    );
     headings.forEach((el) => {
       gsap.set(el, { autoAlpha: 1 });
 
-      const split = new SplitText(el, { type: "lines", linesClass: "mask-line" });
+      const split = new SplitText(el, {
+        type: "lines",
+        linesClass: "mask-line",
+      });
       splits.push(split);
 
       split.lines.forEach((line) => {
@@ -220,12 +245,17 @@ export default function ArchivePage() {
   }, []);
 
   useEffect(() => {
-    const heading = rootRef.current?.querySelector<HTMLElement>(".archive-blink-heading");
+    const heading = rootRef.current?.querySelector<HTMLElement>(
+      ".archive-blink-heading",
+    );
     if (!heading) {
       return;
     }
 
-    const tl = gsap.timeline({ repeat: -1, repeatDelay: gsap.utils.random(2, 5) });
+    const tl = gsap.timeline({
+      repeat: -1,
+      repeatDelay: gsap.utils.random(2, 5),
+    });
     tl.to(heading, { opacity: 0.7, duration: 0.05, ease: "none" })
       .to(heading, { opacity: 1, duration: 0.05, ease: "none" })
       .to(heading, { opacity: 0.8, duration: 0.03, ease: "none" })
@@ -277,8 +307,13 @@ export default function ArchivePage() {
 
       velocityRef.current *= 0.88;
       targetIndexRef.current += velocityRef.current;
-      targetIndexRef.current = gsap.utils.clamp(0, LAST_INDEX, targetIndexRef.current);
-      currentIndexRef.current += (targetIndexRef.current - currentIndexRef.current) * 0.08;
+      targetIndexRef.current = gsap.utils.clamp(
+        0,
+        LAST_INDEX,
+        targetIndexRef.current,
+      );
+      currentIndexRef.current +=
+        (targetIndexRef.current - currentIndexRef.current) * 0.08;
 
       const snappedIndex = Math.round(currentIndexRef.current);
       if (snappedIndex !== activeIndexRef.current) {
@@ -325,7 +360,9 @@ export default function ArchivePage() {
       return;
     }
 
-    const wraps = clientNameWrapRefs.current.filter((node): node is HTMLAnchorElement => !!node);
+    const wraps = clientNameWrapRefs.current.filter(
+      (node): node is HTMLAnchorElement => !!node,
+    );
     gsap.set(wraps, { opacity: 0, yPercent: 100 });
 
     const tween = gsap.to(wraps, {
@@ -362,7 +399,13 @@ export default function ArchivePage() {
           gsap.fromTo(
             image,
             { scale: 1.25, opacity: 0.65 },
-            { scale: 1, opacity: 1, duration: 0.5, ease: "power3.out", overwrite: true },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 0.5,
+              ease: "power3.out",
+              overwrite: true,
+            },
           );
         }
 
@@ -378,8 +421,12 @@ export default function ArchivePage() {
   }, [hoveredClientIndex, mode]);
 
   useEffect(() => {
-    const headerItems = rootRef.current?.querySelectorAll("[data-archive-header-item]");
-    const controls = rootRef.current?.querySelector("[data-archive-enter='controls']");
+    const headerItems = rootRef.current?.querySelectorAll(
+      "[data-archive-header-item]",
+    );
+    const controls = rootRef.current?.querySelector(
+      "[data-archive-enter='controls']",
+    );
     const tags = rootRef.current?.querySelector("[data-archive-enter='tags']");
     const minimap = minimapRef.current;
     const activeImage = imagePreviewRefs.current[0];
@@ -392,7 +439,9 @@ export default function ArchivePage() {
 
     if (galleryItemRefs.current.length) {
       tl.from(
-        galleryItemRefs.current.filter((node): node is HTMLDivElement => !!node),
+        galleryItemRefs.current.filter(
+          (node): node is HTMLDivElement => !!node,
+        ),
         { opacity: 0, x: -20, duration: 0.7, stagger: 0.05 },
         "-=0.35",
       );
@@ -411,7 +460,11 @@ export default function ArchivePage() {
       tl.from(minimap, { opacity: 0, x: 20, duration: 0.6 }, "-=0.7");
     }
 
-    tl.from([controls, tags].filter(Boolean), { opacity: 0, duration: 0.5 }, "-=0.35");
+    tl.from(
+      [controls, tags].filter(Boolean),
+      { opacity: 0, duration: 0.5 },
+      "-=0.35",
+    );
 
     return () => {
       tl.kill();
@@ -437,7 +490,10 @@ export default function ArchivePage() {
           <ArchiveHeader />
 
           <div className="works__tr is--def">
-            <p data-split="heading" className="paragraph is--medium is--archive">
+            <p
+              data-split="heading"
+              className="paragraph is--medium is--archive"
+            >
               {ARCHIVE_MANIFESTO} <span ref={scrambleRef}>PRACTICE</span>.
             </p>
 

@@ -1,5 +1,7 @@
 # MASTER HOMEPAGE RECREATION PROMPT
+
 ### Nicola Romei — nicolaromei.com
+
 ### Target Stack: Next.js App Router · Tailwind CSS v4 · GSAP 3.14.2 · Three.js · Framer Motion · shadcn/ui (primitives only)
 
 ---
@@ -9,10 +11,13 @@
 Before building anything, load and cross-reference both of the following source archives. Every design decision in this prompt is derived from them. When in doubt, the source files are the ground truth — not this document.
 
 **Source 1 — Playwright Capture (HTML, CSS, DOM, screenshots)**
+
 ```
 /Users/damionmorgan/Documents/GottabeAway/photography/output/playwright/nicolaromei-homepage-2026-04-06/
 ```
+
 Files inside:
+
 - `source.html` — full rendered HTML with all inline styles and scripts
 - `style-probe.json` — computed styles extracted from desktop viewport (1440×900)
 - `style-probe-mobile.json` — computed styles extracted from mobile viewport
@@ -26,10 +31,13 @@ Files inside:
 - `nicolaromei-homepage-recreation-brief.md` — extended evidence-backed brief
 
 **Source 2 — Extracted Video Frames (screen recording, ~2.6s apart)**
+
 ```
 /Users/damionmorgan/Desktop/extracted photos/
 ```
+
 Files inside:
+
 - `frame_01.jpg` through `frame_20.jpg` — 20 frames extracted from a ~50-second screen recording
 - `ANALYSIS_PROMPT.md` — analysis instructions for the frame set
 - Frames 01–07 and 19–20: artboard fully active, dark canvas, image planes visible, UI overlay in place
@@ -60,19 +68,19 @@ The page body keeps `overflow: hidden` at all times. The entire experience is se
 
 All color values are sourced directly from `style-probe.json` and inline CSS in `source.html`.
 
-| Token | Hex | Usage |
-|---|---|---|
-| `--soft-grey` | `#f3f3f3` | Page background, preloader background, button fill |
-| `--panel-grey` | `#e7e7e7` | Three.js renderer clear color, secondary surfaces |
-| `--matte-black` | `#202020` | Primary text, artboard dark areas |
-| `--ink` | `#131313` | Deep background, darkest UI areas |
-| `--body-text` | `rgb(51, 51, 51)` | Default computed body text color |
-| `--nav-text` | `rgb(243, 243, 243)` | Link text color (appears on dark artboard) |
-| `--border-soft` | `#ffffff24` | Translucent button borders |
-| `--selection` | `#ff564a` | Text selection highlight (coral/red) |
-| `--scanline-dark` | `rgba(0, 0, 0, 0.25)` | CRT scanline stripe |
-| `--vignette` | `rgba(0, 0, 0, 0.4)` | CRT edge vignette |
-| `--flicker-light` | `rgba(255, 255, 255, 0.02)` | CRT scan flash |
+| Token             | Hex                         | Usage                                              |
+| ----------------- | --------------------------- | -------------------------------------------------- |
+| `--soft-grey`     | `#f3f3f3`                   | Page background, preloader background, button fill |
+| `--panel-grey`    | `#e7e7e7`                   | Three.js renderer clear color, secondary surfaces  |
+| `--matte-black`   | `#202020`                   | Primary text, artboard dark areas                  |
+| `--ink`           | `#131313`                   | Deep background, darkest UI areas                  |
+| `--body-text`     | `rgb(51, 51, 51)`           | Default computed body text color                   |
+| `--nav-text`      | `rgb(243, 243, 243)`        | Link text color (appears on dark artboard)         |
+| `--border-soft`   | `#ffffff24`                 | Translucent button borders                         |
+| `--selection`     | `#ff564a`                   | Text selection highlight (coral/red)               |
+| `--scanline-dark` | `rgba(0, 0, 0, 0.25)`       | CRT scanline stripe                                |
+| `--vignette`      | `rgba(0, 0, 0, 0.4)`        | CRT edge vignette                                  |
+| `--flicker-light` | `rgba(255, 255, 255, 0.02)` | CRT scan flash                                     |
 
 **Important:** The page lives almost entirely in a pale grey / near-black duotone. The only color that appears outside this palette is the `#ff564a` text selection highlight and occasional image content bleeding through. All imagery must be rendered as grayscale or near-monochrome. Do not introduce any accent colors.
 
@@ -103,6 +111,7 @@ Apply to your Tailwind v4 `@theme` block:
 Sourced from `style-probe.json` (loaded font status), `source.html` inline styles, and computed styles.
 
 ### Primary Display Face — Easegeometricb
+
 - **Weight:** 700
 - **Style:** Normal
 - **Status:** Confirmed loaded at page render time
@@ -115,6 +124,7 @@ Sourced from `style-probe.json` (loaded font status), `source.html` inline style
 - **clamp version for responsive:** `font-size: clamp(2rem, 5vw, 4rem)`
 
 ### Utility / Body Face — Host Grotesk
+
 - **Weights loaded:** 300, 400, 500, 600, 700
 - **Style:** Normal
 - **Status:** All weights confirmed loaded
@@ -129,6 +139,7 @@ Sourced from `style-probe.json` (loaded font status), `source.html` inline style
 - **Nav link computed mobile:** `font-size: 10px`, `line-height: 10px`
 
 ### Additional Loaded Families (supporting roles, not homepage-primary)
+
 - `prestige-elite-std` — weights 400/700, normal/italic
 - `itc-avant-garde-gothic-pro` — weights 300/700, normal/italic
 - `neue-haas-grotesk-display` — weights 400/700, normal/italic
@@ -139,6 +150,7 @@ Sourced from `style-probe.json` (loaded font status), `source.html` inline style
 These are all loaded globally but are not the primary homepage faces. Do not use them on the homepage unless a specific element demands it.
 
 ### Typography Rules
+
 - Zero border radius on all text containers.
 - No decorative quotation marks, no drop caps, no ornamental typography.
 - All labels and utility text are uppercase. No exceptions on the homepage.
@@ -153,6 +165,7 @@ These are all loaded globally but are not the primary homepage faces. Do not use
 Sourced from `dom-desktop.json`, `source.html`, `mobile-full.png`, and frames 01–07.
 
 ### DOM Hierarchy (exact)
+
 ```
 <body class="body is--home">
   <main data-barba="wrapper" class="page-wrapper">
@@ -195,41 +208,49 @@ Sourced from `dom-desktop.json`, `source.html`, `mobile-full.png`, and frames 01
 ```
 
 ### Section: `body.is--home`
+
 - `overflow: hidden`
 - `overscroll-behavior: none`
 - `background: #f3f3f3`
 - `color: rgb(51, 51, 51)`
 
 ### Section: `.section.is--hero`
+
 - `width: 100%`, `height: 100%`
 - `position: relative`, `overflow: hidden`
 - Contains everything visible after the loader exits
 
 ### Section: `nav.section__text` (Microcopy Rail)
+
 This nav sits absolutely positioned over the artboard canvas, typically along the top edge of the viewport. It contains five columns arranged horizontally:
 
 **Column 1 — Location + Live Time**
+
 - Text: `Based in Italy,\nworking globally.`
 - Below that: a live clock `[data-current-time="Europe/Rome"]`
 - Clock format: `HH:MM:SS GMT+2` (24-hour, live, updates every 1 second via `setInterval`)
 - Implementation: `data-current-time-hours`, `data-current-time-minutes`, `data-current-time-seconds`, `data-current-time-timezone` child spans populated by `initDynamicCurrentTime()`
 
 **Column 2 — Expertise**
+
 - Label: `(my.expertise)` — styled with `.is--tag`
 - Items: `Art Direction` / `Web Design + Dev` / `Webflow Development`
 - Items have `data-square` attribute — likely a hover square/dot treatment
 
 **Column 3 — Social Links**
+
 - Label: `(social.contacts)`
 - Links: `Awwards` → `https://www.awwwards.com/nicolaromei/`, `Linkedin` → `https://www.linkedin.com/in/nicolaromei/`, `contacts` → `mailto:info@nicolaromei.com?subject=New%20project%20together`
 - All use `data-underline-link="alt"` — see underline animation spec in Section 8
 
 **Column 4 — Manifesto**
+
 - Inside `.hero__desc`
 - Text: `Digital Experience Designer and Awwwards Judge. I create immersive websites defined by strong visual direction, refined motion, and a distinct design signature.`
 - Uses GSAP SplitText line masking on `[data-split="heading"]` — lines slide up from `yPercent: 100` on scroll trigger
 
 **Column 5 — CTAs**
+
 - Two full-width buttons inside `.tc__utils.is--home`
 - Button 1: `THE ARCHIVE` → `/the-archive`
 - Button 2: `THE PROFILE` → `/the-profile`
@@ -238,12 +259,14 @@ This nav sits absolutely positioned over the artboard canvas, typically along th
 ### Desktop vs Mobile Layout
 
 **Desktop (1440×900 reference):**
+
 - The microcopy nav columns are arranged in a horizontal strip across the top of the viewport, pinned above the canvas artboard
 - The artboard canvas fills the remaining 75–80% of viewport height
 - The bottom wordmark sits at the very bottom edge of the viewport
 - The CTA buttons appear in the top-right area of the text rail
 
 **Mobile (375px reference — `mobile-full.png` is the ground truth):**
+
 - The microcopy columns stack vertically above the artboard tile field
 - The artboard appears as a dense tiled collage with visible image boundaries
 - The manifesto and CTAs appear as a strong central text block with two side-by-side CTA bars below
@@ -272,7 +295,10 @@ Implement it exactly as extracted from `source.html`:
   content: " ";
   display: block;
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   background: linear-gradient(
     to bottom,
     rgba(18, 16, 16, 0) 50%,
@@ -288,7 +314,10 @@ Implement it exactly as extracted from `source.html`:
   content: " ";
   display: block;
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   background: radial-gradient(
     circle,
     rgba(0, 0, 0, 0) 50%,
@@ -300,15 +329,27 @@ Implement it exactly as extracted from `source.html`:
 }
 
 @keyframes flicker {
-  0%   { opacity: 0.95; }
-  50%  { opacity: 0.92; }
-  100% { opacity: 0.96; }
+  0% {
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.92;
+  }
+  100% {
+    opacity: 0.96;
+  }
 }
 
 @keyframes crt-scan {
-  0%   { background-color: rgba(255, 255, 255, 0); }
-  50%  { background-color: rgba(255, 255, 255, 0.02); }
-  100% { background-color: rgba(255, 255, 255, 0); }
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+  }
 }
 ```
 
@@ -327,6 +368,7 @@ This is the most important element on the page. Do not simplify it. Do not repla
 The preloader is fixed, fullscreen, at `z-index: 999`. Background is `#f3f3f3`. The composition is deliberately centered and small — exaggerated negative space is intentional.
 
 **Image stack (`.preloader__img-wrap`):**
+
 - Five `.pi__img` divs stacked absolutely, each containing one `<img>`
 - Each image starts with `clip-path: inset(0px 0px 100%)` — fully hidden (clipped from bottom)
 - They reveal sequentially bottom-to-top: `clip-path` animates to `inset(0px 0px 0%)` using GSAP
@@ -338,21 +380,24 @@ The preloader is fixed, fullscreen, at `z-index: 999`. Background is `#f3f3f3`. 
   3. `https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/6945261f9b350c9f511e4300_nr__works.avif`
   4. `https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/69450a858ed0e64cbb06769b_...creative__cover.avif`
   5. `https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/69450a859b114fff691426d7_...NR__STUDIO.avif`
-  Use these exact URLs or replace with your own equivalent grayscale photography assets at the same aspect ratio and column width.
+     Use these exact URLs or replace with your own equivalent grayscale photography assets at the same aspect ratio and column width.
 
 **Numeric counter (`.preloader__counter-wrap`):**
+
 - A `.paragraph.counter-element` div showing the current number (`7` captured mid-load)
 - Animates from `0` to `100` using GSAP ticker or `gsap.to({val: 0}, {val: 100, ...})`
 - Below the number: `.preloader__line` containing `.line__animate`
 - The line starts at `transform: scale(0.07, 1)` (transform-origin: 0% 50%) and scales to `scale(1, 1)` — a horizontal progress bar that grows from left to right in sync with the counter
 
 **Intro text (`.preloader__intro-wrap`):**
+
 - The full sentence: `WHAT APPEARS HERE IS NOT A SHOWCASE, BUT THE TRACE OF A PRACTICE`
 - Rendered inside `.iw__text` as a `.paragraph` with each character split into `.st-char` spans
 - Each `.st-char` starts at `opacity: 0` and staggers to `opacity: 1` from left to right during the count sequence
 - Positioned at the bottom-left of the preloader area — confirmed by `desktop-hero.png`
 
 **GSAP Sequence (reconstruct from `loader.js` behavior):**
+
 ```
 Timeline:
   t=0:    Counter starts counting 0→100 over ~2.5s
@@ -378,13 +423,16 @@ The ease on all loader animations is `cubic-bezier(0.625, 0.05, 0, 1)` — the s
 This is the core of the homepage. It is not a CSS grid. It is not a masonry layout. It is not a carousel. It is a custom Three.js WebGL canvas with draggable/scrollable image planes rendered as shader-mapped geometry.
 
 ### Canvas element
+
 - `id="home-canvas-webgl"`
 - Fixed position: `top: 0; left: 0; width: 100%; height: 100%`
 - `pointer-events: none` (pointer events are intercepted by the grid overlay, then passed to canvas logic)
 - `z-index: -1` — sits behind the HTML overlay (microcopy, buttons, wordmark)
 
 ### Source plane data (25 images from `source.html`):
+
 Every `.js-plane` figure has a `data-src` attribute pointing to an avif image on the Webflow CDN. The full list in DOM order:
+
 ```
 retronova-min.avif
 color explandation.avif
@@ -412,9 +460,11 @@ ROBOT RUNNING.avif
 DAVIDE.avif
 Untitled-1-min.avif
 ```
+
 Each plane element: `<figure class="js-plane" data-src="[CDN URL]" style="margin: 0.2vw;" />`
 
 ### WebGL behavior (from `bundle.js` / `home.js` analysis and frames 01–07, 19–20):
+
 - **Renderer:** Three.js WebGLRenderer, `clearColor: 0xE7E7E7`
 - **Planes:** Each image is mapped to a PlaneGeometry with ShaderMaterial
 - **Shader uniforms:** `uTexture`, `uSize` (plane dimensions), `uVelocity` (scroll/drag speed for distortion), `uViewportSize`
@@ -435,14 +485,19 @@ Visual reference: `mobile-full.png` shows the artboard in its settled state — 
 All primary animation is owned by GSAP. Framer Motion is acceptable only for small React component mount/unmount transitions on non-canvas UI elements.
 
 ### Signature Easing
+
 Every transition in this project uses one easing curve:
+
 ```
 cubic-bezier(0.625, 0.05, 0, 1)
 ```
+
 Register it as a GSAP CustomEase:
+
 ```js
 CustomEase.create("signature", "0.625, 0.05, 0, 1");
 ```
+
 Use it everywhere: link hovers, button hovers, page transitions, split text, loader elements.
 
 ### Underline Link Animation (exact from `source.html`)
@@ -507,6 +562,7 @@ The `rotate(0.001deg)` on all transforms is a deliberate subpixel antialiasing f
 Both CTA buttons and the CLOSE button use character-level stagger animations.
 
 **HTML structure:**
+
 ```html
 <a href="/the-archive" class="btn-animate-chars is--full">
   <div class="btn-animate-chars__bg"></div>
@@ -522,6 +578,7 @@ Both CTA buttons and the CLOSE button use character-level stagger animations.
 ```
 
 **CSS:**
+
 ```css
 .btn-animate-chars {
   position: relative;
@@ -558,10 +615,11 @@ Both CTA buttons and the CLOSE button use character-level stagger animations.
 ```
 
 **JS — `initButtonCharacterStagger()` (from `source.html`):**
+
 ```js
 function initButtonCharacterStagger() {
   const buttons = document.querySelectorAll("[data-button-animate-chars]");
-  buttons.forEach(btn => {
+  buttons.forEach((btn) => {
     const text = btn.textContent;
     btn.innerHTML = "";
     [...text].forEach((char, i) => {
@@ -586,10 +644,10 @@ The manifesto paragraph uses GSAP SplitText to split by lines, then mask-reveal 
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(SplitText, ScrollTrigger);
   const headings = document.querySelectorAll('[data-split="heading"]');
-  headings.forEach(el => {
+  headings.forEach((el) => {
     gsap.set(el, { autoAlpha: 1 });
     const split = new SplitText(el, { type: "lines", linesClass: "mask-line" });
-    split.lines.forEach(line => {
+    split.lines.forEach((line) => {
       const inner = document.createElement("div");
       inner.style.display = "block";
       while (line.firstChild) inner.appendChild(line.firstChild);
@@ -604,8 +662,8 @@ document.addEventListener("DOMContentLoaded", () => {
       scrollTrigger: {
         trigger: el,
         start: "top 95%",
-        toggleActions: "play none none none"
-      }
+        toggleActions: "play none none none",
+      },
     });
   });
 });
@@ -625,12 +683,15 @@ The bottom wordmark uses a blink/flicker treatment. Implement as a GSAP timeline
 
 ```js
 function initBlinkText() {
-  document.querySelectorAll("[data-blink-text]").forEach(el => {
-    const tl = gsap.timeline({ repeat: -1, repeatDelay: gsap.utils.random(2, 5) });
+  document.querySelectorAll("[data-blink-text]").forEach((el) => {
+    const tl = gsap.timeline({
+      repeat: -1,
+      repeatDelay: gsap.utils.random(2, 5),
+    });
     tl.to(el, { opacity: 0.7, duration: 0.05, ease: "none" })
-      .to(el, { opacity: 1,   duration: 0.05, ease: "none" })
+      .to(el, { opacity: 1, duration: 0.05, ease: "none" })
       .to(el, { opacity: 0.8, duration: 0.03, ease: "none" })
-      .to(el, { opacity: 1,   duration: 0.05, ease: "none" });
+      .to(el, { opacity: 1, duration: 0.05, ease: "none" });
   });
 }
 ```
@@ -648,7 +709,8 @@ The wordmark also has `filter: blur(1.5px)` as a persistent style (from `.h-h1` 
 ```css
 .cursor {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   z-index: 9999;
   pointer-events: none;
   transform: translate3d(-66.5px, -12px, 0);
@@ -657,12 +719,14 @@ The wordmark also has `filter: blur(1.5px)` as a persistent style (from `.h-h1` 
 
 ```js
 // Exact cursor logic from source.html
-const cursor = document.querySelector('.cursor');
-let mouseX = 0, mouseY = 0;
-let cursorX = 0, cursorY = 0;
+const cursor = document.querySelector(".cursor");
+let mouseX = 0,
+  mouseY = 0;
+let cursorX = 0,
+  cursorY = 0;
 const speed = 0.05;
 
-window.addEventListener('mousemove', (e) => {
+window.addEventListener("mousemove", (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
@@ -670,18 +734,25 @@ window.addEventListener('mousemove', (e) => {
 // Hide on scroll
 let scrollTimeout;
 const handleScroll = () => {
-  cursor.classList.add('cursor--hidden');
+  cursor.classList.add("cursor--hidden");
   clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => cursor.classList.remove('cursor--hidden'), 150);
+  scrollTimeout = setTimeout(
+    () => cursor.classList.remove("cursor--hidden"),
+    150,
+  );
 };
-window.addEventListener('wheel', handleScroll, { passive: true });
-window.addEventListener('touchmove', handleScroll, { passive: true });
+window.addEventListener("wheel", handleScroll, { passive: true });
+window.addEventListener("touchmove", handleScroll, { passive: true });
 
 // Hide over standard links (not js-plane-links)
-document.querySelectorAll('a').forEach(link => {
-  if (!link.classList.contains('js-plane-link')) {
-    link.addEventListener('mouseenter', () => cursor.classList.add('cursor--hidden'));
-    link.addEventListener('mouseleave', () => cursor.classList.remove('cursor--hidden'));
+document.querySelectorAll("a").forEach((link) => {
+  if (!link.classList.contains("js-plane-link")) {
+    link.addEventListener("mouseenter", () =>
+      cursor.classList.add("cursor--hidden"),
+    );
+    link.addEventListener("mouseleave", () =>
+      cursor.classList.remove("cursor--hidden"),
+    );
   }
 });
 
@@ -689,8 +760,8 @@ document.querySelectorAll('a').forEach(link => {
 function animateCursor() {
   cursorX += (mouseX - cursorX) * speed;
   cursorY += (mouseY - cursorY) * speed;
-  const x = cursorX - (cursor.offsetWidth / 2);
-  const y = cursorY - (cursor.offsetHeight / 2);
+  const x = cursorX - cursor.offsetWidth / 2;
+  const y = cursorY - cursor.offsetHeight / 2;
   cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
   requestAnimationFrame(animateCursor);
 }
@@ -698,29 +769,35 @@ animateCursor();
 ```
 
 ```css
-.cursor--hidden { opacity: 0; pointer-events: none; }
+.cursor--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 ```
 
 ### Live Time Widget
 
 ```js
 function initDynamicCurrentTime() {
-  const formatter = (tz) => new Intl.DateTimeFormat([], {
-    timeZone: tz,
-    timeZoneName: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false
-  });
+  const formatter = (tz) =>
+    new Intl.DateTimeFormat([], {
+      timeZone: tz,
+      timeZoneName: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
 
   const parse = (str) => {
     const m = str.match(/(\d+):(\d+):(\d+)\s*([\w+]+)/);
-    return m ? { hours: m[1], minutes: m[2], seconds: m[3], timezone: m[4] } : null;
+    return m
+      ? { hours: m[1], minutes: m[2], seconds: m[3], timezone: m[4] }
+      : null;
   };
 
   const update = () => {
-    document.querySelectorAll("[data-current-time]").forEach(el => {
+    document.querySelectorAll("[data-current-time]").forEach((el) => {
       const tz = el.getAttribute("data-current-time") || "Europe/Amsterdam";
       const parsed = parse(formatter(tz).format(new Date()));
       if (!parsed) return;
@@ -742,9 +819,12 @@ document.addEventListener("DOMContentLoaded", initDynamicCurrentTime);
 ```
 
 Usage in template:
+
 ```html
 <p data-current-time="Europe/Rome" class="paragraph">
-  <span data-current-time-hours="">00</span>:<span data-current-time-minutes="">00</span>:<span data-current-time-seconds="">00</span>
+  <span data-current-time-hours="">00</span>:<span data-current-time-minutes=""
+    >00</span
+  >:<span data-current-time-seconds="">00</span>
   <span data-current-time-timezone="">GMT+2</span>
 </p>
 ```
@@ -756,7 +836,10 @@ Usage in template:
 At the top and bottom edges of the artboard canvas, there are multi-layer progressive blur masks that fade the image planes into the background color. This prevents the canvas from having harsh edges.
 
 ```html
-<div style="--blur: 3rem; --ratio: 1.9;" class="progressive-blur_wrap is--bottom">
+<div
+  style="--blur: 3rem; --ratio: 1.9;"
+  class="progressive-blur_wrap is--bottom"
+>
   <div style="--i: 6;" class="progressive-blur_panel is-1"></div>
   <div style="--i: 5;" class="progressive-blur_panel is-2"></div>
   <div style="--i: 4;" class="progressive-blur_panel is-3"></div>
@@ -770,16 +853,22 @@ At the top and bottom edges of the artboard canvas, there are multi-layer progre
 ```css
 .progressive-blur_wrap {
   position: absolute;
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   pointer-events: none;
 }
-.progressive-blur_wrap.is--bottom { bottom: 0; }
-.progressive-blur_wrap.is--top { top: 0; }
+.progressive-blur_wrap.is--bottom {
+  bottom: 0;
+}
+.progressive-blur_wrap.is--top {
+  top: 0;
+}
 
 .progressive-blur_panel {
   position: absolute;
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   height: calc(var(--blur) * var(--ratio));
   backdrop-filter: blur(calc(var(--blur) / var(--i)));
   -webkit-backdrop-filter: blur(calc(var(--blur) / var(--i)));
@@ -795,24 +884,29 @@ Each panel has a progressively weaker blur moving away from the edge, creating a
 This panel starts hidden (`opacity: 0`, inert) and is revealed by GSAP after the loader exits. It appears as a floating panel — likely bottom-right or bottom-center of the viewport.
 
 **Content:**
+
 - An HLS background video player (Bunny CDN stream)
 - Video `src`: `https://vz-015fe5e8-a53.b-cdn.net/559d3626-9339-4d4d-be69-06e5d4e0f4ea/playlist.m3u8`
 - Fallback placeholder image: shows an iPhone screen render
 - A `.tab__desc` block with text:
+
   ```
   SCROLL / DRAG TO INTERACT W/ THE ARTBOARD or click on the grid to explore the archive.
 
   THE ARTBOARD SERVES AS A STRUCTURED ENVIRONMENT WHERE CREATIONS, SYSTEMS, AND DESIGN RESEARCH ACCUMULATED OVER TIME ARE ORGANIZED, PRESERVED, AND CONTINUOUSLY REVISITED.
   ```
+
 - A CLOSE split-char button (`href="#"`) that hides the panel via GSAP
 
 **HLS video behavior (from `home.js`):**
+
 - Uses `hls.js` for adaptive streaming
 - `autoplay: true`, `muted: true`, `playsinline: true`, `loop: true`
 - IntersectionObserver pauses playback when the panel leaves the viewport
 - A loading SVG spinner shows while the video buffers
 
 **Visual treatment:**
+
 - The panel has a `.demo-section__fade-left` element — a gradient fade on the left edge of the video
 - Placeholder fades out once video starts playing (`opacity: 0, visibility: hidden`)
 
@@ -821,15 +915,15 @@ This panel starts hidden (`opacity: 0`, inert) and is revealed by GSAP after the
 ## SECTION 11 — PAGE TRANSITIONS
 
 Barba.js handles route transitions. The key structural attributes:
+
 ```html
 <main data-barba="wrapper">
-  <div data-barba-namespace="home" data-barba="container">
-    ...
-  </div>
+  <div data-barba-namespace="home" data-barba="container">...</div>
 </main>
 ```
 
 The `.page-transition` div is a fullscreen overlay that activates during navigation:
+
 ```css
 .page-transition {
   position: fixed;
@@ -854,6 +948,7 @@ In Next.js App Router: implement this as a client component at the layout level.
 ## SECTION 12 — LANDSCAPE WARNING
 
 Shown only when viewport is landscape on mobile:
+
 ```html
 <div class="section__landscape">
   <h1 class="h-h1 is--landscape">ROTATE YOUR DEVICE FOR A BETTER EXPERIENCE</h1>
@@ -886,20 +981,20 @@ The H1 uses `Easegeometricb`, uppercase, blurred — same as the main wordmark. 
 
 Build the homepage as a composition of these named client components:
 
-| Component | File | Responsibility |
-|---|---|---|
-| `HomeLoader` | `components/home/HomeLoader.tsx` | Fullscreen preloader: image stack, counter, progress line, split-text intro |
-| `CrtOverlay` | `components/home/CrtOverlay.tsx` | Fixed CRT scanline/vignette/flicker layer — always mounted |
-| `ArtboardCanvas` | `components/home/ArtboardCanvas.tsx` | Three.js WebGL canvas, plane management, virtual-scroll, GSAP velocity |
-| `HomeMetaRail` | `components/home/HomeMetaRail.tsx` | The 5-column microcopy nav: location, time, expertise, social, manifesto |
-| `LiveClock` | `components/home/LiveClock.tsx` | `data-current-time` widget, setInterval every 1000ms |
-| `SplitCharButton` | `components/ui/SplitCharButton.tsx` | Reusable character-stagger button — used for CTAs and CLOSE |
-| `ArtboardDemoPanel` | `components/home/ArtboardDemoPanel.tsx` | The HLS video tab, description text, CLOSE button |
-| `BlinkWordmark` | `components/home/BlinkWordmark.tsx` | "the artboard™" H1 with blink GSAP animation |
-| `ProgressiveBlur` | `components/home/ProgressiveBlur.tsx` | Top and bottom multi-panel blur masks |
-| `HomeCursor` | `components/home/HomeCursor.tsx` | "SCROLL OR CLICK" smooth cursor with lerp loop |
-| `LandscapeWarning` | `components/home/LandscapeWarning.tsx` | Fixed overlay shown on landscape mobile |
-| `PageTransitionOverlay` | `components/layout/PageTransitionOverlay.tsx` | Route transition fade layer — shared across routes |
+| Component               | File                                          | Responsibility                                                              |
+| ----------------------- | --------------------------------------------- | --------------------------------------------------------------------------- |
+| `HomeLoader`            | `components/home/HomeLoader.tsx`              | Fullscreen preloader: image stack, counter, progress line, split-text intro |
+| `CrtOverlay`            | `components/home/CrtOverlay.tsx`              | Fixed CRT scanline/vignette/flicker layer — always mounted                  |
+| `ArtboardCanvas`        | `components/home/ArtboardCanvas.tsx`          | Three.js WebGL canvas, plane management, virtual-scroll, GSAP velocity      |
+| `HomeMetaRail`          | `components/home/HomeMetaRail.tsx`            | The 5-column microcopy nav: location, time, expertise, social, manifesto    |
+| `LiveClock`             | `components/home/LiveClock.tsx`               | `data-current-time` widget, setInterval every 1000ms                        |
+| `SplitCharButton`       | `components/ui/SplitCharButton.tsx`           | Reusable character-stagger button — used for CTAs and CLOSE                 |
+| `ArtboardDemoPanel`     | `components/home/ArtboardDemoPanel.tsx`       | The HLS video tab, description text, CLOSE button                           |
+| `BlinkWordmark`         | `components/home/BlinkWordmark.tsx`           | "the artboard™" H1 with blink GSAP animation                                |
+| `ProgressiveBlur`       | `components/home/ProgressiveBlur.tsx`         | Top and bottom multi-panel blur masks                                       |
+| `HomeCursor`            | `components/home/HomeCursor.tsx`              | "SCROLL OR CLICK" smooth cursor with lerp loop                              |
+| `LandscapeWarning`      | `components/home/LandscapeWarning.tsx`        | Fixed overlay shown on landscape mobile                                     |
+| `PageTransitionOverlay` | `components/layout/PageTransitionOverlay.tsx` | Route transition fade layer — shared across routes                          |
 
 **Page route:** `app/page.tsx` — all `"use client"` components, no SSR for animation-heavy elements.
 
@@ -961,7 +1056,9 @@ requestAnimationFrame(raf);
   --space-md: clamp(4rem, 2.5rem + 6.2vw, 10rem);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -970,7 +1067,8 @@ requestAnimationFrame(raf);
   color: white;
 }
 
-html, body {
+html,
+body {
   background: #f3f3f3;
   color: rgb(51, 51, 51);
   margin: 0;
@@ -1021,27 +1119,34 @@ The homepage is strongly bespoke. Do not use stock shadcn components visually.
 
 ## SECTION 17 — SCRIPTS AND LIBRARY VERSIONS (exact from `source.html`)
 
-| Library | Version | CDN |
-|---|---|---|
-| GSAP core | 3.14.2 | `cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js` |
-| ScrollTrigger | 3.14.2 | same CDN |
-| CustomEase | 3.14.2 | same CDN |
-| Observer | 3.14.2 | same CDN |
-| Draggable | 3.14.2 | same CDN |
-| InertiaPlugin | 3.14.2 | same CDN |
-| TextPlugin | 3.14.2 | same CDN |
-| SplitText | 3.14.2 | same CDN |
-| ScrambleTextPlugin | 3.14.2 | same CDN |
-| Lenis | 1.3.15 | unpkg.com |
-| Three.js | r128 | cdnjs cloudflare (also referenced as `three.min.txt`) |
-| virtual-scroll | 2.1.1 | cdn.jsdelivr.net |
-| HLS.js | 1.6.11 | cdn.jsdelivr.net |
+| Library            | Version | CDN                                                   |
+| ------------------ | ------- | ----------------------------------------------------- |
+| GSAP core          | 3.14.2  | `cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js`  |
+| ScrollTrigger      | 3.14.2  | same CDN                                              |
+| CustomEase         | 3.14.2  | same CDN                                              |
+| Observer           | 3.14.2  | same CDN                                              |
+| Draggable          | 3.14.2  | same CDN                                              |
+| InertiaPlugin      | 3.14.2  | same CDN                                              |
+| TextPlugin         | 3.14.2  | same CDN                                              |
+| SplitText          | 3.14.2  | same CDN                                              |
+| ScrambleTextPlugin | 3.14.2  | same CDN                                              |
+| Lenis              | 1.3.15  | unpkg.com                                             |
+| Three.js           | r128    | cdnjs cloudflare (also referenced as `three.min.txt`) |
+| virtual-scroll     | 2.1.1   | cdn.jsdelivr.net                                      |
+| HLS.js             | 1.6.11  | cdn.jsdelivr.net                                      |
 
 Register all GSAP plugins immediately after load:
+
 ```js
 gsap.registerPlugin(
-  ScrollTrigger, CustomEase, Observer, Draggable,
-  InertiaPlugin, TextPlugin, SplitText, ScrambleTextPlugin
+  ScrollTrigger,
+  CustomEase,
+  Observer,
+  Draggable,
+  InertiaPlugin,
+  TextPlugin,
+  SplitText,
+  ScrambleTextPlugin,
 );
 ```
 
@@ -1113,4 +1218,4 @@ Use this as a completion gate. Do not mark the homepage as done until every item
 
 ---
 
-*This prompt is derived entirely from the two primary data sources listed at the top. When this document and the source files conflict, the source files win.*
+_This prompt is derived entirely from the two primary data sources listed at the top. When this document and the source files conflict, the source files win._

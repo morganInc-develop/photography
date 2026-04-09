@@ -1,0 +1,191 @@
+{
+  "title": "99 Cents Only Store Gallery exhibition",
+  "url": "https://tlb.betteroff.studio/articles/99-cents-only-store-gallery-exhibition/",
+  "viewport": {
+    "width": 1440,
+    "height": 1200
+  },
+  "documentHeight": 1200,
+  "bodyClass": null,
+  "htmlClass": null,
+  "headings": [
+    {
+      "index": 0,
+      "tag": "h1",
+      "text": "99 Cents Only Store Gallery exhibition",
+      "className": "h1 mt-45 s:mt-30 js-t-title",
+      "id": null
+    }
+  ],
+  "paragraphs": [
+    {
+      "index": 0,
+      "text": "Few places captured everyday Los Angeles quite like the 99 Cents Only Store. Fluorescent aisles packed with snacks, toys, household supplies, and strange one-off items created a shopping experience that felt chaotic, colorful, and uniquely local. For decades the stores became part of the city’s visual language. Now, as many locations disappear, artists are preserving that world in a different form",
+      "className": null
+    },
+    {
+      "index": 1,
+      "text": "The exhibition treats the store itself as both subject and material. Bright price tags, product packaging, shelving systems, and signage become the foundation for installations and sculptures. Artists reinterpret the familiar visuals of the store and elevate them into playful commentary on consumer culture, nostalgia, and the strange beauty hidden in everyday retail environments.",
+      "className": null
+    },
+    {
+      "index": 2,
+      "text": "Walking through the exhibition feels a lot like stepping back into the aisles themselves. Bold colors, repetitive packaging, and stacks of products create an overwhelming but oddly comforting environment. The difference is that here the objects are no longer for sale. They are reimagined as art, capturing a moment in time when the 99 Cents Only Store served as a small but unforgettable part of the",
+      "className": null
+    }
+  ],
+  "sections": [
+    {
+      "index": 0,
+      "tag": "div",
+      "id": null,
+      "className": "fixed inset-0 flex overflow-hidden pointer-events-none",
+      "dataAttributes": {},
+      "textSample": "Close2Inspire (March)",
+      "headings": [],
+      "ctas": []
+    },
+    {
+      "index": 1,
+      "tag": "div",
+      "id": null,
+      "className": "fixed inset-0 s:flex overflow-hidden pointer-events-none z-2 s:z-[12]",
+      "dataAttributes": {},
+      "textSample": "Close Source Inspire(March)99 Cents Only Store Gallery exhibitionFew places captured everyday Los Angeles quite like the 99 Cents Only Store. Fluorescent aisles packed with snacks, toys, household supplies, and strange one-off items created a shopping experience that felt chaotic, colorful, and uniquely local. For decades the stores became part of the city’s visual language. Now, as many locations disappear, artists are preserving that world in a different form — transforming a former store into",
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "99 Cents Only Store Gallery exhibition"
+        }
+      ],
+      "ctas": [
+        {
+          "tag": "a",
+          "text": "Close",
+          "href": "/",
+          "ariaLabel": null
+        },
+        {
+          "tag": "a",
+          "text": "Source",
+          "href": "https://www.youtube.com/watch?v=JRjg9YrF7X4",
+          "ariaLabel": null
+        }
+      ]
+    }
+  ],
+  "ctas": [
+    {
+      "index": 0,
+      "tag": "a",
+      "text": "Timeline,",
+      "href": "/",
+      "ariaLabel": null,
+      "className": "site-menu-link inline-flex leading-none js-i-slide"
+    },
+    {
+      "index": 1,
+      "tag": "a",
+      "text": "Surf,",
+      "href": "/surf",
+      "ariaLabel": null,
+      "className": "site-menu-link inline-flex leading-none js-i-slide"
+    },
+    {
+      "index": 2,
+      "tag": "a",
+      "text": "Index,",
+      "href": "/articles",
+      "ariaLabel": null,
+      "className": "site-menu-link inline-flex leading-none js-i-slide"
+    },
+    {
+      "index": 3,
+      "tag": "a",
+      "text": "About",
+      "href": "/about",
+      "ariaLabel": null,
+      "className": "site-menu-link inline-flex leading-none js-i-slide"
+    },
+    {
+      "index": 4,
+      "tag": "button",
+      "text": "Kanye West - Famous (ft. Rihanna)/Kanye West - Famous (ft. Rihanna)/Kanye West - Famous (ft. Rihanna)/Kanye West - Famous (ft. Rihanna)/Kanye West - Famous (ft. Rihanna)",
+      "href": null,
+      "ariaLabel": "Play Kanye West - Famous (ft. Rihanna)",
+      "className": "group/toggle relative pl-6 flex items-center gap-x-6 min-w-[22.5rem] max-w-[22.5rem] border border-gray-border bg-white group-[&.is-dark]:border-black-3 group-[&.is-dark]:bg-black rounded-[.5rem] overflow-hidden transition-colors delay-200 duration-500"
+    },
+    {
+      "index": 5,
+      "tag": "button",
+      "text": "Famous (ft. Rihanna)Kanye West",
+      "href": null,
+      "ariaLabel": null,
+      "className": "group/track py-5 pl-5 flex items-center bg-gray-light has-hover:hover:bg-gray-medium whitespace-nowrap w-full group-[&.is-dark]:bg-black-2 group-[&.is-dark]:has-hover:hover:bg-black-3 group-[&.is-dark]:text-white"
+    },
+    {
+      "index": 6,
+      "tag": "button",
+      "text": "Dynomite ft. Sheek Louch Redman",
+      "href": null,
+      "ariaLabel": null,
+      "className": "group/track py-5 pl-5 flex items-center bg-gray-light has-hover:hover:bg-gray-medium whitespace-nowrap w-full group-[&.is-dark]:bg-black-2 group-[&.is-dark]:has-hover:hover:bg-black-3 group-[&.is-dark]:text-white"
+    },
+    {
+      "index": 7,
+      "tag": "button",
+      "text": "OverdrivePost Malone",
+      "href": null,
+      "ariaLabel": null,
+      "className": "group/track py-5 pl-5 flex items-center bg-gray-light has-hover:hover:bg-gray-medium whitespace-nowrap w-full group-[&.is-dark]:bg-black-2 group-[&.is-dark]:has-hover:hover:bg-black-3 group-[&.is-dark]:text-white"
+    },
+    {
+      "index": 8,
+      "tag": "button",
+      "text": "Feel the PainDinosaur Jr.",
+      "href": null,
+      "ariaLabel": null,
+      "className": "group/track py-5 pl-5 flex items-center bg-gray-light has-hover:hover:bg-gray-medium whitespace-nowrap w-full group-[&.is-dark]:bg-black-2 group-[&.is-dark]:has-hover:hover:bg-black-3 group-[&.is-dark]:text-white"
+    },
+    {
+      "index": 9,
+      "tag": "button",
+      "text": "All Choked UpBroncho",
+      "href": null,
+      "ariaLabel": null,
+      "className": "group/track py-5 pl-5 flex items-center bg-gray-light has-hover:hover:bg-gray-medium whitespace-nowrap w-full group-[&.is-dark]:bg-black-2 group-[&.is-dark]:has-hover:hover:bg-black-3 group-[&.is-dark]:text-white"
+    },
+    {
+      "index": 12,
+      "tag": "a",
+      "text": "Close",
+      "href": "/",
+      "ariaLabel": null,
+      "className": "uline leading-none"
+    },
+    {
+      "index": 13,
+      "tag": "a",
+      "text": "Source",
+      "href": "https://www.youtube.com/watch?v=JRjg9YrF7X4",
+      "ariaLabel": null,
+      "className": "source-link uline-double leading-none inline-flex items-center gap-x-3"
+    },
+    {
+      "index": 14,
+      "tag": "button",
+      "text": "Enter with sound",
+      "href": null,
+      "ariaLabel": null,
+      "className": "group inline-flex items-center gap-x-12 px-14 h-40 border border-white/15 rounded-[.4rem] transition-colors duration-500 ease-out has-hover:hover:bg-white/5"
+    },
+    {
+      "index": 15,
+      "tag": "button",
+      "text": "...or without",
+      "href": null,
+      "ariaLabel": null,
+      "className": "uline inline-flex text-14 text-white/30"
+    }
+  ]
+}

@@ -27,6 +27,11 @@ const nextConfig: NextConfig = {
         hostname: "cdn.prod.website-files.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.datocms-assets.com",
+        pathname: "/**",
+      },
     ],
   },
 };
