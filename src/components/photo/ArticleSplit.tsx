@@ -1,6 +1,7 @@
 "use client";
 
 import type { ArtboardPhoto } from "@/components/home/home-data";
+import { ArticleEditorialSection } from "@/components/photo/ArticleEditorialSection";
 import { ArticleEntrance } from "@/components/photo/ArticleEntrance";
 import { PhotoCarouselNavigator } from "@/components/photo/PhotoCarouselNavigator";
 import Image from "next/image";
@@ -134,8 +135,6 @@ export function ArticleSplit({
             ? timelineViewport.clientWidth * 0.85
             : 1;
 
-      event.preventDefault();
-      event.stopPropagation();
       timelineViewport.scrollLeft += dominantDelta * deltaMultiplier;
     };
 
@@ -149,22 +148,22 @@ export function ArticleSplit({
   return (
     <main
       ref={scopeRef}
-      className="relative h-screen overflow-x-hidden overflow-y-auto bg-white text-[#050505] md:overflow-hidden"
+      className="relative min-h-screen overflow-x-hidden bg-white text-[#050505]"
     >
       <ArticleEntrance scopeRef={scopeRef} photoId={photo.id} />
       <PhotoCarouselNavigator previousHref={previousHref} nextHref={nextHref} />
 
-      <div className="pointer-events-none absolute inset-x-0 top-3 z-20 hidden text-center md:block">
-        <p
-          data-article-title
-          className="text-[clamp(4.8rem,8.3vw,7.4rem)] font-[700] uppercase leading-[0.8] tracking-[-0.08em] text-black"
-          style={betterOffDisplay}
-        >
-          Made Invincible
-        </p>
-      </div>
+      <section className="relative hidden h-screen md:block">
+        <div className="pointer-events-none absolute inset-x-0 top-3 z-20 text-center">
+          <p
+            data-article-title
+            className="text-[clamp(4.8rem,8.3vw,7.4rem)] font-[700] uppercase leading-[0.8] tracking-[-0.08em] text-black"
+            style={betterOffDisplay}
+          >
+            Made Invincible
+          </p>
+        </div>
 
-      <div className="hidden h-full md:block">
         <div className="absolute inset-x-0 bottom-20 top-[10vh]">
           <div
             ref={timelineViewportRef}
@@ -288,9 +287,9 @@ export function ArticleSplit({
             </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="relative flex min-h-screen flex-col bg-white px-4 pb-24 pt-4 md:hidden">
+      <section className="relative flex min-h-screen flex-col bg-white px-4 pb-24 pt-4 md:hidden">
         <div className="flex items-center justify-end gap-4">
           <div
             data-article-control
@@ -387,7 +386,18 @@ export function ArticleSplit({
             </Link>
           </div>
         </div>
-      </div>
+      </section>
+
+      <ArticleEditorialSection
+        photos={photos}
+        photo={photo}
+        previousPhoto={previousPhoto}
+        nextPhoto={nextPhoto}
+        currentIndex={currentIndex}
+        displayIndex={displayIndex}
+        category={getTimelineCategory(currentIndex)}
+        month={currentMonth}
+      />
     </main>
   );
 }

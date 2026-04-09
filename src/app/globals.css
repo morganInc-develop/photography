@@ -64,8 +64,9 @@ body.is--home {
 }
 
 body.is--photo {
-  overflow: hidden;
-  overscroll-behavior: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-x: none;
   background: #fff;
 }
 
