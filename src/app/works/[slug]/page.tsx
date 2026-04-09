@@ -1,4 +1,5 @@
 import { ARCHIVE_PROJECTS } from "@/components/archive/archive-data";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -36,10 +37,12 @@ export default async function WorksProjectPage({ params }: Props) {
         </section>
 
         <div className="works-project__cover">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={project.coverImage}
             alt={project.name}
+            width={1200}
+            height={800}
+            sizes="100vw"
             className="img is--cover"
           />
         </div>

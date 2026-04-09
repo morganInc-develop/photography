@@ -1,5 +1,6 @@
 import type { ArchiveProject } from "@/components/archive/archive-data";
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
+import Image from "next/image";
 import Link from "next/link";
 
 type MobileWorksProps = {
@@ -15,9 +16,9 @@ export default function MobileWorks({ projects }: MobileWorksProps) {
         <div className="wm__title-mobile-wrap">
           <div className="wm__title-mobile">
             <p data-split="heading" className="paragraph is--medium">
-              What appears here is not a sequence of outcomes, but a record of decisions. Different
-              contexts, different constraints, the same insistence on clarity, structure, and
-              presence.
+              What appears here is not a sequence of outcomes, but a record of
+              decisions. Different contexts, different constraints, the same
+              insistence on clarity, structure, and presence.
             </p>
             <div className="paragraph is--eyebrow">
               THIS ARCHIVE DOES NOT
@@ -26,7 +27,10 @@ export default function MobileWorks({ projects }: MobileWorksProps) {
               <br />
               IT PRESERVES PROCESS.
             </div>
-            <h1 data-blink-text className="h-h1 is--huge is--black archive-blink-heading">
+            <h1
+              data-blink-text
+              className="h-h1 is--huge is--black archive-blink-heading"
+            >
               ( THE ARCHIVE )
             </h1>
           </div>
@@ -34,10 +38,24 @@ export default function MobileWorks({ projects }: MobileWorksProps) {
 
         <div role="list" className="works__mobile-list">
           {projects.map((project) => (
-            <div key={project.slug} role="listitem" className="collection-item-5">
-              <div className="wm__img">
-                <img loading="lazy" src={project.coverImage} alt="" className="img is--cover" />
-              </div>
+            <div
+              key={project.slug}
+              role="listitem"
+              className="collection-item-5"
+            >
+              <Link
+                href={project.href}
+                aria-label={`Open ${project.name}`}
+                className="wm__img"
+              >
+                <Image
+                  src={project.coverImage}
+                  alt={project.name}
+                  fill
+                  sizes="100vw"
+                  className="img is--cover"
+                />
+              </Link>
 
               <div className="wm__content-2">
                 <div className="wm__title">
@@ -52,9 +70,16 @@ export default function MobileWorks({ projects }: MobileWorksProps) {
                 </p>
               </div>
 
-              <Link href={project.href} aria-label="staggering button" className="btn-animate-chars">
+              <Link
+                href={project.href}
+                aria-label="staggering button"
+                className="btn-animate-chars"
+              >
                 <div className="btn-animate-chars__bg-3" />
-                <span data-button-animate-chars className="btn-animate-chars__text paragraph">
+                <span
+                  data-button-animate-chars
+                  className="btn-animate-chars__text paragraph"
+                >
                   EXPLORE CASE
                 </span>
               </Link>

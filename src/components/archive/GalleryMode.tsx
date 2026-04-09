@@ -1,4 +1,5 @@
 import type { ArchiveProject } from "@/components/archive/archive-data";
+import Image from "next/image";
 import Link from "next/link";
 import type { MutableRefObject, RefObject } from "react";
 
@@ -26,7 +27,11 @@ export default function GalleryMode({
   const current = projects[activeIndex] ?? projects[0];
 
   return (
-    <div className={mode === "gallery" ? "gallery__container active" : "gallery__container"}>
+    <div
+      className={
+        mode === "gallery" ? "gallery__container active" : "gallery__container"
+      }
+    >
       <div className="site-info">
         <div role="list" className="gallery__names">
           {projects.map((project, index) => (
@@ -38,7 +43,9 @@ export default function GalleryMode({
               ref={(node) => {
                 galleryItemRefs.current[index] = node;
               }}
-              className={index === activeIndex ? "gallery__item active" : "gallery__item"}
+              className={
+                index === activeIndex ? "gallery__item active" : "gallery__item"
+              }
               onMouseEnter={() => onSelect(index)}
             >
               <p className="paragraph">({project.index})</p>
@@ -60,18 +67,21 @@ export default function GalleryMode({
             href={project.href}
             role="listitem"
             ref={(node) => {
-              imagePreviewRefs.current[index] = node as HTMLAnchorElement | null;
+              imagePreviewRefs.current[index] =
+                node as HTMLAnchorElement | null;
             }}
-            className={index === activeIndex ? "img-preview active" : "img-preview"}
+            className={
+              index === activeIndex ? "img-preview active" : "img-preview"
+            }
             aria-label={`Open ${project.name}`}
-            onClick={(e) => {
-              if (index !== activeIndex) {
-                e.preventDefault();
-                onSelect(index);
-              }
-            }}
           >
-            <img src={project.coverImage} loading="lazy" alt={project.name} className="img is--cover" />
+            <Image
+              src={project.coverImage}
+              alt={project.name}
+              fill
+              sizes="(max-width: 1024px) 100vw, 55vw"
+              className="img is--cover"
+            />
           </Link>
         ))}
       </div>
@@ -91,7 +101,13 @@ export default function GalleryMode({
               className={index === activeIndex ? "item active" : "item"}
               onClick={() => onSelect(index)}
             >
-              <img src={project.coverImage} loading="lazy" alt={project.description} className="img is--cover" />
+              <Image
+                src={project.coverImage}
+                alt={project.description}
+                fill
+                sizes="4rem"
+                className="img is--cover"
+              />
             </button>
           ))}
         </div>
