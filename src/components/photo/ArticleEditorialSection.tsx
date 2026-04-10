@@ -78,150 +78,49 @@ export function ArticleEditorialSection({
 
   return (
     <>
-      <section className="hidden border-t border-black/10 bg-[#fbfaf6] md:grid md:min-h-[155vh] md:grid-cols-[minmax(24rem,40vw)_1fr]">
-        <div className="relative">
-          <div className="sticky top-0 h-screen overflow-hidden">
-            <div className="absolute inset-0 border-r border-black/10" />
-            <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-              <div
-                data-article-visual
-                className="absolute left-[-7%] top-[54%] w-[23%] -translate-y-1/2 opacity-80"
-              >
-                <div className="relative aspect-[5/7] overflow-hidden bg-[#ece8dc]">
-                  <Image
-                    src={previousPhoto.src}
-                    alt={previousPhoto.title}
-                    fill
-                    sizes="14vw"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-
-              <div
-                data-article-visual
-                className="relative z-10 w-[54%] max-w-[21rem]"
-              >
-                <p className="mb-3 text-[0.78rem] uppercase tracking-[0.08em] text-black/72">
-                  {displayIndex}
-                </p>
-                <div className="relative aspect-[4/5] overflow-hidden bg-[#ece8dc]">
-                  <Image
-                    src={photo.src}
-                    alt={photo.title}
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 30vw, 21rem"
-                    className="object-cover"
-                  />
-                </div>
-                <p className="mt-3 text-[0.78rem] uppercase tracking-[0.08em] text-black/72">
-                  {category.toUpperCase()} ({month.toUpperCase()})
-                </p>
-              </div>
-
-              <div
-                data-article-visual
-                className="absolute right-[-1%] top-[51%] w-[20%] -translate-y-1/2 opacity-90"
-              >
-                <div className="relative aspect-[4/6] overflow-hidden bg-[#ece8dc]">
-                  <Image
-                    src={nextPhoto.src}
-                    alt={nextPhoto.title}
-                    fill
-                    sizes="13vw"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-l border-black/10">
-          <div className="sticky top-0 z-20 flex items-center justify-between bg-[#fbfaf6]/96 px-5 py-4 text-[0.72rem] tracking-[-0.02em] backdrop-blur-sm">
-            <Link
-              href="/"
-              className="transition hover:text-black/60"
-              style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
+      <section className="hidden bg-[#fbfaf6] md:block">
+        <div className="px-8 pt-14 lg:px-14 lg:pt-20">
+          <div className="relative mx-auto flex h-[clamp(32rem,70vh,44rem)] max-w-[44rem] items-center justify-center overflow-hidden">
+            <div
+              data-article-visual
+              className="relative z-10 w-[54%] max-w-[21rem]"
             >
-              Close
-            </Link>
-            <Link
-              href={photo.src}
-              target="_blank"
-              rel="noreferrer"
-              className="underline underline-offset-2 transition hover:text-black/60"
-              style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
-            >
-              {sourceLabel} ↗
-            </Link>
-          </div>
-
-          <div className="px-8 pb-16 pt-14 lg:px-14 lg:pt-20">
-            <div className="max-w-[42rem]">
-              <div className="flex items-center gap-3">
-                <span className="bg-[#eadbff] px-3 py-1 text-[0.72rem] font-medium uppercase tracking-[0.12em] text-[#8767ba]">
-                  {category}
-                </span>
-                <p className="text-[0.9rem] uppercase tracking-[0.08em] text-black/78">
-                  ({month})
-                </p>
-              </div>
-
-              <h2
-                data-article-title
-                className="mt-6 max-w-[12ch] text-[clamp(3.5rem,5.3vw,5.8rem)] font-[700] uppercase leading-[0.88] tracking-[-0.065em] text-black"
-                style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
-              >
-                {headline}
-              </h2>
-
-              <div
-                className="mt-10 max-w-[34rem] space-y-8 text-[1rem] leading-[1.38] tracking-[-0.03em] text-black/82"
-                style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
-              >
-                {paragraphs.map((paragraph) => (
-                  <p key={paragraph} data-article-copy>
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-14 max-w-[46rem] space-y-10">
-              <div
-                data-article-visual
-                className="relative aspect-[16/9] overflow-hidden bg-[#ece8dc]"
-              >
+              <p className="mb-3 text-[0.78rem] uppercase tracking-[0.08em] text-black/72">
+                {displayIndex}
+              </p>
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#ece8dc]">
                 <Image
-                  src={primarySupportPhoto.src}
-                  alt={primarySupportPhoto.title}
+                  src={photo.src}
+                  alt={photo.title}
                   fill
-                  sizes="(max-width: 1024px) 50vw, 46rem"
+                  priority
+                  sizes="(max-width: 1024px) 30vw, 21rem"
                   className="object-cover"
                 />
               </div>
+              <p className="mt-3 text-[0.78rem] uppercase tracking-[0.08em] text-black/72">
+                {category.toUpperCase()} ({month.toUpperCase()})
+              </p>
+            </div>
+          </div>
 
-              <div
-                className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-8"
-                data-article-copy
-              >
+          <div className="mt-16">
+            <div className="pb-16 pt-14 lg:pt-20">
+              <div className="mt-14 max-w-[46rem] space-y-10">
                 <div
-                  className="space-y-7 text-[1rem] leading-[1.38] tracking-[-0.03em] text-black/82"
-                  style={{
-                    fontFamily: '"Host Grotesk", system-ui, sans-serif',
-                  }}
+                  data-article-visual
+                  className="relative aspect-[16/9] overflow-hidden bg-[#ece8dc]"
                 >
-                  <p>
-                    {`For ${category.toLowerCase()} entries like this one, the lesson is compositional clarity: one dominant frame, peripheral pressure from the archive, and a right-hand reading column that stays disciplined in width.`}
-                  </p>
-                  <p>
-                    {`${photo.year} and ${primaryLocation} remain visible as documentary anchors, but the surrounding crop logic turns the page into something more cinematic than documentary. The image is treated as a staged panel inside the publication system.`}
-                  </p>
+                  <Image
+                    src={primarySupportPhoto.src}
+                    alt={primarySupportPhoto.title}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 46rem"
+                    className="object-cover"
+                  />
                 </div>
 
-                <div className="space-y-8">
+                <div className="space-y-8" data-article-copy>
                   {secondarySupportPhotos.map((supportPhoto, index) => (
                     <div key={supportPhoto.id} data-article-visual>
                       <div className="relative aspect-[4/3] overflow-hidden bg-[#ece8dc]">

@@ -408,7 +408,7 @@ export function ArtboardCanvas() {
             const photo = ARTBOARD_PHOTOS[i];
             console.log("[ArtboardCanvas] matched cell", i, photo?.id);
             if (photo) {
-              routerRef.current.push(`/photo/${photo.id}`);
+              routerRef.current.push(`/photography?photo=${photo.id}`);
             }
             return;
           }
