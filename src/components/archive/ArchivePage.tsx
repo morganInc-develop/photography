@@ -42,6 +42,7 @@ export default function ArchivePage() {
   const clientPreviewWrapperRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const activeIndexRef = useRef(0);
+  const prevIndexRef = useRef(0);
   const modeRef = useRef<ArchiveMode>("gallery");
   const targetIndexRef = useRef(0);
   const currentIndexRef = useRef(0);
@@ -297,7 +298,13 @@ export default function ArchivePage() {
       }
 
       event.preventDefault();
-      velocityRef.current += event.deltaY * 0.003;
+      const normalizedDelta =
+        Math.sign(event.deltaY) * Math.min(Math.abs(event.deltaY), 80) * 0.0015;
+      velocityRef.current = gsap.utils.clamp(
+        -0.6,
+        0.6,
+        velocityRef.current + normalizedDelta,
+      );
     };
 
     const tick = () => {
@@ -305,7 +312,7 @@ export default function ArchivePage() {
         return;
       }
 
-      velocityRef.current *= 0.88;
+      velocityRef.current *= 0.84;
       targetIndexRef.current += velocityRef.current;
       targetIndexRef.current = gsap.utils.clamp(
         0,
@@ -332,27 +339,35 @@ export default function ArchivePage() {
   }, []);
 
   useEffect(() => {
-    imagePreviewRefs.current.forEach((preview, index) => {
-      if (!preview) {
-        return;
-      }
-
-      gsap.set(preview, {
-        autoAlpha: index === activeIndex ? 1 : 0,
-        zIndex: index === activeIndex ? 2 : 1,
-      });
-    });
-
+    const prevImage = imagePreviewRefs.current[prevIndexRef.current];
     const nextImage = imagePreviewRefs.current[activeIndex];
-    if (!nextImage) {
-      return;
+
+    if (prevImage && prevIndexRef.current !== activeIndex) {
+      gsap.to(prevImage, {
+        autoAlpha: 0,
+        duration: 0.35,
+        ease: "power2.in",
+        onComplete: () => {
+          gsap.set(prevImage, { zIndex: 1 });
+        },
+      });
     }
 
-    gsap.fromTo(
-      nextImage,
-      { clipPath: "inset(50% round 0.2em)" },
-      { clipPath: "inset(0% round 0.2em)", duration: 0.9, ease: "power4.out" },
-    );
+    if (nextImage) {
+      gsap.set(nextImage, { zIndex: 2 });
+      gsap.fromTo(
+        nextImage,
+        { autoAlpha: 0, clipPath: "inset(30% round 0.2em)" },
+        {
+          autoAlpha: 1,
+          clipPath: "inset(0% round 0.2em)",
+          duration: 0.65,
+          ease: "power4.out",
+        },
+      );
+    }
+
+    prevIndexRef.current = activeIndex;
   }, [activeIndex]);
 
   useEffect(() => {
@@ -363,10 +378,10 @@ export default function ArchivePage() {
     const wraps = clientNameWrapRefs.current.filter(
       (node): node is HTMLAnchorElement => !!node,
     );
-    gsap.set(wraps, { opacity: 0, yPercent: 100 });
+    gsap.set(wraps, { autoAlpha: 0, yPercent: 100 });
 
     const tween = gsap.to(wraps, {
-      opacity: 1,
+      autoAlpha: 1,
       yPercent: 0,
       stagger: 0.05,
       duration: 0.7,
@@ -421,54 +436,67 @@ export default function ArchivePage() {
   }, [hoveredClientIndex, mode]);
 
   useEffect(() => {
-    const headerItems = rootRef.current?.querySelectorAll(
-      "[data-archive-header-item]",
-    );
-    const controls = rootRef.current?.querySelector(
-      "[data-archive-enter='controls']",
-    );
-    const tags = rootRef.current?.querySelector("[data-archive-enter='tags']");
-    const minimap = minimapRef.current;
-    const activeImage = imagePreviewRefs.current[0];
+    const root = rootRef.current;
+    if (!root) return;
 
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    const ctx = gsap.context(() => {
+      const controls = root.querySelector("[data-archive-enter='controls']");
+      const tags = root.querySelector("[data-archive-enter='tags']");
+      const minimap = minimapRef.current;
+      const activeImage = imagePreviewRefs.current[0];
 
-    if (headerItems?.length) {
-      tl.from(headerItems, { opacity: 0, y: -10, duration: 0.6, stagger: 0.1 });
-    }
+      imagePreviewRefs.current.forEach((preview, index) => {
+        if (!preview) return;
+        gsap.set(preview, {
+          autoAlpha: index === 0 ? 1 : 0,
+          zIndex: index === 0 ? 2 : 1,
+        });
+      });
 
-    if (galleryItemRefs.current.length) {
-      tl.from(
-        galleryItemRefs.current.filter(
-          (node): node is HTMLDivElement => !!node,
-        ),
-        { opacity: 0, x: -20, duration: 0.7, stagger: 0.05 },
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      if (galleryItemRefs.current.length) {
+        tl.fromTo(
+          galleryItemRefs.current.filter(
+            (node): node is HTMLDivElement => !!node,
+          ),
+          { opacity: 0, x: -20 },
+          { opacity: 1, x: 0, duration: 0.7, stagger: 0.05 },
+          "-=0.35",
+        );
+      }
+
+      if (activeImage) {
+        tl.fromTo(
+          activeImage,
+          { clipPath: "inset(50% round 0.2em)" },
+          {
+            clipPath: "inset(0% round 0.2em)",
+            duration: 1,
+            ease: "power4.out",
+          },
+          "-=0.45",
+        );
+      }
+
+      if (minimap) {
+        tl.fromTo(
+          minimap,
+          { opacity: 0, x: 20 },
+          { opacity: 1, x: 0, duration: 0.6 },
+          "-=0.7",
+        );
+      }
+
+      tl.fromTo(
+        [controls, tags].filter(Boolean),
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5 },
         "-=0.35",
       );
-    }
+    }, root);
 
-    if (activeImage) {
-      tl.fromTo(
-        activeImage,
-        { clipPath: "inset(50% round 0.2em)" },
-        { clipPath: "inset(0% round 0.2em)", duration: 1, ease: "power4.out" },
-        "-=0.45",
-      );
-    }
-
-    if (minimap) {
-      tl.from(minimap, { opacity: 0, x: 20, duration: 0.6 }, "-=0.7");
-    }
-
-    tl.from(
-      [controls, tags].filter(Boolean),
-      { opacity: 0, duration: 0.5 },
-      "-=0.35",
-    );
-
-    return () => {
-      tl.kill();
-    };
+    return () => ctx.revert();
   }, []);
 
   const selectIndex = (index: number) => {
@@ -484,12 +512,18 @@ export default function ArchivePage() {
   };
 
   return (
-    <main className="page-wrapper archive-page" ref={rootRef}>
+    <main
+      className={`page-wrapper archive-page archive--${mode}`}
+      ref={rootRef}
+    >
       <div className="archive-app">
         <section className="section is--works">
           <ArchiveHeader />
 
-          <div className="works__tr is--def">
+          <div
+            className="works__tr is--def"
+            style={mode === "clients" ? { display: "none" } : undefined}
+          >
             <p
               data-split="heading"
               className="paragraph is--medium is--archive"

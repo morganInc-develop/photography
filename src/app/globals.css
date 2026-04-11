@@ -1061,7 +1061,7 @@ canvas {
 
 .archive-page .paragraph.is--list {
   margin: 0;
-  color: #f3f3f3;
+  color: #ffffff;
   font-family: "Easegeometricb", Impact, sans-serif;
   font-size: clamp(2.2rem, 4.9vw, 5.5rem);
   font-weight: 700;
@@ -1092,11 +1092,35 @@ canvas {
   color: #333;
 }
 
+.archive--gallery .works__tl {
+  color: #1a1a1a;
+}
+
+.archive--clients .works__tl {
+  color: #f3f3f3;
+}
+
+@keyframes archiveHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.archive-page .works__tl [data-archive-header-item] {
+  animation: archiveHeaderIn 0.5s ease forwards;
+}
+
 .archive-page .works__tl .text__col,
 .archive-page .works__tl .tc__timedate {
   display: flex;
   flex-flow: column;
   gap: 0.2rem;
+  color: inherit;
 }
 
 .archive-page .works__tl .text__col--profile {
@@ -1340,9 +1364,7 @@ canvas {
 .archive-page .cn__wrap {
   display: block;
   text-decoration: none;
-  color: inherit;
-  transform: translate(0, 100%);
-  opacity: 0;
+  color: #ffffff;
   will-change: transform, opacity;
 }
 
