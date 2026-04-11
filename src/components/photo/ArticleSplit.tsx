@@ -3,6 +3,7 @@
 import type { ArtboardPhoto } from "@/components/home/home-data";
 import { ArticleEditorialSection } from "@/components/photo/ArticleEditorialSection";
 import { ArticleEntrance } from "@/components/photo/ArticleEntrance";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -28,14 +29,6 @@ const MONTHS = [
 
 const CATEGORIES = ["Showcase", "Inspire", "Study", "Archive"] as const;
 
-const CARD_PATTERNS = [
-  { width: "clamp(13rem, 17.5vw, 22rem)", aspectRatio: "3 / 4", offset: 24 },
-  { width: "clamp(11.7rem, 15vw, 18.2rem)", aspectRatio: "1 / 1", offset: 6 },
-  { width: "clamp(14.3rem, 20.8vw, 26rem)", aspectRatio: "4 / 5", offset: 34 },
-  { width: "clamp(13rem, 16.3vw, 20.2rem)", aspectRatio: "4 / 5", offset: 14 },
-  { width: "clamp(14.3rem, 19.5vw, 23.4rem)", aspectRatio: "5 / 4", offset: 0 },
-] as const;
-
 function getTimelineMonth(index: number, totalCount: number) {
   if (totalCount <= 1) {
     return MONTHS[0];
@@ -58,28 +51,30 @@ function getDisplayIndex(index: number) {
   return String(index + 1).padStart(2, "0");
 }
 
-const WHEEL_THRESHOLD = 45;
-const SWIPE_THRESHOLD = 56;
-const DRAG_THRESHOLD = 56;
-const NAVIGATION_COOLDOWN_MS = 700;
-
 export function ArticleSplit({ photos }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scopeRef = useRef<HTMLElement>(null);
-  const activeCardRef = useRef<HTMLButtonElement>(null);
-  const timelineViewportRef = useRef<HTMLDivElement>(null);
-  const touchStartX = useRef<number | null>(null);
-  const dragStartX = useRef<number | null>(null);
-  const hasDragged = useRef(false);
-  const lastNavigationAt = useRef(0);
+  const desktopRightColumnRef = useRef<HTMLDivElement>(null);
+  const mobileRightColumnRef = useRef<HTMLDivElement>(null);
+  const rightColumnRef = useRef<HTMLElement>(null);
+
   const photo = photos[currentIndex] ?? photos[0];
+
+  // Non-wrapping: null at the edges — used for the 3-card left column
+  const prevCard = currentIndex > 0 ? photos[currentIndex - 1] : null;
+  const nextCard =
+    currentIndex < photos.length - 1 ? photos[currentIndex + 1] : null;
+
+  // Wrapping: always defined — used for the editorial section's supporting images
   const previousPhoto =
     photos[(currentIndex - 1 + photos.length) % photos.length] ?? photo;
   const nextPhoto = photos[(currentIndex + 1) % photos.length] ?? photo;
+
   const totalCount = photos.length;
   const displayIndex = getDisplayIndex(currentIndex);
   const totalCountLabel = String(totalCount).padStart(2, "0");
   const currentMonth = getTimelineMonth(currentIndex, totalCount);
+
   const betterOffDisplay = {
     fontFamily: '"Easegeometricb", Impact, sans-serif',
   } as const;
@@ -90,6 +85,7 @@ export function ArticleSplit({ photos }: Props) {
     fontFamily:
       '"SFMono-Regular", "IBM Plex Mono", "Cascadia Mono", "Courier New", monospace',
   } as const;
+
   const searchParams = useSearchParams();
 
   const updateCurrentIndex = useCallback(
@@ -112,133 +108,21 @@ export function ArticleSplit({ photos }: Props) {
   }, []);
 
   useEffect(() => {
-    activeCardRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
-  }, [currentIndex]);
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
 
-  // Convert vertical wheel to horizontal scroll on the timeline
-  useEffect(() => {
-    const viewport = timelineViewportRef.current;
-    if (!viewport) return;
-
-    const onWheel = (event: WheelEvent) => {
-      if (event.ctrlKey) return;
-      const maxScrollLeft = viewport.scrollWidth - viewport.clientWidth;
-      if (maxScrollLeft <= 0) return;
-      const delta =
-        Math.abs(event.deltaY) >= Math.abs(event.deltaX)
-          ? event.deltaY
-          : event.deltaX;
-      if (delta === 0) return;
-      event.preventDefault();
-      const multiplier =
-        event.deltaMode === WheelEvent.DOM_DELTA_LINE
-          ? 18
-          : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
-            ? viewport.clientWidth * 0.85
-            : 1;
-      viewport.scrollLeft += delta * multiplier;
+    const syncRightColumnRef = () => {
+      rightColumnRef.current = mediaQuery.matches
+        ? desktopRightColumnRef.current
+        : mobileRightColumnRef.current;
     };
 
-    viewport.addEventListener("wheel", onWheel, { passive: false });
-    return () => viewport.removeEventListener("wheel", onWheel);
-  }, []);
-
-  useEffect(() => {
-    if (photos.length <= 1) {
-      return;
-    }
-
-    const canNavigate = () =>
-      Date.now() - lastNavigationAt.current > NAVIGATION_COOLDOWN_MS;
-
-    const navigateBy = (delta: number) => {
-      if (!canNavigate()) {
-        return;
-      }
-
-      lastNavigationAt.current = Date.now();
-      updateCurrentIndex(delta);
-    };
-
-    const onWheel = (event: WheelEvent) => {
-      if (event.ctrlKey || Math.abs(event.deltaX) < WHEEL_THRESHOLD) {
-        return;
-      }
-
-      if (Math.abs(event.deltaX) < Math.abs(event.deltaY)) {
-        return;
-      }
-
-      navigateBy(event.deltaX > 0 ? 1 : -1);
-    };
-
-    const onMouseDown = (event: MouseEvent) => {
-      dragStartX.current = event.clientX;
-      hasDragged.current = false;
-    };
-
-    const onMouseMove = (event: MouseEvent) => {
-      if (dragStartX.current === null) return;
-
-      if (Math.abs(event.clientX - dragStartX.current) > 4) {
-        hasDragged.current = true;
-      }
-    };
-
-    const onMouseUp = (event: MouseEvent) => {
-      const startX = dragStartX.current;
-      dragStartX.current = null;
-
-      if (startX === null || !hasDragged.current) return;
-
-      const deltaX = event.clientX - startX;
-      if (Math.abs(deltaX) < DRAG_THRESHOLD) return;
-
-      navigateBy(deltaX < 0 ? 1 : -1);
-    };
-
-    const onTouchStart = (event: TouchEvent) => {
-      touchStartX.current = event.touches[0]?.clientX ?? null;
-    };
-
-    const onTouchEnd = (event: TouchEvent) => {
-      const startX = touchStartX.current;
-      const endX = event.changedTouches[0]?.clientX;
-
-      touchStartX.current = null;
-
-      if (startX == null || endX == null) {
-        return;
-      }
-
-      const deltaX = endX - startX;
-      if (Math.abs(deltaX) < SWIPE_THRESHOLD) {
-        return;
-      }
-
-      navigateBy(deltaX < 0 ? 1 : -1);
-    };
-
-    window.addEventListener("wheel", onWheel, { passive: true });
-    window.addEventListener("mousedown", onMouseDown);
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    syncRightColumnRef();
+    mediaQuery.addEventListener("change", syncRightColumnRef);
 
     return () => {
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("mousedown", onMouseDown);
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchend", onTouchEnd);
+      mediaQuery.removeEventListener("change", syncRightColumnRef);
     };
-  }, [photos.length, updateCurrentIndex]);
+  }, []);
 
   if (!photo) {
     return null;
@@ -249,7 +133,11 @@ export function ArticleSplit({ photos }: Props) {
       ref={scopeRef}
       className="relative min-h-screen [overflow-x:clip] bg-white text-[#050505]"
     >
-      <ArticleEntrance scopeRef={scopeRef} photoId={String(currentIndex)} />
+      <ArticleEntrance
+        scopeRef={scopeRef}
+        rightColumnRef={rightColumnRef}
+        photoId={String(currentIndex)}
+      />
 
       <div className="sticky top-0 z-50 w-full text-center bg-white/92 backdrop-blur-sm border-b border-black/8 py-3 pointer-events-none">
         <p
@@ -262,105 +150,146 @@ export function ArticleSplit({ photos }: Props) {
       </div>
 
       <div className="hidden md:grid md:grid-cols-[42vw_1fr]">
+        {/* LEFT COLUMN — 3-card timeline */}
         <section className="sticky top-[7.5rem] h-[calc(100vh-7.5rem)] overflow-hidden border-r border-black/10 bg-white">
-          {/* Horizontal scrolling photo cards */}
-          <div className="absolute inset-x-0 top-0 bottom-20">
+          <div className="flex h-full items-center justify-center gap-[clamp(0.75rem,1.4vw,1.5rem)] px-6 pb-16">
+            {/* Previous card — clickable, subdued */}
             <div
-              ref={timelineViewportRef}
-              className="lookback-scrollbar flex h-full items-center overflow-x-auto overflow-y-hidden px-[6vw]"
+              className="shrink-0"
+              style={{ width: "clamp(7rem, 10vw, 13rem)" }}
             >
-              <div className="flex min-w-max items-end gap-[clamp(0.75rem,1.4vw,1.5rem)] pb-10 pt-8">
-                {photos.map((item, index) => {
-                  const isCurrent = item.id === photo.id;
-                  const distance = Math.abs(index - currentIndex);
-                  const pattern = CARD_PATTERNS[index % CARD_PATTERNS.length];
-                  const category = getTimelineCategory(index);
-                  const month = getTimelineMonth(index, totalCount);
-                  const itemDisplayIndex = getDisplayIndex(index);
-                  const offset =
-                    pattern.offset +
-                    (isCurrent
-                      ? 0
-                      : distance === 1
-                        ? 12
-                        : distance === 2
-                          ? 4
-                          : 20);
-                  const opacity = isCurrent
-                    ? 1
-                    : distance <= 1
-                      ? 0.96
-                      : distance <= 3
-                        ? 0.84
-                        : 0.62;
-
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => setCurrentIndex(index)}
-                      aria-current={isCurrent ? "true" : undefined}
-                      aria-label={`View ${item.title}`}
-                      ref={isCurrent ? activeCardRef : undefined}
-                      className={`group relative shrink-0 text-left transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                        isCurrent ? "z-20" : "z-10 hover:opacity-100"
-                      }`}
-                      style={{
-                        opacity,
-                        width: pattern.width,
-                        transform: `translateY(${offset}px) scale(${isCurrent ? 1.02 : 1})`,
-                      }}
+              <AnimatePresence mode="popLayout" initial={false}>
+                {prevCard ? (
+                  <motion.button
+                    key={prevCard.id}
+                    type="button"
+                    onClick={() => updateCurrentIndex(-1)}
+                    aria-label={`View ${prevCard.title}`}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 0.48, x: 0 }}
+                    exit={{ opacity: 0, x: -16 }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="group w-full"
+                    whileHover={{ opacity: 0.72 }}
+                  >
+                    <div
+                      className="relative overflow-hidden bg-[#f1efe7] transition-transform duration-700 group-hover:scale-[1.03]"
+                      style={{ aspectRatio: "3 / 4" }}
                     >
-                      <p
-                        className={`absolute -top-5 left-0 text-[0.72rem] uppercase tracking-[0.14em] text-black/72 transition duration-300 ${
-                          isCurrent
-                            ? "opacity-100"
-                            : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
-                        }`}
-                        style={betterOffMono}
-                      >
-                        {itemDisplayIndex}
-                      </p>
+                      <Image
+                        src={prevCard.src}
+                        alt=""
+                        fill
+                        sizes="13vw"
+                        className="object-cover grayscale"
+                      />
+                    </div>
+                  </motion.button>
+                ) : null}
+              </AnimatePresence>
+            </div>
 
-                      <div
-                        data-article-visual
-                        className="relative overflow-hidden bg-[#f1efe7] transition duration-500 group-hover:scale-[1.01]"
-                        style={{ aspectRatio: pattern.aspectRatio }}
-                      >
-                        <Image
-                          src={item.src}
-                          alt={item.title}
-                          fill
-                          sizes="(max-width: 1024px) 100vw, 22vw"
-                          priority={isCurrent}
-                          className="object-cover grayscale saturate-0 transition duration-500 group-hover:grayscale-0 group-hover:saturate-100 group-focus-visible:grayscale-0 group-focus-visible:saturate-100"
-                        />
-                      </div>
+            {/* Current card — highlighted, full color, zoom-in on change */}
+            <div
+              className="shrink-0"
+              style={{ width: "clamp(11rem, 16vw, 20rem)" }}
+            >
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.p
+                  key={`label-top-${photo.id}`}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  className="mb-2 text-[0.72rem] uppercase tracking-[0.14em] text-black/72"
+                  style={betterOffMono}
+                >
+                  {displayIndex} / {totalCountLabel}
+                </motion.p>
+              </AnimatePresence>
 
-                      <div
-                        className={`mt-3 transition duration-300 ${
-                          isCurrent
-                            ? "opacity-100"
-                            : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
-                        }`}
-                      >
-                        <p
-                          className="text-[0.72rem] uppercase tracking-[0.12em] text-black/78"
-                          style={betterOffMono}
-                        >
-                          {category} ({month.toUpperCase()})
-                        </p>
-                        <p
-                          className="mt-1 max-w-[18ch] text-[0.9rem] tracking-[-0.03em] text-black/78"
-                          style={betterOffSans}
-                        >
-                          {item.title} / {item.location}
-                        </p>
-                      </div>
-                    </button>
-                  );
-                })}
+              <div
+                className="relative overflow-hidden bg-[#f1efe7]"
+                style={{ aspectRatio: "3 / 4" }}
+              >
+                <AnimatePresence mode="popLayout" initial={false}>
+                  <motion.div
+                    key={photo.id}
+                    initial={{ scale: 1.14, opacity: 0, y: 28 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    exit={{ scale: 0.94, opacity: 0, y: -20 }}
+                    transition={{
+                      duration: 0.95,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={photo.src}
+                      alt={photo.title}
+                      fill
+                      priority
+                      sizes="20vw"
+                      className="object-cover"
+                    />
+                  </motion.div>
+                </AnimatePresence>
               </div>
+
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.p
+                  key={`label-bottom-${photo.id}`}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{
+                    duration: 0.55,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.18,
+                  }}
+                  className="mt-2 text-[0.72rem] uppercase tracking-[0.12em] text-black/72"
+                  style={betterOffMono}
+                >
+                  {getTimelineCategory(currentIndex)} (
+                  {currentMonth.toUpperCase()})
+                </motion.p>
+              </AnimatePresence>
+            </div>
+
+            {/* Next card — clickable, subdued */}
+            <div
+              className="shrink-0"
+              style={{ width: "clamp(7rem, 10vw, 13rem)" }}
+            >
+              <AnimatePresence mode="popLayout" initial={false}>
+                {nextCard ? (
+                  <motion.button
+                    key={nextCard.id}
+                    type="button"
+                    onClick={() => updateCurrentIndex(1)}
+                    aria-label={`View ${nextCard.title}`}
+                    initial={{ opacity: 0, x: 16 }}
+                    animate={{ opacity: 0.48, x: 0 }}
+                    exit={{ opacity: 0, x: 16 }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="group w-full"
+                    whileHover={{ opacity: 0.72 }}
+                  >
+                    <div
+                      className="relative overflow-hidden bg-[#f1efe7] transition-transform duration-700 group-hover:scale-[1.03]"
+                      style={{ aspectRatio: "3 / 4" }}
+                    >
+                      <Image
+                        src={nextCard.src}
+                        alt=""
+                        fill
+                        sizes="13vw"
+                        className="object-cover grayscale"
+                      />
+                    </div>
+                  </motion.button>
+                ) : null}
+              </AnimatePresence>
             </div>
           </div>
 
@@ -393,7 +322,8 @@ export function ArticleSplit({ photos }: Props) {
           </div>
         </section>
 
-        <div className="bg-[#fbfaf6]">
+        {/* RIGHT COLUMN — scrolls with the page */}
+        <div ref={desktopRightColumnRef} className="bg-white">
           <ArticleEditorialSection
             photos={photos}
             photo={photo}
@@ -407,6 +337,7 @@ export function ArticleSplit({ photos }: Props) {
         </div>
       </div>
 
+      {/* Mobile layout */}
       <section className="relative flex min-h-screen flex-col bg-white px-4 pb-24 pt-4 md:hidden">
         <div className="flex items-center justify-end gap-4">
           <div
@@ -508,7 +439,7 @@ export function ArticleSplit({ photos }: Props) {
         </div>
       </section>
 
-      <div className="md:hidden">
+      <div ref={mobileRightColumnRef} className="md:hidden">
         <ArticleEditorialSection
           photos={photos}
           photo={photo}
