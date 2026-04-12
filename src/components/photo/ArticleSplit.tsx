@@ -3,6 +3,7 @@
 import type { ArtboardPhoto } from "@/components/home/home-data";
 import { ArticleEditorialSection } from "@/components/photo/ArticleEditorialSection";
 import { ArticleEntrance } from "@/components/photo/ArticleEntrance";
+import ArchiveHeader from "@/components/archive/ArchiveHeader";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -108,6 +109,60 @@ export function ArticleSplit({ photos }: Props) {
   }, []);
 
   useEffect(() => {
+    const formatter = (tz: string) =>
+      new Intl.DateTimeFormat([], {
+        timeZone: tz,
+        timeZoneName: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      });
+
+    const parse = (value: string) => {
+      const match = value.match(/(\d+):(\d+):(\d+)\s*([\w+]+)/);
+      return match
+        ? {
+            hours: match[1],
+            minutes: match[2],
+            seconds: match[3],
+            timezone: match[4],
+          }
+        : null;
+    };
+
+    const update = () => {
+      document
+        .querySelectorAll<HTMLElement>("[data-current-time]")
+        .forEach((el) => {
+          const tz = el.getAttribute("data-current-time") ?? "Europe/Amsterdam";
+          const parsed = parse(formatter(tz).format(new Date()));
+          if (!parsed) return;
+          const hoursEl = el.querySelector<HTMLElement>(
+            "[data-current-time-hours]",
+          );
+          const minutesEl = el.querySelector<HTMLElement>(
+            "[data-current-time-minutes]",
+          );
+          const secondsEl = el.querySelector<HTMLElement>(
+            "[data-current-time-seconds]",
+          );
+          const timezoneEl = el.querySelector<HTMLElement>(
+            "[data-current-time-timezone]",
+          );
+          if (hoursEl) hoursEl.textContent = parsed.hours;
+          if (minutesEl) minutesEl.textContent = parsed.minutes;
+          if (secondsEl) secondsEl.textContent = parsed.seconds;
+          if (timezoneEl) timezoneEl.textContent = parsed.timezone;
+        });
+    };
+
+    update();
+    const intervalId = window.setInterval(update, 1000);
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 768px)");
 
     const syncRightColumnRef = () => {
@@ -133,13 +188,17 @@ export function ArticleSplit({ photos }: Props) {
       ref={scopeRef}
       className="relative min-h-screen [overflow-x:clip] bg-white text-[#050505]"
     >
+      <div className="photo-page-nav sticky top-0 z-[60] bg-white/92 backdrop-blur-sm border-b border-black/8">
+        <ArchiveHeader />
+      </div>
+
       <ArticleEntrance
         scopeRef={scopeRef}
         rightColumnRef={rightColumnRef}
         photoId={String(currentIndex)}
       />
 
-      <div className="sticky top-0 z-50 w-full text-center bg-white/92 backdrop-blur-sm border-b border-black/8 py-3 pointer-events-none">
+      <div className="sticky top-[4.25rem] z-50 w-full text-center bg-white/92 backdrop-blur-sm border-b border-black/8 py-3 pointer-events-none">
         <p
           data-article-title
           className="text-[clamp(4.8rem,8.3vw,7.4rem)] font-[700] uppercase leading-[0.8] tracking-[-0.08em] text-black"

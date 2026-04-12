@@ -1006,6 +1006,44 @@ canvas {
   color: #333;
 }
 
+/* Nav header reused on the photo page — scoped separately to avoid archive-page page-level styles */
+.photo-page-nav .works__tl {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.1rem 2rem;
+  color: #333;
+}
+
+.photo-page-nav .works__tl .text__col,
+.photo-page-nav .works__tl .tc__timedate {
+  display: flex;
+  flex-flow: column;
+  gap: 0.2rem;
+  color: inherit;
+}
+
+.photo-page-nav .works__tl .text__col--profile {
+  align-items: flex-end;
+}
+
+.photo-page-nav .paragraph-8 {
+  margin: 0;
+  color: inherit;
+  font-family: "Host Grotesk", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.photo-page-nav [data-archive-header-item] {
+  animation: archiveHeaderIn 0.5s ease forwards;
+}
+
 .archive-page .archive-app {
   position: relative;
   min-height: 100vh;
