@@ -419,30 +419,63 @@ export function ArticleEditorialSection({
           {headline}
         </h2>
 
+        {/* Image 1 — right under the headline */}
         <div
-          className="mt-7 space-y-7 text-[1rem] leading-[1.42] tracking-[-0.025em] text-black/82"
-          style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
+          className="mt-6 overflow-hidden bg-[#ece8dc]"
+          style={{ aspectRatio: "4 / 3" }}
         >
-          {paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-
-        <div className="mt-8 space-y-5">
-          <div className="relative aspect-[4/5] overflow-hidden bg-[#ece8dc]">
+          <div className="relative h-full w-full">
             <Image
               src={photo.src}
               alt={photo.title}
               fill
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </div>
+        </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            {[previousPhoto, nextPhoto].map((supportPhoto) => (
-              <div key={supportPhoto.id}>
-                <div className="relative aspect-[4/5] overflow-hidden bg-[#ece8dc]">
+        {/* Paragraph 1 */}
+        <p
+          className="mt-6 text-[1rem] leading-[1.42] tracking-[-0.025em] text-black/82"
+          style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
+        >
+          {paragraphs[0]}
+        </p>
+
+        {/* Image 2 — right after paragraph 1 */}
+        <div
+          className="mt-6 overflow-hidden bg-[#ece8dc]"
+          style={{ aspectRatio: "16 / 9" }}
+        >
+          <div className="relative h-full w-full">
+            <Image
+              src={primarySupportPhoto.src}
+              alt={primarySupportPhoto.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Paragraph 2 */}
+        <p
+          className="mt-6 text-[1rem] leading-[1.42] tracking-[-0.025em] text-black/82"
+          style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
+        >
+          {paragraphs[1]}
+        </p>
+
+        {/* Images 3 & 4 — two secondary images side by side */}
+        <div className="mt-6 grid grid-cols-2 gap-3">
+          {secondarySupportPhotos.map((supportPhoto, index) => (
+            <div key={supportPhoto.id}>
+              <div
+                className="overflow-hidden bg-[#ece8dc]"
+                style={{ aspectRatio: "3 / 2" }}
+              >
+                <div className="relative h-full w-full">
                   <Image
                     src={supportPhoto.src}
                     alt={supportPhoto.title}
@@ -451,23 +484,21 @@ export function ArticleEditorialSection({
                     className="object-cover"
                   />
                 </div>
-                <p className="mt-2 text-[0.74rem] uppercase tracking-[0.08em] text-black/72">
-                  {supportPhoto.title}
-                </p>
               </div>
-            ))}
-          </div>
-
-          <div className="relative aspect-[16/10] overflow-hidden bg-[#ece8dc]">
-            <Image
-              src={primarySupportPhoto.src}
-              alt={primarySupportPhoto.title}
-              fill
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
+              <p className="mt-1.5 text-[0.7rem] uppercase tracking-[0.08em] text-black/72">
+                {String(index + 1).padStart(2, "0")} — {supportPhoto.title}
+              </p>
+            </div>
+          ))}
         </div>
+
+        {/* Paragraph 3 */}
+        <p
+          className="mt-6 text-[1rem] leading-[1.42] tracking-[-0.025em] text-black/82"
+          style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
+        >
+          {paragraphs[2]}
+        </p>
 
         <div className="mt-7 border-t border-black/10 pt-3">
           <p className="text-[0.72rem] uppercase tracking-[0.12em] text-black/72">

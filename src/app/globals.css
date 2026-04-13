@@ -677,6 +677,14 @@ canvas {
   transition: opacity 0.6s cubic-bezier(0.625, 0.05, 0, 1);
 }
 
+.hero__mobile-bar {
+  display: none;
+}
+
+.hero__panel-toggle {
+  display: none;
+}
+
 .hero__tab {
   width: 24vw;
   min-width: 19rem;
@@ -884,7 +892,47 @@ canvas {
 
 @media (max-width: 767px) {
   .hero__tab-wrap {
-    display: none;
+    position: fixed;
+    top: auto;
+    bottom: 1em;
+    left: 1em;
+    right: 1em;
+  }
+
+  .hero__tab {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero__mobile-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+  }
+
+  .hero__mobile-nav {
+    display: flex;
+    gap: 0.5em;
+    flex: 1;
+  }
+
+  .hero__panel-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2em;
+    height: 2.2em;
+    flex-shrink: 0;
+    border: 1px solid rgba(243, 243, 243, 0.35);
+    background: rgba(32, 32, 32, 0.8);
+    color: #f3f3f3;
+    cursor: pointer;
+  }
+
+  .hero__panel-toggle .paragraph {
+    line-height: 1;
+    font-size: 1.2em;
   }
 
   .intro-overlay {
@@ -916,14 +964,7 @@ canvas {
 
 @media (max-width: 479px) {
   .section__text {
-    width: 100vw;
-    height: 100svh;
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    gap: 2.3em;
-    padding: 0.5em;
+    display: none;
   }
 
   .overlay {
@@ -1532,6 +1573,7 @@ canvas {
   display: flex;
   flex-flow: column;
   gap: 0.8rem;
+  color: #333;
 }
 
 .archive-page .wm__top {
@@ -1539,6 +1581,11 @@ canvas {
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
+  color: #333;
+}
+
+.archive-page .wm__top .text__col {
+  color: #333;
 }
 
 .archive-page .wm__top--profile {
@@ -1615,6 +1662,45 @@ canvas {
 
 .archive-page .btn-animate-chars__text {
   line-height: 1.2;
+}
+
+.archive-page .works__controls--mobile {
+  position: static;
+  transform: none;
+  left: auto;
+  bottom: auto;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.archive-page .works__mobile-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.archive-page .wm__gallery-item {
+  display: flex;
+  flex-flow: column;
+  gap: 0.4rem;
+}
+
+.archive-page .wm__gallery-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.archive-page .wm__gallery-img img {
+  object-fit: cover;
+}
+
+.archive-page .wm__gallery-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
 }
 
 @media (max-width: 1300px) {

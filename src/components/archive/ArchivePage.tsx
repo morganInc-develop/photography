@@ -564,7 +564,11 @@ export default function ArchivePage() {
           <WorksTags />
         </section>
 
-        <MobileWorks projects={ARCHIVE_PROJECTS} />
+        <MobileWorks
+          projects={ARCHIVE_PROJECTS}
+          mode={mode}
+          setMode={setMode}
+        />
       </div>
     </main>
   );

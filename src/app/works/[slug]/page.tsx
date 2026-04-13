@@ -1,6 +1,5 @@
 import { ARCHIVE_PROJECTS } from "@/components/archive/archive-data";
-import Image from "next/image";
-import Link from "next/link";
+import WorksProject from "@/components/archive/WorksProject";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -17,36 +16,7 @@ export default async function WorksProjectPage({ params }: Props) {
 
   return (
     <main className="page-wrapper">
-      <div className="works-project">
-        <header className="works-project__header">
-          <Link href="/the-archive" className="link-group is--dark">
-            <p data-underline-link className="paragraph">
-              ← back to archive
-            </p>
-          </Link>
-        </header>
-
-        <section className="works-project__hero">
-          <div className="works-project__meta">
-            <p className="paragraph">({project.index})</p>
-          </div>
-          <h1 className="works-project__title h-h1">{project.name}</h1>
-          <p className="works-project__desc paragraph is--medium">
-            {project.description}
-          </p>
-        </section>
-
-        <div className="works-project__cover">
-          <Image
-            src={project.coverImage}
-            alt={project.name}
-            width={1200}
-            height={800}
-            sizes="100vw"
-            className="img is--cover"
-          />
-        </div>
-      </div>
+      <WorksProject project={project} />
     </main>
   );
 }

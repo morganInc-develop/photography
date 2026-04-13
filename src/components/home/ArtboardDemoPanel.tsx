@@ -14,6 +14,7 @@ type ArtboardDemoPanelProps = {
 export function ArtboardDemoPanel({ visible }: ArtboardDemoPanelProps) {
   const overlayVideoRef = useRef<HTMLVideoElement | null>(null);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [isPanelCollapsed, setIsPanelCollapsed] = useState(false);
   const open = visible;
 
   useEffect(() => {
@@ -58,41 +59,58 @@ export function ArtboardDemoPanel({ visible }: ArtboardDemoPanelProps) {
   return (
     <>
       <div className="hero__tab-wrap" style={{ opacity: visible ? 1 : 0 }}>
-        <div className="hero__tab">
-          <div className="tab__video">
-            <div className="tab__demo">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                alt="Made Invincible intro poster"
-                src={DEMO_VIDEO_PLACEHOLDER}
-                className="bunny-bg__poster"
-              />
+        <div className="hero__mobile-bar">
+          <div className="hero__mobile-nav">
+            <SplitCharButton href="/archive" label="THE ARCHIVE" />
+            <SplitCharButton href="/the-profile" label="THE PROFILE" />
+          </div>
+          <button
+            type="button"
+            className="hero__panel-toggle"
+            onClick={() => setIsPanelCollapsed((v) => !v)}
+            aria-label={isPanelCollapsed ? "Expand panel" : "Close panel"}
+          >
+            <p className="paragraph">{isPanelCollapsed ? "+" : "−"}</p>
+          </button>
+        </div>
 
-              <div className="bunny-bg__action">
-                <SplitCharButton
-                  label="PLAY INTRO"
-                  onClick={() => setIsOverlayOpen(true)}
+        {!isPanelCollapsed && (
+          <div className="hero__tab">
+            <div className="tab__video">
+              <div className="tab__demo">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  alt="Made Invincible intro poster"
+                  src={DEMO_VIDEO_PLACEHOLDER}
+                  className="bunny-bg__poster"
                 />
-              </div>
 
-              <div className="demo-section__fade-left" />
+                <div className="bunny-bg__action">
+                  <SplitCharButton
+                    label="PLAY INTRO"
+                    onClick={() => setIsOverlayOpen(true)}
+                  />
+                </div>
+
+                <div className="demo-section__fade-left" />
+              </div>
+            </div>
+
+            <div className="tab__desc">
+              <p className="paragraph">
+                MADE INVINCIBLE IS A PHOTOGRAPHY AND VIDEOGRAPHY STUDIO CRAFTING
+                PORTRAITS, CAMPAIGNS, AND SHORT-FORM FILMS WITH A CINEMATIC,
+                EDITORIAL POINT OF VIEW.
+                <br />
+                <br />
+                THIS SPACE HIGHLIGHTS STILL IMAGERY, MOTION WORK, AND VISUAL
+                STORYTELLING BUILT FOR ARTISTS, BRANDS, AND PEOPLE WHO WANT
+                SOMETHING MORE PERSONAL THAN GENERIC CONTENT.
+              </p>
+              <SplitCharButton href="/booking" label="BOOK NOW" />
             </div>
           </div>
-
-          <div className="tab__desc">
-            <p className="paragraph">
-              MADE INVINCIBLE IS A PHOTOGRAPHY AND VIDEOGRAPHY STUDIO CRAFTING
-              PORTRAITS, CAMPAIGNS, AND SHORT-FORM FILMS WITH A CINEMATIC,
-              EDITORIAL POINT OF VIEW.
-              <br />
-              <br />
-              THIS SPACE HIGHLIGHTS STILL IMAGERY, MOTION WORK, AND VISUAL
-              STORYTELLING BUILT FOR ARTISTS, BRANDS, AND PEOPLE WHO WANT
-              SOMETHING MORE PERSONAL THAN GENERIC CONTENT.
-            </p>
-            <SplitCharButton href="" label="BOOK NOW" />
-          </div>
-        </div>
+        )}
       </div>
 
       {isOverlayOpen ? (
