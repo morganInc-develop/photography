@@ -6,16 +6,19 @@ import {
 } from "@/components/home/home-data";
 import { ensureSignatureEase } from "@/components/home/gsap-signature";
 import { gsap } from "gsap";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 
 type HomeLoaderProps = {
   onComplete: () => void;
 };
 
+const HOME_LOADER_SEEN_KEY = "made-invincible-home-loader-seen";
+
 export function HomeLoader({ onComplete }: HomeLoaderProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const completedRef = useRef(false);
   const onCompleteRef = useRef(onComplete);
+  const skipAnimationRef = useRef(false);
 
   const chars = useMemo(() => [...LOADER_MANIFESTO], []);
 
@@ -23,7 +26,35 @@ export function HomeLoader({ onComplete }: HomeLoaderProps) {
     onCompleteRef.current = onComplete;
   }, [onComplete]);
 
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    if (!root) {
+      return;
+    }
+
+    try {
+      if (window.sessionStorage.getItem(HOME_LOADER_SEEN_KEY) === "true") {
+        skipAnimationRef.current = true;
+        gsap.set(root, { display: "none", opacity: 0, pointerEvents: "none" });
+
+        if (!completedRef.current) {
+          completedRef.current = true;
+          onCompleteRef.current();
+        }
+        return;
+      }
+
+      window.sessionStorage.setItem(HOME_LOADER_SEEN_KEY, "true");
+    } catch {
+      // Fall back to the normal animation if storage is unavailable.
+    }
+  }, []);
+
   useEffect(() => {
+    if (skipAnimationRef.current) {
+      return;
+    }
+
     const root = rootRef.current;
     if (!root) {
       return;

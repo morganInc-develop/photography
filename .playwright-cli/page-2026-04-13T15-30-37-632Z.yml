@@ -1,0 +1,181 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e4]:
+      - navigation [ref=e5]:
+        - generic [ref=e7]:
+          - link "back to artboard™" [ref=e8] [cursor=pointer]:
+            - /url: /
+            - paragraph [ref=e9]: back to artboard™
+          - paragraph [ref=e11]: 17:30:37 GMT+2
+        - link "THE PROFILE" [ref=e13] [cursor=pointer]:
+          - /url: /the-profile
+          - paragraph [ref=e14]: THE PROFILE
+      - generic [ref=e15]:
+        - paragraph [ref=e16]:
+          - generic [ref=e18]: What appears here is
+          - generic [ref=e20]: not a sequence of
+          - generic [ref=e22]: outcomes, but a record
+          - generic [ref=e24]: of decisions. Different
+          - generic [ref=e26]: contexts, different
+          - generic [ref=e28]: constraints, the same
+          - generic [ref=e30]: insistence on clarity,
+          - generic [ref=e32]: structure, and
+          - generic [ref=e34]: PRACTICE.
+        - link "back to works" [ref=e36] [cursor=pointer]:
+          - /url: /
+          - paragraph [ref=e37]: back to works
+      - generic [ref=e38]:
+        - list [ref=e40]:
+          - listitem [ref=e41] [cursor=pointer]:
+            - paragraph [ref=e42]: (001)
+            - paragraph [ref=e43]: RETRONOVA
+            - link "see case" [ref=e44]:
+              - /url: /works/retronova
+              - paragraph [ref=e45]: see case
+          - listitem [ref=e46] [cursor=pointer]:
+            - paragraph [ref=e47]: (002)
+            - paragraph [ref=e48]: NICOLA ROMEI
+            - link "see case" [ref=e49]:
+              - /url: /works/nicola-romei
+              - paragraph [ref=e50]: see case
+          - listitem [ref=e51] [cursor=pointer]:
+            - paragraph [ref=e52]: (003)
+            - paragraph [ref=e53]: CREATIVE LEAP
+            - link "see case" [ref=e54]:
+              - /url: /works/creative-leap
+              - paragraph [ref=e55]: see case
+          - listitem [ref=e56] [cursor=pointer]:
+            - paragraph [ref=e57]: (004)
+            - paragraph [ref=e58]: MADE IN EVOLVE
+            - link "see case" [ref=e59]:
+              - /url: /works/made-in-evolve
+              - paragraph [ref=e60]: see case
+          - listitem [ref=e61] [cursor=pointer]:
+            - paragraph [ref=e62]: (005)
+            - paragraph [ref=e63]: VALSAVARENCHE
+            - link "see case" [ref=e64]:
+              - /url: /works/valsavarenche
+              - paragraph [ref=e65]: see case
+          - listitem [ref=e66] [cursor=pointer]:
+            - paragraph [ref=e67]: (006)
+            - paragraph [ref=e68]: DAVIDE CATTANEO
+            - link "see case" [ref=e69]:
+              - /url: /works/davide-cattaneo
+              - paragraph [ref=e70]: see case
+          - listitem [ref=e71] [cursor=pointer]:
+            - paragraph [ref=e72]: (007)
+            - paragraph [ref=e73]: Studies in Form
+            - link "see case" [ref=e74]:
+              - /url: /works/studies-in-form
+              - paragraph [ref=e75]: see case
+          - listitem [ref=e76] [cursor=pointer]:
+            - paragraph [ref=e77]: (008)
+            - paragraph [ref=e78]: GEOTAB SIGNALS
+            - link "see case" [ref=e79]:
+              - /url: /works/geotab-signals
+              - paragraph [ref=e80]: see case
+        - listitem "Open RETRONOVA" [ref=e82] [cursor=pointer]:
+          - img "RETRONOVA" [ref=e83]
+        - list [ref=e85]:
+          - listitem [ref=e86] [cursor=pointer]:
+            - img "A retro-futurist vision shaped through AI imagery, cinematic motion and luminous soundscapes. Metallic silhouettes, fashion influences and synthetic memories merge into an immersive environment where nostalgia bends toward a future that never existed but still feels strangely real." [ref=e87]
+          - listitem [ref=e88] [cursor=pointer]:
+            - img "This portfolio unfolds as an exposed process, gathering AI sketches, drafts, typographic tests and structural studies into a single immersive artboard. A brutalist grid and subtle WebGL depth shape a space where experimentation and identity quietly define each other." [ref=e89]
+          - listitem [ref=e90] [cursor=pointer]:
+            - img "A calm digital narrative built from soft gradients, gentle transitions and a restrained visual rhythm. Innovation becomes tactile as AI integrates into each scene with quiet clarity, shaping an elegant experience that turns complexity into a natural and intuitive flow." [ref=e91]
+          - listitem [ref=e92] [cursor=pointer]:
+            - img "A tech-editorial environment defined by bold typography, clean imagery and sharp structural clarity. Each layout balances discipline and momentum, creating a refined digital presence where innovation becomes a precise visual language that moves confidently forward." [ref=e93]
+          - listitem [ref=e94] [cursor=pointer]:
+            - img "A landscape of grain, muted tones and cartographic textures evokes the rugged stillness of alpine territory. Vintage-park cues and weathered visuals form an atmosphere of exploration, transforming the valley's geography into a quiet, immersive field of memory and terrain." [ref=e95]
+          - listitem [ref=e96] [cursor=pointer]:
+            - img "A data-driven digital environment built around clarity, precision, and controlled intensity. Dark surfaces, neon accents, and immersive scroll interactions translate analytical thinking into a visual system where information feels alive, dynamic, and intentionally structured." [ref=e97]
+          - listitem [ref=e98] [cursor=pointer]:
+            - img "An ongoing visual exploration where AI-generated imagery becomes a tool for studying shape, balance and visual tension, transforming raw experimentation into controlled aesthetic research." [ref=e99]
+          - listitem [ref=e100] [cursor=pointer]:
+            - img "Corporate experience turning data into clarity. Deep tech blues and neon accents create a sophisticated narrative, signaling intelligence before explaining it." [ref=e101]
+        - generic [ref=e102]:
+          - paragraph [ref=e103]: ( 001 )
+          - paragraph [ref=e104]: RETRONOVA
+      - generic:
+        - generic:
+          - paragraph: ( HOVER TO REVEAL )
+          - paragraph: ( CLICK TO EXPLORE )
+        - generic:
+          - list:
+            - listitem:
+              - link "RETRONOVA":
+                - /url: /works/retronova
+                - heading "RETRONOVA" [level=1]
+            - listitem:
+              - link "NICOLA ROMEI":
+                - /url: /works/nicola-romei
+                - heading "NICOLA ROMEI" [level=1]
+            - listitem:
+              - link "CREATIVE LEAP":
+                - /url: /works/creative-leap
+                - heading "CREATIVE LEAP" [level=1]
+            - listitem:
+              - link "MADE IN EVOLVE":
+                - /url: /works/made-in-evolve
+                - heading "MADE IN EVOLVE" [level=1]
+            - listitem:
+              - link "VALSAVARENCHE":
+                - /url: /works/valsavarenche
+                - heading "VALSAVARENCHE" [level=1]
+            - listitem:
+              - link "DAVIDE CATTANEO":
+                - /url: /works/davide-cattaneo
+                - heading "DAVIDE CATTANEO" [level=1]
+            - listitem:
+              - link "Studies in Form":
+                - /url: /works/studies-in-form
+                - heading "Studies in Form" [level=1]
+            - listitem:
+              - link "GEOTAB SIGNALS":
+                - /url: /works/geotab-signals
+                - heading "GEOTAB SIGNALS" [level=1]
+        - generic:
+          - generic:
+            - generic:
+              - img "RETRONOVA"
+            - generic:
+              - img "NICOLA ROMEI"
+            - generic:
+              - img "CREATIVE LEAP"
+            - generic:
+              - img "MADE IN EVOLVE"
+            - generic:
+              - img "VALSAVARENCHE"
+            - generic:
+              - img "DAVIDE CATTANEO"
+            - generic:
+              - img "Studies in Form"
+            - generic:
+              - img "GEOTAB SIGNALS"
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - generic [ref=e107]: LATEST
+          - generic [ref=e108]: WORKS
+        - tablist "Archive display mode" [ref=e109]:
+          - button "GALLERY" [pressed] [ref=e110] [cursor=pointer]:
+            - paragraph [ref=e111]: GALLERY
+          - button "LIST" [ref=e112] [cursor=pointer]:
+            - paragraph [ref=e113]: LIST
+        - generic [ref=e114]:
+          - generic [ref=e115]: ARCHIVE
+          - generic [ref=e116]: 2025©
+      - generic:
+        - generic:
+          - generic:
+            - text: THIS ARCHIVE DOES NOT
+            - text: COLLECT RESULTS.
+            - text: IT PRESERVES PROCESS.
+        - generic:
+          - generic:
+            - text: THIS SPACE HOLDS
+            - text: PROJECTS_
+            - text: TESTS_
+            - text: VISUAL SYSTEMS_
+  - button "Open Next.js Dev Tools" [ref=e122] [cursor=pointer]:
+    - img [ref=e123]
+  - alert [ref=e126]
