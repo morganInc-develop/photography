@@ -890,6 +890,10 @@ a {
 }
 
 @media (max-width: 767px) {
+  .progressive-blur_wrap {
+    display: none;
+  }
+
   .hero__tab-wrap {
     position: fixed;
     top: auto;
