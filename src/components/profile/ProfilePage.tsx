@@ -4,6 +4,7 @@ import {
   DEMO_VIDEO_PLACEHOLDER,
   DEMO_VIDEO_SRC,
 } from "@/components/home/home-data";
+import ChromaKeyVideo from "@/components/ui/ChromaKeyVideo";
 import { SplitCharButton } from "@/components/ui/SplitCharButton";
 import { cubicBezier, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -39,6 +40,27 @@ const SERVICES = [
     id: "04",
     title: "EDITORIAL",
     desc: "Print and digital editorial — fashion, culture, and music — sequenced as spreads, not isolated posts.",
+  },
+];
+
+const GEAR = [
+  {
+    id: "01",
+    category: "BODY",
+    name: "Sony ZV-E10 Mark II",
+    desc: "APS-C mirrorless. Compact form factor with vlog-oriented ergonomics, 4K 60p, and a wide dynamic range profile built for editorial colour grading.",
+  },
+  {
+    id: "02",
+    category: "LENS",
+    name: "Tamron 17–70mm f/2.8",
+    desc: "Di III-A VC RXD. A constant-aperture walk-around covering wide environmental context through tight compression — the single lens that does all of it.",
+  },
+  {
+    id: "03",
+    category: "FILTRATION",
+    name: "K&F Concept ND + CPL (Combined)",
+    desc: "Variable ND stacked with a circular polariser in a single 67mm ring. Controls exposure in natural light while cutting surface glare and lifting colour saturation simultaneously.",
   },
 ];
 
@@ -324,6 +346,79 @@ export default function ProfilePage() {
             specific, novel, or simply more personal than generic content, this
             is the right place.
           </motion.p>
+        </section>
+
+        {/* ── GEAR ── */}
+        <section className="mt-16 px-6 md:px-10 lg:px-14">
+          <motion.p
+            className="mb-8 text-[0.68rem] uppercase tracking-[0.18em] text-black/40"
+            style={mono}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={vp}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            GEAR
+          </motion.p>
+
+          <div className="border-t border-black/10">
+            {GEAR.map((item, index) => (
+              <motion.div
+                key={item.id}
+                className="flex flex-col gap-2 border-b border-black/10 py-8"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={vp}
+                transition={{ duration: 0.6, ease, delay: index * 0.07 }}
+              >
+                <div className="flex items-center gap-3">
+                  <span
+                    className="text-[0.62rem] tracking-[0.1em] text-black/30"
+                    style={mono}
+                  >
+                    {item.id}
+                  </span>
+                  <span
+                    className="text-[0.68rem] uppercase tracking-[0.14em] text-black/40"
+                    style={mono}
+                  >
+                    {item.category}
+                  </span>
+                </div>
+                <p
+                  className="text-[0.88rem] font-[600] uppercase tracking-[0.08em] text-black"
+                  style={mono}
+                >
+                  {item.name}
+                </p>
+                <p
+                  className="max-w-[38ch] text-[0.92rem] leading-[1.5] tracking-[-0.018em] text-black/60"
+                  style={sans}
+                >
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── GEAR VIDEO ── */}
+        <section className="mt-20 flex justify-center bg-white px-6 md:px-10 lg:px-14">
+          <motion.div
+            className="w-full max-w-sm"
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={vpLg}
+            transition={{ duration: 0.9, ease }}
+          >
+            <ChromaKeyVideo
+              src="/greenscreen.mp4"
+              threshold={70}
+              loop
+              autoPlay
+              muted
+            />
+          </motion.div>
         </section>
 
         {/* ── CTA ── */}
