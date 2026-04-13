@@ -281,144 +281,150 @@ export default function ProfilePage() {
           </div>
         </section>
 
-        {/* ── ABOUT ── */}
+        {/* ── ABOUT + GEAR ── */}
         <section className="mt-16 px-6 md:px-10 lg:px-14">
-          <motion.p
-            className="max-w-[52ch] text-[1.05rem] leading-[1.55] tracking-[-0.022em] text-black/78"
-            style={sans}
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={vp}
-            transition={{ duration: 0.65, ease }}
-          >
-            The studio was built around one question: what does it look like
-            when an image carries actual weight? Not the weight of production
-            value or technical precision, but the weight of something witnessed
-            and held. Every commission starts there — with what the image needs
-            to do before it does anything else.
-          </motion.p>
-
-          <motion.div
-            className="mt-12 h-px w-full bg-black/10"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            style={{ originX: 0 }}
-            transition={{ duration: 0.8, ease }}
-          />
-
-          <motion.blockquote
-            className="mt-12 max-w-[30ch] text-[clamp(1.6rem,2.6vw,2.3rem)] font-[500] leading-[1.16] tracking-[-0.04em] text-black"
-            style={sans}
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={vp}
-            transition={{ duration: 0.75, ease }}
-          >
-            &ldquo;The image has to earn the space it takes up.&rdquo;
-          </motion.blockquote>
-
-          <motion.p
-            className="mt-12 max-w-[52ch] text-[1.05rem] leading-[1.55] tracking-[-0.022em] text-black/78"
-            style={sans}
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={vp}
-            transition={{ duration: 0.65, ease, delay: 0.05 }}
-          >
-            The work spans still photography and motion — portraits for artists
-            and musicians, commercial campaigns for independent brands, and
-            short-form documentary films. What holds it together is not a single
-            aesthetic but a consistent disposition: slow, attentive, and
-            committed to images that resist quick consumption.
-          </motion.p>
-
-          <motion.p
-            className="mt-7 max-w-[52ch] text-[1.05rem] leading-[1.55] tracking-[-0.022em] text-black/78"
-            style={sans}
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={vp}
-            transition={{ duration: 0.65, ease, delay: 0.08 }}
-          >
-            The studio takes a limited number of commissions each season to keep
-            the work close and considered. If the brief calls for something
-            specific, novel, or simply more personal than generic content, this
-            is the right place.
-          </motion.p>
-        </section>
-
-        {/* ── GEAR ── */}
-        <section className="mt-16 px-6 md:px-10 lg:px-14">
-          <motion.p
-            className="mb-8 text-[0.68rem] uppercase tracking-[0.18em] text-black/40"
-            style={mono}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={vp}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-          >
-            GEAR
-          </motion.p>
-
-          <div className="border-t border-black/10">
-            {GEAR.map((item, index) => (
-              <motion.div
-                key={item.id}
-                className="flex flex-col gap-2 border-b border-black/10 py-8"
-                initial={{ opacity: 0, y: 18 }}
+          <div className="[display:grid] gap-14 [grid-template-columns:minmax(0,1fr)] lg:[grid-template-columns:minmax(0,1fr)_minmax(18rem,24rem)] lg:items-start lg:gap-20">
+            <div>
+              <motion.p
+                className="max-w-[52ch] text-[1.05rem] leading-[1.55] tracking-[-0.022em] text-black/78"
+                style={sans}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={vp}
-                transition={{ duration: 0.6, ease, delay: index * 0.07 }}
+                transition={{ duration: 0.65, ease }}
               >
-                <div className="flex items-center gap-3">
-                  <span
-                    className="text-[0.62rem] tracking-[0.1em] text-black/30"
-                    style={mono}
-                  >
-                    {item.id}
-                  </span>
-                  <span
-                    className="text-[0.68rem] uppercase tracking-[0.14em] text-black/40"
-                    style={mono}
-                  >
-                    {item.category}
-                  </span>
-                </div>
-                <p
-                  className="text-[0.88rem] font-[600] uppercase tracking-[0.08em] text-black"
-                  style={mono}
-                >
-                  {item.name}
-                </p>
-                <p
-                  className="max-w-[38ch] text-[0.92rem] leading-[1.5] tracking-[-0.018em] text-black/60"
-                  style={sans}
-                >
-                  {item.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+                The studio was built around one question: what does it look like
+                when an image carries actual weight? Not the weight of
+                production value or technical precision, but the weight of
+                something witnessed and held. Every commission starts there —
+                with what the image needs to do before it does anything else.
+              </motion.p>
 
-        {/* ── GEAR VIDEO ── */}
-        <section className="mt-20 flex justify-center bg-white px-6 md:px-10 lg:px-14">
-          <motion.div
-            className="w-full max-w-sm"
-            initial={{ opacity: 0, y: 36 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={vpLg}
-            transition={{ duration: 0.9, ease }}
-          >
-            <ChromaKeyVideo
-              src="/greenscreen.mp4"
-              threshold={70}
-              loop
-              autoPlay
-              muted
-            />
-          </motion.div>
+              <motion.div
+                className="mt-12 h-px w-full bg-black/10"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                style={{ originX: 0 }}
+                transition={{ duration: 0.8, ease }}
+              />
+
+              <motion.blockquote
+                className="mt-12 max-w-[30ch] text-[clamp(1.6rem,2.6vw,2.3rem)] font-[500] leading-[1.16] tracking-[-0.04em] text-black"
+                style={sans}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={vp}
+                transition={{ duration: 0.75, ease }}
+              >
+                &ldquo;The image has to earn the space it takes up.&rdquo;
+              </motion.blockquote>
+
+              <motion.p
+                className="mt-12 max-w-[52ch] text-[1.05rem] leading-[1.55] tracking-[-0.022em] text-black/78"
+                style={sans}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={vp}
+                transition={{ duration: 0.65, ease, delay: 0.05 }}
+              >
+                The work spans still photography and motion — portraits for
+                artists and musicians, commercial campaigns for independent
+                brands, and short-form documentary films. What holds it together
+                is not a single aesthetic but a consistent disposition: slow,
+                attentive, and committed to images that resist quick
+                consumption.
+              </motion.p>
+
+              <motion.p
+                className="mt-7 max-w-[52ch] text-[1.05rem] leading-[1.55] tracking-[-0.022em] text-black/78"
+                style={sans}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={vp}
+                transition={{ duration: 0.65, ease, delay: 0.08 }}
+              >
+                The studio takes a limited number of commissions each season to
+                keep the work close and considered. If the brief calls for
+                something specific, novel, or simply more personal than generic
+                content, this is the right place.
+              </motion.p>
+            </div>
+
+            <aside className="relative isolate">
+              <motion.div
+                className="pointer-events-none absolute right-0 top-[4.5rem] z-0 flex justify-end"
+                initial={{ opacity: 0, y: 36 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={vpLg}
+                transition={{ duration: 0.9, ease }}
+              >
+                <div className="w-[14.4rem] max-w-none shrink-0 translate-x-[6%]">
+                  <ChromaKeyVideo
+                    className="w-full"
+                    src="/greenscreen.mp4"
+                    threshold={70}
+                    loop
+                    autoPlay
+                    muted
+                  />
+                </div>
+              </motion.div>
+
+              <div className="relative z-10">
+                <motion.p
+                  className="mb-8 text-[0.68rem] uppercase tracking-[0.18em] text-black/40"
+                  style={mono}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={vp}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  GEAR
+                </motion.p>
+
+                <div className="border-t border-black/10">
+                  {GEAR.map((item, index) => (
+                    <motion.div
+                      key={item.id}
+                      className="flex flex-col gap-2 border-b border-black/10 py-8"
+                      initial={{ opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={vp}
+                      transition={{ duration: 0.6, ease, delay: index * 0.07 }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span
+                          className="text-[0.62rem] tracking-[0.1em] text-black/30"
+                          style={mono}
+                        >
+                          {item.id}
+                        </span>
+                        <span
+                          className="text-[0.68rem] uppercase tracking-[0.14em] text-black/40"
+                          style={mono}
+                        >
+                          {item.category}
+                        </span>
+                      </div>
+                      <p
+                        className="text-[0.88rem] font-[600] uppercase tracking-[0.08em] text-black"
+                        style={mono}
+                      >
+                        {item.name}
+                      </p>
+                      <p
+                        className="max-w-[32ch] text-[0.92rem] leading-[1.5] tracking-[-0.018em] text-black/60"
+                        style={sans}
+                      >
+                        {item.desc}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </aside>
+          </div>
         </section>
 
         {/* ── CTA ── */}
