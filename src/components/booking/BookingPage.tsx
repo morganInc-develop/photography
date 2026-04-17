@@ -231,105 +231,20 @@ export default function BookingPage() {
           /* ── Form ─────────────────────────────────────────────────────── */
           <motion.form
             onSubmit={handleSubmit}
-            className="border border-black/10 bg-white"
+            className="border border-black/10 bg-white overflow-hidden"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease, delay: 0.1 }}
           >
-            {/* Name + Email */}
-            <div className="flex flex-col border-b border-black/10 md:flex-row">
-              <div className="flex flex-1 flex-col gap-3 border-b border-black/10 p-6 md:border-b-0 md:border-r md:p-8">
-                <label
-                  htmlFor="name"
-                  className="block text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
-                  style={mono}
-                >
-                  YOUR NAME
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  autoComplete="name"
-                  placeholder="Full name"
-                  value={form.name}
-                  onChange={handleChange}
-                  className="block w-full bg-transparent text-[0.95rem] text-black placeholder:text-black/25 outline-none"
-                  style={sans}
-                />
-              </div>
-
-              <div className="flex flex-1 flex-col gap-3 p-6 md:p-8">
-                <label
-                  htmlFor="email"
-                  className="block text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
-                  style={mono}
-                >
-                  EMAIL ADDRESS
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  placeholder="you@example.com"
-                  value={form.email}
-                  onChange={handleChange}
-                  className="block w-full bg-transparent text-[0.95rem] text-black placeholder:text-black/25 outline-none"
-                  style={sans}
-                />
-              </div>
-            </div>
-
-            {/* Project type */}
-            <div className="flex flex-col gap-4 border-b border-black/10 p-6 md:p-8">
-              <p
-                className="text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
-                style={mono}
-              >
-                PROJECT TYPE
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {PROJECT_TYPES.map((type) => (
-                  <button
-                    key={type}
-                    type="button"
-                    onClick={() => handleProjectType(type)}
-                    className={`cursor-pointer border px-4 py-2 text-[0.68rem] uppercase tracking-[0.12em] transition-colors duration-150 ${
-                      form.projectType === type
-                        ? "border-black bg-black text-white"
-                        : "border-black/20 bg-transparent text-black/55 hover:border-black/50 hover:text-black"
-                    }`}
-                    style={mono}
-                  >
-                    {type}
-                  </button>
-                ))}
-              </div>
-              {/* Invisible sentinel for native form validation */}
-              <input
-                type="text"
-                name="projectType"
-                value={form.projectType}
-                onChange={() => {}}
-                required
-                aria-hidden="true"
-                tabIndex={-1}
-                className="pointer-events-none h-0 w-0 opacity-0 absolute"
-              />
-            </div>
-
-            {/* Package selection */}
-            <div className="flex flex-col gap-4 border-b border-black/10 p-6 md:p-8">
+            {/* Package selection — first so it anchors the top of the white form box */}
+            <div className="relative flex flex-col gap-4 border-b border-black/10 p-6 md:p-8">
               <p
                 className="text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
                 style={mono}
               >
                 SELECT A PACKAGE
               </p>
-              <div className="grid gap-3 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
                 {PACKAGES.map((pkg) => {
                   const selected = form.budget === pkg.key;
                   return (
@@ -389,7 +304,6 @@ export default function BookingPage() {
                   );
                 })}
               </div>
-              {/* Hidden sentinel for native form validation */}
               <input
                 type="text"
                 name="budget"
@@ -398,7 +312,91 @@ export default function BookingPage() {
                 required
                 aria-hidden="true"
                 tabIndex={-1}
-                className="pointer-events-none h-0 w-0 opacity-0 absolute"
+                className="pointer-events-none absolute bottom-0 left-0 h-0 w-0 opacity-0"
+              />
+            </div>
+
+            {/* Name + Email */}
+            <div className="flex flex-col border-b border-black/10 md:flex-row">
+              <div className="flex flex-1 flex-col gap-3 border-b border-black/10 p-6 md:border-b-0 md:border-r md:p-8">
+                <label
+                  htmlFor="name"
+                  className="block text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
+                  style={mono}
+                >
+                  YOUR NAME
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  autoComplete="name"
+                  placeholder="Full name"
+                  value={form.name}
+                  onChange={handleChange}
+                  className="block w-full bg-transparent text-[0.95rem] text-black placeholder:text-black/25 outline-none"
+                  style={sans}
+                />
+              </div>
+
+              <div className="flex flex-1 flex-col gap-3 p-6 md:p-8">
+                <label
+                  htmlFor="email"
+                  className="block text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
+                  style={mono}
+                >
+                  EMAIL ADDRESS
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  value={form.email}
+                  onChange={handleChange}
+                  className="block w-full bg-transparent text-[0.95rem] text-black placeholder:text-black/25 outline-none"
+                  style={sans}
+                />
+              </div>
+            </div>
+
+            {/* Project type */}
+            <div className="relative flex flex-col gap-4 border-b border-black/10 p-6 md:p-8">
+              <p
+                className="text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
+                style={mono}
+              >
+                PROJECT TYPE
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {PROJECT_TYPES.map((type) => (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => handleProjectType(type)}
+                    className={`cursor-pointer border px-4 py-2 text-[0.68rem] uppercase tracking-[0.12em] transition-colors duration-150 ${
+                      form.projectType === type
+                        ? "border-black bg-black text-white"
+                        : "border-black/20 bg-transparent text-black/55 hover:border-black/50 hover:text-black"
+                    }`}
+                    style={mono}
+                  >
+                    {type}
+                  </button>
+                ))}
+              </div>
+              <input
+                type="text"
+                name="projectType"
+                value={form.projectType}
+                onChange={() => {}}
+                required
+                aria-hidden="true"
+                tabIndex={-1}
+                className="pointer-events-none absolute bottom-0 left-0 h-0 w-0 opacity-0"
               />
             </div>
 
@@ -430,7 +428,7 @@ export default function BookingPage() {
                 className="text-[0.62rem] uppercase tracking-[0.14em] text-black/30"
                 style={mono}
               >
-                {status === "submitting" ? "SENDING…" : "ALL FIELDS REQUIRED"}
+                {status === "submitting" ? "SENDING\u2026" : "ALL FIELDS REQUIRED"}
               </p>
               <button
                 type="submit"
@@ -443,19 +441,21 @@ export default function BookingPage() {
                   data-button-animate-chars
                   className="btn-animate-chars__text paragraph"
                 >
-                  {[
-                    ...(status === "submitting" ? "SENDING…" : "SEND INQUIRY"),
-                  ].map((char, i) => (
-                    <span
-                      key={i}
-                      style={{
-                        transitionDelay: `${i * 0.01}s`,
-                        whiteSpace: char === " " ? "pre" : "normal",
-                      }}
-                    >
-                      {char}
-                    </span>
-                  ))}
+                  {
+                    [...(status === "submitting" ? "SENDING\u2026" : "SEND INQUIRY")].map(
+                      (char, i) => (
+                        <span
+                          key={i}
+                          style={{
+                            transitionDelay: `${i * 0.01}s`,
+                            whiteSpace: char === " " ? "pre" : "normal",
+                          }}
+                        >
+                          {char}
+                        </span>
+                      ),
+                    )
+                  }
                 </span>
               </button>
             </div>
@@ -468,7 +468,7 @@ export default function BookingPage() {
             className="text-[0.65rem] uppercase tracking-[0.14em] text-black/30"
             style={mono}
           >
-            MADE INVINCIBLE © 2024
+            MADE INVINCIBLE &copy; 2024
           </p>
           <p
             className="text-[0.65rem] uppercase tracking-[0.14em] text-black/30"
