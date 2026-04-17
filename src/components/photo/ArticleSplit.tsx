@@ -8,18 +8,29 @@ import type { ArchiveCollection, ArchivePhoto } from "@/lib/archive/types";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+
+type CollectionRef = { slug: string; name: string };
 
 type Props = {
   collection: ArchiveCollection;
   photos: ArchivePhoto[];
   initialPhotoId?: string;
+  prevCollection?: CollectionRef | null;
+  nextCollection?: CollectionRef | null;
 };
 
 function getDisplayIndex(index: number) {
   return String(index + 1).padStart(2, "0");
 }
 
-export function ArticleSplit({ collection, photos, initialPhotoId }: Props) {
+export function ArticleSplit({
+  collection,
+  photos,
+  initialPhotoId,
+  prevCollection,
+  nextCollection,
+}: Props) {
   const [currentIndex, setCurrentIndex] = useState(() => {
     const initialIndex = photos.findIndex(
       (photo) => photo.id === initialPhotoId,
@@ -28,6 +39,7 @@ export function ArticleSplit({ collection, photos, initialPhotoId }: Props) {
   });
   const [loadedPhotoId, setLoadedPhotoId] = useState<string | null>(null);
 
+  const router = useRouter();
   const scopeRef = useRef<HTMLElement>(null);
   const desktopRightColumnRef = useRef<HTMLDivElement>(null);
   const mobileRightColumnRef = useRef<HTMLDivElement>(null);
@@ -146,6 +158,80 @@ export function ArticleSplit({ collection, photos, initialPhotoId }: Props) {
       <div className="photo-page-nav sticky top-0 z-[60] bg-white/92 backdrop-blur-sm border-b border-black/8">
         <ArchiveHeader showPhotoLinks />
       </div>
+
+      {prevCollection && (
+        <button
+          type="button"
+          onClick={() =>
+            router.push(
+              `/photography?collection=${encodeURIComponent(prevCollection.slug)}`,
+            )
+          }
+          aria-label={`Previous collection: ${prevCollection.name}`}
+          className="group fixed left-0 top-1/2 z-50 -translate-y-1/2 flex flex-col items-start gap-1.5 pl-3 pr-5 py-4 opacity-30 transition-opacity duration-500 hover:opacity-90"
+        >
+          <div className="flex items-center gap-0">
+            <svg
+              width="10"
+              height="10"
+              viewBox="0 0 10 10"
+              fill="none"
+              className="shrink-0 transition-transform duration-500 group-hover:-translate-x-0.5"
+            >
+              <path
+                d="M9 1L1 5L9 9"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="square"
+              />
+            </svg>
+            <div className="h-px w-8 bg-current transition-all duration-500 group-hover:w-12" />
+          </div>
+          <p
+            className="text-[0.58rem] uppercase tracking-[0.16em] text-black/80 leading-none pl-[18px]"
+            style={betterOffMono}
+          >
+            {prevCollection.name}
+          </p>
+        </button>
+      )}
+
+      {nextCollection && (
+        <button
+          type="button"
+          onClick={() =>
+            router.push(
+              `/photography?collection=${encodeURIComponent(nextCollection.slug)}`,
+            )
+          }
+          aria-label={`Next collection: ${nextCollection.name}`}
+          className="group fixed right-0 top-1/2 z-50 -translate-y-1/2 flex flex-col items-end gap-1.5 pr-3 pl-5 py-4 opacity-30 transition-opacity duration-500 hover:opacity-90"
+        >
+          <div className="flex items-center gap-0">
+            <div className="h-px w-8 bg-current transition-all duration-500 group-hover:w-12" />
+            <svg
+              width="10"
+              height="10"
+              viewBox="0 0 10 10"
+              fill="none"
+              className="shrink-0 transition-transform duration-500 group-hover:translate-x-0.5"
+            >
+              <path
+                d="M1 1L9 5L1 9"
+                stroke="currentColor"
+                strokeWidth="1"
+                strokeLinecap="square"
+              />
+            </svg>
+          </div>
+          <p
+            className="text-[0.58rem] uppercase tracking-[0.16em] text-black/80 leading-none pr-[18px]"
+            style={betterOffMono}
+          >
+            {nextCollection.name}
+          </p>
+        </button>
+      )}
 
       <ArticleEntrance
         scopeRef={scopeRef}

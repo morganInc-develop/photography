@@ -349,11 +349,6 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
 
     const onMouseDown = (event: MouseEvent) => {
       const startedInGrid = gridEl.contains(event.target as Node);
-      console.log("[ArtboardCanvas] mousedown", {
-        target: event.target,
-        inGrid: startedInGrid,
-        isDragging: state.isDragging,
-      });
 
       if (state.isDragging || !startedInGrid) {
         interactionStartedInGrid = false;
@@ -395,14 +390,6 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
     };
 
     const onMouseUp = (event: MouseEvent) => {
-      console.log("[ArtboardCanvas] mouseup", {
-        isDrag: isDragRef.current,
-        interactionStartedInGrid,
-        x: event.clientX,
-        y: event.clientY,
-        target: event.target,
-      });
-
       state.isDragging = false;
 
       if (!interactionStartedInGrid) {
@@ -412,25 +399,18 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
       interactionStartedInGrid = false;
 
       if (!isDragRef.current) {
-        // Coordinate-based detection — bypasses pointer event / z-index issues entirely
-        const cellEls = Array.from(
-          gridEl.querySelectorAll<HTMLElement>(".div"),
-        );
-        console.log("[ArtboardCanvas] checking", cellEls.length, "cells");
+        const mx = event.clientX - ww / 2;
+        const my = wh / 2 - event.clientY;
 
-        for (let i = 0; i < cellEls.length; i++) {
-          const rect = cellEls[i].getBoundingClientRect();
-          if (i === 0) {
-            console.log("[ArtboardCanvas] cell[0] rect", rect);
-          }
+        for (let i = planes.length - 1; i >= 0; i--) {
+          const plane = planes[i];
           if (
-            event.clientX >= rect.left &&
-            event.clientX <= rect.right &&
-            event.clientY >= rect.top &&
-            event.clientY <= rect.bottom
+            mx >= plane.position.x - plane.halfW &&
+            mx <= plane.position.x + plane.halfW &&
+            my >= plane.position.y - plane.halfH &&
+            my <= plane.position.y + plane.halfH
           ) {
             const photo = photos[i];
-            console.log("[ArtboardCanvas] matched cell", i, photo?.id);
             if (photo) {
               routerRef.current.push(
                 `/photography?collection=${encodeURIComponent(photo.collectionSlug)}&photo=${encodeURIComponent(photo.id)}`,
@@ -439,8 +419,6 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
             return;
           }
         }
-
-        console.log("[ArtboardCanvas] no cell matched");
       }
     };
 
@@ -504,14 +482,6 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
     window.addEventListener("resize", resize);
 
     resize();
-
-    // Diagnostic: log the grid's actual bounding rect and first cell
-    const firstCell = gridEl.querySelector<HTMLElement>(".div");
-    console.log("[ArtboardCanvas] grid setup", {
-      gridRect: gridEl.getBoundingClientRect(),
-      firstCellRect: firstCell?.getBoundingClientRect(),
-      cellCount: gridEl.querySelectorAll(".div").length,
-    });
 
     return () => {
       gsap.ticker.remove(tick);

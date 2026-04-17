@@ -1,9 +1,9 @@
 export const PRELOADER_IMAGES = [
-  "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/69452788e703150440dd4180_nr__made.avif",
-  "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/69450a8530b7cb5397f735b1_imgi_2_694029f4e8c0a6ddee00bdb3_made.avif",
-  "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/6945261f9b350c9f511e4300_nr__works.avif",
-  "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/69450a858ed0e64cbb06769b_imgi_2_693721763652e191864f3eb4_creative__cover.avif",
-  "https://cdn.prod.website-files.com/6928a718958d854622ebb4f7/69450a859b114fff691426d7_imgi_4_693addb991bb467302498f12_NR__STUDIO%20(1)-min.avif",
+  "/Archive-web/NYC/DSC01390.jpg",
+  "/Archive-web/Beach/DSC03098.jpg",
+  "/Archive-web/Gym/DSC00804.jpg",
+  "/Archive-web/Studio/DSC03283.jpg",
+  "/Archive-web/Larp/DSC02860.jpg",
 ] as const;
 
 export const HOME_MANIFESTO =

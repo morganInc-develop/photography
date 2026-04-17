@@ -20,16 +20,24 @@ export default async function PhotographyPage(
   const requestedCollection = firstValue(searchParams.collection);
   const requestedPhotoId = firstValue(searchParams.photo);
 
+  const collectionIndex =
+    collections.findIndex((entry) => entry.slug === requestedCollection) !== -1
+      ? collections.findIndex((entry) => entry.slug === requestedCollection)
+      : collections.findIndex((entry) =>
+          entry.photos.some((photo) => photo.id === requestedPhotoId),
+        );
+
   const collection =
-    collections.find((entry) => entry.slug === requestedCollection) ??
-    collections.find((entry) =>
-      entry.photos.some((photo) => photo.id === requestedPhotoId),
-    ) ??
-    collections[0];
+    collections[Math.max(0, collectionIndex)] ?? collections[0];
 
   if (!collection) {
     return null;
   }
+
+  const idx = Math.max(0, collectionIndex);
+  const prevCollection = idx > 0 ? collections[idx - 1] : null;
+  const nextCollection =
+    idx < collections.length - 1 ? collections[idx + 1] : null;
 
   const initialPhotoId =
     collection.photos.find((photo) => photo.id === requestedPhotoId)?.id ??
@@ -41,6 +49,16 @@ export default async function PhotographyPage(
       collection={collection}
       photos={collection.photos}
       initialPhotoId={initialPhotoId}
+      prevCollection={
+        prevCollection
+          ? { slug: prevCollection.slug, name: prevCollection.name }
+          : null
+      }
+      nextCollection={
+        nextCollection
+          ? { slug: nextCollection.slug, name: nextCollection.name }
+          : null
+      }
     />
   );
 }
