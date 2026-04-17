@@ -328,7 +328,7 @@ export default function BookingPage() {
               >
                 SELECT A PACKAGE
               </p>
-              <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+              <div className="flex flex-col gap-3 md:flex-row">
                 {PACKAGES.map((pkg) => {
                   const selected = form.budget === pkg.key;
                   return (
@@ -338,7 +338,7 @@ export default function BookingPage() {
                       onClick={() =>
                         setForm((prev) => ({ ...prev, budget: pkg.key }))
                       }
-                      className={`flex flex-col border text-left transition-colors duration-150 ${
+                      className={`flex flex-col border text-left transition-colors duration-150 md:flex-1 ${
                         selected
                           ? "border-black bg-black text-white"
                           : "border-black/15 bg-white text-black hover:border-black/40"
