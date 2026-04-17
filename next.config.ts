@@ -5,6 +5,17 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  outputFileTracingExcludes: {
+    "**": [
+      "node_modules/three/**",
+      "node_modules/gsap/**",
+      "node_modules/hls.js/**",
+      "node_modules/lenis/**",
+      "node_modules/@types/**",
+      "node_modules/typescript/**",
+      "public/**",
+    ],
+  },
   images: {
     remotePatterns: [
       {
