@@ -25,7 +25,7 @@ export default function WorksProject({ project }: Props) {
       });
 
     const parse = (value: string) => {
-      const match = value.match(/(\d+):(\d+):(\d+)\s*([\w+]+)/);
+      const match = value.match(/(\d+):(\d+):(\d+)\s*([A-Za-z0-9+-]+)/);
       return match
         ? {
             hours: match[1],
@@ -40,7 +40,7 @@ export default function WorksProject({ project }: Props) {
       document
         .querySelectorAll<HTMLElement>("[data-current-time]")
         .forEach((el) => {
-          const tz = el.getAttribute("data-current-time") ?? "Europe/Amsterdam";
+          const tz = el.getAttribute("data-current-time") ?? "America/New_York";
           const parsed = parse(formatter(tz).format(new Date()));
           if (!parsed) return;
           const h = el.querySelector<HTMLElement>("[data-current-time-hours]");
@@ -116,77 +116,120 @@ export default function WorksProject({ project }: Props) {
   const totalCount = String(ARCHIVE_PROJECTS.length).padStart(3, "0");
 
   return (
-    <div className="works-project" ref={rootRef}>
-      {/* ── BACKGROUND ── */}
-      <div className="works-project__background">
-        <Image
-          src={project.coverImage}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="works-project__background-image works-project__background-image--soft"
-        />
-        <Image
-          src={project.coverImage}
-          alt=""
-          fill
-          sizes="100vw"
-          className="works-project__background-image works-project__background-image--sharp"
-        />
-        <div className="works-project__background-wash" />
-        <div className="works-project__background-vignette" />
-        <div className="works-project__background-lines" />
-      </div>
+    <>
+      <div className="works-project" ref={rootRef}>
+        {/* ── BACKGROUND ── */}
+        <div className="works-project__background">
+          <Image
+            src={project.coverImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="works-project__background-image works-project__background-image--soft"
+          />
+          <Image
+            src={project.coverImage}
+            alt=""
+            fill
+            sizes="100vw"
+            className="works-project__background-image works-project__background-image--sharp"
+          />
+          <div className="works-project__background-wash" />
+          <div className="works-project__background-vignette" />
+          <div className="works-project__background-lines" />
+        </div>
 
-      {/* ── TOPBAR ── */}
-      <header className="works-project__topbar">
-        <div className="works-project__back">
-          <Link href="/the-archive" className="link-group is--dark">
-            <p data-underline-link="alt" className="paragraph">
-              ← back to archive
-            </p>
-          </Link>
-          <div className="works-project__clock">
-            <p data-current-time="Europe/Amsterdam" className="paragraph">
-              <span data-current-time-hours>00</span>:
-              <span data-current-time-minutes>00</span>:
-              <span data-current-time-seconds>00</span>{" "}
-              <span data-current-time-timezone>CET</span>
-            </p>
+        {/* ── TOPBAR ── */}
+        <header className="works-project__topbar">
+          <div className="works-project__back">
+            <Link href="/the-archive" className="link-group is--dark">
+              <p data-underline-link="alt" className="paragraph">
+                ← back to archive
+              </p>
+            </Link>
+            <div className="works-project__clock">
+              <p data-current-time="America/New_York" className="paragraph">
+                <span data-current-time-hours>00</span>:
+                <span data-current-time-minutes>00</span>:
+                <span data-current-time-seconds>00</span>{" "}
+                <span data-current-time-timezone>ET</span>
+              </p>
+            </div>
+          </div>
+          <p className="works-project__blurb">{project.description}</p>
+        </header>
+
+        {/* ── FLOATING MICRO LABELS ── */}
+        <div className="works-project__micro works-project__micro--center">
+          <p className="paragraph">
+            {project.index} / {totalCount}
+          </p>
+        </div>
+        <div className="works-project__micro works-project__micro--right">
+          <p className="paragraph">GBA™ Studio</p>
+        </div>
+
+        {/* ── FOREGROUND TITLE ── */}
+        <div className="works-project__foreground">
+          <p className="works-project__hint paragraph">scroll to explore ↓</p>
+          <div className="works-project__title-stage">
+            <div className="works-project__title-layer">
+              <h1 className="works-project__title-line">{project.name}</h1>
+              <p className="works-project__title-line" aria-hidden="true">
+                {project.name}
+              </p>
+              <p className="works-project__title-line" aria-hidden="true">
+                {project.name}
+              </p>
+              <p className="works-project__title-line" aria-hidden="true">
+                {project.name}
+              </p>
+            </div>
           </div>
         </div>
-        <p className="works-project__blurb">{project.description}</p>
-      </header>
-
-      {/* ── FLOATING MICRO LABELS ── */}
-      <div className="works-project__micro works-project__micro--center">
-        <p className="paragraph">
-          {project.index} / {totalCount}
-        </p>
-      </div>
-      <div className="works-project__micro works-project__micro--right">
-        <p className="paragraph">GBA™ Studio</p>
       </div>
 
-      {/* ── FOREGROUND TITLE ── */}
-      <div className="works-project__foreground">
-        <p className="works-project__hint paragraph">scroll to explore ↓</p>
-        <div className="works-project__title-stage">
-          <div className="works-project__title-layer">
-            <h1 className="works-project__title-line">{project.name}</h1>
-            <p className="works-project__title-line" aria-hidden="true">
-              {project.name}
-            </p>
-            <p className="works-project__title-line" aria-hidden="true">
-              {project.name}
-            </p>
-            <p className="works-project__title-line" aria-hidden="true">
-              {project.name}
-            </p>
+      {/* ── COLLAGE ── */}
+      <style>{`
+        .archive-collage-item img {
+          filter: grayscale(100%);
+          transition: filter 0.4s ease;
+        }
+        .archive-collage-item:hover img {
+          filter: none;
+        }
+      `}</style>
+      <section
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+          gap: "3px",
+          background: "#000",
+          padding: "3px",
+        }}
+      >
+        {project.images.map((src, i) => (
+          <div
+            key={src}
+            className="archive-collage-item"
+            style={{
+              position: "relative",
+              aspectRatio: "3/2",
+              overflow: "hidden",
+              gridColumn: i === 0 || i % 7 === 0 ? "span 2" : undefined,
+            }}
+          >
+            <Image
+              src={src}
+              alt={`${project.name} — ${i + 1}`}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="img is--cover"
+            />
           </div>
-        </div>
-      </div>
-    </div>
+        ))}
+      </section>
+    </>
   );
 }

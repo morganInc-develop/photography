@@ -13,11 +13,11 @@ const FALLBACK_TIME: ClockParts = {
   hours: "00",
   minutes: "00",
   seconds: "00",
-  timezone: "GMT+2",
+  timezone: "ET",
 };
 
 function parseFormattedTime(value: string): ClockParts | null {
-  const match = value.match(/(\d+):(\d+):(\d+)\s*([\w+]+)/);
+  const match = value.match(/(\d+):(\d+):(\d+)\s*([A-Za-z0-9+-]+)/);
   if (!match) {
     return null;
   }
@@ -30,7 +30,11 @@ function parseFormattedTime(value: string): ClockParts | null {
   };
 }
 
-export function LiveClock({ timezone = "Europe/Rome" }: { timezone?: string }) {
+export function LiveClock({
+  timezone = "America/New_York",
+}: {
+  timezone?: string;
+}) {
   const formatter = useMemo(
     () =>
       new Intl.DateTimeFormat([], {

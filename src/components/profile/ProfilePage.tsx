@@ -4,6 +4,7 @@ import {
   DEMO_VIDEO_PLACEHOLDER,
   DEMO_VIDEO_SRC,
 } from "@/components/home/home-data";
+import { HomeMetaRail } from "@/components/home/HomeMetaRail";
 import ChromaKeyVideo from "@/components/ui/ChromaKeyVideo";
 import { SplitCharButton } from "@/components/ui/SplitCharButton";
 import { cubicBezier, motion } from "framer-motion";
@@ -129,7 +130,7 @@ export default function ProfilePage() {
               className="text-[0.68rem] uppercase tracking-[0.12em] text-black/40"
               style={mono}
             >
-              EST. 2019 — NEW YORK
+              EST. 2019 — CT + NEW YORK
             </span>
           </motion.div>
 
@@ -163,7 +164,7 @@ export default function ProfilePage() {
           >
             {[
               ["DISCIPLINE", "PHOTOGRAPHY · FILM"],
-              ["BASED IN", "NEW YORK, NY"],
+              ["BASED IN", "CONNECTICUT + NEW YORK"],
               ["AVAILABLE FOR", "COMMISSIONS"],
             ].map(([label, value]) => (
               <div key={label} className="flex flex-col gap-1">
@@ -427,57 +428,90 @@ export default function ProfilePage() {
           </div>
         </section>
 
-        {/* ── CTA ── */}
-        <section className="mt-20 px-6 pb-24 md:px-10 lg:px-14">
-          <motion.div
-            className="flex flex-col gap-6 border-t border-black/10 pt-12 sm:flex-row sm:items-end sm:justify-between"
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={vp}
-            transition={{ duration: 0.65, ease }}
-          >
-            <div className="flex flex-col gap-3">
-              <p
-                className="text-[0.68rem] uppercase tracking-[0.16em] text-black/35"
-                style={mono}
-              >
-                READY TO WORK TOGETHER?
-              </p>
-              <p
-                className="max-w-[36ch] text-[1.02rem] leading-[1.45] tracking-[-0.02em] text-black/70"
-                style={sans}
-              >
-                Commissions open. Limited availability per season.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <SplitCharButton href="/the-archive" label="VIEW ARCHIVE" />
-              <SplitCharButton href="/booking" label="BOOK NOW" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="mt-10 flex items-center justify-between"
+        {/* ── SOCIALS ── */}
+        <section className="mt-16 px-6 pb-6 md:px-10 lg:px-14">
+          <motion.p
+            className="mb-8 text-[0.68rem] uppercase tracking-[0.18em] text-black/40"
+            style={mono}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={vp}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <p
-              className="text-[0.68rem] uppercase tracking-[0.12em] text-black/30"
-              style={mono}
-            >
-              MADE INVINCIBLE © 2024
-            </p>
-            <p
-              className="text-[0.68rem] uppercase tracking-[0.12em] text-black/30"
-              style={mono}
-            >
-              NEW YORK, NY
-            </p>
-          </motion.div>
+            SOCIALS
+          </motion.p>
+
+          <div className="border-t border-black/10">
+            {[
+              {
+                id: "01",
+                platform: "INSTAGRAM",
+                handle: "@sonderz_",
+                href: "https://www.instagram.com/sonderz_?igsh=MTJ3bnRwb2lwdjV1cQ%3D%3D&utm_source=qr",
+              },
+              {
+                id: "02",
+                platform: "INSTAGRAM",
+                handle: "@developer_morgan",
+                href: "https://www.instagram.com/developer_morgan?igsh=MTk2YWsyY3FqdmprYw%3D%3D&utm_source=qr",
+              },
+              {
+                id: "03",
+                platform: "TIKTOK",
+                handle: "@developer_morgan",
+                href: "https://www.tiktok.com/@developer_morgan?_r=1&_t=ZP-95bNPwbGzWR",
+              },
+              {
+                id: "04",
+                platform: "WEBSITE",
+                handle: "morgandev.studio",
+                href: "https://www.morgandev.studio",
+              },
+            ].map((item, index) => (
+              <motion.a
+                key={item.id}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between border-b border-black/10 py-5 transition-colors hover:bg-black/[0.025]"
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={vp}
+                transition={{ duration: 0.55, ease, delay: index * 0.06 }}
+              >
+                <div className="flex items-center gap-5">
+                  <span
+                    className="text-[0.62rem] tracking-[0.1em] text-black/30"
+                    style={mono}
+                  >
+                    {item.id}
+                  </span>
+                  <span
+                    className="text-[0.68rem] uppercase tracking-[0.14em] text-black/40"
+                    style={mono}
+                  >
+                    {item.platform}
+                  </span>
+                  <span
+                    className="text-[0.88rem] font-[500] tracking-[-0.01em] text-black"
+                    style={sans}
+                  >
+                    {item.handle}
+                  </span>
+                </div>
+                <span
+                  className="text-[0.68rem] uppercase tracking-[0.14em] text-black/30 transition-colors group-hover:text-black/60"
+                  style={mono}
+                >
+                  ↗
+                </span>
+              </motion.a>
+            ))}
+          </div>
         </section>
+
+        {/* ── FOOTER ── */}
+        <HomeMetaRail />
       </main>
 
       {/* ── VIDEO OVERLAY ── */}

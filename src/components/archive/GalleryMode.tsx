@@ -52,7 +52,7 @@ export default function GalleryMode({
               <p className="paragraph">{project.name}</p>
               <Link href={project.href} className="link-group is--dark">
                 <p data-underline-link className="paragraph">
-                  see case
+                  see collection
                 </p>
               </Link>
             </div>
@@ -81,6 +81,10 @@ export default function GalleryMode({
               fill
               sizes="(max-width: 1024px) 100vw, 55vw"
               className="img is--cover"
+              style={{
+                filter: index === activeIndex ? "none" : "grayscale(100%)",
+                transition: "filter 0.4s ease",
+              }}
             />
           </Link>
         ))}

@@ -2,20 +2,24 @@ import Link from "next/link";
 
 type ArchiveHeaderProps = {
   mobile?: boolean;
+  showPhotoLinks?: boolean;
 };
 
 function CurrentTime({ className = "paragraph-8" }: { className?: string }) {
   return (
-    <p data-current-time="Europe/Rome" className={className}>
+    <p data-current-time="America/New_York" className={className}>
       <span data-current-time-hours>00</span>:
       <span data-current-time-minutes>00</span>:
       <span data-current-time-seconds>00</span>{" "}
-      <span data-current-time-timezone>GMT+2</span>
+      <span data-current-time-timezone>ET</span>
     </p>
   );
 }
 
-export default function ArchiveHeader({ mobile = false }: ArchiveHeaderProps) {
+export default function ArchiveHeader({
+  mobile = false,
+  showPhotoLinks = false,
+}: ArchiveHeaderProps) {
   if (mobile) {
     return (
       <>
@@ -75,6 +79,28 @@ export default function ArchiveHeader({ mobile = false }: ArchiveHeaderProps) {
       </div>
 
       <div className="text__col is--dark text__col--profile">
+        {showPhotoLinks && (
+          <>
+            <Link href="/the-archive" className="link-group is--dark">
+              <p
+                data-underline-link="alt"
+                className="paragraph-8"
+                data-archive-header-item
+              >
+                THE ARCHIVE
+              </p>
+            </Link>
+            <Link href="/booking" className="link-group is--dark">
+              <p
+                data-underline-link="alt"
+                className="paragraph-8"
+                data-archive-header-item
+              >
+                BOOK A SESSION
+              </p>
+            </Link>
+          </>
+        )}
         <Link href="/the-profile" className="link-group is--dark">
           <p
             data-underline-link="alt"

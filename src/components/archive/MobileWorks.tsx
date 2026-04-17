@@ -24,9 +24,9 @@ export default function MobileWorks({
         <div className="wm__title-mobile-wrap">
           <div className="wm__title-mobile">
             <p data-split="heading" className="paragraph is--medium">
-              What appears here is not a sequence of outcomes, but a record of
-              decisions. Different contexts, different constraints, the same
-              insistence on clarity, structure, and presence.
+              What appears here is not a highlight reel but a record of
+              presence. Different places, different light, the same commitment
+              to seeing, feeling, and being.
             </p>
             <div className="paragraph is--eyebrow">
               THIS ARCHIVE DOES NOT
@@ -150,7 +150,7 @@ export default function MobileWorks({
                     data-button-animate-chars
                     className="btn-animate-chars__text paragraph"
                   >
-                    EXPLORE CASE
+                    VIEW COLLECTION
                   </span>
                 </Link>
               </div>

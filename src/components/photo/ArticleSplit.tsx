@@ -75,7 +75,7 @@ export function ArticleSplit({ collection, photos, initialPhotoId }: Props) {
       });
 
     const parse = (value: string) => {
-      const match = value.match(/(\d+):(\d+):(\d+)\s*([\w+]+)/);
+      const match = value.match(/(\d+):(\d+):(\d+)\s*([A-Za-z0-9+-]+)/);
       return match
         ? {
             hours: match[1],
@@ -90,7 +90,7 @@ export function ArticleSplit({ collection, photos, initialPhotoId }: Props) {
       document
         .querySelectorAll<HTMLElement>("[data-current-time]")
         .forEach((el) => {
-          const tz = el.getAttribute("data-current-time") ?? "Europe/Amsterdam";
+          const tz = el.getAttribute("data-current-time") ?? "America/New_York";
           const parsed = parse(formatter(tz).format(new Date()));
           if (!parsed) return;
           const hoursEl = el.querySelector<HTMLElement>(
@@ -144,7 +144,7 @@ export function ArticleSplit({ collection, photos, initialPhotoId }: Props) {
       className="relative min-h-screen [overflow-x:clip] bg-white text-[#050505]"
     >
       <div className="photo-page-nav sticky top-0 z-[60] bg-white/92 backdrop-blur-sm border-b border-black/8">
-        <ArchiveHeader />
+        <ArchiveHeader showPhotoLinks />
       </div>
 
       <ArticleEntrance

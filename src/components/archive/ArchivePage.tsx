@@ -11,6 +11,7 @@ import GalleryMode from "@/components/archive/GalleryMode";
 import MobileWorks from "@/components/archive/MobileWorks";
 import WorksControls from "@/components/archive/WorksControls";
 import WorksTags from "@/components/archive/WorksTags";
+import { HomeMetaRail } from "@/components/home/HomeMetaRail";
 import { CustomEase } from "gsap/CustomEase";
 import { Observer } from "gsap/dist/Observer";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
@@ -103,7 +104,7 @@ export default function ArchivePage() {
       });
 
     const parse = (value: string) => {
-      const match = value.match(/(\d+):(\d+):(\d+)\s*([\w+]+)/);
+      const match = value.match(/(\d+):(\d+):(\d+)\s*([A-Za-z0-9+-]+)/);
       return match
         ? {
             hours: match[1],
@@ -118,7 +119,7 @@ export default function ArchivePage() {
       document
         .querySelectorAll<HTMLElement>("[data-current-time]")
         .forEach((el) => {
-          const tz = el.getAttribute("data-current-time") ?? "Europe/Amsterdam";
+          const tz = el.getAttribute("data-current-time") ?? "America/New_York";
           const formatted = formatter(tz).format(new Date());
           const parsed = parse(formatted);
 
@@ -413,10 +414,11 @@ export default function ArchivePage() {
         if (image) {
           gsap.fromTo(
             image,
-            { scale: 1.25, opacity: 0.65 },
+            { scale: 1.25, opacity: 0.65, filter: "grayscale(100%)" },
             {
               scale: 1,
               opacity: 1,
+              filter: "grayscale(0%)",
               duration: 0.5,
               ease: "power3.out",
               overwrite: true,
@@ -432,6 +434,14 @@ export default function ArchivePage() {
         duration: 0.35,
         ease: "power2.in",
       });
+
+      if (wrapper.querySelector("img")) {
+        gsap.to(wrapper.querySelector("img"), {
+          filter: "grayscale(100%)",
+          duration: 0.35,
+          ease: "power2.in",
+        });
+      }
     });
   }, [hoveredClientIndex, mode]);
 
@@ -569,6 +579,8 @@ export default function ArchivePage() {
           mode={mode}
           setMode={setMode}
         />
+
+        <HomeMetaRail />
       </div>
     </main>
   );

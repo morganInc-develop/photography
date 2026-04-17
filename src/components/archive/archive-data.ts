@@ -5,102 +5,163 @@ export type ArchiveProject = {
   href: string;
   description: string;
   coverImage: string;
+  images: string[];
 };
 
 export const ARCHIVE_PROJECTS: ArchiveProject[] = [
   {
     index: "001",
-    slug: "retronova",
-    name: "RETRONOVA",
-    href: "/works/retronova",
+    slug: "nyc",
+    name: "NYC",
+    href: "/the-archive/nyc",
     description:
-      "A retro-futurist vision shaped through AI imagery, cinematic motion and luminous soundscapes. Metallic silhouettes, fashion influences and synthetic memories merge into an immersive environment where nostalgia bends toward a future that never existed but still feels strangely real.",
-    coverImage:
-      "https://images.unsplash.com/photo-1518818419601-72c8673f5852?w=1200&auto=format&fit=crop&q=80",
+      "The city in motion. Subway light, street corners, strangers mid-step. New York as it always is — loud, layered, relentless.",
+    coverImage: "/Archive/NYC/DSC01390.JPG",
+    images: [
+      "/Archive/NYC/DSC01390.JPG",
+      "/Archive/NYC/DSC01395.JPG",
+      "/Archive/NYC/DSC01432.JPG",
+      "/Archive/NYC/DSC01436.JPG",
+      "/Archive/NYC/DSC01513.JPG",
+      "/Archive/NYC/DSC01533.JPG",
+      "/Archive/NYC/DSC01691.JPG",
+      "/Archive/NYC/DSC01778.JPG",
+      "/Archive/NYC/DSC01822.JPG",
+      "/Archive/NYC/DSC01912.JPG",
+      "/Archive/NYC/DSC01971.JPG",
+      "/Archive/NYC/DSC02022.JPG",
+      "/Archive/NYC/DSC02114.JPG",
+      "/Archive/NYC/DSC02246.JPG",
+      "/Archive/NYC/DSC02287.JPG",
+      "/Archive/NYC/DSC02312.JPG",
+      "/Archive/NYC/DSC02328.JPG",
+      "/Archive/NYC/DSC02356.JPG",
+      "/Archive/NYC/DSC02361.JPG",
+      "/Archive/NYC/DSC02367.JPG",
+      "/Archive/NYC/DSC02371.JPG",
+      "/Archive/NYC/DSC02613.JPG",
+    ],
   },
   {
     index: "002",
-    slug: "nicola-romei",
-    name: "NICOLA ROMEI",
-    href: "/works/nicola-romei",
+    slug: "late-night-munchies",
+    name: "LATE NIGHT MUNCHIES",
+    href: "/the-archive/late-night-munchies",
     description:
-      "This portfolio unfolds as an exposed process, gathering AI sketches, drafts, typographic tests and structural studies into a single immersive artboard. A brutalist grid and subtle WebGL depth shape a space where experimentation and identity quietly define each other.",
-    coverImage:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80",
+      "After hours, still hungry. Neon menus, bright counters, and the particular warmth of a place that stays open past midnight.",
+    coverImage: "/Archive/Late Night Munchies/DSC01092.JPG",
+    images: [
+      "/Archive/Late Night Munchies/DSC01092.JPG",
+      "/Archive/Late Night Munchies/DSC01113.JPG",
+      "/Archive/Late Night Munchies/DSC01133.JPG",
+      "/Archive/Late Night Munchies/DSC01139.JPG",
+      "/Archive/Late Night Munchies/DSC01187.JPG",
+      "/Archive/Late Night Munchies/DSC01208.JPG",
+      "/Archive/Late Night Munchies/DSC01253.JPG",
+      "/Archive/Late Night Munchies/DSC01267.JPG",
+      "/Archive/Late Night Munchies/DSC01270.JPG",
+      "/Archive/Late Night Munchies/DSC01288.JPG",
+      "/Archive/Late Night Munchies/DSC01298.JPG",
+      "/Archive/Late Night Munchies/DSC01318.JPG",
+    ],
   },
   {
     index: "003",
-    slug: "creative-leap",
-    name: "CREATIVE LEAP",
-    href: "/works/creative-leap",
+    slug: "beach",
+    name: "BEACH",
+    href: "/the-archive/beach",
     description:
-      "A calm digital narrative built from soft gradients, gentle transitions and a restrained visual rhythm. Innovation becomes tactile as AI integrates into each scene with quiet clarity, shaping an elegant experience that turns complexity into a natural and intuitive flow.",
-    coverImage:
-      "https://images.pexels.com/photos/3109807/pexels-photo-3109807.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "Shore, open sky, and the rhythm of water against everything else. Frames where the world slows down long enough to notice.",
+    coverImage: "/Archive/Beach/DSC03098.JPG",
+    images: [
+      "/Archive/Beach/DSC03098.JPG",
+      "/Archive/Beach/DSC03105.JPG",
+      "/Archive/Beach/DSC03136.JPG",
+      "/Archive/Beach/DSC03167.JPG",
+      "/Archive/Beach/DSC03174.JPG",
+      "/Archive/Beach/DSC03182.JPG",
+      "/Archive/Beach/DSC03201.JPG",
+      "/Archive/Beach/DSC03237.JPG",
+      "/Archive/Beach/DSC03251.JPG",
+    ],
   },
   {
     index: "004",
-    slug: "made-in-evolve",
-    name: "MADE IN EVOLVE",
-    href: "/works/made-in-evolve",
+    slug: "gym",
+    name: "GYM",
+    href: "/the-archive/gym",
     description:
-      "A tech-editorial environment defined by bold typography, clean imagery and sharp structural clarity. Each layout balances discipline and momentum, creating a refined digital presence where innovation becomes a precise visual language that moves confidently forward.",
-    coverImage:
-      "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "Iron and effort. The particular silence between sets and the discipline that fills the space between them.",
+    coverImage: "/Archive/Gym/DSC00804.JPG",
+    images: [
+      "/Archive/Gym/DSC00804.JPG",
+      "/Archive/Gym/DSC00901.JPG",
+      "/Archive/Gym/DSC00912.JPG",
+      "/Archive/Gym/DSC00920.JPG",
+      "/Archive/Gym/DSC00929.JPG",
+      "/Archive/Gym/DSC00943.JPG",
+      "/Archive/Gym/DSC00951.JPG",
+      "/Archive/Gym/DSC00957.JPG",
+    ],
   },
   {
     index: "005",
-    slug: "valsavarenche",
-    name: "VALSAVARENCHE",
-    href: "/works/valsavarenche",
+    slug: "super-sandwhich",
+    name: "SUPER SANDWHICH",
+    href: "/the-archive/super-sandwhich",
     description:
-      "A landscape of grain, muted tones and cartographic textures evokes the rugged stillness of alpine territory. Vintage-park cues and weathered visuals form an atmosphere of exploration, transforming the valley's geography into a quiet, immersive field of memory and terrain.",
-    coverImage:
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&auto=format&fit=crop&q=80",
+      "A sandwich shop with its own gravity. Small observations from a very specific kind of afternoon.",
+    coverImage: "/Archive/SuperSandwhich/DSC00063.jpeg",
+    images: [
+      "/Archive/SuperSandwhich/DSC00063.jpeg",
+      "/Archive/SuperSandwhich/DSC00069.jpeg",
+      "/Archive/SuperSandwhich/DSC00072.jpeg",
+      "/Archive/SuperSandwhich/DSC00076.jpeg",
+      "/Archive/SuperSandwhich/DSC00078.jpeg",
+      "/Archive/SuperSandwhich/DSC00090.jpeg",
+    ],
   },
   {
     index: "006",
-    slug: "davide-cattaneo",
-    name: "DAVIDE CATTANEO",
-    href: "/works/davide-cattaneo",
+    slug: "larp",
+    name: "LARP",
+    href: "/the-archive/larp",
     description:
-      "A data-driven digital environment built around clarity, precision, and controlled intensity. Dark surfaces, neon accents, and immersive scroll interactions translate analytical thinking into a visual system where information feels alive, dynamic, and intentionally structured.",
-    coverImage:
-      "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&auto=format&fit=crop&q=80",
+      "Characters, costumes, and full commitment. The earnest energy of people who stopped pretending to pretend.",
+    coverImage: "/Archive/Larp/DSC02860.JPG",
+    images: [
+      "/Archive/Larp/DSC02860.JPG",
+      "/Archive/Larp/DSC02873.JPG",
+      "/Archive/Larp/DSC02891.JPG",
+    ],
   },
   {
     index: "007",
-    slug: "studies-in-form",
-    name: "Studies in Form",
-    href: "/works/studies-in-form",
+    slug: "studio",
+    name: "STUDIO",
+    href: "/the-archive/studio",
     description:
-      "An ongoing visual exploration where AI-generated imagery becomes a tool for studying shape, balance and visual tension, transforming raw experimentation into controlled aesthetic research.",
-    coverImage:
-      "https://images.pexels.com/photos/3761509/pexels-photo-3761509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
-  {
-    index: "008",
-    slug: "geotab-signals",
-    name: "GEOTAB SIGNALS",
-    href: "/works/geotab-signals",
-    description:
-      "Corporate experience turning data into clarity. Deep tech blues and neon accents create a sophisticated narrative, signaling intelligence before explaining it.",
-    coverImage:
-      "https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "Three frames from a controlled space. Setup, subject, resolve.",
+    coverImage: "/Archive/Studio/DSC03283.JPG",
+    images: [
+      "/Archive/Studio/DSC03283.JPG",
+      "/Archive/Studio/DSC03301.JPG",
+      "/Archive/Studio/IMG_2320.JPG",
+    ],
   },
 ];
 
 export const ARCHIVE_MANIFESTO =
-  "What appears here is not a sequence of outcomes, but a record of decisions. Different contexts, different constraints, the same insistence on clarity, structure, and";
+  "What appears here is not a highlight reel but a record of presence. Different places, different light, the same commitment to seeing, feeling, and";
 
 export const ARCHIVE_SCRAMBLE_WORDS = [
-  "PRACTICE",
-  "PROCESS",
-  "RESEARCH",
-  "SYSTEM",
+  "SEEING",
+  "FEELING",
+  "BEING",
+  "LIGHT",
 ] as const;
 
 export const ARCHIVE_TAGS = {
-  process: "THIS ARCHIVE DOES NOT\nCOLLECT RESULTS.\nIT PRESERVES PROCESS.",
-  systems: "THIS SPACE HOLDS\nPROJECTS_\nTESTS_\nVISUAL SYSTEMS_",
+  process: "THIS ARCHIVE DOES NOT\nCHASE MOMENTS.\nIT HOLDS THEM.",
+  systems: "THIS SPACE HOLDS\nPLACES_\nPEOPLE_\nPULSE_",
 };
