@@ -236,86 +236,6 @@ export default function BookingPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.55, ease, delay: 0.1 }}
           >
-            {/* Package selection — first so it anchors the top of the white form box */}
-            <div className="relative flex flex-col gap-4 border-b border-black/10 p-6 md:p-8">
-              <p
-                className="text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
-                style={mono}
-              >
-                SELECT A PACKAGE
-              </p>
-              <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-                {PACKAGES.map((pkg) => {
-                  const selected = form.budget === pkg.key;
-                  return (
-                    <button
-                      key={pkg.key}
-                      type="button"
-                      onClick={() =>
-                        setForm((prev) => ({ ...prev, budget: pkg.key }))
-                      }
-                      className={`group relative flex flex-col gap-0 border text-left transition-colors duration-150 ${
-                        selected
-                          ? "border-black bg-black text-white"
-                          : "border-black/15 bg-white text-black hover:border-black/40"
-                      }`}
-                    >
-                      {/* Card header */}
-                      <div
-                        className={`border-b px-4 pt-4 pb-3 ${selected ? "border-white/15" : "border-black/10"}`}
-                      >
-                        <p
-                          className={`text-[0.55rem] uppercase tracking-[0.2em] ${selected ? "text-white/50" : "text-black/35"}`}
-                          style={mono}
-                        >
-                          {pkg.tag}
-                        </p>
-                        <p
-                          className={`mt-1 text-[0.78rem] uppercase tracking-[0.12em] font-medium ${selected ? "text-white" : "text-black"}`}
-                          style={mono}
-                        >
-                          {pkg.name}
-                        </p>
-                        <p
-                          className={`mt-2 text-[1.5rem] leading-none font-semibold tracking-[-0.03em] ${selected ? "text-white" : "text-black"}`}
-                          style={sans}
-                        >
-                          {pkg.price}
-                        </p>
-                      </div>
-                      {/* Inclusions */}
-                      <ul className="flex flex-col gap-1.5 px-4 py-3">
-                        {pkg.items.map((item) => (
-                          <li
-                            key={item}
-                            className={`flex items-start gap-1.5 text-[0.73rem] leading-[1.4] ${selected ? "text-white/80" : "text-black/55"}`}
-                            style={sans}
-                          >
-                            <span
-                              className={`mt-[0.2em] shrink-0 text-[0.55rem] ${selected ? "text-white/40" : "text-black/30"}`}
-                            >
-                              ◆
-                            </span>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </button>
-                  );
-                })}
-              </div>
-              <input
-                type="text"
-                name="budget"
-                value={form.budget}
-                onChange={() => {}}
-                required
-                aria-hidden="true"
-                tabIndex={-1}
-                className="pointer-events-none absolute bottom-0 left-0 h-0 w-0 opacity-0"
-              />
-            </div>
-
             {/* Name + Email */}
             <div className="flex flex-col border-b border-black/10 md:flex-row">
               <div className="flex flex-1 flex-col gap-3 border-b border-black/10 p-6 md:border-b-0 md:border-r md:p-8">
@@ -392,6 +312,84 @@ export default function BookingPage() {
                 type="text"
                 name="projectType"
                 value={form.projectType}
+                onChange={() => {}}
+                required
+                aria-hidden="true"
+                tabIndex={-1}
+                className="pointer-events-none absolute bottom-0 left-0 h-0 w-0 opacity-0"
+              />
+            </div>
+
+            {/* Package selection — same div structure as project type above */}
+            <div className="relative flex flex-col gap-4 border-b border-black/10 p-6 md:p-8">
+              <p
+                className="text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
+                style={mono}
+              >
+                SELECT A PACKAGE
+              </p>
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+                {PACKAGES.map((pkg) => {
+                  const selected = form.budget === pkg.key;
+                  return (
+                    <button
+                      key={pkg.key}
+                      type="button"
+                      onClick={() =>
+                        setForm((prev) => ({ ...prev, budget: pkg.key }))
+                      }
+                      className={`flex flex-col border text-left transition-colors duration-150 ${
+                        selected
+                          ? "border-black bg-black text-white"
+                          : "border-black/15 bg-white text-black hover:border-black/40"
+                      }`}
+                    >
+                      <div
+                        className={`border-b px-4 pt-4 pb-3 ${selected ? "border-white/15" : "border-black/10"}`}
+                      >
+                        <p
+                          className={`text-[0.55rem] uppercase tracking-[0.2em] ${selected ? "text-white/50" : "text-black/35"}`}
+                          style={mono}
+                        >
+                          {pkg.tag}
+                        </p>
+                        <p
+                          className={`mt-1 text-[0.78rem] uppercase tracking-[0.12em] font-medium ${selected ? "text-white" : "text-black"}`}
+                          style={mono}
+                        >
+                          {pkg.name}
+                        </p>
+                        <p
+                          className={`mt-2 text-[1.5rem] leading-none font-semibold tracking-[-0.03em] ${selected ? "text-white" : "text-black"}`}
+                          style={sans}
+                        >
+                          {pkg.price}
+                        </p>
+                      </div>
+                      <ul className="flex flex-col gap-1.5 px-4 py-3">
+                        {pkg.items.map((item) => (
+                          <li
+                            key={item}
+                            className={`flex items-start gap-1.5 text-[0.73rem] leading-[1.4] ${selected ? "text-white/80" : "text-black/55"}`}
+                            style={sans}
+                          >
+                            <span
+                              className={`mt-[0.2em] shrink-0 text-[0.55rem] ${selected ? "text-white/40" : "text-black/30"}`}
+                            >
+                              ◆
+                            </span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </button>
+                  );
+                })}
+              </div>
+              <input
+                type="text"
+                name="budget"
+                value={form.budget}
                 onChange={() => {}}
                 required
                 aria-hidden="true"
