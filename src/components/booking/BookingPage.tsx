@@ -22,6 +22,56 @@ const PROJECT_TYPES = [
   "OTHER",
 ];
 
+const PACKAGES = [
+  {
+    key: "starter",
+    name: "STARTER",
+    price: "$100",
+    tag: "Photo + Film",
+    items: [
+      "1-hour session",
+      "20 professionally edited photos",
+      "60-sec cinematic highlight reel",
+      "2 outfit changes",
+      "Basic color grading",
+      "Digital delivery gallery",
+    ],
+  },
+  {
+    key: "signature",
+    name: "SIGNATURE",
+    price: "$500",
+    tag: "Photo + Film",
+    items: [
+      "3-hour session",
+      "60 professionally edited photos",
+      "3-min cinematic short film",
+      "Unlimited outfit changes",
+      "2 locations",
+      "Advanced color grade & retouch",
+      "Print-ready files + online gallery",
+      "Social media content cuts",
+    ],
+  },
+  {
+    key: "premium",
+    name: "PREMIUM",
+    price: "$1,000",
+    tag: "Photo + Film",
+    items: [
+      "Full-day session (6+ hrs)",
+      "120+ professionally edited photos",
+      "5-min cinematic film + social cut",
+      "Unlimited outfits & looks",
+      "Up to 3 locations",
+      "Premium grade & full retouching",
+      "USB + print-ready + online gallery",
+      "Social content suite (5+ cuts)",
+      "72-hr priority delivery",
+    ],
+  },
+] as const;
+
 type FormState = {
   name: string;
   email: string;
@@ -271,34 +321,85 @@ export default function BookingPage() {
               />
             </div>
 
-            {/* Budget */}
-            <div className="flex flex-col gap-3 border-b border-black/10 p-6 md:p-8">
-              <label
-                htmlFor="budget"
-                className="block text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
+            {/* Package selection */}
+            <div className="flex flex-col gap-4 border-b border-black/10 p-6 md:p-8">
+              <p
+                className="text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
                 style={mono}
               >
-                ESTIMATED BUDGET
-              </label>
-              <select
-                id="budget"
+                SELECT A PACKAGE
+              </p>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {PACKAGES.map((pkg) => {
+                  const selected = form.budget === pkg.key;
+                  return (
+                    <button
+                      key={pkg.key}
+                      type="button"
+                      onClick={() =>
+                        setForm((prev) => ({ ...prev, budget: pkg.key }))
+                      }
+                      className={`group relative flex flex-col gap-0 border text-left transition-colors duration-150 ${
+                        selected
+                          ? "border-black bg-black text-white"
+                          : "border-black/15 bg-white text-black hover:border-black/40"
+                      }`}
+                    >
+                      {/* Card header */}
+                      <div
+                        className={`border-b px-4 pt-4 pb-3 ${selected ? "border-white/15" : "border-black/10"}`}
+                      >
+                        <p
+                          className={`text-[0.55rem] uppercase tracking-[0.2em] ${selected ? "text-white/50" : "text-black/35"}`}
+                          style={mono}
+                        >
+                          {pkg.tag}
+                        </p>
+                        <p
+                          className={`mt-1 text-[0.78rem] uppercase tracking-[0.12em] font-medium ${selected ? "text-white" : "text-black"}`}
+                          style={mono}
+                        >
+                          {pkg.name}
+                        </p>
+                        <p
+                          className={`mt-2 text-[1.5rem] leading-none font-semibold tracking-[-0.03em] ${selected ? "text-white" : "text-black"}`}
+                          style={sans}
+                        >
+                          {pkg.price}
+                        </p>
+                      </div>
+                      {/* Inclusions */}
+                      <ul className="flex flex-col gap-1.5 px-4 py-3">
+                        {pkg.items.map((item) => (
+                          <li
+                            key={item}
+                            className={`flex items-start gap-1.5 text-[0.73rem] leading-[1.4] ${selected ? "text-white/80" : "text-black/55"}`}
+                            style={sans}
+                          >
+                            <span
+                              className={`mt-[0.2em] shrink-0 text-[0.55rem] ${selected ? "text-white/40" : "text-black/30"}`}
+                            >
+                              ◆
+                            </span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </button>
+                  );
+                })}
+              </div>
+              {/* Hidden sentinel for native form validation */}
+              <input
+                type="text"
                 name="budget"
-                required
                 value={form.budget}
-                onChange={handleChange}
-                className="block w-full cursor-pointer appearance-none bg-transparent text-[0.95rem] text-black outline-none"
-                style={sans}
-              >
-                <option value="" disabled>
-                  Select a range
-                </option>
-                <option value="under-1k">Under $1,000</option>
-                <option value="1k-3k">$1,000 – $3,000</option>
-                <option value="3k-7k">$3,000 – $7,000</option>
-                <option value="7k-15k">$7,000 – $15,000</option>
-                <option value="15k-plus">$15,000+</option>
-                <option value="tbd">To be discussed</option>
-              </select>
+                onChange={() => {}}
+                required
+                aria-hidden="true"
+                tabIndex={-1}
+                className="pointer-events-none h-0 w-0 opacity-0 absolute"
+              />
             </div>
 
             {/* Brief */}
