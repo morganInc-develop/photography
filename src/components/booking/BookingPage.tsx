@@ -167,8 +167,8 @@ export default function BookingPage() {
         {/* Header */}
         <motion.div
           className="mb-12"
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.55, ease }}
         >
           <p
@@ -198,8 +198,8 @@ export default function BookingPage() {
         {status === "success" ? (
           <motion.div
             className="flex flex-col gap-5 border border-black/10 bg-white p-8 md:p-10"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
             <p
@@ -232,8 +232,8 @@ export default function BookingPage() {
           <motion.form
             onSubmit={handleSubmit}
             className="border border-black/10 bg-white overflow-hidden"
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.55, ease, delay: 0.1 }}
           >
             {/* Package selection — first so it anchors the top of the white form box */}
