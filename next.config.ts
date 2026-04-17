@@ -13,7 +13,6 @@ const nextConfig: NextConfig = {
       "node_modules/lenis/**",
       "node_modules/@types/**",
       "node_modules/typescript/**",
-      "public/**",
     ],
   },
   images: {
