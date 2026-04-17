@@ -1,12 +1,50 @@
 const BASE_URL = "https://photography-psi-sage.vercel.app";
 
 const BUDGET_LABELS: Record<string, string> = {
-  "under-1k": "Under $1,000",
-  "1k-3k": "$1,000 – $3,000",
-  "3k-7k": "$3,000 – $7,000",
-  "7k-15k": "$7,000 – $15,000",
-  "15k-plus": "$15,000+",
-  tbd: "To be discussed",
+  starter: "Starter — $100",
+  signature: "Signature — $500",
+  premium: "Premium — $1,000",
+};
+
+const PACKAGE_DETAILS: Record<string, { items: string[]; tag: string }> = {
+  starter: {
+    tag: "Photography + Videography",
+    items: [
+      "1-hour session",
+      "20 professionally edited photos",
+      "60-sec cinematic highlight reel",
+      "2 outfit changes",
+      "Basic color grading",
+      "Digital delivery gallery",
+    ],
+  },
+  signature: {
+    tag: "Photography + Videography",
+    items: [
+      "3-hour session",
+      "60 professionally edited photos",
+      "3-min cinematic short film",
+      "Unlimited outfit changes",
+      "2 locations",
+      "Advanced color grade & retouch",
+      "Print-ready files + online gallery",
+      "Social media content cuts",
+    ],
+  },
+  premium: {
+    tag: "Photography + Videography",
+    items: [
+      "Full-day session (6+ hrs)",
+      "120+ professionally edited photos",
+      "5-min cinematic film + social cut",
+      "Unlimited outfits & looks",
+      "Up to 3 locations",
+      "Premium grade & full retouching",
+      "USB + print-ready + online gallery",
+      "Social content suite (5+ cuts)",
+      "72-hr priority delivery",
+    ],
+  },
 };
 
 export type InquiryData = {
@@ -19,6 +57,15 @@ export type InquiryData = {
 
 export function adminEmailHtml(data: InquiryData): string {
   const budgetLabel = BUDGET_LABELS[data.budget] ?? data.budget;
+  const pkg = PACKAGE_DETAILS[data.budget];
+  const packageItemsHtml = pkg
+    ? pkg.items
+        .map(
+          (item) =>
+            `<tr><td style="padding:3px 0;font-family:'Host Grotesk',Arial,sans-serif;font-size:12px;color:#aaaaaa;">◆&nbsp;&nbsp;${escapeHtml(item)}</td></tr>`,
+        )
+        .join("")
+    : "";
   const receivedAt = new Date().toLocaleString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -106,9 +153,10 @@ export function adminEmailHtml(data: InquiryData): string {
                         <p style="margin:0 0 4px;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#555555;">PROJECT TYPE</p>
                         <p style="margin:0;font-family:Impact,Arial,sans-serif;font-size:15px;letter-spacing:0.04em;text-transform:uppercase;color:#f3f3f3;">${escapeHtml(data.projectType)}</p>
                       </td>
-                      <td width="50%">
-                        <p style="margin:0 0 4px;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#555555;">ESTIMATED BUDGET</p>
-                        <p style="margin:0;font-family:'Host Grotesk',Arial,sans-serif;font-size:15px;color:#f3f3f3;font-weight:500;">${escapeHtml(budgetLabel)}</p>
+                      <td width="50%" valign="top">
+                        <p style="margin:0 0 4px;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#555555;">PACKAGE SELECTED</p>
+                        <p style="margin:0 0 6px;font-family:'Host Grotesk',Arial,sans-serif;font-size:15px;color:#f3f3f3;font-weight:500;">${escapeHtml(budgetLabel)}</p>
+                        ${pkg ? `<table cellpadding="0" cellspacing="0" border="0">${packageItemsHtml}</table>` : ""}
                       </td>
                     </tr>
                   </table>
@@ -162,6 +210,15 @@ export function adminEmailHtml(data: InquiryData): string {
 
 export function clientEmailHtml(data: InquiryData): string {
   const budgetLabel = BUDGET_LABELS[data.budget] ?? data.budget;
+  const pkg = PACKAGE_DETAILS[data.budget];
+  const packageItemsHtml = pkg
+    ? pkg.items
+        .map(
+          (item) =>
+            `<tr><td style="padding:3px 0;font-family:'Host Grotesk',Arial,sans-serif;font-size:12px;color:#666666;">◆&nbsp;&nbsp;${escapeHtml(item)}</td></tr>`,
+        )
+        .join("")
+    : "";
 
   return `<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -236,8 +293,11 @@ export function clientEmailHtml(data: InquiryData): string {
                 <td style="padding:14px 20px;border-bottom:1px solid rgba(0,0,0,0.07);">
                   <table width="100%" cellpadding="0" cellspacing="0" border="0">
                     <tr>
-                      <td width="40%"><p style="margin:0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#aaaaaa;">BUDGET</p></td>
-                      <td><p style="margin:0;font-family:'Host Grotesk',Arial,sans-serif;font-size:14px;color:#202020;font-weight:500;">${escapeHtml(budgetLabel)}</p></td>
+                      <td width="40%" valign="top"><p style="margin:0;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#aaaaaa;">PACKAGE</p></td>
+                      <td valign="top">
+                        <p style="margin:0 0 6px;font-family:'Host Grotesk',Arial,sans-serif;font-size:14px;color:#202020;font-weight:500;">${escapeHtml(budgetLabel)}</p>
+                        ${pkg ? `<p style="margin:0 0 4px;font-family:'Courier New',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#aaaaaa;">${escapeHtml(pkg.tag)}</p><table cellpadding="0" cellspacing="0" border="0">${packageItemsHtml}</table>` : ""}
+                      </td>
                     </tr>
                   </table>
                 </td>
