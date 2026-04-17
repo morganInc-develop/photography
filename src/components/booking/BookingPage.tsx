@@ -328,21 +328,69 @@ export default function BookingPage() {
               >
                 BUDGET
               </p>
-              <div className="flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() =>
-                    setForm((prev) => ({ ...prev, budget: "1-300" }))
-                  }
-                  className={`cursor-pointer border px-4 py-2 text-[0.68rem] uppercase tracking-[0.12em] transition-colors duration-150 ${
-                    form.budget === "1-300"
-                      ? "border-black bg-black text-white"
-                      : "border-black/20 bg-transparent text-black/55 hover:border-black/50 hover:text-black"
-                  }`}
-                  style={mono}
-                >
-                  $1 – $300
-                </button>
+              <div>
+                {(() => {
+                  const selected = form.budget === "1-300";
+                  return (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setForm((prev) => ({ ...prev, budget: "1-300" }))
+                      }
+                      className={`flex w-full flex-col border text-left transition-colors duration-150 md:max-w-xs ${
+                        selected
+                          ? "border-black bg-black text-white"
+                          : "border-black/15 bg-white text-black hover:border-black/40"
+                      }`}
+                    >
+                      <div
+                        className={`border-b px-4 pt-4 pb-3 ${selected ? "border-white/15" : "border-black/10"}`}
+                      >
+                        <p
+                          className={`text-[0.55rem] uppercase tracking-[0.2em] ${selected ? "text-white/50" : "text-black/35"}`}
+                          style={mono}
+                        >
+                          Photo + Film
+                        </p>
+                        <p
+                          className={`mt-1 text-[0.78rem] uppercase tracking-[0.12em] font-medium ${selected ? "text-white" : "text-black"}`}
+                          style={mono}
+                        >
+                          ESSENTIAL
+                        </p>
+                        <p
+                          className={`mt-2 text-[1.5rem] leading-none font-semibold tracking-[-0.03em] ${selected ? "text-white" : "text-black"}`}
+                          style={sans}
+                        >
+                          $1 – $300
+                        </p>
+                      </div>
+                      <ul className="flex flex-col gap-1.5 px-4 py-3">
+                        {[
+                          "Up to 1-hour session",
+                          "10 professionally edited photos",
+                          "30-sec cinematic highlight clip",
+                          "1 outfit / look",
+                          "Basic color grading",
+                          "Digital delivery gallery",
+                        ].map((item) => (
+                          <li
+                            key={item}
+                            className={`flex items-start gap-1.5 text-[0.73rem] leading-[1.4] ${selected ? "text-white/80" : "text-black/55"}`}
+                            style={sans}
+                          >
+                            <span
+                              className={`mt-[0.2em] shrink-0 text-[0.55rem] ${selected ? "text-white/40" : "text-black/30"}`}
+                            >
+                              ◆
+                            </span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </button>
+                  );
+                })()}
               </div>
               {/* — Tiered packages (commented out for now) —
               <div className="flex flex-col gap-3 md:flex-row">
