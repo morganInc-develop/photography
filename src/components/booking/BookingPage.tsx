@@ -22,7 +22,7 @@ const PROJECT_TYPES = [
   "OTHER",
 ];
 
-const PACKAGES = [
+/* const PACKAGES = [
   {
     key: "starter",
     name: "STARTER",
@@ -70,7 +70,7 @@ const PACKAGES = [
       "72-hr priority delivery",
     ],
   },
-] as const;
+] as const; */
 
 type FormState = {
   name: string;
@@ -320,14 +320,31 @@ export default function BookingPage() {
               />
             </div>
 
-            {/* Package selection — same div structure as project type above */}
+            {/* Budget */}
             <div className="relative flex flex-col gap-4 border-b border-black/10 p-6 md:p-8">
               <p
                 className="text-[0.58rem] uppercase tracking-[0.2em] text-black/40"
                 style={mono}
               >
-                SELECT A PACKAGE
+                BUDGET
               </p>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setForm((prev) => ({ ...prev, budget: "1-300" }))
+                  }
+                  className={`cursor-pointer border px-4 py-2 text-[0.68rem] uppercase tracking-[0.12em] transition-colors duration-150 ${
+                    form.budget === "1-300"
+                      ? "border-black bg-black text-white"
+                      : "border-black/20 bg-transparent text-black/55 hover:border-black/50 hover:text-black"
+                  }`}
+                  style={mono}
+                >
+                  $1 – $300
+                </button>
+              </div>
+              {/* — Tiered packages (commented out for now) —
               <div className="flex flex-col gap-3 md:flex-row">
                 {PACKAGES.map((pkg) => {
                   const selected = form.budget === pkg.key;
@@ -386,6 +403,7 @@ export default function BookingPage() {
                   );
                 })}
               </div>
+              */}
               <input
                 type="text"
                 name="budget"
