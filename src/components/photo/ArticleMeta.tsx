@@ -1,9 +1,9 @@
-import type { ArtboardPhoto } from "@/components/home/home-data";
+import type { ArchivePhoto } from "@/lib/archive/types";
 import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
-  photo: ArtboardPhoto;
+  photo: ArchivePhoto;
   displayIndex: string;
   totalCount: number;
   previousHref: string;

@@ -1,6 +1,6 @@
 "use client";
 
-import { ARTBOARD_PHOTOS } from "@/components/home/home-data";
+import type { ArchivePhoto } from "@/lib/archive/types";
 import { gsap } from "gsap";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
@@ -25,6 +25,10 @@ class Plane extends THREE.Object3D {
 
   public y = 0;
 
+  public halfW = 0;
+
+  public halfH = 0;
+
   constructor(params: {
     el: HTMLElement;
     geometry: THREE.PlaneGeometry;
@@ -40,6 +44,7 @@ class Plane extends THREE.Object3D {
 
     this.material = params.material.clone();
     this.material.uniforms = {
+      u_hover: { value: 0.0 },
       u_res: { value: new THREE.Vector2(1, 1) },
       u_size: { value: new THREE.Vector2(1, 1) },
       u_texture: { value: null },
@@ -79,6 +84,9 @@ class Plane extends THREE.Object3D {
     this.position.x = this.xOffset;
     this.position.y = this.yOffset;
 
+    this.halfW = width / 2;
+    this.halfH = height / 2;
+
     this.material.uniforms.u_res.value.x = width;
     this.material.uniforms.u_res.value.y = height;
     this.material.uniforms.u_viewSize.value.x = ww;
@@ -107,6 +115,14 @@ class Plane extends THREE.Object3D {
     this.position.y = this.y;
   }
 
+  setHover(value: number) {
+    gsap.to(this.material.uniforms.u_hover, {
+      value,
+      duration: 0.5,
+      overwrite: "auto",
+    });
+  }
+
   dispose() {
     const texture = this.material.uniforms.u_texture
       .value as THREE.Texture | null;
@@ -117,7 +133,11 @@ class Plane extends THREE.Object3D {
 
 const DRAG_THRESHOLD = 6;
 
-export function ArtboardCanvas() {
+type ArtboardCanvasProps = {
+  photos: ArchivePhoto[];
+};
+
+export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
   const gridRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
   const routerRef = useRef(router);
@@ -203,6 +223,7 @@ export function ArtboardCanvas() {
       uniform vec2 u_res;
       uniform vec2 u_size;
       uniform vec2 u_velo;
+      uniform float u_hover;
       uniform sampler2D u_texture;
       varying vec2 vUv;
 
@@ -231,9 +252,9 @@ export function ArtboardCanvas() {
 
         vec4 color = vec4(r, g, b, 1.0);
         float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114));
-        color.rgb = vec3(grey);
+        color.rgb = mix(vec3(grey), color.rgb, u_hover);
         float noise = random(uvCover * 550.0);
-        color.rgb += (noise - 0.5) * 0.08;
+        color.rgb += (noise - 0.5) * 0.08 * (1.0 - u_hover * 0.5);
 
         float dist = distance(vUv, vec2(0.5, 0.5));
         float vignette = smoothstep(0.8, 0.2, dist * 0.9);
@@ -349,25 +370,28 @@ export function ArtboardCanvas() {
     };
 
     const onMouseMove = (event: MouseEvent) => {
-      if (!state.isDragging || !interactionStartedInGrid) {
-        return;
-      }
-
-      const dx = event.clientX - clickStartX;
-      const dy = event.clientY - clickStartY;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist > DRAG_THRESHOLD) {
-        if (!isDragRef.current) {
-          console.log(
-            "[ArtboardCanvas] drag threshold exceeded, marking as drag",
-            { dist },
-          );
+      if (state.isDragging && interactionStartedInGrid) {
+        const dx = event.clientX - clickStartX;
+        const dy = event.clientY - clickStartY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > DRAG_THRESHOLD) {
+          isDragRef.current = true;
         }
-        isDragRef.current = true;
+
+        state.tx = state.on.x + event.clientX * 2.5;
+        state.ty = state.on.y - event.clientY * 2.5;
       }
 
-      state.tx = state.on.x + event.clientX * 2.5;
-      state.ty = state.on.y - event.clientY * 2.5;
+      const mx = event.clientX - ww / 2;
+      const my = wh / 2 - event.clientY;
+      planes.forEach((plane) => {
+        const isHovered =
+          mx >= plane.position.x - plane.halfW &&
+          mx <= plane.position.x + plane.halfW &&
+          my >= plane.position.y - plane.halfH &&
+          my <= plane.position.y + plane.halfH;
+        plane.setHover(isHovered ? 1 : 0);
+      });
     };
 
     const onMouseUp = (event: MouseEvent) => {
@@ -405,10 +429,12 @@ export function ArtboardCanvas() {
             event.clientY >= rect.top &&
             event.clientY <= rect.bottom
           ) {
-            const photo = ARTBOARD_PHOTOS[i];
+            const photo = photos[i];
             console.log("[ArtboardCanvas] matched cell", i, photo?.id);
             if (photo) {
-              routerRef.current.push(`/photography?photo=${photo.id}`);
+              routerRef.current.push(
+                `/photography?collection=${encodeURIComponent(photo.collectionSlug)}&photo=${encodeURIComponent(photo.id)}`,
+              );
             }
             return;
           }
@@ -516,7 +542,7 @@ export function ArtboardCanvas() {
       document.body.style.overscrollBehavior = "";
       document.documentElement.style.overscrollBehavior = "";
     };
-  }, []);
+  }, [photos]);
 
   return (
     <div className="canvas__webgl-list-wrap">
@@ -526,10 +552,10 @@ export function ArtboardCanvas() {
         className="grid js-grid"
         style={{ touchAction: "none" }}
       >
-        {ARTBOARD_PHOTOS.map((photo) => (
+        {photos.map((photo) => (
           <div key={photo.id} role="listitem" className="div">
             <div className="js-plane-link">
-              <figure className="js-plane" data-src={photo.src} />
+              <figure className="js-plane" data-src={photo.webSrc} />
             </div>
           </div>
         ))}

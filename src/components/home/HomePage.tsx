@@ -7,14 +7,18 @@ import { HomeCursor } from "@/components/home/HomeCursor";
 import { HomeLoader } from "@/components/home/HomeLoader";
 import { HomeMetaRail } from "@/components/home/HomeMetaRail";
 import { LandscapeWarning } from "@/components/home/LandscapeWarning";
-import { ProgressiveBlur } from "@/components/home/ProgressiveBlur";
 import { ensureSignatureEase } from "@/components/home/gsap-signature";
+import type { ArchivePhoto } from "@/lib/archive/types";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export default function HomePage() {
+type HomePageProps = {
+  photos: ArchivePhoto[];
+};
+
+export default function HomePage({ photos }: HomePageProps) {
   const [loaderDone, setLoaderDone] = useState(false);
   const hasCompletedRef = useRef(false);
 
@@ -79,12 +83,11 @@ export default function HomePage() {
     <main data-barba="wrapper" className="page-wrapper">
       <div data-barba-namespace="home" data-barba="container" className="app">
         <HomeLoader onComplete={handleLoaderComplete} />
-        <ProgressiveBlur />
         <LandscapeWarning />
 
         <section className="section is--hero">
           <HomeMetaRail />
-          <ArtboardCanvas />
+          <ArtboardCanvas photos={photos} />
           <ArtboardDemoPanel visible={loaderDone} />
           <BlinkWordmark />
         </section>

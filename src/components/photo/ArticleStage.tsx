@@ -1,10 +1,10 @@
-import type { ArtboardPhoto } from "@/components/home/home-data";
+import type { ArchivePhoto } from "@/lib/archive/types";
 import Image from "next/image";
 
 type Props = {
-  photo: ArtboardPhoto;
-  previousPhoto: ArtboardPhoto;
-  nextPhoto: ArtboardPhoto;
+  photo: ArchivePhoto;
+  previousPhoto: ArchivePhoto;
+  nextPhoto: ArchivePhoto;
   displayIndex: string;
   totalCount: number;
 };

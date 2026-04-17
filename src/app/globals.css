@@ -629,6 +629,7 @@ a {
 .grid.js-grid {
   z-index: 14;
   height: 190vw;
+  grid-auto-rows: calc(190vw / 5);
 }
 
 .div {
@@ -886,6 +887,7 @@ a {
   .grid {
     width: 190vw;
     height: 140vw;
+    grid-auto-rows: calc(140vw / 5);
   }
 }
 
@@ -956,6 +958,7 @@ a {
   .grid {
     width: 320vw;
     height: 250vw;
+    grid-auto-rows: calc(250vw / 5);
   }
 }
 
@@ -1007,6 +1010,7 @@ a {
   .grid.js-grid {
     width: 270vw;
     height: 330vw;
+    grid-auto-rows: calc(330vw / 5);
   }
 
   .h-h1 {

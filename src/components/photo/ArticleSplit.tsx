@@ -1,80 +1,47 @@
 "use client";
 
-import type { ArtboardPhoto } from "@/components/home/home-data";
 import { ArticleEditorialSection } from "@/components/photo/ArticleEditorialSection";
 import { ArticleEntrance } from "@/components/photo/ArticleEntrance";
+import { PhotoLoader } from "@/components/photo/PhotoLoader";
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
+import type { ArchiveCollection, ArchivePhoto } from "@/lib/archive/types";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type Props = {
-  photos: ArtboardPhoto[];
+  collection: ArchiveCollection;
+  photos: ArchivePhoto[];
+  initialPhotoId?: string;
 };
-
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-] as const;
-
-const CATEGORIES = ["Showcase", "Inspire", "Study", "Archive"] as const;
-
-function getTimelineMonth(index: number, totalCount: number) {
-  if (totalCount <= 1) {
-    return MONTHS[0];
-  }
-
-  const progress = index / (totalCount - 1);
-  const monthIndex = Math.min(
-    MONTHS.length - 1,
-    Math.floor(progress * (MONTHS.length - 1)),
-  );
-
-  return MONTHS[monthIndex];
-}
-
-function getTimelineCategory(index: number) {
-  return CATEGORIES[index % CATEGORIES.length];
-}
 
 function getDisplayIndex(index: number) {
   return String(index + 1).padStart(2, "0");
 }
 
-export function ArticleSplit({ photos }: Props) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export function ArticleSplit({ collection, photos, initialPhotoId }: Props) {
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    const initialIndex = photos.findIndex(
+      (photo) => photo.id === initialPhotoId,
+    );
+    return initialIndex >= 0 ? initialIndex : 0;
+  });
+  const [loadedPhotoId, setLoadedPhotoId] = useState<string | null>(null);
+
   const scopeRef = useRef<HTMLElement>(null);
   const desktopRightColumnRef = useRef<HTMLDivElement>(null);
   const mobileRightColumnRef = useRef<HTMLDivElement>(null);
   const rightColumnRef = useRef<HTMLElement>(null);
 
   const photo = photos[currentIndex] ?? photos[0];
-
-  // Non-wrapping: null at the edges — used for the 3-card left column
   const prevCard = currentIndex > 0 ? photos[currentIndex - 1] : null;
   const nextCard =
     currentIndex < photos.length - 1 ? photos[currentIndex + 1] : null;
-
-  // Wrapping: always defined — used for the editorial section's supporting images
-  const previousPhoto =
-    photos[(currentIndex - 1 + photos.length) % photos.length] ?? photo;
   const nextPhoto = photos[(currentIndex + 1) % photos.length] ?? photo;
-
   const totalCount = photos.length;
   const displayIndex = getDisplayIndex(currentIndex);
   const totalCountLabel = String(totalCount).padStart(2, "0");
-  const currentMonth = getTimelineMonth(currentIndex, totalCount);
+  const imageLoaded = loadedPhotoId === photo?.id;
 
   const betterOffDisplay = {
     fontFamily: '"Easegeometricb", Impact, sans-serif',
@@ -87,8 +54,6 @@ export function ArticleSplit({ photos }: Props) {
       '"SFMono-Regular", "IBM Plex Mono", "Cascadia Mono", "Courier New", monospace',
   } as const;
 
-  const searchParams = useSearchParams();
-
   const updateCurrentIndex = useCallback(
     (delta: number) => {
       setCurrentIndex((index) =>
@@ -97,16 +62,6 @@ export function ArticleSplit({ photos }: Props) {
     },
     [photos.length],
   );
-
-  useEffect(() => {
-    const photoId = searchParams.get("photo");
-    if (!photoId) return;
-    const index = photos.findIndex((p) => p.id === photoId);
-    if (index !== -1) {
-      setCurrentIndex(index);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     const formatter = (tz: string) =>
@@ -195,7 +150,7 @@ export function ArticleSplit({ photos }: Props) {
       <ArticleEntrance
         scopeRef={scopeRef}
         rightColumnRef={rightColumnRef}
-        photoId={String(currentIndex)}
+        photoId={photo.id}
       />
 
       <div className="hidden md:block sticky top-[4.25rem] z-50 w-full text-center bg-white/92 backdrop-blur-sm border-b border-black/8 py-3 pointer-events-none">
@@ -204,15 +159,13 @@ export function ArticleSplit({ photos }: Props) {
           className="text-[clamp(4.8rem,8.3vw,7.4rem)] font-[700] uppercase leading-[0.8] tracking-[-0.08em] text-black"
           style={betterOffDisplay}
         >
-          Made Invincible
+          {collection.name}
         </p>
       </div>
 
       <div className="hidden md:grid md:grid-cols-[42vw_1fr]">
-        {/* LEFT COLUMN — 3-card timeline */}
         <section className="sticky top-[7.5rem] h-[calc(100vh-7.5rem)] overflow-hidden border-r border-black/10 bg-white">
           <div className="flex h-full items-center justify-center gap-[clamp(0.75rem,1.4vw,1.5rem)] px-6 pb-16">
-            {/* Previous card — clickable, subdued */}
             <div
               className="shrink-0"
               style={{ width: "clamp(7rem, 10vw, 13rem)" }}
@@ -248,7 +201,6 @@ export function ArticleSplit({ photos }: Props) {
               </AnimatePresence>
             </div>
 
-            {/* Current card — highlighted, full color, zoom-in on change */}
             <div
               className="shrink-0"
               style={{ width: "clamp(11rem, 16vw, 20rem)" }}
@@ -290,9 +242,11 @@ export function ArticleSplit({ photos }: Props) {
                       priority
                       sizes="20vw"
                       className="object-cover"
+                      onLoad={() => setLoadedPhotoId(photo.id)}
                     />
                   </motion.div>
                 </AnimatePresence>
+                <PhotoLoader loading={!imageLoaded} />
               </div>
 
               <AnimatePresence mode="popLayout" initial={false}>
@@ -309,13 +263,11 @@ export function ArticleSplit({ photos }: Props) {
                   className="mt-2 text-[0.72rem] uppercase tracking-[0.12em] text-black/72"
                   style={betterOffMono}
                 >
-                  {getTimelineCategory(currentIndex)} (
-                  {currentMonth.toUpperCase()})
+                  {collection.tag.toUpperCase()} · FRAME {displayIndex}
                 </motion.p>
               </AnimatePresence>
             </div>
 
-            {/* Next card — clickable, subdued */}
             <div
               className="shrink-0"
               style={{ width: "clamp(7rem, 10vw, 13rem)" }}
@@ -352,7 +304,6 @@ export function ArticleSplit({ photos }: Props) {
             </div>
           </div>
 
-          {/* Horizontal tick ruler */}
           <div className="pointer-events-none absolute bottom-0 left-0 right-0">
             <div className="relative mx-4 h-14">
               <div className="absolute inset-x-0 top-4 h-[13px] bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.22)_0,rgba(0,0,0,0.22)_1px,transparent_1px,transparent_8px)]" />
@@ -363,46 +314,40 @@ export function ArticleSplit({ photos }: Props) {
                 className="absolute bottom-0 left-0 text-[0.72rem] uppercase tracking-[0.12em] text-black/74"
                 style={betterOffMono}
               >
-                January
+                Start
               </p>
               <p
                 className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[0.72rem] uppercase tracking-[0.12em] text-black/74"
                 style={betterOffMono}
               >
-                June
+                Mid
               </p>
               <p
                 className="absolute bottom-0 right-0 text-[0.72rem] uppercase tracking-[0.12em] text-black/74"
                 style={betterOffMono}
               >
-                December
+                End
               </p>
             </div>
           </div>
         </section>
 
-        {/* RIGHT COLUMN — scrolls with the page */}
         <div ref={desktopRightColumnRef} className="bg-white">
           <ArticleEditorialSection
+            collection={collection}
             photos={photos}
             photo={photo}
-            previousPhoto={previousPhoto}
             nextPhoto={nextPhoto}
             currentIndex={currentIndex}
             displayIndex={displayIndex}
-            category={getTimelineCategory(currentIndex)}
-            month={currentMonth}
+            totalCountLabel={totalCountLabel}
           />
         </div>
       </div>
 
-      {/* Mobile layout */}
       <div className="md:hidden">
-        {/* Sticky 3-card panel + tick ruler */}
         <div className="sticky top-[3.5rem] z-30 bg-white border-b border-black/10">
-          {/* Three-card row */}
           <div className="flex items-end justify-center gap-3 px-4 pt-4 pb-2">
-            {/* Previous card — clickable, grayscale */}
             <div
               className="shrink-0"
               style={{ width: "clamp(4.5rem, 20vw, 6.5rem)" }}
@@ -440,7 +385,6 @@ export function ArticleSplit({ photos }: Props) {
               </AnimatePresence>
             </div>
 
-            {/* Current card — full color, zoom-in on change */}
             <div
               className="shrink-0"
               style={{ width: "clamp(6rem, 28vw, 9rem)" }}
@@ -479,9 +423,11 @@ export function ArticleSplit({ photos }: Props) {
                       priority
                       sizes="28vw"
                       className="object-cover"
+                      onLoad={() => setLoadedPhotoId(photo.id)}
                     />
                   </motion.div>
                 </AnimatePresence>
+                <PhotoLoader loading={!imageLoaded} />
               </div>
 
               <AnimatePresence mode="popLayout" initial={false}>
@@ -498,13 +444,11 @@ export function ArticleSplit({ photos }: Props) {
                   className="mt-1.5 text-[0.6rem] uppercase tracking-[0.1em] text-black/72"
                   style={betterOffMono}
                 >
-                  {getTimelineCategory(currentIndex)} (
-                  {currentMonth.slice(0, 3).toUpperCase()})
+                  {collection.tag.toUpperCase()} · FRAME {displayIndex}
                 </motion.p>
               </AnimatePresence>
             </div>
 
-            {/* Next card — clickable, grayscale */}
             <div
               className="shrink-0"
               style={{ width: "clamp(4.5rem, 20vw, 6.5rem)" }}
@@ -543,7 +487,6 @@ export function ArticleSplit({ photos }: Props) {
             </div>
           </div>
 
-          {/* Tick ruler */}
           <div className="pointer-events-none mx-4 pb-3">
             <div className="relative h-9">
               <div className="absolute inset-x-0 top-0 h-[11px] bg-[repeating-linear-gradient(90deg,rgba(0,0,0,0.2)_0,rgba(0,0,0,0.2)_1px,transparent_1px,transparent_8px)]" />
@@ -554,66 +497,63 @@ export function ArticleSplit({ photos }: Props) {
                 className="absolute bottom-0 left-0 text-[0.62rem] uppercase tracking-[0.1em] text-black/74"
                 style={betterOffMono}
               >
-                January
+                Start
               </p>
               <p
                 className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[0.62rem] uppercase tracking-[0.1em] text-black/74"
                 style={betterOffMono}
               >
-                June
+                Mid
               </p>
               <p
                 className="absolute bottom-0 right-0 text-[0.62rem] uppercase tracking-[0.1em] text-black/74"
                 style={betterOffMono}
               >
-                December
+                End
               </p>
             </div>
           </div>
         </div>
 
-        {/* Scrollable content */}
         <div ref={mobileRightColumnRef} className="px-4 pt-5 pb-24">
           <p
             data-article-meta
             className="text-[0.72rem] uppercase tracking-[0.14em] text-black/55"
             style={betterOffMono}
           >
-            {photo.location} · {photo.year} · {currentMonth}
+            {collection.location} · {photo.year} · {collection.tag}
           </p>
           <h1
             data-article-title
             className="mt-3 max-w-[10ch] text-[clamp(2.4rem,11vw,4rem)] font-[700] uppercase leading-[0.86] tracking-[-0.07em] text-black"
             style={betterOffSans}
           >
-            {photo.title}
+            {collection.name}
           </h1>
           <p
             data-article-copy
             className="mt-4 max-w-[34ch] text-[0.98rem] leading-[1.42] tracking-[-0.02em] text-black/74"
             style={betterOffSans}
           >
-            {photo.description}
+            {collection.intro}
           </p>
           <div data-article-copy className="mt-6 border-t border-black/10 pt-3">
             <p
               className="text-[0.72rem] uppercase tracking-[0.12em] text-black/74"
               style={betterOffMono}
             >
-              {displayIndex} / {totalCountLabel} ·{" "}
-              {getTimelineCategory(currentIndex)} ({currentMonth.toUpperCase()})
+              {displayIndex} / {totalCountLabel} · {photo.title}
             </p>
           </div>
 
           <ArticleEditorialSection
+            collection={collection}
             photos={photos}
             photo={photo}
-            previousPhoto={previousPhoto}
             nextPhoto={nextPhoto}
             currentIndex={currentIndex}
             displayIndex={displayIndex}
-            category={getTimelineCategory(currentIndex)}
-            month={currentMonth}
+            totalCountLabel={totalCountLabel}
           />
         </div>
       </div>

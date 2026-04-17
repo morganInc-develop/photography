@@ -1,52 +1,27 @@
 "use client";
 
-import type { ArtboardPhoto } from "@/components/home/home-data";
+import { PhotoLoader } from "@/components/photo/PhotoLoader";
+import type { ArchiveCollection, ArchivePhoto } from "@/lib/archive/types";
 import { AnimatePresence, cubicBezier, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 type Props = {
-  photos: ArtboardPhoto[];
-  photo: ArtboardPhoto;
-  previousPhoto: ArtboardPhoto;
-  nextPhoto: ArtboardPhoto;
+  collection: ArchiveCollection;
+  photos: ArchivePhoto[];
+  photo: ArchivePhoto;
+  nextPhoto: ArchivePhoto;
   currentIndex: number;
   displayIndex: string;
-  category: string;
-  month: string;
+  totalCountLabel: string;
 };
 
-function getPrimaryLocation(location: string) {
-  return location.split(",")[0]?.trim() || location;
-}
-
-function getEditorialHeadline(photo: ArtboardPhoto) {
-  const primaryLocation = getPrimaryLocation(photo.location);
-  return `${photo.title} in ${primaryLocation}`;
-}
-
 function getEditorialParagraphs(
-  photo: ArtboardPhoto,
-  category: string,
-  month: string,
+  collection: ArchiveCollection,
+  photo: ArchivePhoto,
 ) {
-  const primaryLocation = getPrimaryLocation(photo.location);
-  return [
-    photo.description,
-    `${photo.title} sits inside the ${category.toLowerCase()} register of the Lookback archive, where photographs are sequenced less like isolated posts and more like editorial chapters. ${primaryLocation} gives the image its anchor, while ${month.toLowerCase()} positions it inside the broader calendar rhythm of the timeline.`,
-    `The lower composition keeps adjacent works in view on purpose. Instead of cutting the photograph loose from the archive, the layout lets neighboring frames bleed into the margins so the page reads like one moving spread inside a larger visual index.`,
-  ];
-}
-
-function getSourceLabel(src: string) {
-  try {
-    const hostname = new URL(src).hostname;
-    if (hostname.includes("unsplash")) return "Unsplash";
-    if (hostname.includes("pexels")) return "Pexels";
-    return hostname.replace(/^www\./, "");
-  } catch {
-    return "Source";
-  }
+  return [collection.intro, photo.description, collection.outro];
 }
 
 const ease = cubicBezier(0.16, 1, 0.3, 1);
@@ -63,18 +38,20 @@ const betterOffDisplay = {
 };
 
 export function ArticleEditorialSection({
+  collection,
   photos,
   photo,
-  previousPhoto,
   nextPhoto,
   currentIndex,
   displayIndex,
-  category,
-  month,
+  totalCountLabel,
 }: Props) {
-  const primaryLocation = getPrimaryLocation(photo.location);
-  const paragraphs = getEditorialParagraphs(photo, category, month);
-  const sourceLabel = getSourceLabel(photo.src);
+  const [loadedMainImageId, setLoadedMainImageId] = useState<string | null>(
+    null,
+  );
+  const mainImageLoaded = loadedMainImageId === photo.id;
+
+  const paragraphs = getEditorialParagraphs(collection, photo);
   const supportingPhotos = [
     photos[(currentIndex + 2) % photos.length],
     photos[(currentIndex + 3) % photos.length],
@@ -82,11 +59,9 @@ export function ArticleEditorialSection({
   ];
   const primarySupportPhoto = supportingPhotos[0] ?? nextPhoto;
   const secondarySupportPhotos = supportingPhotos.slice(1);
-  const headline = getEditorialHeadline(photo);
 
   return (
     <>
-      {/* ── DESKTOP ── */}
       <section className="hidden bg-white md:block">
         <AnimatePresence mode="wait">
           <motion.div
@@ -96,9 +71,7 @@ export function ArticleEditorialSection({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.22, ease: "easeInOut" }}
           >
-            {/* ── INTRO ── */}
             <div className="px-8 pt-12 lg:px-14 lg:pt-16">
-              {/* Top bar */}
               <motion.div
                 className="flex items-center justify-between"
                 initial={{ opacity: 0 }}
@@ -111,13 +84,13 @@ export function ArticleEditorialSection({
                     className="bg-black px-2.5 py-1 text-[0.68rem] uppercase tracking-[0.14em] text-white"
                     style={betterOffMono}
                   >
-                    {category}
+                    {collection.tag}
                   </span>
                   <span
                     className="text-[0.72rem] uppercase tracking-[0.1em] text-black/40"
                     style={betterOffMono}
                   >
-                    {month}
+                    {displayIndex} / {totalCountLabel}
                   </span>
                 </div>
                 <Link
@@ -127,11 +100,10 @@ export function ArticleEditorialSection({
                   className="text-[0.72rem] uppercase tracking-[0.1em] text-black/40 underline underline-offset-2 transition hover:text-black/70"
                   style={betterOffMono}
                 >
-                  {sourceLabel} ↗
+                  open frame ↗
                 </Link>
               </motion.div>
 
-              {/* Large headline */}
               <motion.h2
                 className="mt-6 max-w-[14ch] text-[clamp(2.6rem,4.2vw,4rem)] font-[700] uppercase leading-[0.88] tracking-[-0.065em] text-black"
                 style={betterOffDisplay}
@@ -140,10 +112,9 @@ export function ArticleEditorialSection({
                 viewport={vp}
                 transition={{ duration: 0.65, ease, delay: 0.06 }}
               >
-                {headline}
+                {collection.headline}
               </motion.h2>
 
-              {/* Metadata row */}
               <motion.div
                 className="mt-5 flex items-center gap-4"
                 initial={{ opacity: 0, y: 16 }}
@@ -155,7 +126,7 @@ export function ArticleEditorialSection({
                   className="text-[0.72rem] uppercase tracking-[0.12em] text-black/50"
                   style={betterOffMono}
                 >
-                  {primaryLocation}
+                  {collection.location}
                 </span>
                 <span className="h-px w-6 bg-black/20" />
                 <span
@@ -173,7 +144,6 @@ export function ArticleEditorialSection({
                 </span>
               </motion.div>
 
-              {/* Opening paragraph */}
               <motion.p
                 className="mt-7 max-w-[44ch] text-[1.02rem] leading-[1.52] tracking-[-0.022em] text-black/78"
                 style={betterOffSans}
@@ -186,10 +156,9 @@ export function ArticleEditorialSection({
               </motion.p>
             </div>
 
-            {/* ── MAIN IMAGE ── */}
             <div className="mt-12 px-8 lg:px-14">
               <motion.div
-                className="overflow-hidden bg-[#ece8dc]"
+                className="relative overflow-hidden bg-[#ece8dc]"
                 style={{ aspectRatio: "4 / 5", maxWidth: "21rem" }}
                 initial={{ opacity: 0, y: 36 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -210,23 +179,25 @@ export function ArticleEditorialSection({
                     priority
                     sizes="(max-width: 1024px) 30vw, 21rem"
                     className="object-cover"
+                    onLoad={() => setLoadedMainImageId(photo.id)}
                   />
                 </motion.div>
+                <PhotoLoader loading={!mainImageLoaded} />
               </motion.div>
 
               <motion.p
-                className="mt-3 text-[0.72rem] uppercase tracking-[0.1em] text-black/45"
+                className="mt-2 text-[0.72rem] uppercase tracking-[0.08em] text-black/50"
                 style={betterOffMono}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={vp}
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
               >
-                {category.toUpperCase()} — {month.toUpperCase()} — {photo.year}
+                {photo.title.toUpperCase()} — {collection.name.toUpperCase()} —{" "}
+                {photo.year}
               </motion.p>
             </div>
 
-            {/* ── SECOND PARAGRAPH ── */}
             <div className="mt-14 px-8 lg:px-14">
               <motion.p
                 className="max-w-[44ch] text-[1.02rem] leading-[1.52] tracking-[-0.022em] text-black/78"
@@ -240,7 +211,6 @@ export function ArticleEditorialSection({
               </motion.p>
             </div>
 
-            {/* ── DIVIDER ── */}
             <div className="mt-14 px-8 lg:px-14">
               <motion.div
                 className="h-px w-full bg-black/10"
@@ -252,7 +222,6 @@ export function ArticleEditorialSection({
               />
             </div>
 
-            {/* ── PULL QUOTE ── */}
             <div className="mt-14 px-8 lg:px-14">
               <motion.blockquote
                 className="max-w-[28ch] text-[clamp(1.5rem,2.4vw,2.1rem)] font-[500] leading-[1.18] tracking-[-0.04em] text-black"
@@ -262,11 +231,11 @@ export function ArticleEditorialSection({
                 viewport={vp}
                 transition={{ duration: 0.75, ease }}
               >
-                &ldquo;{photo.title} — {primaryLocation}, {photo.year}.&rdquo;
+                &ldquo;{photo.title} — {collection.location}, {photo.year}
+                .&rdquo;
               </motion.blockquote>
             </div>
 
-            {/* ── WIDE SUPPORT IMAGE ── */}
             <div className="mt-14 px-8 lg:px-14">
               <motion.div
                 className="overflow-hidden bg-[#ece8dc]"
@@ -294,7 +263,6 @@ export function ArticleEditorialSection({
               </motion.div>
             </div>
 
-            {/* ── THIRD PARAGRAPH ── */}
             <div className="mt-14 px-8 lg:px-14">
               <motion.p
                 className="max-w-[44ch] text-[1.02rem] leading-[1.52] tracking-[-0.022em] text-black/78"
@@ -308,7 +276,6 @@ export function ArticleEditorialSection({
               </motion.p>
             </div>
 
-            {/* ── SECONDARY SUPPORT IMAGES ── */}
             <div className="mt-14 px-8 pb-20 lg:px-14">
               <div className="flex gap-5">
                 {secondarySupportPhotos.map((supportPhoto, index) => (
@@ -361,7 +328,6 @@ export function ArticleEditorialSection({
                 ))}
               </div>
 
-              {/* Footer */}
               <motion.div
                 className="mt-12 flex items-center justify-between border-t border-black/10 pt-5"
                 initial={{ opacity: 0 }}
@@ -373,13 +339,13 @@ export function ArticleEditorialSection({
                   className="text-[0.72rem] uppercase tracking-[0.12em] text-black/40"
                   style={betterOffMono}
                 >
-                  {displayIndex} · {primaryLocation} · {photo.year}
+                  {displayIndex} · {collection.location} · {photo.year}
                 </p>
                 <p
                   className="text-[0.72rem] uppercase tracking-[0.12em] text-black/40"
                   style={betterOffMono}
                 >
-                  Lookback Archive
+                  personal archive
                 </p>
               </motion.div>
             </div>
@@ -387,7 +353,6 @@ export function ArticleEditorialSection({
         </AnimatePresence>
       </section>
 
-      {/* ── MOBILE ── */}
       <section className="border-t border-black/10 bg-white px-4 py-8 md:hidden">
         <div className="flex items-center justify-between text-[0.86rem] tracking-[-0.02em]">
           <Link href="/" className="transition hover:text-black/60">
@@ -399,29 +364,28 @@ export function ArticleEditorialSection({
             rel="noreferrer"
             className="underline underline-offset-2 transition hover:text-black/60"
           >
-            {sourceLabel} ↗
+            open frame ↗
           </Link>
         </div>
 
         <div className="mt-7 flex items-center gap-3">
-          <span className="bg-[#eadbff] px-3 py-1 text-[0.72rem] font-medium uppercase tracking-[0.12em] text-[#8767ba]">
-            {category}
+          <span className="bg-[#f1ebe0] px-3 py-1 text-[0.72rem] font-medium uppercase tracking-[0.12em] text-black/78">
+            {collection.tag}
           </span>
           <p className="text-[0.9rem] uppercase tracking-[0.08em] text-black/78">
-            ({month})
+            ({displayIndex} / {totalCountLabel})
           </p>
         </div>
 
         <h2
           className="mt-5 max-w-[10ch] text-[clamp(2.8rem,12vw,4.4rem)] font-[700] uppercase leading-[0.9] tracking-[-0.065em] text-black"
-          style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
+          style={betterOffDisplay}
         >
-          {headline}
+          {collection.headline}
         </h2>
 
-        {/* Image 1 — right under the headline */}
         <div
-          className="mt-6 overflow-hidden bg-[#ece8dc]"
+          className="relative mt-6 overflow-hidden bg-[#ece8dc]"
           style={{ aspectRatio: "4 / 3" }}
         >
           <div className="relative h-full w-full">
@@ -433,17 +397,16 @@ export function ArticleEditorialSection({
               className="object-cover"
             />
           </div>
+          <PhotoLoader loading={!mainImageLoaded} />
         </div>
 
-        {/* Paragraph 1 */}
         <p
           className="mt-6 text-[1rem] leading-[1.42] tracking-[-0.025em] text-black/82"
-          style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
+          style={betterOffSans}
         >
           {paragraphs[0]}
         </p>
 
-        {/* Image 2 — right after paragraph 1 */}
         <div
           className="mt-6 overflow-hidden bg-[#ece8dc]"
           style={{ aspectRatio: "16 / 9" }}
@@ -459,15 +422,13 @@ export function ArticleEditorialSection({
           </div>
         </div>
 
-        {/* Paragraph 2 */}
         <p
           className="mt-6 text-[1rem] leading-[1.42] tracking-[-0.025em] text-black/82"
-          style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
+          style={betterOffSans}
         >
           {paragraphs[1]}
         </p>
 
-        {/* Images 3 & 4 — two secondary images side by side */}
         <div className="mt-6 grid grid-cols-2 gap-3">
           {secondarySupportPhotos.map((supportPhoto, index) => (
             <div key={supportPhoto.id}>
@@ -492,17 +453,16 @@ export function ArticleEditorialSection({
           ))}
         </div>
 
-        {/* Paragraph 3 */}
         <p
           className="mt-6 text-[1rem] leading-[1.42] tracking-[-0.025em] text-black/82"
-          style={{ fontFamily: '"Host Grotesk", system-ui, sans-serif' }}
+          style={betterOffSans}
         >
           {paragraphs[2]}
         </p>
 
         <div className="mt-7 border-t border-black/10 pt-3">
           <p className="text-[0.72rem] uppercase tracking-[0.12em] text-black/72">
-            {displayIndex} · {primaryLocation} · {photo.year}
+            {displayIndex} · {collection.location} · {photo.year}
           </p>
         </div>
       </section>
