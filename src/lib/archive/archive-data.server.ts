@@ -11,6 +11,7 @@ const ARCHIVE_ROOT = path.join(process.cwd(), "public", "Archive");
 const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 
 const COLLECTION_ORDER = [
+  "Sookwyd",
   "Sxint",
   "Glo Rich",
   "NYC",
@@ -36,9 +37,34 @@ type CollectionSeed = {
 };
 
 const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
+  Sookwyd: {
+    name: "Sookwyd",
+    headline: "Sookwyd at CT Shutdown, close frames from the middle of the set",
+    location: "CT Shutdown",
+    tag: "artist spotlight",
+    intro:
+      "These photographs are from Sookwyd performing at CT Shutdown. The set stays tight on the performer, the lights, and the pressure that sits in the room when everybody is pushed toward the front.",
+    outro:
+      "Like the other recent CT Shutdown folders, this one works best as a direct document of the night. No cleanup, no distance, just the performer and the atmosphere while it was still loud.",
+    photoLabel: "Sookwyd frame",
+    captionTemplates: [
+      "A close performance frame from Sookwyd at CT Shutdown.",
+      "One of the new Sookwyd stills held tight to the stage at CT Shutdown.",
+      "Another live document from Sookwyd's CT Shutdown set.",
+      "A front-of-room Sookwyd frame with the set still in motion.",
+    ],
+    videoEmbedSrc: "https://www.youtube.com/embed/OJOIs6nvPS8",
+    links: [
+      {
+        href: "https://linktr.ee/soooooook?utm_source=linktree_profile_share&ltsid=5fdf166e-490d-4f14-9c2f-7153092e4533",
+        label: "LINKTREE",
+      },
+    ],
+  },
   Sxint: {
     name: "Sxint",
-    headline: "Sxint at CT Shutdown, live wire energy from the floor to the mic",
+    headline:
+      "Sxint at CT Shutdown, live wire energy from the floor to the mic",
     location: "CT Shutdown",
     tag: "live set",
     intro:
@@ -52,17 +78,25 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       "One more live document from Sxint's CT Shutdown performance.",
       "A rough-edged frame from Sxint at CT Shutdown with the crowd still pushing in.",
     ],
-    videoEmbedSrc: "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
+    videoEmbedSrc:
+      "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
     links: [
-      { href: "https://www.youtube.com/@UCm0QFpsEycfF3FEQ6eZWd3w", label: "YOUTUBE" },
+      {
+        href: "https://www.youtube.com/@UCm0QFpsEycfF3FEQ6eZWd3w",
+        label: "YOUTUBE",
+      },
       { href: "https://soundcloud.com/user-495163601", label: "SOUNDCLOUD" },
-      { href: "https://open.spotify.com/artist/0Il5MAzLKVR47Q7nHSlfz5", label: "SPOTIFY" },
+      {
+        href: "https://open.spotify.com/artist/0Il5MAzLKVR47Q7nHSlfz5",
+        label: "SPOTIFY",
+      },
       { href: "https://www.instagram.com/hatesxint/", label: "INSTAGRAM" },
     ],
   },
   "Glo Rich": {
     name: "Glo Rich",
-    headline: "Glo Rich at CT Shutdown, front-and-center from the latest underground show",
+    headline:
+      "Glo Rich at CT Shutdown, front-and-center from the latest underground show",
     location: "CT Shutdown",
     tag: "artist spotlight",
     intro:
@@ -76,9 +110,13 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       "A front-row still from Glo Rich's CT Shutdown appearance.",
       "Another live document of Glo Rich inside the CT Shutdown room.",
     ],
-    videoEmbedSrc: "https://www.youtube.com/embed/BniimZibwEU?si=4ZWfaaU1UuC72MDg",
+    videoEmbedSrc:
+      "https://www.youtube.com/embed/BniimZibwEU?si=4ZWfaaU1UuC72MDg",
     links: [
-      { href: "https://linktr.ee/Glorich100?utm_source=linktree_profile_share&ltsid=aaadd2e8-0692-44c0-b5f3-6b8bd3a9bd98", label: "LINKTREE" },
+      {
+        href: "https://linktr.ee/Glorich100?utm_source=linktree_profile_share&ltsid=aaadd2e8-0692-44c0-b5f3-6b8bd3a9bd98",
+        label: "LINKTREE",
+      },
     ],
   },
   NYC: {
@@ -312,7 +350,7 @@ export const getArchiveCollections = cache(
 
 export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
   const collections = await getArchiveCollections();
-  const featuredCollectionNames = new Set(["Sxint", "Glo Rich"]);
+  const featuredCollectionNames = new Set(["Sookwyd", "Sxint", "Glo Rich"]);
 
   const featuredCollections = collections.filter((collection) =>
     featuredCollectionNames.has(collection.name),
@@ -351,13 +389,22 @@ export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
     });
   }
 
-  // Arrange so all 6 featured photos land in the center-visible columns of the first two rows.
-  // The 5-column grid shows cols 1–3 at initial scroll. Put 3 featured in row-1 cols 1–3,
-  // 2 standard fillers in the off-screen cols 4–5, then 3 more featured in row-2 cols 1–3.
-  const firstFeatured = featuredPhotos.slice(0, 3);
-  const lastFeatured = featuredPhotos.slice(3);
-  const fillers = standardPhotos.slice(0, 2);
-  const rest = standardPhotos.slice(2);
+  // The home artboard reveals the first three columns on load. Keep featured work
+  // in those visible slots row-by-row, and use standard photos only in the two
+  // off-screen filler columns between featured rows.
+  const openingSequence: ArchivePhoto[] = [];
+  let standardOffset = 0;
 
-  return [...firstFeatured, ...fillers, ...lastFeatured, ...rest];
+  for (let index = 0; index < featuredPhotos.length; index += 3) {
+    openingSequence.push(...featuredPhotos.slice(index, index + 3));
+
+    if (index + 3 < featuredPhotos.length) {
+      openingSequence.push(
+        ...standardPhotos.slice(standardOffset, standardOffset + 2),
+      );
+      standardOffset += 2;
+    }
+  }
+
+  return [...openingSequence, ...standardPhotos.slice(standardOffset)];
 });

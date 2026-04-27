@@ -48,7 +48,9 @@ function ArtistCard({ artist }: { artist: FeaturedArtist }) {
           CT SHUTDOWN / UNDERGROUND CONCERT
         </p>
         <h2 className="hero__artist-name">{artist.name}</h2>
-        <p className="paragraph hero__artist-description">{artist.description}</p>
+        <p className="paragraph hero__artist-description">
+          {artist.description}
+        </p>
 
         <div className="hero__artist-links">
           {artist.links.map((link) => (
@@ -123,7 +125,7 @@ export function ArtboardDemoPanel({ visible }: ArtboardDemoPanelProps) {
 
             <div className="hero__feature-copy">
               <p className="paragraph">
-                Two performers from CT Shutdown, brought forward on the
+                Three performers from CT Shutdown, brought forward on the
                 artboard with stills, writeups, and embedded performance clips.
               </p>
               <Link

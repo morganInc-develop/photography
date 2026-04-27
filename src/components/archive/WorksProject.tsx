@@ -243,14 +243,21 @@ export default function WorksProject({ project }: Props) {
           }}
         >
           {project.videoEmbedSrc ? (
-            <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden" }}>
+            <div
+              style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden" }}
+            >
               <iframe
                 src={project.videoEmbedSrc}
                 title={`${project.name} — performance`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
-                style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  display: "block",
+                }}
               />
             </div>
           ) : null}
@@ -271,7 +278,8 @@ export default function WorksProject({ project }: Props) {
                     textDecoration: "none",
                     borderBottom: "1px solid rgba(255,255,255,0.3)",
                     paddingBottom: "2px",
-                    fontFamily: '"SFMono-Regular","IBM Plex Mono","Courier New",monospace',
+                    fontFamily:
+                      '"SFMono-Regular","IBM Plex Mono","Courier New",monospace',
                     transition: "border-color 0.2s ease",
                   }}
                 >

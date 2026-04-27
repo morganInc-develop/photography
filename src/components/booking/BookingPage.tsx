@@ -492,7 +492,9 @@ export default function BookingPage() {
                 className="text-[0.62rem] uppercase tracking-[0.14em] text-black/30"
                 style={mono}
               >
-                {status === "submitting" ? "SENDING\u2026" : "ALL FIELDS REQUIRED"}
+                {status === "submitting"
+                  ? "SENDING\u2026"
+                  : "ALL FIELDS REQUIRED"}
               </p>
               <button
                 type="submit"
@@ -505,21 +507,21 @@ export default function BookingPage() {
                   data-button-animate-chars
                   className="btn-animate-chars__text paragraph"
                 >
-                  {
-                    [...(status === "submitting" ? "SENDING\u2026" : "SEND INQUIRY")].map(
-                      (char, i) => (
-                        <span
-                          key={i}
-                          style={{
-                            transitionDelay: `${i * 0.01}s`,
-                            whiteSpace: char === " " ? "pre" : "normal",
-                          }}
-                        >
-                          {char}
-                        </span>
-                      ),
-                    )
-                  }
+                  {[
+                    ...(status === "submitting"
+                      ? "SENDING\u2026"
+                      : "SEND INQUIRY"),
+                  ].map((char, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        transitionDelay: `${i * 0.01}s`,
+                        whiteSpace: char === " " ? "pre" : "normal",
+                      }}
+                    >
+                      {char}
+                    </span>
+                  ))}
                 </span>
               </button>
             </div>

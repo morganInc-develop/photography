@@ -49,16 +49,25 @@ export function ArticleSplit({
   const totalSlides = photos.length + (hasVideoSlide ? 1 : 0);
   const isVideoSlide = hasVideoSlide && currentIndex === photos.length;
 
-  const photo = (isVideoSlide ? photos[photos.length - 1] : photos[currentIndex]) ?? photos[0];
+  const photo =
+    (isVideoSlide ? photos[photos.length - 1] : photos[currentIndex]) ??
+    photos[0];
   const prevCard = isVideoSlide
     ? (photos[photos.length - 1] ?? null)
-    : (currentIndex > 0 ? photos[currentIndex - 1] ?? null : null);
+    : currentIndex > 0
+      ? (photos[currentIndex - 1] ?? null)
+      : null;
   const nextCard = isVideoSlide
     ? null
-    : (currentIndex < photos.length - 1 ? photos[currentIndex + 1] ?? null : null);
-  const isNextVideoSlide = !isVideoSlide && hasVideoSlide && currentIndex === photos.length - 1;
+    : currentIndex < photos.length - 1
+      ? (photos[currentIndex + 1] ?? null)
+      : null;
+  const isNextVideoSlide =
+    !isVideoSlide && hasVideoSlide && currentIndex === photos.length - 1;
   const nextPhoto = photos[(currentIndex + 1) % photos.length] ?? photo;
-  const displayIndex = isVideoSlide ? String(totalSlides).padStart(2, "0") : getDisplayIndex(currentIndex);
+  const displayIndex = isVideoSlide
+    ? String(totalSlides).padStart(2, "0")
+    : getDisplayIndex(currentIndex);
   const totalCountLabel = String(totalSlides).padStart(2, "0");
   const imageLoaded = loadedPhotoId === photo?.id;
 
@@ -325,8 +334,20 @@ export function ArticleSplit({
                       transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
                       className="absolute inset-0 flex flex-col items-center justify-center bg-black gap-3"
                     >
-                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="11" stroke="white" strokeOpacity="0.4" strokeWidth="1" />
+                      <svg
+                        width="36"
+                        height="36"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="11"
+                          stroke="white"
+                          strokeOpacity="0.4"
+                          strokeWidth="1"
+                        />
                         <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white" />
                       </svg>
                       <span
@@ -366,11 +387,17 @@ export function ArticleSplit({
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
+                  transition={{
+                    duration: 0.55,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.18,
+                  }}
                   className="mt-2 text-[0.72rem] uppercase tracking-[0.12em] text-black/72"
                   style={betterOffMono}
                 >
-                  {isVideoSlide ? "VIDEO" : `${collection.tag.toUpperCase()} · FRAME ${displayIndex}`}
+                  {isVideoSlide
+                    ? "VIDEO"
+                    : `${collection.tag.toUpperCase()} · FRAME ${displayIndex}`}
                 </motion.p>
               </AnimatePresence>
             </div>
@@ -423,8 +450,20 @@ export function ArticleSplit({
                       className="relative flex flex-col items-center justify-center gap-2 overflow-hidden bg-black transition-transform duration-700 group-hover:scale-[1.03]"
                       style={{ aspectRatio: "3 / 4" }}
                     >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="11" stroke="white" strokeOpacity="0.4" strokeWidth="1" />
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="11"
+                          stroke="white"
+                          strokeOpacity="0.4"
+                          strokeWidth="1"
+                        />
                         <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white" />
                       </svg>
                     </div>
@@ -593,11 +632,26 @@ export function ArticleSplit({
                       transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
                       className="absolute inset-0 flex flex-col items-center justify-center bg-black gap-2"
                     >
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="11" stroke="white" strokeOpacity="0.4" strokeWidth="1" />
+                      <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="11"
+                          stroke="white"
+                          strokeOpacity="0.4"
+                          strokeWidth="1"
+                        />
                         <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white" />
                       </svg>
-                      <span className="text-[0.55rem] uppercase tracking-[0.16em] text-white/50" style={betterOffMono}>
+                      <span
+                        className="text-[0.55rem] uppercase tracking-[0.16em] text-white/50"
+                        style={betterOffMono}
+                      >
                         Video
                       </span>
                     </motion.div>
@@ -631,11 +685,17 @@ export function ArticleSplit({
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
-                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: 0.14 }}
+                  transition={{
+                    duration: 0.45,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.14,
+                  }}
                   className="mt-1.5 text-[0.6rem] uppercase tracking-[0.1em] text-black/72"
                   style={betterOffMono}
                 >
-                  {isVideoSlide ? "VIDEO" : `${collection.tag.toUpperCase()} · FRAME ${displayIndex}`}
+                  {isVideoSlide
+                    ? "VIDEO"
+                    : `${collection.tag.toUpperCase()} · FRAME ${displayIndex}`}
                 </motion.p>
               </AnimatePresence>
             </div>
@@ -688,8 +748,20 @@ export function ArticleSplit({
                       className="relative flex items-center justify-center overflow-hidden bg-black"
                       style={{ aspectRatio: "3 / 4" }}
                     >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="11" stroke="white" strokeOpacity="0.4" strokeWidth="1" />
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="11"
+                          stroke="white"
+                          strokeOpacity="0.4"
+                          strokeWidth="1"
+                        />
                         <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white" />
                       </svg>
                     </div>
@@ -742,10 +814,24 @@ export function ArticleSplit({
                   aria-label={`Previous collection: ${prevCollection.name}`}
                   className="group flex items-center gap-1.5 opacity-50 transition-opacity duration-300 active:opacity-90"
                 >
-                  <svg width="8" height="8" viewBox="0 0 10 10" fill="none" className="shrink-0">
-                    <path d="M9 1L1 5L9 9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="square" />
+                  <svg
+                    width="8"
+                    height="8"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    className="shrink-0"
+                  >
+                    <path
+                      d="M9 1L1 5L9 9"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="square"
+                    />
                   </svg>
-                  <span className="text-[0.55rem] uppercase tracking-[0.14em] text-black/70 leading-none" style={betterOffMono}>
+                  <span
+                    className="text-[0.55rem] uppercase tracking-[0.14em] text-black/70 leading-none"
+                    style={betterOffMono}
+                  >
                     {prevCollection.name}
                   </span>
                 </button>
@@ -763,11 +849,25 @@ export function ArticleSplit({
                   aria-label={`Next collection: ${nextCollection.name}`}
                   className="group flex items-center gap-1.5 opacity-50 transition-opacity duration-300 active:opacity-90"
                 >
-                  <span className="text-[0.55rem] uppercase tracking-[0.14em] text-black/70 leading-none" style={betterOffMono}>
+                  <span
+                    className="text-[0.55rem] uppercase tracking-[0.14em] text-black/70 leading-none"
+                    style={betterOffMono}
+                  >
                     {nextCollection.name}
                   </span>
-                  <svg width="8" height="8" viewBox="0 0 10 10" fill="none" className="shrink-0">
-                    <path d="M1 1L9 5L1 9" stroke="currentColor" strokeWidth="1.2" strokeLinecap="square" />
+                  <svg
+                    width="8"
+                    height="8"
+                    viewBox="0 0 10 10"
+                    fill="none"
+                    className="shrink-0"
+                  >
+                    <path
+                      d="M1 1L9 5L1 9"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="square"
+                    />
                   </svg>
                 </button>
               ) : (
@@ -845,7 +945,10 @@ export function ArticleSplit({
               >
                 {collection.intro}
               </p>
-              <div data-article-copy className="mt-6 border-t border-black/10 pt-3">
+              <div
+                data-article-copy
+                className="mt-6 border-t border-black/10 pt-3"
+              >
                 <p
                   className="text-[0.72rem] uppercase tracking-[0.12em] text-black/74"
                   style={betterOffMono}

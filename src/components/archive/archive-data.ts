@@ -166,9 +166,13 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
       "/Archive/Glo Rich/Glo Rich-02.jpeg",
       "/Archive/Glo Rich/Glo Rich-03.jpeg",
     ],
-    videoEmbedSrc: "https://www.youtube.com/embed/BniimZibwEU?si=4ZWfaaU1UuC72MDg",
+    videoEmbedSrc:
+      "https://www.youtube.com/embed/BniimZibwEU?si=4ZWfaaU1UuC72MDg",
     links: [
-      { href: "https://linktr.ee/Glorich100?utm_source=linktree_profile_share&ltsid=aaadd2e8-0692-44c0-b5f3-6b8bd3a9bd98", label: "LINKTREE" },
+      {
+        href: "https://linktr.ee/Glorich100?utm_source=linktree_profile_share&ltsid=aaadd2e8-0692-44c0-b5f3-6b8bd3a9bd98",
+        label: "LINKTREE",
+      },
     ],
   },
   {
@@ -184,12 +188,39 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
       "/Archive/Sxint/Sxint-02.jpg",
       "/Archive/Sxint/Sxint-03.jpg",
     ],
-    videoEmbedSrc: "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
+    videoEmbedSrc:
+      "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
     links: [
-      { href: "https://www.youtube.com/@UCm0QFpsEycfF3FEQ6eZWd3w", label: "YOUTUBE" },
+      {
+        href: "https://www.youtube.com/@UCm0QFpsEycfF3FEQ6eZWd3w",
+        label: "YOUTUBE",
+      },
       { href: "https://soundcloud.com/user-495163601", label: "SOUNDCLOUD" },
-      { href: "https://open.spotify.com/artist/0Il5MAzLKVR47Q7nHSlfz5", label: "SPOTIFY" },
+      {
+        href: "https://open.spotify.com/artist/0Il5MAzLKVR47Q7nHSlfz5",
+        label: "SPOTIFY",
+      },
       { href: "https://www.instagram.com/hatesxint/", label: "INSTAGRAM" },
+    ],
+  },
+  {
+    index: "010",
+    slug: "sookwyd",
+    name: "SOOKWYD",
+    href: "/the-archive/sookwyd",
+    description:
+      "Sookwyd live at CT Shutdown. Two close frames from the set, held on the performer and the pressure of the room while everything was still in motion.",
+    coverImage: "/Archive/Sookwyd/Sookwyd-01.jpg",
+    images: [
+      "/Archive/Sookwyd/Sookwyd-01.jpg",
+      "/Archive/Sookwyd/Sookwyd-02.jpg",
+    ],
+    videoEmbedSrc: "https://www.youtube.com/embed/OJOIs6nvPS8",
+    links: [
+      {
+        href: "https://linktr.ee/soooooook?utm_source=linktree_profile_share&ltsid=5fdf166e-490d-4f14-9c2f-7153092e4533",
+        label: "LINKTREE",
+      },
     ],
   },
 ];

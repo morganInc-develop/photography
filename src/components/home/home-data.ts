@@ -25,6 +25,26 @@ export type FeaturedArtist = {
 
 export const FEATURED_ARTISTS = [
   {
+    collectionSlug: "sookwyd",
+    description:
+      "Sookwyd live at CT Shutdown. Two performance frames pushed forward with the same close-room energy as the other recent artist sets.",
+    gallery: [
+      "/Archive/Sookwyd/Sookwyd-01.jpg",
+      "/Archive/Sookwyd/Sookwyd-02.jpg",
+    ],
+    heroImageAlt: "Sookwyd performing at CT Shutdown",
+    heroImageSrc: "/Archive/Sookwyd/Sookwyd-02.jpg",
+    links: [
+      {
+        href: "https://linktr.ee/soooooook?utm_source=linktree_profile_share&ltsid=5fdf166e-490d-4f14-9c2f-7153092e4533",
+        label: "LINKTREE",
+      },
+    ],
+    name: "Sookwyd",
+    videoEmbedSrc: "https://www.youtube.com/embed/OJOIs6nvPS8",
+    videoTitle: "Sookwyd at CT Shutdown",
+  },
+  {
     collectionSlug: "glo-rich",
     description:
       "Glo Rich live at CT Shutdown. These are fresh frames from the underground set, pushed to the front as part of the most recent work on the board.",
@@ -42,7 +62,8 @@ export const FEATURED_ARTISTS = [
       },
     ],
     name: "Glo Rich",
-    videoEmbedSrc: "https://www.youtube.com/embed/BniimZibwEU?si=4ZWfaaU1UuC72MDg",
+    videoEmbedSrc:
+      "https://www.youtube.com/embed/BniimZibwEU?si=4ZWfaaU1UuC72MDg",
     videoTitle: "Glo Rich at CT Shutdown",
   },
   {
@@ -75,7 +96,8 @@ export const FEATURED_ARTISTS = [
       },
     ],
     name: "Sxint",
-    videoEmbedSrc: "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
+    videoEmbedSrc:
+      "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
     videoTitle: "Sxint at CT Shutdown",
   },
 ] satisfies readonly FeaturedArtist[];
