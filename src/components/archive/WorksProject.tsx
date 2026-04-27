@@ -230,6 +230,58 @@ export default function WorksProject({ project }: Props) {
           </div>
         ))}
       </section>
+
+      {/* ── ARTIST INFO ── */}
+      {(project.videoEmbedSrc ?? project.links?.length) ? (
+        <section
+          style={{
+            background: "#0a0a0a",
+            padding: "clamp(2rem, 5vw, 4rem) clamp(1.5rem, 6vw, 5rem)",
+            display: "flex",
+            flexDirection: "column",
+            gap: "2.5rem",
+          }}
+        >
+          {project.videoEmbedSrc ? (
+            <div style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden" }}>
+              <iframe
+                src={project.videoEmbedSrc}
+                title={`${project.name} — performance`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+              />
+            </div>
+          ) : null}
+
+          {project.links?.length ? (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+              {project.links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    color: "#fff",
+                    fontSize: "0.68rem",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    textDecoration: "none",
+                    borderBottom: "1px solid rgba(255,255,255,0.3)",
+                    paddingBottom: "2px",
+                    fontFamily: '"SFMono-Regular","IBM Plex Mono","Courier New",monospace',
+                    transition: "border-color 0.2s ease",
+                  }}
+                >
+                  {link.label} ↗
+                </a>
+              ))}
+            </div>
+          ) : null}
+        </section>
+      ) : null}
     </>
   );
 }

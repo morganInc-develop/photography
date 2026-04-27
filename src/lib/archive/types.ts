@@ -11,6 +11,8 @@ export type ArchivePhoto = {
   collectionName: string;
 };
 
+export type ArchiveLink = { href: string; label: string };
+
 export type ArchiveCollection = {
   slug: string;
   folderName: string;
@@ -23,4 +25,6 @@ export type ArchiveCollection = {
   outro: string;
   photos: ArchivePhoto[];
   coverImage: string;
+  videoEmbedSrc?: string;
+  links?: ArchiveLink[];
 };

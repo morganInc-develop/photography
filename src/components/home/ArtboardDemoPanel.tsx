@@ -1,149 +1,148 @@
 "use client";
 
 import {
-  DEMO_VIDEO_PLACEHOLDER,
-  DEMO_VIDEO_SRC,
+  FEATURED_ARTISTS,
+  type FeaturedArtist,
 } from "@/components/home/home-data";
 import { SplitCharButton } from "@/components/ui/SplitCharButton";
-import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 type ArtboardDemoPanelProps = {
   visible: boolean;
 };
 
+function ArtistCard({ artist }: { artist: FeaturedArtist }) {
+  return (
+    <article className="hero__artist-card">
+      <div className="hero__artist-media">
+        <div className="hero__artist-main">
+          <Image
+            src={artist.heroImageSrc}
+            alt={artist.heroImageAlt}
+            fill
+            sizes="(max-width: 767px) 100vw, 32vw"
+            className="object-cover"
+          />
+        </div>
+
+        <div className="hero__artist-strip" aria-hidden="true">
+          {artist.gallery.map((src, index) => (
+            <div key={`${artist.name}-${src}`} className="hero__artist-thumb">
+              <Image
+                src={src}
+                alt=""
+                fill
+                sizes="(max-width: 767px) 28vw, 10vw"
+                className="object-cover"
+                priority={index === 0}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="hero__artist-copy">
+        <p className="paragraph hero__artist-kicker">
+          CT SHUTDOWN / UNDERGROUND CONCERT
+        </p>
+        <h2 className="hero__artist-name">{artist.name}</h2>
+        <p className="paragraph hero__artist-description">{artist.description}</p>
+
+        <div className="hero__artist-links">
+          {artist.links.map((link) => (
+            <a
+              key={`${artist.name}-${link.label}`}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="hero__artist-link paragraph"
+              data-underline-link="alt"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        <div className="hero__artist-actions">
+          <SplitCharButton
+            href={`/photography?collection=${encodeURIComponent(artist.collectionSlug)}`}
+            label="VIEW SET"
+          />
+        </div>
+      </div>
+
+      <div className="hero__artist-video">
+        <iframe
+          src={artist.videoEmbedSrc}
+          title={artist.videoTitle}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
+    </article>
+  );
+}
+
 export function ArtboardDemoPanel({ visible }: ArtboardDemoPanelProps) {
-  const overlayVideoRef = useRef<HTMLVideoElement | null>(null);
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isPanelCollapsed, setIsPanelCollapsed] = useState(false);
-  const open = visible;
 
-  useEffect(() => {
-    if (!isOverlayOpen) {
-      return;
-    }
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsOverlayOpen(false);
-      }
-    };
-
-    document.addEventListener("keydown", handleEscape);
-
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [isOverlayOpen]);
-
-  useEffect(() => {
-    const video = overlayVideoRef.current;
-    if (!video) {
-      return;
-    }
-
-    if (isOverlayOpen) {
-      void video.play().catch(() => {
-        // Native controls remain available if autoplay is blocked.
-      });
-      return;
-    }
-
-    video.pause();
-    video.currentTime = 0;
-  }, [isOverlayOpen]);
-
-  if (!open) {
+  if (!visible) {
     return null;
   }
 
   return (
-    <>
-      <div className="hero__tab-wrap" style={{ opacity: visible ? 1 : 0 }}>
-        <div className="hero__mobile-bar">
-          <div className="hero__mobile-nav">
-            <SplitCharButton href="/archive" label="THE ARCHIVE" />
-            <SplitCharButton href="/the-profile" label="THE PROFILE" />
-          </div>
-          <button
-            type="button"
-            className="hero__panel-toggle"
-            onClick={() => setIsPanelCollapsed((v) => !v)}
-            aria-label={isPanelCollapsed ? "Expand panel" : "Close panel"}
-          >
-            <p className="paragraph">{isPanelCollapsed ? "+" : "−"}</p>
-          </button>
+    <div className="hero__tab-wrap" style={{ opacity: visible ? 1 : 0 }}>
+      <div className="hero__mobile-bar">
+        <div className="hero__mobile-nav">
+          <SplitCharButton href="/archive" label="THE ARCHIVE" />
+          <SplitCharButton href="/the-profile" label="THE PROFILE" />
         </div>
-
-        {!isPanelCollapsed && (
-          <div className="hero__tab">
-            <div className="tab__video">
-              <div className="tab__demo">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  alt="Made Invincible intro poster"
-                  src={DEMO_VIDEO_PLACEHOLDER}
-                  className="bunny-bg__poster"
-                />
-
-                <div className="bunny-bg__action">
-                  <SplitCharButton
-                    label="PLAY INTRO"
-                    onClick={() => setIsOverlayOpen(true)}
-                  />
-                </div>
-
-                <div className="demo-section__fade-left" />
-              </div>
-            </div>
-
-            <div className="tab__desc">
-              <p className="paragraph">
-                MADE INVINCIBLE IS A PHOTOGRAPHY AND VIDEOGRAPHY STUDIO CRAFTING
-                PORTRAITS, CAMPAIGNS, AND SHORT-FORM FILMS WITH A CINEMATIC,
-                EDITORIAL POINT OF VIEW.
-                <br />
-                <br />
-                THIS SPACE HIGHLIGHTS STILL IMAGERY, MOTION WORK, AND VISUAL
-                STORYTELLING BUILT FOR ARTISTS, BRANDS, AND PEOPLE WHO WANT
-                SOMETHING MORE PERSONAL THAN GENERIC CONTENT.
-              </p>
-              <SplitCharButton href="/booking" label="BOOK NOW" />
-            </div>
-          </div>
-        )}
+        <button
+          type="button"
+          className="hero__panel-toggle"
+          onClick={() => setIsPanelCollapsed((value) => !value)}
+          aria-label={isPanelCollapsed ? "Expand panel" : "Collapse panel"}
+        >
+          <p className="paragraph">{isPanelCollapsed ? "+" : "−"}</p>
+        </button>
       </div>
 
-      {isOverlayOpen ? (
-        <div
-          className="intro-overlay"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Made Invincible intro video"
-          onClick={() => setIsOverlayOpen(false)}
-        >
-          <div className="intro-overlay__chrome">
-            <SplitCharButton
-              label="CLOSE"
-              onClick={() => setIsOverlayOpen(false)}
-            />
+      {!isPanelCollapsed ? (
+        <section className="hero__tab">
+          <div className="hero__feature-head">
+            <div>
+              <p className="paragraph hero__feature-kicker">
+                MOST RECENT WORK / LIVE DOCUMENTATION
+              </p>
+              <h2 className="hero__feature-title">CT Shutdown</h2>
+            </div>
+
+            <div className="hero__feature-copy">
+              <p className="paragraph">
+                Two performers from CT Shutdown, brought forward on the
+                artboard with stills, writeups, and embedded performance clips.
+              </p>
+              <Link
+                href="/photography"
+                className="hero__feature-link paragraph"
+                data-underline-link="alt"
+              >
+                OPEN PHOTOGRAPHY INDEX
+              </Link>
+            </div>
           </div>
 
-          <div
-            className="intro-overlay__media"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <video
-              ref={overlayVideoRef}
-              className="intro-overlay__video"
-              src={DEMO_VIDEO_SRC}
-              poster={DEMO_VIDEO_PLACEHOLDER}
-              playsInline
-              controls
-              preload="metadata"
-            />
+          <div className="hero__feature-grid">
+            {FEATURED_ARTISTS.map((artist) => (
+              <ArtistCard key={artist.name} artist={artist} />
+            ))}
           </div>
-        </div>
+        </section>
       ) : null}
-    </>
+    </div>
   );
 }

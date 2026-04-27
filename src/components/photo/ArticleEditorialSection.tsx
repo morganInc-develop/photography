@@ -348,6 +348,49 @@ export function ArticleEditorialSection({
                   personal archive
                 </p>
               </motion.div>
+
+              {collection.videoEmbedSrc ? (
+                <motion.div
+                  className="mt-14 w-full overflow-hidden bg-black"
+                  style={{ aspectRatio: "16/9" }}
+                  initial={{ opacity: 0, y: 32 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={vpLg}
+                  transition={{ duration: 0.85, ease }}
+                >
+                  <iframe
+                    src={collection.videoEmbedSrc}
+                    title={`${collection.name} — performance`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    className="h-full w-full border-0"
+                  />
+                </motion.div>
+              ) : null}
+
+              {collection.links?.length ? (
+                <motion.div
+                  className="mt-8 flex flex-wrap gap-5"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={vp}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  {collection.links.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="border-b border-black/30 pb-0.5 text-[0.68rem] uppercase tracking-[0.16em] text-black/60 transition-colors duration-200 hover:text-black"
+                      style={betterOffMono}
+                    >
+                      {link.label} ↗
+                    </a>
+                  ))}
+                </motion.div>
+              ) : null}
             </div>
           </motion.div>
         </AnimatePresence>
@@ -465,6 +508,39 @@ export function ArticleEditorialSection({
             {displayIndex} · {collection.location} · {photo.year}
           </p>
         </div>
+
+        {collection.videoEmbedSrc ? (
+          <div
+            className="mt-8 w-full overflow-hidden bg-black"
+            style={{ aspectRatio: "16/9" }}
+          >
+            <iframe
+              src={collection.videoEmbedSrc}
+              title={`${collection.name} — performance`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="h-full w-full border-0"
+            />
+          </div>
+        ) : null}
+
+        {collection.links?.length ? (
+          <div className="mt-6 flex flex-wrap gap-4">
+            {collection.links.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="border-b border-black/30 pb-0.5 text-[0.68rem] uppercase tracking-[0.16em] text-black/60 transition-colors duration-200 active:text-black"
+                style={betterOffMono}
+              >
+                {link.label} ↗
+              </a>
+            ))}
+          </div>
+        ) : null}
       </section>
     </>
   );

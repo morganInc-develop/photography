@@ -1,3 +1,5 @@
+export type ArchiveProjectLink = { href: string; label: string };
+
 export type ArchiveProject = {
   index: string;
   slug: string;
@@ -6,6 +8,8 @@ export type ArchiveProject = {
   description: string;
   coverImage: string;
   images: string[];
+  videoEmbedSrc?: string;
+  links?: ArchiveProjectLink[];
 };
 
 export const ARCHIVE_PROJECTS: ArchiveProject[] = [
@@ -147,6 +151,45 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
       "/Archive/Studio/DSC03283.JPG",
       "/Archive/Studio/DSC03301.JPG",
       "/Archive/Studio/IMG_2320.JPG",
+    ],
+  },
+  {
+    index: "008",
+    slug: "glo-rich",
+    name: "GLO RICH",
+    href: "/the-archive/glo-rich",
+    description:
+      "Glo Rich live at CT Shutdown. Fresh frames from the underground set, kept close to the performer and the heat of the room.",
+    coverImage: "/Archive/Glo Rich/Glo Rich-01.jpeg",
+    images: [
+      "/Archive/Glo Rich/Glo Rich-01.jpeg",
+      "/Archive/Glo Rich/Glo Rich-02.jpeg",
+      "/Archive/Glo Rich/Glo Rich-03.jpeg",
+    ],
+    videoEmbedSrc: "https://www.youtube.com/embed/BniimZibwEU?si=4ZWfaaU1UuC72MDg",
+    links: [
+      { href: "https://linktr.ee/Glorich100?utm_source=linktree_profile_share&ltsid=aaadd2e8-0692-44c0-b5f3-6b8bd3a9bd98", label: "LINKTREE" },
+    ],
+  },
+  {
+    index: "009",
+    slug: "sxint",
+    name: "SXINT",
+    href: "/the-archive/sxint",
+    description:
+      "Sxint live at CT Shutdown. Everything in this set stays close to the stage and the way the room felt while the music was actually hitting.",
+    coverImage: "/Archive/Sxint/Sxint-01.jpg",
+    images: [
+      "/Archive/Sxint/Sxint-01.jpg",
+      "/Archive/Sxint/Sxint-02.jpg",
+      "/Archive/Sxint/Sxint-03.jpg",
+    ],
+    videoEmbedSrc: "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
+    links: [
+      { href: "https://www.youtube.com/@UCm0QFpsEycfF3FEQ6eZWd3w", label: "YOUTUBE" },
+      { href: "https://soundcloud.com/user-495163601", label: "SOUNDCLOUD" },
+      { href: "https://open.spotify.com/artist/0Il5MAzLKVR47Q7nHSlfz5", label: "SPOTIFY" },
+      { href: "https://www.instagram.com/hatesxint/", label: "INSTAGRAM" },
     ],
   },
 ];

@@ -45,14 +45,21 @@ export function ArticleSplit({
   const mobileRightColumnRef = useRef<HTMLDivElement>(null);
   const rightColumnRef = useRef<HTMLElement>(null);
 
-  const photo = photos[currentIndex] ?? photos[0];
-  const prevCard = currentIndex > 0 ? photos[currentIndex - 1] : null;
-  const nextCard =
-    currentIndex < photos.length - 1 ? photos[currentIndex + 1] : null;
+  const hasVideoSlide = !!collection.videoEmbedSrc;
+  const totalSlides = photos.length + (hasVideoSlide ? 1 : 0);
+  const isVideoSlide = hasVideoSlide && currentIndex === photos.length;
+
+  const photo = (isVideoSlide ? photos[photos.length - 1] : photos[currentIndex]) ?? photos[0];
+  const prevCard = isVideoSlide
+    ? (photos[photos.length - 1] ?? null)
+    : (currentIndex > 0 ? photos[currentIndex - 1] ?? null : null);
+  const nextCard = isVideoSlide
+    ? null
+    : (currentIndex < photos.length - 1 ? photos[currentIndex + 1] ?? null : null);
+  const isNextVideoSlide = !isVideoSlide && hasVideoSlide && currentIndex === photos.length - 1;
   const nextPhoto = photos[(currentIndex + 1) % photos.length] ?? photo;
-  const totalCount = photos.length;
-  const displayIndex = getDisplayIndex(currentIndex);
-  const totalCountLabel = String(totalCount).padStart(2, "0");
+  const displayIndex = isVideoSlide ? String(totalSlides).padStart(2, "0") : getDisplayIndex(currentIndex);
+  const totalCountLabel = String(totalSlides).padStart(2, "0");
   const imageLoaded = loadedPhotoId === photo?.id;
 
   const betterOffDisplay = {
@@ -69,10 +76,10 @@ export function ArticleSplit({
   const updateCurrentIndex = useCallback(
     (delta: number) => {
       setCurrentIndex((index) =>
-        Math.max(0, Math.min(photos.length - 1, index + delta)),
+        Math.max(0, Math.min(totalSlides - 1, index + delta)),
       );
     },
-    [photos.length],
+    [totalSlides],
   );
 
   useEffect(() => {
@@ -292,7 +299,7 @@ export function ArticleSplit({
             >
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.p
-                  key={`label-top-${photo.id}`}
+                  key={`label-top-${isVideoSlide ? "video" : photo.id}`}
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
@@ -309,46 +316,61 @@ export function ArticleSplit({
                 style={{ aspectRatio: "3 / 4" }}
               >
                 <AnimatePresence mode="popLayout" initial={false}>
-                  <motion.div
-                    key={photo.id}
-                    initial={{ scale: 1.14, opacity: 0, y: 28 }}
-                    animate={{ scale: 1, opacity: 1, y: 0 }}
-                    exit={{ scale: 0.94, opacity: 0, y: -20 }}
-                    transition={{
-                      duration: 0.95,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={photo.src}
-                      alt={photo.title}
-                      fill
-                      priority
-                      sizes="20vw"
-                      className="object-cover"
-                      onLoad={() => setLoadedPhotoId(photo.id)}
-                    />
-                  </motion.div>
+                  {isVideoSlide ? (
+                    <motion.div
+                      key="video-slide"
+                      initial={{ scale: 1.14, opacity: 0, y: 28 }}
+                      animate={{ scale: 1, opacity: 1, y: 0 }}
+                      exit={{ scale: 0.94, opacity: 0, y: -20 }}
+                      transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute inset-0 flex flex-col items-center justify-center bg-black gap-3"
+                    >
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="11" stroke="white" strokeOpacity="0.4" strokeWidth="1" />
+                        <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white" />
+                      </svg>
+                      <span
+                        className="text-[0.6rem] uppercase tracking-[0.18em] text-white/50"
+                        style={betterOffMono}
+                      >
+                        Video
+                      </span>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key={photo.id}
+                      initial={{ scale: 1.14, opacity: 0, y: 28 }}
+                      animate={{ scale: 1, opacity: 1, y: 0 }}
+                      exit={{ scale: 0.94, opacity: 0, y: -20 }}
+                      transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.title}
+                        fill
+                        priority
+                        sizes="20vw"
+                        className="object-cover"
+                        onLoad={() => setLoadedPhotoId(photo.id)}
+                      />
+                    </motion.div>
+                  )}
                 </AnimatePresence>
-                <PhotoLoader loading={!imageLoaded} />
+                {!isVideoSlide && <PhotoLoader loading={!imageLoaded} />}
               </div>
 
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.p
-                  key={`label-bottom-${photo.id}`}
+                  key={`label-bottom-${isVideoSlide ? "video" : photo.id}`}
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
-                  transition={{
-                    duration: 0.55,
-                    ease: [0.16, 1, 0.3, 1],
-                    delay: 0.18,
-                  }}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
                   className="mt-2 text-[0.72rem] uppercase tracking-[0.12em] text-black/72"
                   style={betterOffMono}
                 >
-                  {collection.tag.toUpperCase()} · FRAME {displayIndex}
+                  {isVideoSlide ? "VIDEO" : `${collection.tag.toUpperCase()} · FRAME ${displayIndex}`}
                 </motion.p>
               </AnimatePresence>
             </div>
@@ -382,6 +404,29 @@ export function ArticleSplit({
                         sizes="13vw"
                         className="object-cover grayscale"
                       />
+                    </div>
+                  </motion.button>
+                ) : isNextVideoSlide ? (
+                  <motion.button
+                    key="next-video"
+                    type="button"
+                    onClick={() => updateCurrentIndex(1)}
+                    aria-label="View video"
+                    initial={{ opacity: 0, x: 16 }}
+                    animate={{ opacity: 0.48, x: 0 }}
+                    exit={{ opacity: 0, x: 16 }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="group w-full"
+                    whileHover={{ opacity: 0.72 }}
+                  >
+                    <div
+                      className="relative flex flex-col items-center justify-center gap-2 overflow-hidden bg-black transition-transform duration-700 group-hover:scale-[1.03]"
+                      style={{ aspectRatio: "3 / 4" }}
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="11" stroke="white" strokeOpacity="0.4" strokeWidth="1" />
+                        <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white" />
+                      </svg>
                     </div>
                   </motion.button>
                 ) : null}
@@ -418,15 +463,61 @@ export function ArticleSplit({
         </section>
 
         <div ref={desktopRightColumnRef} className="bg-white">
-          <ArticleEditorialSection
-            collection={collection}
-            photos={photos}
-            photo={photo}
-            nextPhoto={nextPhoto}
-            currentIndex={currentIndex}
-            displayIndex={displayIndex}
-            totalCountLabel={totalCountLabel}
-          />
+          {isVideoSlide ? (
+            <div className="px-8 pt-12 pb-20 lg:px-14 lg:pt-16">
+              <p
+                className="text-[0.68rem] uppercase tracking-[0.16em] text-black/40"
+                style={betterOffMono}
+              >
+                {collection.tag} · {displayIndex} / {totalCountLabel}
+              </p>
+              <h2
+                className="mt-5 text-[clamp(2.6rem,4.2vw,4rem)] font-[700] uppercase leading-[0.88] tracking-[-0.065em] text-black"
+                style={betterOffDisplay}
+              >
+                {collection.name}
+              </h2>
+              <div
+                className="mt-8 w-full overflow-hidden bg-black"
+                style={{ aspectRatio: "16/9" }}
+              >
+                <iframe
+                  src={collection.videoEmbedSrc}
+                  title={`${collection.name} — performance`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="h-full w-full border-0"
+                />
+              </div>
+              {collection.links?.length ? (
+                <div className="mt-8 flex flex-wrap gap-5">
+                  {collection.links.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="border-b border-black/30 pb-0.5 text-[0.68rem] uppercase tracking-[0.16em] text-black/60 transition-colors hover:text-black"
+                      style={betterOffMono}
+                    >
+                      {link.label} ↗
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          ) : (
+            <ArticleEditorialSection
+              collection={collection}
+              photos={photos}
+              photo={photo}
+              nextPhoto={nextPhoto}
+              currentIndex={currentIndex}
+              displayIndex={displayIndex}
+              totalCountLabel={totalCountLabel}
+            />
+          )}
         </div>
       </div>
 
@@ -476,7 +567,7 @@ export function ArticleSplit({
             >
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.p
-                  key={`m-label-top-${photo.id}`}
+                  key={`m-label-top-${isVideoSlide ? "video" : photo.id}`}
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
@@ -493,43 +584,58 @@ export function ArticleSplit({
                 style={{ aspectRatio: "3 / 4" }}
               >
                 <AnimatePresence mode="popLayout" initial={false}>
-                  <motion.div
-                    key={photo.id}
-                    initial={{ scale: 1.12, opacity: 0, y: 20 }}
-                    animate={{ scale: 1, opacity: 1, y: 0 }}
-                    exit={{ scale: 0.94, opacity: 0, y: -16 }}
-                    transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={photo.src}
-                      alt={photo.title}
-                      fill
-                      priority
-                      sizes="28vw"
-                      className="object-cover"
-                      onLoad={() => setLoadedPhotoId(photo.id)}
-                    />
-                  </motion.div>
+                  {isVideoSlide ? (
+                    <motion.div
+                      key="m-video-slide"
+                      initial={{ scale: 1.12, opacity: 0, y: 20 }}
+                      animate={{ scale: 1, opacity: 1, y: 0 }}
+                      exit={{ scale: 0.94, opacity: 0, y: -16 }}
+                      transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute inset-0 flex flex-col items-center justify-center bg-black gap-2"
+                    >
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="11" stroke="white" strokeOpacity="0.4" strokeWidth="1" />
+                        <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white" />
+                      </svg>
+                      <span className="text-[0.55rem] uppercase tracking-[0.16em] text-white/50" style={betterOffMono}>
+                        Video
+                      </span>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key={photo.id}
+                      initial={{ scale: 1.12, opacity: 0, y: 20 }}
+                      animate={{ scale: 1, opacity: 1, y: 0 }}
+                      exit={{ scale: 0.94, opacity: 0, y: -16 }}
+                      transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={photo.src}
+                        alt={photo.title}
+                        fill
+                        priority
+                        sizes="28vw"
+                        className="object-cover"
+                        onLoad={() => setLoadedPhotoId(photo.id)}
+                      />
+                    </motion.div>
+                  )}
                 </AnimatePresence>
-                <PhotoLoader loading={!imageLoaded} />
+                {!isVideoSlide && <PhotoLoader loading={!imageLoaded} />}
               </div>
 
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.p
-                  key={`m-label-bottom-${photo.id}`}
+                  key={`m-label-bottom-${isVideoSlide ? "video" : photo.id}`}
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
-                  transition={{
-                    duration: 0.45,
-                    ease: [0.16, 1, 0.3, 1],
-                    delay: 0.14,
-                  }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: 0.14 }}
                   className="mt-1.5 text-[0.6rem] uppercase tracking-[0.1em] text-black/72"
                   style={betterOffMono}
                 >
-                  {collection.tag.toUpperCase()} · FRAME {displayIndex}
+                  {isVideoSlide ? "VIDEO" : `${collection.tag.toUpperCase()} · FRAME ${displayIndex}`}
                 </motion.p>
               </AnimatePresence>
             </div>
@@ -563,6 +669,29 @@ export function ArticleSplit({
                         sizes="20vw"
                         className="object-cover grayscale"
                       />
+                    </div>
+                  </motion.button>
+                ) : isNextVideoSlide ? (
+                  <motion.button
+                    key="m-next-video"
+                    type="button"
+                    onClick={() => updateCurrentIndex(1)}
+                    aria-label="View video"
+                    initial={{ opacity: 0, x: 12 }}
+                    animate={{ opacity: 0.48, x: 0 }}
+                    exit={{ opacity: 0, x: 12 }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="group w-full"
+                    whileHover={{ opacity: 0.72 }}
+                  >
+                    <div
+                      className="relative flex items-center justify-center overflow-hidden bg-black"
+                      style={{ aspectRatio: "3 / 4" }}
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="11" stroke="white" strokeOpacity="0.4" strokeWidth="1" />
+                        <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white" />
+                      </svg>
                     </div>
                   </motion.button>
                 ) : (
@@ -649,45 +778,92 @@ export function ArticleSplit({
         </div>
 
         <div ref={mobileRightColumnRef} className="px-4 pt-5 pb-24">
-          <p
-            data-article-meta
-            className="text-[0.72rem] uppercase tracking-[0.14em] text-black/55"
-            style={betterOffMono}
-          >
-            {collection.location} · {photo.year} · {collection.tag}
-          </p>
-          <h1
-            data-article-title
-            className="mt-3 max-w-[10ch] text-[clamp(2.4rem,11vw,4rem)] font-[700] uppercase leading-[0.86] tracking-[-0.07em] text-black"
-            style={betterOffSans}
-          >
-            {collection.name}
-          </h1>
-          <p
-            data-article-copy
-            className="mt-4 max-w-[34ch] text-[0.98rem] leading-[1.42] tracking-[-0.02em] text-black/74"
-            style={betterOffSans}
-          >
-            {collection.intro}
-          </p>
-          <div data-article-copy className="mt-6 border-t border-black/10 pt-3">
-            <p
-              className="text-[0.72rem] uppercase tracking-[0.12em] text-black/74"
-              style={betterOffMono}
-            >
-              {displayIndex} / {totalCountLabel} · {photo.title}
-            </p>
-          </div>
-
-          <ArticleEditorialSection
-            collection={collection}
-            photos={photos}
-            photo={photo}
-            nextPhoto={nextPhoto}
-            currentIndex={currentIndex}
-            displayIndex={displayIndex}
-            totalCountLabel={totalCountLabel}
-          />
+          {isVideoSlide ? (
+            <>
+              <p
+                className="text-[0.68rem] uppercase tracking-[0.14em] text-black/55"
+                style={betterOffMono}
+              >
+                {collection.tag} · {displayIndex} / {totalCountLabel}
+              </p>
+              <h1
+                className="mt-3 max-w-[10ch] text-[clamp(2.4rem,11vw,4rem)] font-[700] uppercase leading-[0.86] tracking-[-0.07em] text-black"
+                style={betterOffSans}
+              >
+                {collection.name}
+              </h1>
+              <div
+                className="mt-6 w-full overflow-hidden bg-black"
+                style={{ aspectRatio: "16/9" }}
+              >
+                <iframe
+                  src={collection.videoEmbedSrc}
+                  title={`${collection.name} — performance`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="h-full w-full border-0"
+                />
+              </div>
+              {collection.links?.length ? (
+                <div className="mt-6 flex flex-wrap gap-4">
+                  {collection.links.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="border-b border-black/30 pb-0.5 text-[0.68rem] uppercase tracking-[0.16em] text-black/60 transition-colors active:text-black"
+                      style={betterOffMono}
+                    >
+                      {link.label} ↗
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </>
+          ) : (
+            <>
+              <p
+                data-article-meta
+                className="text-[0.72rem] uppercase tracking-[0.14em] text-black/55"
+                style={betterOffMono}
+              >
+                {collection.location} · {photo.year} · {collection.tag}
+              </p>
+              <h1
+                data-article-title
+                className="mt-3 max-w-[10ch] text-[clamp(2.4rem,11vw,4rem)] font-[700] uppercase leading-[0.86] tracking-[-0.07em] text-black"
+                style={betterOffSans}
+              >
+                {collection.name}
+              </h1>
+              <p
+                data-article-copy
+                className="mt-4 max-w-[34ch] text-[0.98rem] leading-[1.42] tracking-[-0.02em] text-black/74"
+                style={betterOffSans}
+              >
+                {collection.intro}
+              </p>
+              <div data-article-copy className="mt-6 border-t border-black/10 pt-3">
+                <p
+                  className="text-[0.72rem] uppercase tracking-[0.12em] text-black/74"
+                  style={betterOffMono}
+                >
+                  {displayIndex} / {totalCountLabel} · {photo.title}
+                </p>
+              </div>
+              <ArticleEditorialSection
+                collection={collection}
+                photos={photos}
+                photo={photo}
+                nextPhoto={nextPhoto}
+                currentIndex={currentIndex}
+                displayIndex={displayIndex}
+                totalCountLabel={totalCountLabel}
+              />
+            </>
+          )}
         </div>
       </div>
     </main>

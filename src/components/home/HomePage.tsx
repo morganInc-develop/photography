@@ -1,7 +1,6 @@
 "use client";
 
 import { ArtboardCanvas } from "@/components/home/ArtboardCanvas";
-import { ArtboardDemoPanel } from "@/components/home/ArtboardDemoPanel";
 import { BlinkWordmark } from "@/components/home/BlinkWordmark";
 import { HomeCursor } from "@/components/home/HomeCursor";
 import { HomeLoader } from "@/components/home/HomeLoader";
@@ -12,16 +11,13 @@ import type { ArchivePhoto } from "@/lib/archive/types";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect } from "react";
 
 type HomePageProps = {
   photos: ArchivePhoto[];
 };
 
 export default function HomePage({ photos }: HomePageProps) {
-  const [loaderDone, setLoaderDone] = useState(false);
-  const hasCompletedRef = useRef(false);
-
   useEffect(() => {
     ensureSignatureEase();
     gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -71,13 +67,7 @@ export default function HomePage({ photos }: HomePageProps) {
     };
   }, []);
 
-  const handleLoaderComplete = useCallback(() => {
-    if (hasCompletedRef.current) {
-      return;
-    }
-    hasCompletedRef.current = true;
-    setLoaderDone(true);
-  }, []);
+  const handleLoaderComplete = useCallback(() => {}, []);
 
   return (
     <main data-barba="wrapper" className="page-wrapper">
@@ -88,7 +78,7 @@ export default function HomePage({ photos }: HomePageProps) {
         <section className="section is--hero">
           <HomeMetaRail />
           <ArtboardCanvas photos={photos} />
-          <ArtboardDemoPanel visible={loaderDone} />
+          {/* <ArtboardDemoPanel visible /> */}
           <BlinkWordmark />
         </section>
 

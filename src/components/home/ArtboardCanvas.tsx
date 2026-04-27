@@ -523,7 +523,11 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
         style={{ touchAction: "none" }}
       >
         {photos.map((photo) => (
-          <div key={photo.id} role="listitem" className="div">
+          <div
+            key={photo.id}
+            role="listitem"
+            className="div artboard-item"
+          >
             <div className="js-plane-link">
               <figure className="js-plane" data-src={photo.webSrc} />
             </div>
