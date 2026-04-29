@@ -627,10 +627,11 @@ a {
 }
 
 .grid.js-grid {
+  --artboard-row-size: min(48vh, 35vw);
   z-index: 14;
   grid-template-rows: none;
-  height: 700vh;
-  grid-auto-rows: min(48vh, 35vw);
+  height: calc(var(--artboard-rows, 1) * var(--artboard-row-size));
+  grid-auto-rows: var(--artboard-row-size);
 }
 
 .div {
@@ -970,6 +971,10 @@ a {
     height: 140vw;
     grid-auto-rows: calc(140vw / 5);
   }
+
+  .grid.js-grid {
+    --artboard-row-size: calc(140vw / 5);
+  }
 }
 
 @media (max-width: 767px) {
@@ -1055,6 +1060,10 @@ a {
     height: 250vw;
     grid-auto-rows: calc(250vw / 5);
   }
+
+  .grid.js-grid {
+    --artboard-row-size: calc(250vw / 5);
+  }
 }
 
 @media (orientation: landscape) and (max-width: 768px) {
@@ -1104,8 +1113,9 @@ a {
 
   .grid.js-grid {
     width: 270vw;
-    height: 858vw;
-    grid-auto-rows: calc(330vw / 5);
+    --artboard-row-size: calc(330vw / 5);
+    height: calc(var(--artboard-rows, 1) * var(--artboard-row-size));
+    grid-auto-rows: var(--artboard-row-size);
   }
 
   .h-h1 {

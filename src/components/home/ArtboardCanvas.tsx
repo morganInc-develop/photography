@@ -4,7 +4,23 @@ import type { ArchivePhoto } from "@/lib/archive/types";
 import { gsap } from "gsap";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
-import { useEffect, useRef } from "react";
+import { type CSSProperties, useEffect, useRef } from "react";
+
+const ARTBOARD_COLUMNS = 5;
+
+function createLoopedArtboardPhotos(photos: ArchivePhoto[]) {
+  if (photos.length === 0) {
+    return photos;
+  }
+
+  const remainder = photos.length % ARTBOARD_COLUMNS;
+  if (remainder === 0) {
+    return photos;
+  }
+
+  const fillerCount = ARTBOARD_COLUMNS - remainder;
+  return [...photos, ...photos.slice(0, fillerCount)];
+}
 
 class Plane extends THREE.Object3D {
   private readonly el: HTMLElement;
@@ -34,13 +50,12 @@ class Plane extends THREE.Object3D {
     geometry: THREE.PlaneGeometry;
     material: THREE.ShaderMaterial;
     loader: THREE.TextureLoader;
-    index: number;
     viewport: { ww: number; wh: number };
   }) {
     super();
 
     this.el = params.el;
-    this.my = 1 - (params.index % 5) * 0.1;
+    this.my = 1;
 
     this.material = params.material.clone();
     this.material.uniforms = {
@@ -142,6 +157,8 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
   const router = useRouter();
   const routerRef = useRef(router);
   const isDragRef = useRef(false);
+  const artboardPhotos = createLoopedArtboardPhotos(photos);
+  const rowCount = Math.ceil(artboardPhotos.length / ARTBOARD_COLUMNS);
 
   useEffect(() => {
     routerRef.current = router;
@@ -275,11 +292,10 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
     const planeEls = Array.from(
       gridEl.querySelectorAll<HTMLElement>(".js-plane"),
     );
-    const planes = planeEls.map((el, index) => {
+    const planes = planeEls.map((el) => {
       const plane = new Plane({
         el,
         geometry,
-        index,
         loader,
         material: baseMaterial,
         viewport: { ww, wh },
@@ -314,8 +330,8 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
       renderer.setSize(ww, wh);
 
       const rect = gridEl.getBoundingClientRect();
-      state.max.x = rect.right;
-      state.max.y = rect.bottom;
+      state.max.x = rect.left + Math.max(rect.width, gridEl.scrollWidth);
+      state.max.y = rect.top + Math.max(rect.height, gridEl.scrollHeight);
 
       planes.forEach((plane) => plane.resize(ww, wh));
     };
@@ -410,7 +426,7 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
             my >= plane.position.y - plane.halfH &&
             my <= plane.position.y + plane.halfH
           ) {
-            const photo = photos[i];
+            const photo = artboardPhotos[i];
             if (photo) {
               routerRef.current.push(
                 `/photography?collection=${encodeURIComponent(photo.collectionSlug)}&photo=${encodeURIComponent(photo.id)}`,
@@ -512,7 +528,7 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
       document.body.style.overscrollBehavior = "";
       document.documentElement.style.overscrollBehavior = "";
     };
-  }, [photos]);
+  }, [artboardPhotos]);
 
   return (
     <div className="canvas__webgl-list-wrap">
@@ -520,10 +536,19 @@ export function ArtboardCanvas({ photos }: ArtboardCanvasProps) {
         ref={gridRef}
         role="list"
         className="grid js-grid"
-        style={{ touchAction: "none" }}
+        style={
+          {
+            touchAction: "none",
+            "--artboard-rows": rowCount,
+          } as CSSProperties
+        }
       >
-        {photos.map((photo) => (
-          <div key={photo.id} role="listitem" className="div artboard-item">
+        {artboardPhotos.map((photo, index) => (
+          <div
+            key={`${photo.id}-${index}`}
+            role="listitem"
+            className="div artboard-item"
+          >
             <div className="js-plane-link">
               <figure className="js-plane" data-src={photo.webSrc} />
             </div>
