@@ -11,6 +11,13 @@ export type ArchivePhoto = {
   collectionName: string;
 };
 
+export type ArchiveVideo = {
+  kind: "embed" | "file";
+  src: string;
+  title: string;
+  mimeType?: string;
+};
+
 export type ArchiveLink = { href: string; label: string };
 
 export type ArchiveCollection = {
@@ -25,6 +32,25 @@ export type ArchiveCollection = {
   outro: string;
   photos: ArchivePhoto[];
   coverImage: string;
+  videos?: ArchiveVideo[];
   videoEmbedSrc?: string;
   links?: ArchiveLink[];
 };
+
+export function getCollectionVideos(
+  collection: Pick<ArchiveCollection, "name" | "videos" | "videoEmbedSrc">,
+): ArchiveVideo[] {
+  if (collection.videos?.length) {
+    return collection.videos;
+  }
+
+  return collection.videoEmbedSrc
+    ? [
+        {
+          kind: "embed",
+          src: collection.videoEmbedSrc,
+          title: `${collection.name} — performance`,
+        },
+      ]
+    : [];
+}

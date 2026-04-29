@@ -1,14 +1,19 @@
 "use client";
 
+import ArchiveHeader from "@/components/archive/ArchiveHeader";
 import { ArticleEditorialSection } from "@/components/photo/ArticleEditorialSection";
 import { ArticleEntrance } from "@/components/photo/ArticleEntrance";
+import { ArchiveVideoPlayer } from "@/components/photo/ArchiveVideoPlayer";
 import { PhotoLoader } from "@/components/photo/PhotoLoader";
-import ArchiveHeader from "@/components/archive/ArchiveHeader";
-import type { ArchiveCollection, ArchivePhoto } from "@/lib/archive/types";
+import {
+  getCollectionVideos,
+  type ArchiveCollection,
+  type ArchivePhoto,
+} from "@/lib/archive/types";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type CollectionRef = { slug: string; name: string };
 
@@ -45,29 +50,37 @@ export function ArticleSplit({
   const mobileRightColumnRef = useRef<HTMLDivElement>(null);
   const rightColumnRef = useRef<HTMLElement>(null);
 
-  const hasVideoSlide = !!collection.videoEmbedSrc;
-  const totalSlides = photos.length + (hasVideoSlide ? 1 : 0);
-  const isVideoSlide = hasVideoSlide && currentIndex === photos.length;
+  const videos = getCollectionVideos(collection);
+  const totalSlides = photos.length + videos.length;
+  const activeVideoIndex = currentIndex - photos.length;
+  const activeVideo = activeVideoIndex >= 0 ? videos[activeVideoIndex] : null;
+  const isVideoSlide = !!activeVideo;
 
   const photo =
     (isVideoSlide ? photos[photos.length - 1] : photos[currentIndex]) ??
     photos[0];
-  const prevCard = isVideoSlide
-    ? (photos[photos.length - 1] ?? null)
-    : currentIndex > 0
-      ? (photos[currentIndex - 1] ?? null)
+  const prevSlideIndex = currentIndex > 0 ? currentIndex - 1 : null;
+  const nextSlideIndex =
+    currentIndex < totalSlides - 1 ? currentIndex + 1 : null;
+  const prevCard =
+    prevSlideIndex !== null && prevSlideIndex < photos.length
+      ? (photos[prevSlideIndex] ?? null)
       : null;
-  const nextCard = isVideoSlide
-    ? null
-    : currentIndex < photos.length - 1
-      ? (photos[currentIndex + 1] ?? null)
+  const nextCard =
+    nextSlideIndex !== null && nextSlideIndex < photos.length
+      ? (photos[nextSlideIndex] ?? null)
       : null;
-  const isNextVideoSlide =
-    !isVideoSlide && hasVideoSlide && currentIndex === photos.length - 1;
-  const nextPhoto = photos[(currentIndex + 1) % photos.length] ?? photo;
-  const displayIndex = isVideoSlide
-    ? String(totalSlides).padStart(2, "0")
-    : getDisplayIndex(currentIndex);
+  const prevVideo =
+    prevSlideIndex !== null && prevSlideIndex >= photos.length
+      ? (videos[prevSlideIndex - photos.length] ?? null)
+      : null;
+  const nextVideo =
+    nextSlideIndex !== null && nextSlideIndex >= photos.length
+      ? (videos[nextSlideIndex - photos.length] ?? null)
+      : null;
+  const anchorPhotoIndex = Math.min(currentIndex, photos.length - 1);
+  const nextPhoto = photos[(anchorPhotoIndex + 1) % photos.length] ?? photo;
+  const displayIndex = getDisplayIndex(currentIndex);
   const totalCountLabel = String(totalSlides).padStart(2, "0");
   const imageLoaded = loadedPhotoId === photo?.id;
 
@@ -298,6 +311,41 @@ export function ArticleSplit({
                       />
                     </div>
                   </motion.button>
+                ) : prevVideo ? (
+                  <motion.button
+                    key={`prev-video-${prevVideo.src}`}
+                    type="button"
+                    onClick={() => updateCurrentIndex(-1)}
+                    aria-label={`View ${prevVideo.title}`}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 0.48, x: 0 }}
+                    exit={{ opacity: 0, x: -16 }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="group w-full"
+                    whileHover={{ opacity: 0.72 }}
+                  >
+                    <div
+                      className="relative flex flex-col items-center justify-center gap-2 overflow-hidden bg-black transition-transform duration-700 group-hover:scale-[1.03]"
+                      style={{ aspectRatio: "3 / 4" }}
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="11"
+                          stroke="white"
+                          strokeOpacity="0.4"
+                          strokeWidth="1"
+                        />
+                        <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white" />
+                      </svg>
+                    </div>
+                  </motion.button>
                 ) : null}
               </AnimatePresence>
             </div>
@@ -325,9 +373,9 @@ export function ArticleSplit({
                 style={{ aspectRatio: "3 / 4" }}
               >
                 <AnimatePresence mode="popLayout" initial={false}>
-                  {isVideoSlide ? (
+                  {activeVideo ? (
                     <motion.div
-                      key="video-slide"
+                      key={activeVideo.src}
                       initial={{ scale: 1.14, opacity: 0, y: 28 }}
                       animate={{ scale: 1, opacity: 1, y: 0 }}
                       exit={{ scale: 0.94, opacity: 0, y: -20 }}
@@ -433,12 +481,12 @@ export function ArticleSplit({
                       />
                     </div>
                   </motion.button>
-                ) : isNextVideoSlide ? (
+                ) : nextVideo ? (
                   <motion.button
-                    key="next-video"
+                    key={`next-video-${nextVideo.src}`}
                     type="button"
                     onClick={() => updateCurrentIndex(1)}
-                    aria-label="View video"
+                    aria-label={`View ${nextVideo.title}`}
                     initial={{ opacity: 0, x: 16 }}
                     animate={{ opacity: 0.48, x: 0 }}
                     exit={{ opacity: 0, x: 16 }}
@@ -520,14 +568,12 @@ export function ArticleSplit({
                 className="mt-8 w-full overflow-hidden bg-black"
                 style={{ aspectRatio: "16/9" }}
               >
-                <iframe
-                  src={collection.videoEmbedSrc}
-                  title={`${collection.name} — performance`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                  className="h-full w-full border-0"
-                />
+                {activeVideo ? (
+                  <ArchiveVideoPlayer
+                    video={activeVideo}
+                    className="h-full w-full border-0"
+                  />
+                ) : null}
               </div>
               {collection.links?.length ? (
                 <div className="mt-8 flex flex-wrap gap-5">
@@ -594,6 +640,41 @@ export function ArticleSplit({
                       />
                     </div>
                   </motion.button>
+                ) : prevVideo ? (
+                  <motion.button
+                    key={`m-prev-video-${prevVideo.src}`}
+                    type="button"
+                    onClick={() => updateCurrentIndex(-1)}
+                    aria-label={`View ${prevVideo.title}`}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 0.48, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="group w-full"
+                    whileHover={{ opacity: 0.72 }}
+                  >
+                    <div
+                      className="relative flex items-center justify-center overflow-hidden bg-black"
+                      style={{ aspectRatio: "3 / 4" }}
+                    >
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="11"
+                          stroke="white"
+                          strokeOpacity="0.4"
+                          strokeWidth="1"
+                        />
+                        <path d="M10 8.5L16 12L10 15.5V8.5Z" fill="white" />
+                      </svg>
+                    </div>
+                  </motion.button>
                 ) : (
                   <div style={{ aspectRatio: "3 / 4" }} />
                 )}
@@ -623,9 +704,9 @@ export function ArticleSplit({
                 style={{ aspectRatio: "3 / 4" }}
               >
                 <AnimatePresence mode="popLayout" initial={false}>
-                  {isVideoSlide ? (
+                  {activeVideo ? (
                     <motion.div
-                      key="m-video-slide"
+                      key={`m-${activeVideo.src}`}
                       initial={{ scale: 1.12, opacity: 0, y: 20 }}
                       animate={{ scale: 1, opacity: 1, y: 0 }}
                       exit={{ scale: 0.94, opacity: 0, y: -16 }}
@@ -731,12 +812,12 @@ export function ArticleSplit({
                       />
                     </div>
                   </motion.button>
-                ) : isNextVideoSlide ? (
+                ) : nextVideo ? (
                   <motion.button
-                    key="m-next-video"
+                    key={`m-next-video-${nextVideo.src}`}
                     type="button"
                     onClick={() => updateCurrentIndex(1)}
-                    aria-label="View video"
+                    aria-label={`View ${nextVideo.title}`}
                     initial={{ opacity: 0, x: 12 }}
                     animate={{ opacity: 0.48, x: 0 }}
                     exit={{ opacity: 0, x: 12 }}
@@ -896,14 +977,12 @@ export function ArticleSplit({
                 className="mt-6 w-full overflow-hidden bg-black"
                 style={{ aspectRatio: "16/9" }}
               >
-                <iframe
-                  src={collection.videoEmbedSrc}
-                  title={`${collection.name} — performance`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                  className="h-full w-full border-0"
-                />
+                {activeVideo ? (
+                  <ArchiveVideoPlayer
+                    video={activeVideo}
+                    className="h-full w-full border-0"
+                  />
+                ) : null}
               </div>
               {collection.links?.length ? (
                 <div className="mt-6 flex flex-wrap gap-4">

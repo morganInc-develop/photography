@@ -89,25 +89,25 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
       "/Archive/Beach/DSC03251.JPG",
     ],
   },
-  {
-    index: "004",
-    slug: "gym",
-    name: "GYM",
-    href: "/the-archive/gym",
-    description:
-      "Iron and effort. The particular silence between sets and the discipline that fills the space between them.",
-    coverImage: "/Archive/Gym/DSC00804.JPG",
-    images: [
-      "/Archive/Gym/DSC00804.JPG",
-      "/Archive/Gym/DSC00901.JPG",
-      "/Archive/Gym/DSC00912.JPG",
-      "/Archive/Gym/DSC00920.JPG",
-      "/Archive/Gym/DSC00929.JPG",
-      "/Archive/Gym/DSC00943.JPG",
-      "/Archive/Gym/DSC00951.JPG",
-      "/Archive/Gym/DSC00957.JPG",
-    ],
-  },
+  // {
+  //   index: "004",
+  //   slug: "gym",
+  //   name: "GYM",
+  //   href: "/the-archive/gym",
+  //   description:
+  //     "Iron and effort. The particular silence between sets and the discipline that fills the space between them.",
+  //   coverImage: "/Archive/Gym/DSC00804.JPG",
+  //   images: [
+  //     "/Archive/Gym/DSC00804.JPG",
+  //     "/Archive/Gym/DSC00901.JPG",
+  //     "/Archive/Gym/DSC00912.JPG",
+  //     "/Archive/Gym/DSC00920.JPG",
+  //     "/Archive/Gym/DSC00929.JPG",
+  //     "/Archive/Gym/DSC00943.JPG",
+  //     "/Archive/Gym/DSC00951.JPG",
+  //     "/Archive/Gym/DSC00957.JPG",
+  //   ],
+  // },
   {
     index: "005",
     slug: "super-sandwhich",
@@ -222,6 +222,36 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
         label: "LINKTREE",
       },
     ],
+  },
+  {
+    index: "011",
+    slug: "ct-shutdown",
+    name: "CT SHUTDOWN",
+    href: "/the-archive/ct-shutdown",
+    description:
+      "The room around the sets. CT Shutdown documented wider: stage light, crowd pressure, and the raw environment that held the whole night together.",
+    coverImage: "/Archive/CT Shutdown/CT Shutdown-00.JPG",
+    images: [
+      "/Archive/CT Shutdown/CT Shutdown-00.JPG",
+      "/Archive/CT Shutdown/CT Shutdown-01.JPG",
+      "/Archive/CT Shutdown/CT Shutdown-02.JPG",
+      "/Archive/CT Shutdown/CT Shutdown-03.JPG",
+      "/Archive/CT Shutdown/CT Shutdown-04.JPG",
+      "/Archive/CT Shutdown/CT Shutdown-05.jpg",
+      "/Archive/CT Shutdown/CT Shutdown-06.jpg",
+      "/Archive/CT Shutdown/CT Shutdown-07.jpg",
+      "/Archive/CT Shutdown/CT Shutdown-08.jpg",
+    ],
+  },
+  {
+    index: "012",
+    slug: "night",
+    name: "NIGHT",
+    href: "/the-archive/night",
+    description:
+      "Night live at CT Shutdown. Two dark, direct frames kept close to the performer and the light coming off the room.",
+    coverImage: "/Archive/Night/Night-01.jpg",
+    images: ["/Archive/Night/Night-01.jpg", "/Archive/Night/Night-02.jpeg"],
   },
 ];
 

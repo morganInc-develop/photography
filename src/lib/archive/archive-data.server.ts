@@ -4,19 +4,26 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { cache } from "react";
 
-import type { ArchiveCollection, ArchivePhoto } from "@/lib/archive/types";
+import type {
+  ArchiveCollection,
+  ArchivePhoto,
+  ArchiveVideo,
+} from "@/lib/archive/types";
 
 const ARCHIVE_ROOT = path.join(process.cwd(), "public", "Archive");
 
 const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
+const HIDDEN_COLLECTIONS = new Set(["Gym"]);
 
 const COLLECTION_ORDER = [
+  "CT Shutdown",
+  "Night",
   "Sookwyd",
   "Sxint",
   "Glo Rich",
   "NYC",
   "Beach",
-  "Gym",
+  // "Gym",
   "Late Night Munchies",
   "Studio",
   "SuperSandwhich",
@@ -32,11 +39,67 @@ type CollectionSeed = {
   outro: string;
   photoLabel: string;
   captionTemplates: string[];
+  videos?: ArchiveVideo[];
   videoEmbedSrc?: string;
   links?: { href: string; label: string }[];
 };
 
 const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
+  "CT Shutdown": {
+    name: "CT Shutdown",
+    headline:
+      "CT Shutdown, the room itself held in full before the night let go",
+    location: "CT Shutdown",
+    tag: "show diary",
+    intro:
+      "This folder pulls back just enough to hold the whole CT Shutdown room instead of only one performer at a time. It keeps the stage light, the crowd pressure, and the rough edges that made the night feel alive while it was happening.",
+    outro:
+      "These frames work like the wider memory of the show. Not cleanup shots, not venue coverage, just direct proof of how the room looked once everything locked in and got loud.",
+    photoLabel: "CT Shutdown frame",
+    captionTemplates: [
+      "A full-room CT Shutdown frame with the night still in motion.",
+      "One of the wider documents from CT Shutdown, kept rough on purpose.",
+      "Stage light and crowd pressure from the middle of the CT Shutdown set.",
+      "Another direct frame from CT Shutdown while the room was still packed in.",
+    ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/CT Shutdown/CT Shutdown-live-01.mp4",
+        title: "CT Shutdown live document 01",
+      },
+      {
+        kind: "file",
+        src: "/Archive/CT Shutdown/CT Shutdown-live-02.mp4",
+        title: "CT Shutdown live document 02",
+      },
+    ],
+  },
+  Night: {
+    name: "Night",
+    headline:
+      "Night at CT Shutdown, two low-light frames held close to the set",
+    location: "CT Shutdown",
+    tag: "artist spotlight",
+    intro:
+      "These Night frames stay tight on the performer and the light coming off the stage. The set is short, but the mood is there: dark room, direct flash, and the kind of close distance that makes the whole thing feel immediate.",
+    outro:
+      "It sits naturally with the other CT Shutdown artist folders. Just enough stills to hold onto the energy without trying to over-explain the night.",
+    photoLabel: "Night frame",
+    captionTemplates: [
+      "A low-light performance frame from Night at CT Shutdown.",
+      "One of the Night stills pulled straight from the middle of the set.",
+      "Another close frame from Night while the room stayed dark and loud.",
+      "A direct Night document with the stage light doing most of the work.",
+    ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/Night/Night-live.mp4",
+        title: "Night at CT Shutdown",
+      },
+    ],
+  },
   Sookwyd: {
     name: "Sookwyd",
     headline: "Sookwyd at CT Shutdown, close frames from the middle of the set",
@@ -52,6 +115,18 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       "One of the new Sookwyd stills held tight to the stage at CT Shutdown.",
       "Another live document from Sookwyd's CT Shutdown set.",
       "A front-of-room Sookwyd frame with the set still in motion.",
+    ],
+    videos: [
+      {
+        kind: "embed",
+        src: "https://www.youtube.com/embed/OJOIs6nvPS8",
+        title: "Sookwyd at CT Shutdown",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Sookwyd/Sookwyd-live.mp4",
+        title: "Sookwyd live document",
+      },
     ],
     videoEmbedSrc: "https://www.youtube.com/embed/OJOIs6nvPS8",
     links: [
@@ -77,6 +152,18 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       "Stage-side motion from Sxint at CT Shutdown while the room was still moving.",
       "One more live document from Sxint's CT Shutdown performance.",
       "A rough-edged frame from Sxint at CT Shutdown with the crowd still pushing in.",
+    ],
+    videos: [
+      {
+        kind: "embed",
+        src: "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
+        title: "Sxint at CT Shutdown",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Sxint/Sxint-live.mp4",
+        title: "Sxint live document",
+      },
     ],
     videoEmbedSrc:
       "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
@@ -109,6 +196,18 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       "One of the newer Glo Rich images pulled from the CT Shutdown set.",
       "A front-row still from Glo Rich's CT Shutdown appearance.",
       "Another live document of Glo Rich inside the CT Shutdown room.",
+    ],
+    videos: [
+      {
+        kind: "embed",
+        src: "https://www.youtube.com/embed/BniimZibwEU?si=4ZWfaaU1UuC72MDg",
+        title: "Glo Rich at CT Shutdown",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Glo Rich/Glo Rich-live.mp4",
+        title: "Glo Rich live document",
+      },
     ],
     videoEmbedSrc:
       "https://www.youtube.com/embed/BniimZibwEU?si=4ZWfaaU1UuC72MDg",
@@ -282,7 +381,11 @@ export const getArchiveCollections = cache(
   async (): Promise<ArchiveCollection[]> => {
     const entries = await fs.readdir(ARCHIVE_ROOT, { withFileTypes: true });
     const folders = new Set(
-      entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name),
+      entries
+        .filter(
+          (entry) => entry.isDirectory() && !HIDDEN_COLLECTIONS.has(entry.name),
+        )
+        .map((entry) => entry.name),
     );
     const preferredFolders = new Set<string>(COLLECTION_ORDER);
 
@@ -338,6 +441,7 @@ export const getArchiveCollections = cache(
           outro: seed.outro,
           photos,
           coverImage: photos[0]?.src ?? "",
+          videos: seed.videos,
           videoEmbedSrc: seed.videoEmbedSrc,
           links: seed.links,
         } satisfies ArchiveCollection;
@@ -350,7 +454,13 @@ export const getArchiveCollections = cache(
 
 export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
   const collections = await getArchiveCollections();
-  const featuredCollectionNames = new Set(["Sookwyd", "Sxint", "Glo Rich"]);
+  const featuredCollectionNames = new Set([
+    "CT Shutdown",
+    "Night",
+    "Sookwyd",
+    "Sxint",
+    "Glo Rich",
+  ]);
 
   const featuredCollections = collections.filter((collection) =>
     featuredCollectionNames.has(collection.name),
@@ -359,7 +469,7 @@ export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
     (collection) => !featuredCollectionNames.has(collection.name),
   );
 
-  // Build interleaved featured photos: Sxint-01, GloRich-01, Sxint-02, GloRich-02, ...
+  // Build interleaved featured photos so the recent CT Shutdown work lands first.
   const featuredPhotos: ArchivePhoto[] = [];
   const featuredMaxCount = Math.max(
     0,

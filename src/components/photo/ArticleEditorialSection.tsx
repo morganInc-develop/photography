@@ -1,7 +1,12 @@
 "use client";
 
+import { ArchiveVideoPlayer } from "@/components/photo/ArchiveVideoPlayer";
 import { PhotoLoader } from "@/components/photo/PhotoLoader";
-import type { ArchiveCollection, ArchivePhoto } from "@/lib/archive/types";
+import {
+  getCollectionVideos,
+  type ArchiveCollection,
+  type ArchivePhoto,
+} from "@/lib/archive/types";
 import { AnimatePresence, cubicBezier, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,6 +57,7 @@ export function ArticleEditorialSection({
   const mainImageLoaded = loadedMainImageId === photo.id;
 
   const paragraphs = getEditorialParagraphs(collection, photo);
+  const videos = getCollectionVideos(collection);
   const supportingPhotos = [
     photos[(currentIndex + 2) % photos.length],
     photos[(currentIndex + 3) % photos.length],
@@ -349,25 +355,28 @@ export function ArticleEditorialSection({
                 </p>
               </motion.div>
 
-              {collection.videoEmbedSrc ? (
-                <motion.div
-                  className="mt-14 w-full overflow-hidden bg-black"
-                  style={{ aspectRatio: "16/9" }}
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={vpLg}
-                  transition={{ duration: 0.85, ease }}
-                >
-                  <iframe
-                    src={collection.videoEmbedSrc}
-                    title={`${collection.name} — performance`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    className="h-full w-full border-0"
-                  />
-                </motion.div>
-              ) : null}
+              {videos.length
+                ? videos.map((video, index) => (
+                    <motion.div
+                      key={video.src}
+                      className="mt-14 w-full overflow-hidden bg-black"
+                      style={{ aspectRatio: "16/9" }}
+                      initial={{ opacity: 0, y: 32 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={vpLg}
+                      transition={{
+                        duration: 0.85,
+                        ease,
+                        delay: index * 0.05,
+                      }}
+                    >
+                      <ArchiveVideoPlayer
+                        video={video}
+                        className="h-full w-full border-0"
+                      />
+                    </motion.div>
+                  ))
+                : null}
 
               {collection.links?.length ? (
                 <motion.div
@@ -509,21 +518,20 @@ export function ArticleEditorialSection({
           </p>
         </div>
 
-        {collection.videoEmbedSrc ? (
-          <div
-            className="mt-8 w-full overflow-hidden bg-black"
-            style={{ aspectRatio: "16/9" }}
-          >
-            <iframe
-              src={collection.videoEmbedSrc}
-              title={`${collection.name} — performance`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              className="h-full w-full border-0"
-            />
-          </div>
-        ) : null}
+        {videos.length
+          ? videos.map((video) => (
+              <div
+                key={video.src}
+                className="mt-8 w-full overflow-hidden bg-black"
+                style={{ aspectRatio: "16/9" }}
+              >
+                <ArchiveVideoPlayer
+                  video={video}
+                  className="h-full w-full border-0"
+                />
+              </div>
+            ))
+          : null}
 
         {collection.links?.length ? (
           <div className="mt-6 flex flex-wrap gap-4">
