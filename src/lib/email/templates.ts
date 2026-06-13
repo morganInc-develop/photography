@@ -363,10 +363,10 @@ export function clientEmailHtml(data: InquiryData): string {
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td width="33%" style="padding:0 1px 0 0;line-height:0;">
-                  <img src="${BASE_URL}/Archive-web/NYC/DSC01390.jpg" width="198" alt="NYC" style="display:block;width:100%;height:140px;object-fit:cover;" />
+                  <img src="${BASE_URL}/Archive-web/CT Shutdown/CT Shutdown-00.jpg" width="198" alt="CT Shutdown" style="display:block;width:100%;height:140px;object-fit:cover;" />
                 </td>
                 <td width="34%" style="padding:0 1px;line-height:0;">
-                  <img src="${BASE_URL}/Archive-web/Beach/DSC03167.jpg" width="200" alt="Beach" style="display:block;width:100%;height:140px;object-fit:cover;" />
+                  <img src="${BASE_URL}/Archive-web/Glo Rich/Glo Rich-01.jpg" width="200" alt="Glo Rich" style="display:block;width:100%;height:140px;object-fit:cover;" />
                 </td>
                 <td width="33%" style="padding:0 0 0 1px;line-height:0;">
                   <img src="${BASE_URL}/Archive-web/Studio/DSC03283.jpg" width="198" alt="Studio" style="display:block;width:100%;height:140px;object-fit:cover;" />

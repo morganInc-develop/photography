@@ -286,7 +286,7 @@ export function ArticleEditorialSection({
               <div className="flex gap-5">
                 {secondarySupportPhotos.map((supportPhoto, index) => (
                   <motion.div
-                    key={supportPhoto.id}
+                    key={`${supportPhoto.id}-desktop-support-${index}`}
                     className="flex-1"
                     initial={{ opacity: 0, y: 32 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -483,7 +483,7 @@ export function ArticleEditorialSection({
 
         <div className="mt-6 grid grid-cols-2 gap-3">
           {secondarySupportPhotos.map((supportPhoto, index) => (
-            <div key={supportPhoto.id}>
+            <div key={`${supportPhoto.id}-mobile-support-${index}`}>
               <div
                 className="overflow-hidden bg-[#ece8dc]"
                 style={{ aspectRatio: "3 / 2" }}

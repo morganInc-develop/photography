@@ -13,22 +13,22 @@ import type {
 const ARCHIVE_ROOT = path.join(process.cwd(), "public", "Archive");
 
 const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
-const HIDDEN_COLLECTIONS = new Set(["Gym"]);
 
 const COLLECTION_ORDER = [
+  "CheckSean",
+  "Amari",
+  "Black Love",
+  "Headspace",
+  "Imperfect",
   "CT Shutdown",
   "Night",
   "Sookwyd",
   "Sxint",
   "Glo Rich",
-  "NYC",
-  "Beach",
-  // "Gym",
-  "Late Night Munchies",
   "Studio",
-  "SuperSandwhich",
-  "Larp",
 ] as const;
+
+const WEB_IMAGE_EXTENSIONS = [".webp", ".avif", ".jpg", ".jpeg", ".png"];
 
 type CollectionSeed = {
   name: string;
@@ -45,6 +45,134 @@ type CollectionSeed = {
 };
 
 const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
+  CheckSean: {
+    name: "CheckSean",
+    headline: "CheckSean, a tight motion piece built around presence and pace",
+    location: "Motion study",
+    tag: "video portrait",
+    intro:
+      "CheckSean is held as a motion-first entry: one focused video, cut down for the site and supported by a still frame so it can live cleanly inside the archive.",
+    outro:
+      "The piece stays direct and compact, built around movement, timing, and the feeling of watching a moment unfold instead of freezing it.",
+    photoLabel: "CheckSean still",
+    captionTemplates: [
+      "A still frame from the CheckSean video, used as the entry point into the motion piece.",
+      "A quiet frame pulled from the CheckSean cut before the video takes over.",
+    ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/CheckSean/CheckSean.mp4",
+        title: "CheckSean motion piece",
+        mimeType: "video/mp4",
+      },
+    ],
+  },
+  Amari: {
+    name: "Amari",
+    headline: "Amari, portrait frames with a soft but deliberate charge",
+    location: "Portrait session",
+    tag: "portrait study",
+    intro:
+      "This Amari set leans into close portrait energy: clean light, small gestures, hair detail, and frames that feel composed without losing the person inside them.",
+    outro:
+      "The sequence moves between direct portraits and quieter details, keeping the session polished but still personal.",
+    photoLabel: "Amari portrait",
+    captionTemplates: [
+      "A composed Amari portrait with the frame held close to expression and styling.",
+      "One of the softer Amari frames, built around light, detail, and presence.",
+      "A direct portrait from the Amari session with the subject carrying the image.",
+      "A detail-led Amari frame that keeps the session tactile and personal.",
+    ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/Amari/Amari-live.mp4",
+        title: "Amari motion piece",
+        mimeType: "video/mp4",
+      },
+    ],
+  },
+  "Black Love": {
+    name: "Black Love",
+    headline: "Black Love, intimate frames held close and unforced",
+    location: "Portrait session",
+    tag: "couple study",
+    intro:
+      "Black Love is a short, intimate set with the focus kept on closeness, ease, and the small body language that makes the images feel lived in.",
+    outro:
+      "The folder stays simple on purpose: a few stills and one motion piece that keep the connection at the center.",
+    photoLabel: "Black Love frame",
+    captionTemplates: [
+      "An intimate Black Love frame built around closeness and ease.",
+      "A quiet portrait moment from Black Love with the connection carrying the image.",
+      "One more Black Love still, direct and unforced.",
+    ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/Black Love/Black Love-live.mp4",
+        title: "Black Love motion piece",
+        mimeType: "video/mp4",
+      },
+    ],
+  },
+  Headspace: {
+    name: "Headspace",
+    headline: "Headspace, interior mood and portrait rhythm in the same room",
+    location: "Creative session",
+    tag: "visual study",
+    intro:
+      "Headspace moves through a controlled room with a reflective mood: portraits, details, and graphic elements that make the set feel like a visual state of mind.",
+    outro:
+      "The images keep returning to atmosphere and expression, with the motion clips extending that same quiet pressure.",
+    photoLabel: "Headspace frame",
+    captionTemplates: [
+      "A Headspace frame with the room and subject holding the same mood.",
+      "One of the quieter Headspace images, built from expression and atmosphere.",
+      "A graphic detail from Headspace that keeps the set feeling designed but human.",
+      "Another Headspace still with the portrait energy pulled into the room around it.",
+    ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/Headspace/Headspace-live-01.mp4",
+        title: "Headspace motion piece 01",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Headspace/Headspace-live-02.mp4",
+        title: "Headspace motion piece 02",
+        mimeType: "video/mp4",
+      },
+    ],
+  },
+  Imperfect: {
+    name: "Imperfect",
+    headline: "Imperfect, portraits with the rough edges left in place",
+    location: "Portrait session",
+    tag: "portrait study",
+    intro:
+      "Imperfect keeps the frame honest: close portraits, natural tension, and the kind of moments that feel stronger because they are not polished flat.",
+    outro:
+      "The set works best as a portrait sequence with texture still attached, carrying the same feeling into the motion piece.",
+    photoLabel: "Imperfect portrait",
+    captionTemplates: [
+      "An Imperfect portrait with the rougher edge left intact.",
+      "One of the closer Imperfect frames, held on expression and texture.",
+      "A direct still from Imperfect with the portrait energy kept raw.",
+      "Another Imperfect frame where the mood matters more than polish.",
+    ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/Imperfect/Imperfect-live.mp4",
+        title: "Imperfect motion piece",
+        mimeType: "video/mp4",
+      },
+    ],
+  },
   "CT Shutdown": {
     name: "CT Shutdown",
     headline:
@@ -218,74 +346,6 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       },
     ],
   },
-  NYC: {
-    name: "NYC",
-    headline: "NYC, quick stops and whatever caught my eye",
-    location: "New York City",
-    tag: "city day",
-    intro:
-      "This set came from one of those city days where I was mostly just walking, looking up, and shooting whatever felt fun in the moment. Nothing too planned, just moving through the city and keeping the camera close.",
-    outro:
-      "A lot of these frames are just little proof-of-life moments: store displays, street corners, traffic lights, and random details that felt good enough to keep. It is less about making a perfect New York story and more about remembering how the day actually felt.",
-    photoLabel: "NYC frame",
-    captionTemplates: [
-      "A little city frame from the middle of the day. Just me catching a quick detail before moving on.",
-      "One of those NYC moments where something small stood out enough to get its own shot.",
-      "A casual stop in the city diary. Nothing staged, just whatever was right in front of me.",
-      "This one feels like the in-between part of the day that usually ends up being my favorite.",
-    ],
-  },
-  Beach: {
-    name: "Beach",
-    headline: "Beach, mostly wind, water, and space to breathe",
-    location: "Beachfront",
-    tag: "day off",
-    intro:
-      "This folder is basically me slowing down and letting the water do most of the work. I was not chasing some big perfect beach shot, I was just outside, taking in the quiet and grabbing the frames that felt calm.",
-    outro:
-      "Most of these are simple on purpose. Water, shoreline, sky, and that nice empty feeling you only really get near the beach when everything is moving but nothing feels rushed.",
-    photoLabel: "Beach diary",
-    captionTemplates: [
-      "A quiet beach frame with nothing to prove. Just water, air, and a little breathing room.",
-      "One more shoreline shot from a slow day by the water.",
-      "This one is mostly about the feeling of being there more than any single subject.",
-      "A simple beach moment that felt worth keeping exactly as it was.",
-    ],
-  },
-  Gym: {
-    name: "Gym",
-    headline: "Gym nights, purple machines, regular life stuff",
-    location: "Gym floor",
-    tag: "routine",
-    intro:
-      "This set is straight-up everyday life. Nothing glamorous about it. Just a regular gym night, purple machines everywhere, people locked into their own routines, and me grabbing the kind of frames I usually remember later.",
-    outro:
-      "I like these because they feel honest. It is not a fitness campaign or anything polished, just the room, the repetition, and the little rhythm that comes with showing up.",
-    photoLabel: "Gym night",
-    captionTemplates: [
-      "A quick gym snapshot from the middle of the routine.",
-      "Just a normal night at the gym, caught as-is.",
-      "One of those frames that feels more about the room and the energy than any one person in it.",
-      "A casual everyday shot from the workout part of the week.",
-    ],
-  },
-  "Late Night Munchies": {
-    name: "Late Night Munchies",
-    headline: "Late nights, random stops, and the ride in between",
-    location: "After-hours run",
-    tag: "after dark",
-    intro:
-      "This folder feels the most like a real diary to me. It is late-night driving, food runs, hanging around, weird lighting, and all the random little scenes that happen when nobody is trying too hard and everybody is just outside living.",
-    outro:
-      "There is car light, parking garage energy, empty spots, and those blurry night moments that do not need to be perfect to feel memorable. It is just what the night looked like while it was happening.",
-    photoLabel: "Late-night frame",
-    captionTemplates: [
-      "A late-night frame from somewhere between the drive, the stop, and the hangout.",
-      "This one has that after-dark energy where everything looks a little better than it does in the daytime.",
-      "One more frame from the part of the night where plans stop being clear and it gets more fun.",
-      "A small moment from the late-night run that felt worth saving.",
-    ],
-  },
   Studio: {
     name: "Studio",
     headline: "Studio nights with the screens glowing and everybody locked in",
@@ -303,40 +363,6 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       "This one feels like the kind of night where nobody notices how late it is until way later.",
     ],
   },
-  SuperSandwhich: {
-    name: "Super Sandwich",
-    headline: "A sandwich stop that turned into a whole little night",
-    location: "Super Sandwich",
-    tag: "food run",
-    intro:
-      "This set starts with the sandwich spot but it is really more about the whole mood around it. Neon signs, empty chairs, food-run timing, and then the night stretching into people talking and hanging out after.",
-    outro:
-      "It has that casual 'we were just out' energy that I always end up loving most later. A little bit of food, a little bit of conversation, and a lot of random moments that made the night feel full.",
-    photoLabel: "Food-run frame",
-    captionTemplates: [
-      "A quick frame from the sandwich run while the place was still glowing.",
-      "One of those food-stop shots where the mood matters more than the menu.",
-      "A casual little night-out frame from the middle of the hang.",
-      "This one feels like the part of the night where nobody is in a rush to leave.",
-    ],
-  },
-  Larp: {
-    name: "Larp",
-    headline: "Mirror checks, camera in hand, figuring stuff out at home",
-    location: "At home",
-    tag: "home setup",
-    intro:
-      "This one is super casual. It is basically me in the mirror, checking the setup, testing the camera, and grabbing a few frames in the middle of the process. Nothing fancy, just part of the day.",
-    outro:
-      "I kept these because they feel personal in a good way. More like little self-check moments than full portraits, and that is exactly why I like them.",
-    photoLabel: "Mirror frame",
-    captionTemplates: [
-      "A mirror shot from the middle of figuring out the setup.",
-      "One more at-home frame with the camera already in hand.",
-      "A casual self-check moment that felt worth keeping.",
-      "This one is less about posing and more about catching the process as it happened.",
-    ],
-  },
 };
 
 function slugify(value: string) {
@@ -350,9 +376,18 @@ function toPublicPath(folderName: string, fileName: string) {
   return path.posix.join("/Archive", folderName, fileName);
 }
 
-function toWebPublicPath(folderName: string, fileName: string) {
-  const base = path.parse(fileName).name + ".jpg";
-  return path.posix.join("/Archive-web", folderName, base);
+function toWebPublicPath(
+  folderName: string,
+  fileName: string,
+  webFileNames: Set<string>,
+) {
+  const base = path.parse(fileName).name;
+  const webFileName =
+    WEB_IMAGE_EXTENSIONS.map((extension) => `${base}${extension}`).find(
+      (candidate) => webFileNames.has(candidate),
+    ) ?? `${base}.jpg`;
+
+  return path.posix.join("/Archive-web", folderName, webFileName);
 }
 
 function getCaption(seed: CollectionSeed, index: number) {
@@ -382,9 +417,7 @@ export const getArchiveCollections = cache(
     const entries = await fs.readdir(ARCHIVE_ROOT, { withFileTypes: true });
     const folders = new Set(
       entries
-        .filter(
-          (entry) => entry.isDirectory() && !HIDDEN_COLLECTIONS.has(entry.name),
-        )
+        .filter((entry) => entry.isDirectory())
         .map((entry) => entry.name),
     );
     const preferredFolders = new Set<string>(COLLECTION_ORDER);
@@ -406,6 +439,24 @@ export const getArchiveCollections = cache(
           .sort((left, right) =>
             left.localeCompare(right, undefined, { numeric: true }),
           );
+        const webFolderPath = path.join(
+          process.cwd(),
+          "public",
+          "Archive-web",
+          folderName,
+        );
+        const webFileNames = new Set(
+          await fs
+            .readdir(webFolderPath)
+            .then((entries) =>
+              entries.filter((fileName) =>
+                WEB_IMAGE_EXTENSIONS.includes(
+                  path.extname(fileName).toLowerCase(),
+                ),
+              ),
+            )
+            .catch(() => []),
+        );
 
         const slug = slugify(folderName);
         const photos = await Promise.all(
@@ -417,7 +468,7 @@ export const getArchiveCollections = cache(
             return {
               id: `${slug}-${displayIndex}`,
               src: toPublicPath(folderName, fileName),
-              webSrc: toWebPublicPath(folderName, fileName),
+              webSrc: toWebPublicPath(folderName, fileName, webFileNames),
               title: `${seed.photoLabel} ${displayIndex}`,
               year: String(stats.birthtime.getFullYear()),
               location: seed.location,
@@ -455,6 +506,11 @@ export const getArchiveCollections = cache(
 export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
   const collections = await getArchiveCollections();
   const featuredCollectionNames = new Set([
+    "CheckSean",
+    "Amari",
+    "Black Love",
+    "Headspace",
+    "Imperfect",
     "CT Shutdown",
     "Night",
     "Sookwyd",
@@ -469,7 +525,7 @@ export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
     (collection) => !featuredCollectionNames.has(collection.name),
   );
 
-  // Build interleaved featured photos so the recent CT Shutdown work lands first.
+  // Build interleaved featured photos so the newest work lands first.
   const featuredPhotos: ArchivePhoto[] = [];
   const featuredMaxCount = Math.max(
     0,
