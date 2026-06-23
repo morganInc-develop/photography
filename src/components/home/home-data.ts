@@ -1,6 +1,6 @@
 export const PRELOADER_IMAGES = [
+  "/Archive-web/Codex New/DSC06257-2.webp",
   "/Archive-web/Amari/DSC05316-Edit.webp",
-  "/Archive-web/Black Love/DSC04985.webp",
   "/Archive-web/Headspace/DSC04997-2.webp",
   "/Archive-web/Imperfect/DSC04928.webp",
 ] as const;

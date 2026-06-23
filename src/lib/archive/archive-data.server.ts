@@ -15,6 +15,7 @@ const ARCHIVE_ROOT = path.join(process.cwd(), "public", "Archive");
 const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 
 const COLLECTION_ORDER = [
+  "Codex New",
   "CheckSean",
   "Amari",
   "Black Love",
@@ -45,6 +46,24 @@ type CollectionSeed = {
 };
 
 const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
+  "Codex New": {
+    name: "Codex New",
+    headline:
+      "Codex New, a streetwear story moving from hard daylight into concrete shadow",
+    location: "Urban campaign",
+    tag: "streetwear editorial",
+    intro:
+      "Codex New follows two subjects through brick corridors, painted walls, open campus paths, and the low ceiling of a parking structure. The clothes stay central, but the sequence also holds onto gesture, friendship, and the loose pace of a day spent moving between locations.",
+    outro:
+      "The campaign shifts from bright color and direct sun into darker concrete frames without losing its continuity. Apparel details, repeated poses, and the contrast between the two subjects give the full set the rhythm of a lived-in lookbook.",
+    photoLabel: "Codex New frame",
+    captionTemplates: [
+      "A Codex New portrait balancing the apparel against brick, concrete, and open daylight.",
+      "One of the closer campaign frames, held on styling, texture, and the subject's stance.",
+      "A two-person Codex New frame where the clothing and relationship share the composition.",
+      "Another streetwear study from the set, moving between graphic color and harder architectural lines.",
+    ],
+  },
   CheckSean: {
     name: "CheckSean",
     headline: "CheckSean, a tight motion piece built around presence and pace",
@@ -506,6 +525,7 @@ export const getArchiveCollections = cache(
 export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
   const collections = await getArchiveCollections();
   const featuredCollectionNames = new Set([
+    "Codex New",
     "CheckSean",
     "Amari",
     "Black Love",
