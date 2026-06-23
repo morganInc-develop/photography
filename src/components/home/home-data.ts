@@ -1,5 +1,5 @@
 export const PRELOADER_IMAGES = [
-  "/Archive-web/Codex New/DSC06257-2.webp",
+  "/Archive-web/Codename Noir/DSC06257-2.webp",
   "/Archive-web/Amari/DSC05316-Edit.webp",
   "/Archive-web/Headspace/DSC04997-2.webp",
   "/Archive-web/Imperfect/DSC04928.webp",
