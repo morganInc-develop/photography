@@ -7,9 +7,10 @@ const nextConfig: NextConfig = {
   },
   outputFileTracingExcludes: {
     "**": [
-      // Archive videos are served as static assets; tracing them into functions
+      // Archive media is served as static assets; tracing it into functions
       // would duplicate hundreds of megabytes of media.
-      "public/Archive/**/*.mp4",
+      "public/Archive/**/*",
+      "public/Archive-web/**/*",
       "node_modules/three/**",
       "node_modules/gsap/**",
       "node_modules/hls.js/**",

@@ -1,18 +1,13 @@
 import "server-only";
 
-import { promises as fs } from "node:fs";
-import path from "node:path";
 import { cache } from "react";
 
+import { ARCHIVE_ASSETS } from "@/lib/archive/archive-assets";
 import type {
   ArchiveCollection,
   ArchivePhoto,
   ArchiveVideo,
 } from "@/lib/archive/types";
-
-const ARCHIVE_ROOT = path.join(process.cwd(), "public", "Archive");
-
-const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 
 const COLLECTION_ORDER = [
   "NYFW 2026",
@@ -29,8 +24,6 @@ const COLLECTION_ORDER = [
   "Sookwyd",
   "Glo Rich",
 ] as const;
-
-const WEB_IMAGE_EXTENSIONS = [".webp", ".avif", ".jpg", ".jpeg", ".png"];
 
 type CollectionSeed = {
   name: string;
@@ -439,24 +432,6 @@ function slugify(value: string) {
     .replace(/^-+|-+$/g, "");
 }
 
-function toPublicPath(folderName: string, fileName: string) {
-  return path.posix.join("/Archive", folderName, fileName);
-}
-
-function toWebPublicPath(
-  folderName: string,
-  fileName: string,
-  webFileNames: Set<string>,
-) {
-  const base = path.parse(fileName).name;
-  const webFileName =
-    WEB_IMAGE_EXTENSIONS.map((extension) => `${base}${extension}`).find(
-      (candidate) => webFileNames.has(candidate),
-    ) ?? `${base}.jpg`;
-
-  return path.posix.join("/Archive-web", folderName, webFileName);
-}
-
 function getCaption(seed: CollectionSeed, index: number) {
   return seed.captionTemplates[index % seed.captionTemplates.length];
 }
@@ -481,10 +456,7 @@ function getFallbackSeed(folderName: string): CollectionSeed {
 
 export const getArchiveCollections = cache(
   async (): Promise<ArchiveCollection[]> => {
-    const entries = await fs.readdir(ARCHIVE_ROOT, { withFileTypes: true });
-    const folders = new Set(
-      entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name),
-    );
+    const folders = new Set(Object.keys(ARCHIVE_ASSETS));
     const preferredFolders = new Set<string>(COLLECTION_ORDER);
 
     const orderedFolders = [
@@ -492,77 +464,45 @@ export const getArchiveCollections = cache(
       ...[...folders].filter((folderName) => !preferredFolders.has(folderName)),
     ];
 
-    const collections = await Promise.all(
-      orderedFolders.map(async (folderName) => {
-        const seed =
-          COLLECTION_SEEDS[folderName] ?? getFallbackSeed(folderName);
-        const folderPath = path.join(ARCHIVE_ROOT, folderName);
-        const fileNames = (await fs.readdir(folderPath))
-          .filter((fileName) =>
-            IMAGE_EXTENSIONS.has(path.extname(fileName).toLowerCase()),
-          )
-          .sort((left, right) =>
-            left.localeCompare(right, undefined, { numeric: true }),
-          );
-        const webFolderPath = path.join(
-          process.cwd(),
-          "public",
-          "Archive-web",
-          folderName,
-        );
-        const webFileNames = new Set(
-          await fs
-            .readdir(webFolderPath)
-            .then((entries) =>
-              entries.filter((fileName) =>
-                WEB_IMAGE_EXTENSIONS.includes(
-                  path.extname(fileName).toLowerCase(),
-                ),
-              ),
-            )
-            .catch(() => []),
-        );
+    const collections = orderedFolders.map((folderName) => {
+      const seed = COLLECTION_SEEDS[folderName] ?? getFallbackSeed(folderName);
+      const slug = slugify(folderName);
+      const photos = (ARCHIVE_ASSETS[folderName] ?? []).map(
+        ({ fileName, webFileName }, index): ArchivePhoto => {
+          const displayIndex = String(index + 1).padStart(2, "0");
 
-        const slug = slugify(folderName);
-        const photos = await Promise.all(
-          fileNames.map(async (fileName, index): Promise<ArchivePhoto> => {
-            const filePath = path.join(folderPath, fileName);
-            const stats = await fs.stat(filePath);
-            const displayIndex = String(index + 1).padStart(2, "0");
+          return {
+            id: `${slug}-${displayIndex}`,
+            src: `/Archive/${folderName}/${fileName}`,
+            webSrc: `/Archive-web/${folderName}/${webFileName}`,
+            title: `${seed.photoLabel} ${displayIndex}`,
+            year: "2026",
+            location: seed.location,
+            description: getCaption(seed, index),
+            alt: `${seed.name} ${displayIndex}`,
+            collectionSlug: slug,
+            collectionName: seed.name,
+          };
+        },
+      );
 
-            return {
-              id: `${slug}-${displayIndex}`,
-              src: toPublicPath(folderName, fileName),
-              webSrc: toWebPublicPath(folderName, fileName, webFileNames),
-              title: `${seed.photoLabel} ${displayIndex}`,
-              year: String(stats.birthtime.getFullYear()),
-              location: seed.location,
-              description: getCaption(seed, index),
-              alt: `${seed.name} ${displayIndex}`,
-              collectionSlug: slug,
-              collectionName: seed.name,
-            };
-          }),
-        );
-
-        return {
-          slug,
-          folderName,
-          name: seed.name,
-          headline: seed.headline,
-          location: seed.location,
-          year: photos[0]?.year ?? "",
-          tag: seed.tag,
-          intro: seed.intro,
-          outro: seed.outro,
-          photos,
-          coverImage: photos[0]?.src ?? "",
-          videos: seed.videos,
-          videoEmbedSrc: seed.videoEmbedSrc,
-          links: seed.links,
-        } satisfies ArchiveCollection;
-      }),
-    );
+      return {
+        slug,
+        folderName,
+        name: seed.name,
+        headline: seed.headline,
+        location: seed.location,
+        year: photos[0]?.year ?? "",
+        tag: seed.tag,
+        intro: seed.intro,
+        outro: seed.outro,
+        photos,
+        coverImage: photos[0]?.src ?? "",
+        videos: seed.videos,
+        videoEmbedSrc: seed.videoEmbedSrc,
+        links: seed.links,
+      } satisfies ArchiveCollection;
+    });
 
     return collections.filter((collection) => collection.photos.length > 0);
   },
