@@ -2,6 +2,7 @@
 
 import type { ArchiveProject } from "@/components/archive/archive-data";
 import { ARCHIVE_PROJECTS } from "@/components/archive/archive-data";
+import { ArchiveVideoPlayer } from "@/components/photo/ArchiveVideoPlayer";
 import { CustomEase } from "gsap/CustomEase";
 import { gsap } from "gsap";
 import Image from "next/image";
@@ -199,6 +200,14 @@ export default function WorksProject({ project }: Props) {
         .archive-collage-item:hover img {
           filter: none;
         }
+        .works-project__video {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: contain;
+          background: #000;
+          border: 0;
+        }
       `}</style>
       <section
         style={{
@@ -232,7 +241,9 @@ export default function WorksProject({ project }: Props) {
       </section>
 
       {/* ── ARTIST INFO ── */}
-      {(project.videoEmbedSrc ?? project.links?.length) ? (
+      {project.videoEmbedSrc ||
+      project.videos?.length ||
+      project.links?.length ? (
         <section
           style={{
             background: "#0a0a0a",
@@ -261,6 +272,18 @@ export default function WorksProject({ project }: Props) {
               />
             </div>
           ) : null}
+
+          {project.videos?.map((video) => (
+            <div
+              key={video.src}
+              style={{ width: "100%", aspectRatio: "16/9", overflow: "hidden" }}
+            >
+              <ArchiveVideoPlayer
+                video={video}
+                className="works-project__video"
+              />
+            </div>
+          ))}
 
           {project.links?.length ? (
             <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>

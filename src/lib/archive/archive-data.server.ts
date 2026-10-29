@@ -91,6 +91,24 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
         title: "Saint live document",
         mimeType: "video/mp4",
       },
+      {
+        kind: "file",
+        src: "/Archive/Saint/Saint NYFW - Timeline 1.mp4",
+        title: "Saint at New York Fashion Week — Timeline 1",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Saint/Saint NYFW - Next Year.mp4",
+        title: "Saint at New York Fashion Week — Next Year",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Saint/Saint NYFW - Vertical.mp4",
+        title: "Saint at New York Fashion Week — Vertical",
+        mimeType: "video/mp4",
+      },
     ],
     videoEmbedSrc:
       "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
@@ -121,6 +139,14 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       "U Love KX in the studio during the portrait session.",
       "A close portrait of U Love KX from the session.",
       "A quiet frame from the U Love KX studio shoot.",
+    ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/U Love KX/U Love KX Draft 5.3.mp4",
+        title: "U Love KX — Draft 5.3",
+        mimeType: "video/mp4",
+      },
     ],
   },
   "Codename Noir": {
@@ -297,6 +323,12 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
         src: "/Archive/CT Shutdown/CT Shutdown-live-02.mp4",
         title: "CT Shutdown live document 02",
       },
+      {
+        kind: "file",
+        src: "/Archive/CT Shutdown/CT Shutdown 2.mp4",
+        title: "CT Shutdown 2",
+        mimeType: "video/mp4",
+      },
     ],
   },
   Night: {
@@ -398,7 +430,6 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       },
     ],
   },
-
 };
 
 function slugify(value: string) {
@@ -452,9 +483,7 @@ export const getArchiveCollections = cache(
   async (): Promise<ArchiveCollection[]> => {
     const entries = await fs.readdir(ARCHIVE_ROOT, { withFileTypes: true });
     const folders = new Set(
-      entries
-        .filter((entry) => entry.isDirectory())
-        .map((entry) => entry.name),
+      entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name),
     );
     const preferredFolders = new Set<string>(COLLECTION_ORDER);
 

@@ -1,3 +1,5 @@
+import type { ArchiveVideo } from "@/lib/archive/types";
+
 export type ArchiveProjectLink = { href: string; label: string };
 
 export type ArchiveProject = {
@@ -8,6 +10,7 @@ export type ArchiveProject = {
   description: string;
   coverImage: string;
   images: string[];
+  videos?: ArchiveVideo[];
   videoEmbedSrc?: string;
   links?: ArchiveProjectLink[];
 };
@@ -325,6 +328,32 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
       "/Archive/Saint/Sxint-02.jpg",
       "/Archive/Saint/Sxint-03.jpg",
     ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/Saint/Sxint-live.mp4",
+        title: "Saint live document",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Saint/Saint NYFW - Timeline 1.mp4",
+        title: "Saint at New York Fashion Week — Timeline 1",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Saint/Saint NYFW - Next Year.mp4",
+        title: "Saint at New York Fashion Week — Next Year",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Saint/Saint NYFW - Vertical.mp4",
+        title: "Saint at New York Fashion Week — Vertical",
+        mimeType: "video/mp4",
+      },
+    ],
     videoEmbedSrc:
       "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
     links: [
@@ -400,6 +429,14 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
       "/Archive/CT Shutdown/CT Shutdown-06.jpg",
       "/Archive/CT Shutdown/CT Shutdown-07.jpg",
     ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/CT Shutdown/CT Shutdown 2.mp4",
+        title: "CT Shutdown 2",
+        mimeType: "video/mp4",
+      },
+    ],
   },
   {
     index: "012",
@@ -450,6 +487,14 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
       "/Archive/U Love KX/DSC07473.webp",
       "/Archive/U Love KX/DSC07478.webp",
       "/Archive/U Love KX/DSC07496.webp",
+    ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/U Love KX/U Love KX Draft 5.3.mp4",
+        title: "U Love KX — Draft 5.3",
+        mimeType: "video/mp4",
+      },
     ],
   },
 ];
