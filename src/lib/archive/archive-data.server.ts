@@ -15,6 +15,9 @@ const ARCHIVE_ROOT = path.join(process.cwd(), "public", "Archive");
 const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 
 const COLLECTION_ORDER = [
+  "NYFW 2026",
+  "Saint",
+  "U Love KX",
   "Codename Noir",
   "CheckSean",
   "Amari",
@@ -24,9 +27,7 @@ const COLLECTION_ORDER = [
   "CT Shutdown",
   "Night",
   "Sookwyd",
-  "Sxint",
   "Glo Rich",
-  "Studio",
 ] as const;
 
 const WEB_IMAGE_EXTENSIONS = [".webp", ".avif", ".jpg", ".jpeg", ".png"];
@@ -46,6 +47,82 @@ type CollectionSeed = {
 };
 
 const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
+  "NYFW 2026": {
+    name: "New York Fashion Week",
+    headline: "New York Fashion Week, from the floor and the street",
+    location: "New York",
+    tag: "fashion week",
+    intro:
+      "A photographic record of New York Fashion Week, moving between the collections, the people, and the energy around the event.",
+    outro:
+      "The set keeps the focus on the details and moments that made the day feel like New York Fashion Week.",
+    photoLabel: "New York Fashion Week",
+    captionTemplates: [
+      "A frame from New York Fashion Week, holding the look and the room together.",
+      "A detail from the movement and atmosphere around New York Fashion Week.",
+      "A street-level moment from the New York Fashion Week set.",
+    ],
+  },
+  Saint: {
+    name: "Saint",
+    headline: "Saint (SXINT), from the studio to the live room",
+    location: "Studio and live performance",
+    tag: "artist portrait",
+    intro:
+      "A combined collection of Saint (SXINT) at work in the studio and performing live. The portraits and stage frames follow the same artist across both settings.",
+    outro:
+      "Studio moments and live photographs sit together as one record of Saint and the music around him.",
+    photoLabel: "Saint",
+    captionTemplates: [
+      "A studio portrait of Saint during a session.",
+      "Saint in the studio, with the session still taking shape.",
+      "A live frame of Saint, held close to the stage and the room.",
+      "A moment from Saint's set, with the crowd and performance in motion.",
+    ],
+    videos: [
+      {
+        kind: "embed",
+        src: "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
+        title: "Saint (SXINT) at CT Shutdown",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Saint/Sxint-live.mp4",
+        title: "Saint live document",
+        mimeType: "video/mp4",
+      },
+    ],
+    videoEmbedSrc:
+      "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
+    links: [
+      {
+        href: "https://www.youtube.com/@UCm0QFpsEycfF3FEQ6eZWd3w",
+        label: "YOUTUBE",
+      },
+      { href: "https://soundcloud.com/user-495163601", label: "SOUNDCLOUD" },
+      {
+        href: "https://open.spotify.com/artist/0Il5MAzLKVR47Q7nHSlfz5",
+        label: "SPOTIFY",
+      },
+      { href: "https://www.instagram.com/hatesxint/", label: "INSTAGRAM" },
+    ],
+  },
+  "U Love KX": {
+    name: "U Love KX",
+    headline: "U Love KX in the studio",
+    location: "Studio portrait session",
+    tag: "artist portrait",
+    intro:
+      "A studio portrait session with U Love KX, held on the artist and the atmosphere of the room.",
+    outro:
+      "The images stay close to the session, letting the setting and the artist carry the story.",
+    photoLabel: "U Love KX",
+    captionTemplates: [
+      "U Love KX in the studio during the portrait session.",
+      "A close portrait of U Love KX from the session.",
+      "A quiet frame from the U Love KX studio shoot.",
+    ],
+  },
   "Codename Noir": {
     name: "Codename Noir",
     headline:
@@ -283,50 +360,6 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       },
     ],
   },
-  Sxint: {
-    name: "Sxint",
-    headline:
-      "Sxint at CT Shutdown, live wire energy from the floor to the mic",
-    location: "CT Shutdown",
-    tag: "live set",
-    intro:
-      "These frames are from Sxint performing at CT Shutdown. Proud of my brother. Everything in this set stays close to the stage and the way the room felt while the music was actually hitting.",
-    outro:
-      "The photos are rough in the right way: red light, motion blur, crowd pressure, and that split-second feeling you only get when the set is happening in front of you instead of being cleaned up after.",
-    photoLabel: "Sxint live frame",
-    captionTemplates: [
-      "A close live frame from the middle of Sxint's CT Shutdown set.",
-      "Stage-side motion from Sxint at CT Shutdown while the room was still moving.",
-      "One more live document from Sxint's CT Shutdown performance.",
-      "A rough-edged frame from Sxint at CT Shutdown with the crowd still pushing in.",
-    ],
-    videos: [
-      {
-        kind: "embed",
-        src: "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
-        title: "Sxint at CT Shutdown",
-      },
-      {
-        kind: "file",
-        src: "/Archive/Sxint/Sxint-live.mp4",
-        title: "Sxint live document",
-      },
-    ],
-    videoEmbedSrc:
-      "https://www.youtube.com/embed/YehcLLPVav8?si=I47XRdYln3u6WHx8",
-    links: [
-      {
-        href: "https://www.youtube.com/@UCm0QFpsEycfF3FEQ6eZWd3w",
-        label: "YOUTUBE",
-      },
-      { href: "https://soundcloud.com/user-495163601", label: "SOUNDCLOUD" },
-      {
-        href: "https://open.spotify.com/artist/0Il5MAzLKVR47Q7nHSlfz5",
-        label: "SPOTIFY",
-      },
-      { href: "https://www.instagram.com/hatesxint/", label: "INSTAGRAM" },
-    ],
-  },
   "Glo Rich": {
     name: "Glo Rich",
     headline:
@@ -365,23 +398,7 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       },
     ],
   },
-  Studio: {
-    name: "Studio",
-    headline: "Studio nights with the screens glowing and everybody locked in",
-    location: "Home studio",
-    tag: "studio night",
-    intro:
-      "These are from studio nights when the room is doing its thing and everybody is focused. Purple lights, screens on, music getting worked on, gear spread out, and that feeling where time kind of disappears for a while.",
-    outro:
-      "I like how lived-in these feel. Not a polished behind-the-scenes set, more like honest room energy while something is actually being made.",
-    photoLabel: "Studio night",
-    captionTemplates: [
-      "A studio frame from the middle of the session while everything was still in motion.",
-      "One of those room shots where the lights and the mess tell the whole story.",
-      "A quick studio moment with the setup doing what it does best.",
-      "This one feels like the kind of night where nobody notices how late it is until way later.",
-    ],
-  },
+
 };
 
 function slugify(value: string) {
@@ -525,6 +542,9 @@ export const getArchiveCollections = cache(
 export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
   const collections = await getArchiveCollections();
   const featuredCollectionNames = new Set([
+    "New York Fashion Week",
+    "Saint",
+    "U Love KX",
     "Codename Noir",
     "CheckSean",
     "Amari",
@@ -534,7 +554,6 @@ export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
     "CT Shutdown",
     "Night",
     "Sookwyd",
-    "Sxint",
     "Glo Rich",
   ]);
 
