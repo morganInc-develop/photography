@@ -1,5 +1,6 @@
 import type { ArchiveProject } from "@/components/archive/archive-data";
 import Image from "next/image";
+import { getArchiveWebImage } from "@/lib/archive/archive-image";
 import Link from "next/link";
 import type { MutableRefObject } from "react";
 
@@ -62,10 +63,11 @@ export default function ClientsMode({
               className="client-img-wrapper"
             >
               <Image
-                src={project.coverImage}
+                src={getArchiveWebImage(project.coverImage)}
                 alt={project.name}
                 fill
                 sizes="(max-width: 1024px) 100vw, 36vw"
+                unoptimized
                 className="img is--cover"
               />
             </div>

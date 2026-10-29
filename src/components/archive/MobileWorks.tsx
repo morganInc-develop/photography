@@ -2,6 +2,7 @@ import type { ArchiveProject } from "@/components/archive/archive-data";
 import ArchiveHeader from "@/components/archive/ArchiveHeader";
 import Image from "next/image";
 import Link from "next/link";
+import { getArchiveWebImage } from "@/lib/archive/archive-image";
 
 type ArchiveMode = "gallery" | "clients";
 
@@ -91,10 +92,11 @@ export default function MobileWorks({
                   className="wm__gallery-img"
                 >
                   <Image
-                    src={project.coverImage}
+                    src={getArchiveWebImage(project.coverImage)}
                     alt={project.name}
                     fill
                     sizes="50vw"
+                    unoptimized
                     className="img is--cover"
                   />
                 </Link>
@@ -119,10 +121,11 @@ export default function MobileWorks({
                   className="wm__img"
                 >
                   <Image
-                    src={project.coverImage}
+                    src={getArchiveWebImage(project.coverImage)}
                     alt={project.name}
                     fill
                     sizes="100vw"
+                    unoptimized
                     className="img is--cover"
                   />
                 </Link>

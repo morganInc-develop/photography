@@ -2,6 +2,7 @@ import type { ArchiveProject } from "@/components/archive/archive-data";
 import Image from "next/image";
 import Link from "next/link";
 import type { MutableRefObject, RefObject } from "react";
+import { getArchiveWebImage } from "@/lib/archive/archive-image";
 
 type GalleryModeProps = {
   mode: "gallery" | "clients";
@@ -76,10 +77,11 @@ export default function GalleryMode({
             aria-label={`Open ${project.name}`}
           >
             <Image
-              src={project.coverImage}
+              src={getArchiveWebImage(project.coverImage)}
               alt={project.name}
               fill
               sizes="(max-width: 1024px) 100vw, 55vw"
+              unoptimized
               className="img is--cover"
               style={{
                 filter: index === activeIndex ? "none" : "grayscale(100%)",
@@ -106,10 +108,11 @@ export default function GalleryMode({
               onClick={() => onSelect(index)}
             >
               <Image
-                src={project.coverImage}
+                src={getArchiveWebImage(project.coverImage)}
                 alt={project.description}
                 fill
                 sizes="4rem"
+                unoptimized
                 className="img is--cover"
               />
             </button>

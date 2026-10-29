@@ -547,12 +547,12 @@ export const getArchiveCollections = cache(
       const seed = COLLECTION_SEEDS[folderName] ?? getFallbackSeed(folderName);
       const slug = slugify(folderName);
       const photos = (ARCHIVE_ASSETS[folderName] ?? []).map(
-        ({ fileName, webFileName }, index): ArchivePhoto => {
+        ({ webFileName }, index): ArchivePhoto => {
           const displayIndex = String(index + 1).padStart(2, "0");
 
           return {
             id: `${slug}-${displayIndex}`,
-            src: `/Archive/${folderName}/${fileName}`,
+            src: `/Archive-web/${folderName}/${webFileName}`,
             webSrc: `/Archive-web/${folderName}/${webFileName}`,
             title: `${seed.photoLabel} ${displayIndex}`,
             year: "2026",
@@ -576,7 +576,7 @@ export const getArchiveCollections = cache(
         intro: seed.intro,
         outro: seed.outro,
         photos,
-        coverImage: photos[0]?.src ?? "",
+        coverImage: photos[0]?.webSrc ?? "",
         videos: seed.videos,
         videoEmbedSrc: seed.videoEmbedSrc,
         links: seed.links,

@@ -373,6 +373,7 @@ export function ArticleEditorialSection({
                       <ArchiveVideoPlayer
                         video={video}
                         className="h-full w-full border-0"
+                        poster={collection.coverImage}
                       />
                     </motion.div>
                   ))
@@ -528,6 +529,7 @@ export function ArticleEditorialSection({
                 <ArchiveVideoPlayer
                   video={video}
                   className="h-full w-full border-0"
+                  poster={collection.coverImage}
                 />
               </div>
             ))

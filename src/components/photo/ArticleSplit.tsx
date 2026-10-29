@@ -572,6 +572,7 @@ export function ArticleSplit({
                   <ArchiveVideoPlayer
                     video={activeVideo}
                     className="h-full w-full border-0"
+                    poster={collection.coverImage}
                   />
                 ) : null}
               </div>
