@@ -22,7 +22,7 @@ export type FeaturedArtist = {
   videoTitle: string;
 };
 
-export const FEATURED_ARTISTS = [
+const ALL_FEATURED_ARTISTS = [
   {
     collectionSlug: "sookwyd",
     description:
@@ -100,6 +100,10 @@ export const FEATURED_ARTISTS = [
     videoTitle: "Sxint at CT Shutdown",
   },
 ] satisfies readonly FeaturedArtist[];
+
+export const FEATURED_ARTISTS = ALL_FEATURED_ARTISTS.filter(
+  (artist) => artist.collectionSlug !== "glo-rich",
+);
 
 export const HOME_MANIFESTO =
   "Made Invincible is a photography and videography practice focused on cinematic portraiture, documentary motion, and image-making with a tactile, atmospheric edge.";

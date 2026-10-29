@@ -26,6 +26,8 @@ const COLLECTION_ORDER = [
   "Glo Rich",
 ] as const;
 
+const HIDDEN_COLLECTION_NAMES = new Set(["Night", "Glo Rich"]);
+
 type CollectionSeed = {
   name: string;
   headline: string;
@@ -165,19 +167,19 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       },
       {
         kind: "file",
-        src: "/Archive/Saint/Saint NYFW - Timeline 1.mp4",
+        src: "/Archive-web/Saint/Saint NYFW - Timeline 1.mp4",
         title: "Saint at New York Fashion Week — Timeline 1",
         mimeType: "video/mp4",
       },
       {
         kind: "file",
-        src: "/Archive/Saint/Saint NYFW - Next Year.mp4",
+        src: "/Archive-web/Saint/Saint NYFW - Next Year.mp4",
         title: "Saint at New York Fashion Week — Next Year",
         mimeType: "video/mp4",
       },
       {
         kind: "file",
-        src: "/Archive/Saint/Saint NYFW - Vertical.mp4",
+        src: "/Archive-web/Saint/Saint NYFW - Vertical.mp4",
         title: "Saint at New York Fashion Week — Vertical",
         mimeType: "video/mp4",
       },
@@ -215,7 +217,7 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
     videos: [
       {
         kind: "file",
-        src: "/Archive/U Love KX/U Love KX Draft 5.3.mp4",
+        src: "/Archive-web/U Love KX/U Love KX Draft 5.3.mp4",
         title: "U Love KX — Draft 5.3",
         mimeType: "video/mp4",
       },
@@ -305,7 +307,7 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
     videos: [
       {
         kind: "file",
-        src: "/Archive/Black Love/Black Love-live.mp4",
+        src: "/Archive-web/Black Love/Black Love-live.mp4",
         title: "Black Love motion piece",
         mimeType: "video/mp4",
       },
@@ -397,7 +399,7 @@ const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
       },
       {
         kind: "file",
-        src: "/Archive/CT Shutdown/CT Shutdown 2.mp4",
+        src: "/Archive-web/CT Shutdown/CT Shutdown 2.mp4",
         title: "CT Shutdown 2",
         mimeType: "video/mp4",
       },
@@ -583,7 +585,11 @@ export const getArchiveCollections = cache(
       } satisfies ArchiveCollection;
     });
 
-    return collections.filter((collection) => collection.photos.length > 0);
+    return collections.filter(
+      (collection) =>
+        collection.photos.length > 0 &&
+        !HIDDEN_COLLECTION_NAMES.has(collection.name),
+    );
   },
 );
 
@@ -601,9 +607,7 @@ export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
     "Headspace",
     "Imperfect",
     "CT Shutdown",
-    "Night",
     "Sookwyd",
-    "Glo Rich",
   ]);
 
   const featuredCollections = collections.filter((collection) =>

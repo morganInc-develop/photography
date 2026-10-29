@@ -15,7 +15,7 @@ export type ArchiveProject = {
   links?: ArchiveProjectLink[];
 };
 
-export const ARCHIVE_PROJECTS: ArchiveProject[] = [
+const ALL_ARCHIVE_PROJECTS: ArchiveProject[] = [
   {
     index: "001",
     slug: "codename-noir",
@@ -337,19 +337,19 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
       },
       {
         kind: "file",
-        src: "/Archive/Saint/Saint NYFW - Timeline 1.mp4",
+        src: "/Archive-web/Saint/Saint NYFW - Timeline 1.mp4",
         title: "Saint at New York Fashion Week — Timeline 1",
         mimeType: "video/mp4",
       },
       {
         kind: "file",
-        src: "/Archive/Saint/Saint NYFW - Next Year.mp4",
+        src: "/Archive-web/Saint/Saint NYFW - Next Year.mp4",
         title: "Saint at New York Fashion Week — Next Year",
         mimeType: "video/mp4",
       },
       {
         kind: "file",
-        src: "/Archive/Saint/Saint NYFW - Vertical.mp4",
+        src: "/Archive-web/Saint/Saint NYFW - Vertical.mp4",
         title: "Saint at New York Fashion Week — Vertical",
         mimeType: "video/mp4",
       },
@@ -432,7 +432,7 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
     videos: [
       {
         kind: "file",
-        src: "/Archive/CT Shutdown/CT Shutdown 2.mp4",
+        src: "/Archive-web/CT Shutdown/CT Shutdown 2.mp4",
         title: "CT Shutdown 2",
         mimeType: "video/mp4",
       },
@@ -491,7 +491,7 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
     videos: [
       {
         kind: "file",
-        src: "/Archive/U Love KX/U Love KX Draft 5.3.mp4",
+        src: "/Archive-web/U Love KX/U Love KX Draft 5.3.mp4",
         title: "U Love KX — Draft 5.3",
         mimeType: "video/mp4",
       },
@@ -570,6 +570,12 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
     ],
   },
 ];
+
+const HIDDEN_ARCHIVE_PROJECT_SLUGS = new Set(["glo-rich", "night"]);
+
+export const ARCHIVE_PROJECTS = ALL_ARCHIVE_PROJECTS.filter(
+  (project) => !HIDDEN_ARCHIVE_PROJECT_SLUGS.has(project.slug),
+);
 
 export const ARCHIVE_MANIFESTO =
   "What appears here is not a highlight reel but a record of presence. Different places, different light, the same commitment to seeing, feeling, and";

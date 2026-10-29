@@ -1,4 +1,5 @@
 import type { ArchiveVideo } from "@/lib/archive/types";
+import { DeferredArchiveVideo } from "@/components/photo/DeferredArchiveVideo";
 
 type Props = {
   video: ArchiveVideo;
@@ -22,16 +23,11 @@ export function ArchiveVideoPlayer({ video, className, poster }: Props) {
   }
 
   return (
-    <video
-      controls
-      preload="none"
-      playsInline
+    <DeferredArchiveVideo
+      src={video.src}
+      title={video.title}
       className={className}
-      aria-label={video.title}
       poster={poster}
-    >
-      <source src={video.src} type={video.mimeType ?? "video/mp4"} />
-      Your browser does not support the video tag.
-    </video>
+    />
   );
 }
