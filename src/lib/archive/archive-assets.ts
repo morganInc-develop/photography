@@ -3,6 +3,12 @@
 export type ArchiveAsset = { fileName: string; webFileName: string };
 
 export const ARCHIVE_ASSETS: Record<string, ArchiveAsset[]> = {
+  Basketball: [
+    {
+      fileName: "Basketball-poster.jpg",
+      webFileName: "Basketball-poster.jpg",
+    },
+  ],
   Amari: [
     { fileName: "DSC05316-Edit.webp", webFileName: "DSC05316-Edit.webp" },
     { fileName: "DSC05364.webp", webFileName: "DSC05364.webp" },

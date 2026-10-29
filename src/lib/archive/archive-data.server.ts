@@ -10,6 +10,7 @@ import type {
 } from "@/lib/archive/types";
 
 const COLLECTION_ORDER = [
+  "Basketball",
   "NYFW 2026",
   "Saint",
   "U Love KX",
@@ -40,6 +41,84 @@ type CollectionSeed = {
 };
 
 const COLLECTION_SEEDS: Record<string, CollectionSeed> = {
+  Basketball: {
+    name: "Basketball",
+    headline: "Basketball, from the court and the stands",
+    location: "The court",
+    tag: "basketball",
+    intro:
+      "A collection of basketball moments gathered from the court, with each reel keeping the movement and atmosphere of the game in view.",
+    outro:
+      "The clips stay together as one record of the game, the players, and the energy around the court.",
+    photoLabel: "Basketball",
+    captionTemplates: [
+      "A frame from the basketball reels, with the action still unfolding.",
+      "A moment from the court, held in motion.",
+      "The game, the players, and the space around the basket.",
+    ],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-Db5j7gttFHM.mp4",
+        title: "Basketball reel 01",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-Db3jSyFhjGb.mp4",
+        title: "Basketball reel 02",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-DbrRU5XpRSv.mp4",
+        title: "Basketball reel 03",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-Dblxh2vpiKQ.mp4",
+        title: "Basketball reel 04",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-Dbgxz-iJelc.mp4",
+        title: "Basketball reel 05",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-DbdzUU-BaEM.mp4",
+        title: "Basketball reel 06",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-DbLuipDB7Ca.mp4",
+        title: "Basketball reel 07",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-DbY0XeTJJAE.mp4",
+        title: "Basketball reel 08",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-Da5lFmAhy1I.mp4",
+        title: "Basketball reel 09",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-DbEAQrahTun.mp4",
+        title: "Basketball reel 10",
+        mimeType: "video/mp4",
+      },
+    ],
+  },
   "NYFW 2026": {
     name: "New York Fashion Week",
     headline: "New York Fashion Week, from the floor and the street",
@@ -511,6 +590,7 @@ export const getArchiveCollections = cache(
 export const getArtboardPhotos = cache(async (): Promise<ArchivePhoto[]> => {
   const collections = await getArchiveCollections();
   const featuredCollectionNames = new Set([
+    "Basketball",
     "New York Fashion Week",
     "Saint",
     "U Love KX",

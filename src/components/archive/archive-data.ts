@@ -497,6 +497,78 @@ export const ARCHIVE_PROJECTS: ArchiveProject[] = [
       },
     ],
   },
+  {
+    index: "015",
+    slug: "basketball",
+    name: "BASKETBALL",
+    href: "/the-archive/basketball",
+    description:
+      "Basketball reels from the court, held together as one moving collection.",
+    coverImage: "/Archive/Basketball/Basketball-poster.jpg",
+    images: ["/Archive/Basketball/Basketball-poster.jpg"],
+    videos: [
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-Db5j7gttFHM.mp4",
+        title: "Basketball reel 01",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-Db3jSyFhjGb.mp4",
+        title: "Basketball reel 02",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-DbrRU5XpRSv.mp4",
+        title: "Basketball reel 03",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-Dblxh2vpiKQ.mp4",
+        title: "Basketball reel 04",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-Dbgxz-iJelc.mp4",
+        title: "Basketball reel 05",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-DbdzUU-BaEM.mp4",
+        title: "Basketball reel 06",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-DbLuipDB7Ca.mp4",
+        title: "Basketball reel 07",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-DbY0XeTJJAE.mp4",
+        title: "Basketball reel 08",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-Da5lFmAhy1I.mp4",
+        title: "Basketball reel 09",
+        mimeType: "video/mp4",
+      },
+      {
+        kind: "file",
+        src: "/Archive/Basketball/reel-DbEAQrahTun.mp4",
+        title: "Basketball reel 10",
+        mimeType: "video/mp4",
+      },
+    ],
+  },
 ];
 
 export const ARCHIVE_MANIFESTO =
